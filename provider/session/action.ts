@@ -1,6 +1,6 @@
 "use server";
 
-import { fetchFromBackend } from "@/server/server";
+import { fetchFromBackend } from "@/server";
 import { redirect } from "next/navigation";
 
 

@@ -1,9 +1,8 @@
-import fetchAPIFromBackendSingleWithErrorHandling from "@/server/server";
+'use server';
+import fetchAPIFromBackendSingleWithErrorHandling from "@/server";
 import { Session } from "@/types/user/session";
-
 const fetchSession = async () => {
-    console.log("fetching session")
-    const res = await fetchAPIFromBackendSingleWithErrorHandling<Session>("/user/me2");
+    const res = await fetchAPIFromBackendSingleWithErrorHandling<Session>("/user/me");
     if ('detail' in res) {
         return null;
     }
