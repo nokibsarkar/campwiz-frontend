@@ -1,62 +1,32 @@
-import { CampaignCreate } from "@/types"
-import { Button } from "@mui/material"
+"use client";
+import { Button, Paper, Typography } from "@mui/material"
+import createCampaign from "@/app/campaign/new/action"
+import { useReducer } from "react";
+import { campaignCreateReducer, initialCampaignCreate } from "@/types/campaign/create";
+import CampaignEditForm from "@/components/campaign/Campaign";
+import ReturnButton from "@/components/ReturnButton";
 
 const CreateCampaign = () => {
-    const createCampaign = async (campaign: CampaignCreate) => {
-        try {
-            const res = await fetch('/api/campaigns', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(campaign),
-            })
-            if (res.ok) {
-                alert('Campaign created!')
-            } else {
-                alert('Failed to create campaign')
-            }
-        } catch (error) {
-            console.error(error)
-        }
-    }
+    const [campaign, campaignDispatch] = useReducer(campaignCreateReducer, initialCampaignCreate);
     return (
-        <div>
-            <h1>Create Campaign</h1>
+        <Paper sx={{ padding: 2, }}>
+            <Typography variant="h3" sx={{ mb: 2 }}>
+                Create Campaign
+            </Typography>
+            <Typography variant="subtitle1">
+                Create a new campaign by filling out the form below.
+            </Typography>
+            <CampaignEditForm {...campaign} dispatch={campaignDispatch} />
+
+            <ReturnButton />
             <Button
-                onClick={() => {
-                    createCampaign({
-                        name: 'My Campaign',
-                        description: 'A new campaign',
-                        allowCreations: true,
-                        allowExpansions: false,
-                        allowJuryToParticipate: false,
-                        allowMultipleJudgement: false,
-                        allowedMediaTypes: [],
-                        blacklist: "",
-                        coordinators: [],
-                        endDate: "",
-                        image: "",
-                        language: "",
-                        maximumSubmissionOfSameArticle: 0,
-                        minimumAddedBytes: 0,
-                        minimumAddedWords: 0,
-                        minimumDurationMilliseconds: 0,
-                        minimumHeight: 0,
-                        minimumResolution: 0,
-                        minimumTotalBytes: 0,
-                        minimumTotalWords: 0,
-                        minimumWidth: 0,
-                        organizers: [],
-                        rules: "",
-                        secretBallot: false,
-                        startDate: ""
-                    })
-                }}
+                onClick={() => createCampaign(campaign)}
+                variant="contained"
+                color="success"
             >
                 Create Campaign
             </Button>
-        </div>
+        </Paper>
     )
 }
 export default CreateCampaign
