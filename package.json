@@ -16,8 +16,11 @@
     "@mui/icons-material": "^6.4.6",
     "@mui/material": "^6.4.6",
     "@mui/material-nextjs": "^6.4.3",
+    "@mui/x-date-pickers": "^7.27.1",
+    "dayjs": "^1.11.13",
     "next": "15.2.0",
     "react": "^19.0.0",
+    "react-datepicker": "^8.1.0",
     "react-dom": "^19.0.0",
     "server-only": "^0.0.1",
     "swr": "^2.3.2"

@@ -45,6 +45,7 @@ export default async function RootLayout({
           <ThemeProvider theme={theme}>
             {children}
           </ThemeProvider>
+          {/* </LocalizationProvider> */}
         </AppRouterCacheProvider>
       </body>
     </html>
