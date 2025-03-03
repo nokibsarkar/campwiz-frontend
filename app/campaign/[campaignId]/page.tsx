@@ -1,2 +1,4 @@
-const ViewCampaignPage = () => { }
+const ViewCampaignPage = () => {
+
+}
 export default ViewCampaignPage

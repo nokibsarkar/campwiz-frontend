@@ -6,6 +6,14 @@ const theme = createTheme({
     fontFamily: 'var(--font-roboto)',
   },
   cssVariables: true,
+  palette: {
+    primary: {
+      main: '#1976d2',
+    },
+    secondary: {
+      main: '#dc004e',
+    },
+  },
 });
 
 export default theme;

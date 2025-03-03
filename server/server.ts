@@ -1,5 +1,5 @@
 
-import { ResponseError, ResponseSingle } from "./_";
+import { ResponseError, ResponseSingle } from "../types/_";
 import { cookies } from 'next/headers'
 const baseURL = process.env.NEXT_PUBLIC_API_URL;
 const fetchFromBackend = async (path: string) => {
