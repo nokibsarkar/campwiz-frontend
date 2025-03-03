@@ -4,6 +4,7 @@ import loginInitiateAction from "@/provider/session/action";
 import { Paper, Typography } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import Link from "next/link";
 const LoginPage = ({ }) => {
     const searchParams = useSearchParams()
     const next = searchParams.get('next')
@@ -28,7 +29,7 @@ const LoginPage = ({ }) => {
                 located at Meta Wiki. Once you have logged in there and Authorize the Application,
                 you will be redirected back here. No worries, we do not store any of your personal
                 information unless it is required for the application to function. For more information
-                on how we handle your data, please refer to our Privacy Policy.
+                on how we handle your data, please refer to our <Link href="/policy/privacy">Privacy Policy</Link>.
             </Typography>
             <Button
                 onClick={() => loginInitiateAction(next)}
@@ -41,7 +42,7 @@ const LoginPage = ({ }) => {
                 Login with Wikimedia
             </Button>
             <Typography variant="body1" sx={{ mt: 2 }}>
-                By clicking the button above, you agree to the Terms of Service and Privacy Policy.
+                By clicking the button above, you agree to the <Link href="/policy/terms">Terms of Service</Link> and <Link href="/policy/privacy">Privacy Policy</Link>.
             </Typography>
             <Typography variant="body2" sx={{ mt: 2 }}>
                 After this process, you will be redirected back to the following page:
