@@ -17,7 +17,7 @@ const CreateCampaign = () => {
                 Create a new campaign by filling out the form below.
             </Typography>
             <CampaignEditForm {...campaign} dispatch={campaignDispatch} />
-
+            <br />
             <ReturnButton />
             <Button
                 onClick={() => createCampaign(campaign)}
