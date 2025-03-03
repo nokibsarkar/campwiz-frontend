@@ -1,4 +1,4 @@
-import { loginCallbackAction } from "@/components/providers/session/action";
+import { loginCallbackAction } from "@/provider/session/action";
 
 const LoginCallbackPage: React.FC = async () => {
     await loginCallbackAction();

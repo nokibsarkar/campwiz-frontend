@@ -1,20 +1,25 @@
 
 import { ResponseError, ResponseSingle } from "../types/_";
 import { cookies } from 'next/headers'
-const baseURL = process.env.NEXT_PUBLIC_API_URL;
-const fetchFromBackend = async (path: string) => {
-    const res = await fetch(`${baseURL}${path}`);
-    return await res.json();
+const baseURL = process.env.NEXT_BASE_URL || ''
+const API_PATH = '/api/v2';
+export const fetchFromBackend = async (path: string, options?: RequestInit): Promise<Response> => {
+    const cookieStore = await cookies()
+    if (options === undefined) {
+        options = {}
+    }
+    if (options.headers === undefined) {
+        options.headers = new Headers()
+    }
+    (options.headers as Headers).append('Cookie', cookieStore.toString())
+
+    const res = await fetch(`${baseURL}${path}`, options)
+    return res
 }
 
-export async function fetchFromBackendSingleWithErrorHandling<T>(path: string): Promise<ResponseSingle<T> | ResponseError> {
-    const cookieStore = await cookies()
+async function fetchAPIFromBackendSingleWithErrorHandling<T>(path: string): Promise<ResponseSingle<T> | ResponseError> {
     try {
-        const headers = new Headers()
-        headers.append('Cookie', cookieStore.toString())
-        const res = await fetch(`${baseURL}${path}`, {
-            headers: headers,
-        });
+        const res = await fetchFromBackend(`${API_PATH}${path}`)
         const r = await res.json();
         if (res.ok) {
             return r
@@ -30,4 +35,4 @@ export async function fetchFromBackendSingleWithErrorHandling<T>(path: string): 
     }
 
 }
-export default fetchFromBackend;
+export default fetchAPIFromBackendSingleWithErrorHandling;
