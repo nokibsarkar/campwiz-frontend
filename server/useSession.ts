@@ -1,7 +1,7 @@
+import { fetchFromBackendSingleWithErrorHandling } from "@/types/server";
+
 const fetchSession = async () => {
-    const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/user/me", {
-        credentials: "include"
-    });
-    return await res.json();
+    const res = await fetchFromBackendSingleWithErrorHandling("/user/me");
+    return res;
 }
 export default fetchSession;
