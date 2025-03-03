@@ -3,7 +3,7 @@ import Button from "@mui/material/Button"
 import loginInitiateAction from "@/provider/session/action";
 import { Paper, Typography } from "@mui/material";
 import { useSearchParams } from "next/navigation";
-
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 const LoginPage = ({ }) => {
     const searchParams = useSearchParams()
     const next = searchParams.get('next')
@@ -18,6 +18,8 @@ const LoginPage = ({ }) => {
             top: '50%', left: '50%',
             transform: 'translate(-50%, -50%)'
         }}>
+
+            <AdminPanelSettingsIcon sx={{ fontSize: 80 }} />
             <Typography variant="h3" sx={{ mb: 2 }}>
                 Login
             </Typography>
