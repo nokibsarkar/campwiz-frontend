@@ -39,7 +39,7 @@ const CampaignEditForm = ({ dispatch, ...campaign }: CampaignCreate & { dispatch
                 />
                 <Autocomplete
                     options={[
-                        'bn', 'en', 'es', 'fr', 'de', 'hi', 'it', 'ja', 'ko', 'pt', 'ru', 'zh'
+                        'bn', 'en', 'es', 'fr', 'de', 'hi', 'it', 'ja', 'ko', 'pt', 'ru'
                     ]}
                     renderInput={(params) => <TextField {...params} label="Language" variant="outlined" />}
                     sx={{ m: 1, width: '10%', display: 'inline-block' }}
