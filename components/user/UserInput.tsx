@@ -8,6 +8,7 @@ type UserInputProps = {
     onChange: (users: string[]) => void
     label: string
     allowList?: string[]
+    disabled?: boolean
 }
 const base = `https://commons.wikimedia.org/w/api.php?action=query&list=allusers&aulimit=10&format=json&origin=*&auprefix=`
 const UserInput = (props: UserInputProps) => {
@@ -35,6 +36,7 @@ const UserInput = (props: UserInputProps) => {
             filterSelectedOptions
             value={props.value}
             onError={(e) => console.error(e)}
+            disabled={props.disabled}
             loading={isLoading}
             onChange={(_, updatedUsers) => props.onChange(updatedUsers)}
             sx={{ m: 1 }}

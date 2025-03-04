@@ -5,7 +5,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import { ActionDispatch } from "react";
 import UserInput from "../user/UserInput";
-const CampaignEditForm = ({ dispatch, ...campaign }: CampaignCreate & { dispatch: ActionDispatch<[Partial<CampaignCreate>]> }) => {
+const CampaignEditForm = ({ dispatch, loading, disabled = false, ...campaign }: CampaignCreate & { dispatch: ActionDispatch<[Partial<CampaignCreate>]>, loading: boolean, disabled?: boolean }) => {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <TextField
@@ -14,18 +14,21 @@ const CampaignEditForm = ({ dispatch, ...campaign }: CampaignCreate & { dispatch
                 sx={{ m: 1, width: '50%' }}
                 onChange={(e) => dispatch({ name: e.target.value })}
                 value={campaign.name}
+                disabled={loading || disabled}
             />
             <DatePicker
                 onChange={(date) => dispatch({ startDate: date?.toISOString() })}
                 value={dayjs(campaign.startDate)}
                 sx={{ m: 1, width: '18%' }}
                 label="Start Date"
+                disabled={loading || disabled}
             />
             <DatePicker
                 onChange={(date) => dispatch({ endDate: date?.toISOString() })}
                 value={dayjs(campaign.endDate)}
                 sx={{ m: 1, width: '18%' }}
                 label="End Date"
+                disabled={loading || disabled}
             />
             <TextField
                 label="Description"
@@ -35,6 +38,7 @@ const CampaignEditForm = ({ dispatch, ...campaign }: CampaignCreate & { dispatch
                 value={campaign.description}
                 multiline
                 minRows={4}
+                disabled={loading || disabled}
             />
             <TextField
                 label="Rules"
@@ -44,36 +48,32 @@ const CampaignEditForm = ({ dispatch, ...campaign }: CampaignCreate & { dispatch
                 value={campaign.rules}
                 multiline
                 minRows={4}
+                disabled={loading || disabled}
             />
             <br />
             <Autocomplete
                 options={[
-                    'bn', 'en', 'es', 'fr', 'de', 'hi', 'it', 'ja', 'ko', 'pt', 'ru'
+                    'commons'
                 ]}
                 renderInput={(params) => <TextField {...params} label="Language" variant="outlined" />}
-                sx={{ m: 1, width: '10%', display: 'inline-block' }}
+                sx={{ m: 1, }}
                 value={campaign.language}
                 onChange={(e, value) => dispatch({ language: value as string })}
+                disabled={loading || disabled}
             />
             <UserInput
                 value={campaign.organizers}
                 onChange={(organizers) => dispatch({ organizers })}
                 label="Organizers"
+                disabled={loading || disabled}
             />
             <UserInput
                 value={campaign.coordinators}
                 onChange={(coordinators) => dispatch({ coordinators })}
                 label="Coordinators"
+                disabled={loading || disabled}
 
             />
-            {/* <Box component='fieldset' sx={{ m: 2, border: 1, p: 2 }}>
-                <Typography component="legend">Restrictions</Typography>
-                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <Checkbox value={campaign.allowCreations} onChange={(e) => dispatch({ allowCreations: e.target.checked })} />
-                    <Typography>Allow Creations</Typography>
-                </div>
-            </Box> */}
-
         </LocalizationProvider>
     );
 }
