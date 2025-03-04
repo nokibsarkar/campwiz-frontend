@@ -19,7 +19,7 @@ const createCampaign = async (campaign: CampaignCreate) => {
         } else {
             console.log(res)
         }
-        return res
+        return res.data
     } catch (error) {
         console.error(error)
     }
