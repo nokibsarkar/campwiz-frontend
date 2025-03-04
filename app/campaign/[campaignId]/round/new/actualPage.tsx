@@ -17,8 +17,13 @@ const CreateRound = ({ campaignId }: { campaignId: string }) => {
         try {
             setError(null);
             const newRound = await createRound(round);
-            console.log(newRound);
-            setCreatedRound(newRound as Round);
+            if (!newRound) {
+                throw new Error('Round creation failed');
+            }
+            if ('detail' in newRound) {
+                throw new Error(newRound.detail);
+            }
+            setCreatedRound(newRound.data as Round);
         } catch (e) {
             console.error(e);
             setError((e as Error).message);
@@ -29,10 +34,10 @@ const CreateRound = ({ campaignId }: { campaignId: string }) => {
     return (
         createdRound ? <RoundCreationSuccess {...createdRound} /> :
             <Paper sx={{ padding: 2, }}>
-                <Typography variant="h3" sx={{ mb: 2 }}>
+                <Typography variant="h4" sx={{ m: 2, textAlign: 'center' }}>
                     {loading ? 'Creating Round...' : 'Create Round'}
                 </Typography>
-                {error && <Typography variant="body1" color="error">{error}</Typography>}
+                {error && <Typography variant="h6" color="error" sx={{ m: 2, textAlign: 'center' }}>{error}</Typography>}
                 <RoundEditForm {...round} loading={loading} dispatch={roundDispatch} />
                 <br />
                 <ReturnButton disabled={loading} />

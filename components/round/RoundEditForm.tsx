@@ -1,5 +1,5 @@
-import { MediaType, type EvaluationType, type RoundCreate } from "@/types/round";
-import { Autocomplete, Checkbox, Divider, FormControlLabel, FormGroup, TextField, Typography, } from "@mui/material";
+import { EvaluationType, MediaType, type RoundCreate } from "@/types/round";
+import { Autocomplete, Checkbox, Divider, FormControlLabel, FormGroup, MenuItem, TextField, Typography, } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
@@ -121,18 +121,18 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, ...round }: RoundC
                 disabled={loading || disabled}
             />
             <TextField
-                label="Type"
+                label="Evaluation Type"
                 variant="outlined"
-                sx={{
-                    m: 1, width: {
-                        xs: '100%',
-                        sm: '48%',
-                    }
-                }}
-                onChange={(e) => dispatch({ type: e.target.value as EvaluationType })}
+                select
                 value={round.type}
+                onChange={(e) => dispatch({ type: e.target.value as EvaluationType })}
+                sx={{ m: 1, width: { xs: '100%', sm: '20%' } }}
                 disabled={loading || disabled}
-            />
+            >
+                <MenuItem value={EvaluationType.BINARY}>Binary</MenuItem>
+                <MenuItem value={EvaluationType.SCORE}>Score</MenuItem>
+                <MenuItem value={EvaluationType.RANKING}>Ranking</MenuItem>
+            </TextField>
 
         </LocalizationProvider>
     );

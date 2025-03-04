@@ -12,13 +12,7 @@ const createRound = async (round: RoundCreate) => {
             },
             body: JSON.stringify(round),
         })
-        if ('detail' in res) {
-            console.error(res.detail)
-            throw new Error(res.detail)
-        } else {
-            console.log(res)
-        }
-        return res.data
+        return res
     } catch (error) {
         console.error(error)
     }
