@@ -3,16 +3,24 @@ import { Button, CircularProgress, Paper, Typography } from "@mui/material"
 import createCampaign from "@/app/campaign/new/action"
 import { useCallback, useReducer, useState } from "react";
 import { campaignCreateReducer, initialCampaignCreate } from "@/types/campaign/create";
-import CampaignEditForm from "@/components/campaign/Campaign";
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CampaignEditForm from "@/components/campaign/CampaignEditForm";
 import FprwardIcon from '@mui/icons-material/ArrowForwardSharp';
 import ReturnButton from "@/components/ReturnButton";
 import { Campaign } from "@/types";
 import Link from "next/link";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 const CampaignCreationSuccess = (c: Campaign) => {
     return (
         <Paper sx={{ padding: 2, textAlign: 'center' }}>
-            <CheckCircleIcon sx={{ fontSize: 80, color: 'success', textAlign: 'center' }} color="success" />
+            {/* <CheckCircleIcon sx={{ fontSize: 80, color: 'success', textAlign: 'center' }} color="success" /> */}
+            <div style={{ maxWidth: '500px', margin: 'auto', width: '99%' }}>
+                <DotLottieReact
+                    src='/success.lottie'
+                    autoplay
+                    loop
+                // speed={1.5}
+                />
+            </div>
             <Typography variant="h6" sx={{ mb: 2, textAlign: 'center' }}>
                 Campaign Created Successfully
             </Typography>

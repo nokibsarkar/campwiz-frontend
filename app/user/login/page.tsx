@@ -3,8 +3,12 @@ import Button from "@mui/material/Button"
 import loginInitiateAction from "@/provider/session/action";
 import { Paper, Typography } from "@mui/material";
 import { useSearchParams } from "next/navigation";
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+// import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+// import SuccessImage from '@/public/success.lottie';
+
 import Link from "next/link";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+const SuccessImage = 'https://lottie.host/419de6fa-e418-44ab-8acb-abb888b8c53b/93OQV6S4lg.lottie';
 const LoginPage = ({ }) => {
     const searchParams = useSearchParams()
     const next = searchParams.get('next')
@@ -12,15 +16,20 @@ const LoginPage = ({ }) => {
         <Paper sx={{
             padding: 2,
             mx: 'auto', my: 2,
-            maxWdth: 500,
+            maxWidth: 500,
             textAlign: 'center',
-            height: '80%',
+            minHeight: '80%',
             position: 'fixed',
             top: '50%', left: '50%',
             transform: 'translate(-50%, -50%)'
         }}>
+            <DotLottieReact
+                src={SuccessImage}
+                loop
+                autoplay
+            />
 
-            <AdminPanelSettingsIcon sx={{ fontSize: 80 }} />
+            {/* <AdminPanelSettingsIcon sx={{ fontSize: 80 }} /> */}
             <Typography variant="h3" sx={{ mb: 2 }}>
                 Login
             </Typography>

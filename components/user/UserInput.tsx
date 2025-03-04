@@ -10,6 +10,7 @@ type UserInputProps = {
     label: string
     allowList?: WikimediaUsername[]
     disabled?: boolean
+    sx?: { [key: string]: unknown }
 }
 const base = `https://commons.wikimedia.org/w/api.php?action=query&list=allusers&aulimit=10&format=json&origin=*&auprefix=`
 const UserInput = (props: UserInputProps) => {
@@ -40,7 +41,7 @@ const UserInput = (props: UserInputProps) => {
             disabled={props.disabled}
             loading={isLoading}
             onChange={(_, updatedUsers) => props.onChange(updatedUsers)}
-            sx={{ m: 1 }}
+            sx={{ ...(props.sx || {}), m: 1 }}
             renderInput={(params) => (
                 <TextField
                     {...params}

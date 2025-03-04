@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
   experimental: {
     webpackMemoryOptimizations: true,
     webpackBuildWorker: true,
+    turbo: {
+      rules: {
+        '*.lottie': ['@noxfed/lottie-webpack-loader'],
+      }
+    }
   },
 };
 

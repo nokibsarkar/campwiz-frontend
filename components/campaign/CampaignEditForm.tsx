@@ -19,14 +19,14 @@ const CampaignEditForm = ({ dispatch, loading, disabled = false, ...campaign }: 
             <DatePicker
                 onChange={(date) => dispatch({ startDate: date?.toISOString() })}
                 value={dayjs(campaign.startDate)}
-                sx={{ m: 1, width: '18%' }}
+                sx={{ m: 1, width: { xs: '100%', sm: '18%' } }}
                 label="Start Date"
                 disabled={loading || disabled}
             />
             <DatePicker
                 onChange={(date) => dispatch({ endDate: date?.toISOString() })}
                 value={dayjs(campaign.endDate)}
-                sx={{ m: 1, width: '18%' }}
+                sx={{ m: 1, width: { xs: '100%', sm: '18%' } }}
                 label="End Date"
                 disabled={loading || disabled}
             />
