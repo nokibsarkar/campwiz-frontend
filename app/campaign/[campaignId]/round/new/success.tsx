@@ -3,6 +3,7 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react"
 import { Button, Paper, Typography } from "@mui/material"
 import Link from "next/link"
 import FprwardIcon from '@mui/icons-material/ArrowForwardSharp';
+import Backward from '@mui/icons-material/ArrowBackIosNew';
 
 const RoundCreationSuccess = (c: Round) => {
     return (
@@ -27,9 +28,15 @@ const RoundCreationSuccess = (c: Round) => {
                 Your organizers can create rounds for this round, too.
                 Please Let them know the details.
             </Typography>
-            <Link href={`/round/${c.roundId}/round/new`}>
-                <Button variant="contained" color="success" endIcon={<FprwardIcon />}>
-                    Create Round for Round
+
+            <Link href={`/campaign/${c.roundId}`}>
+                <Button variant="contained" color="success" startIcon={<Backward />} sx={{ m: 1 }}>
+                    Go to Campaign Page
+                </Button>
+            </Link>
+            <Link href={`/campaign/${c.roundId}/round/new`}>
+                <Button variant="outlined" color="success" sx={{ m: 1 }} endIcon={<FprwardIcon />}>
+                    Create Another Round
                 </Button>
             </Link>
         </Paper>
