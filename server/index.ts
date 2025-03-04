@@ -10,16 +10,17 @@ export const fetchFromBackend = async (path: string, options?: RequestInit): Pro
     }
     if (options.headers === undefined) {
         options.headers = new Headers()
+    } else {
+        options.headers = new Headers(options.headers)
     }
-    (options.headers as Headers).append('Cookie', cookieStore.toString())
-
+    options.headers.append('Cookie', cookieStore.toString())
     const res = await fetch(`${baseURL}${path}`, options)
     return res
 }
 
-async function fetchAPIFromBackendSingleWithErrorHandling<T>(path: string): Promise<ResponseSingle<T> | ResponseError> {
+async function fetchAPIFromBackendSingleWithErrorHandling<T>(path: string, req?: RequestInit): Promise<ResponseSingle<T> | ResponseError> {
     try {
-        const res = await fetchFromBackend(`${API_PATH}${path}`)
+        const res = await fetchFromBackend(`${API_PATH}${path}`, req)
         const r = await res.json();
         if (res.ok) {
             return r

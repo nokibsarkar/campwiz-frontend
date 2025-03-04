@@ -1,21 +1,25 @@
 "use server";
 
+import fetchAPIFromBackendSingleWithErrorHandling from "@/server";
+import { Campaign } from "@/types";
 import { CampaignCreate } from "@/types/campaign/create";
 
 const createCampaign = async (campaign: CampaignCreate) => {
     try {
-        const res = await fetch('/api/campaigns', {
+        const res = await fetchAPIFromBackendSingleWithErrorHandling<Campaign>('/campaign/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(campaign),
         })
-        if (res.ok) {
-            alert('Campaign created!')
+        if ('detail' in res) {
+            console.error(res.detail)
+            throw new Error(res.detail)
         } else {
-            alert('Failed to create campaign')
+            console.log(res)
         }
+        return res
     } catch (error) {
         console.error(error)
     }
