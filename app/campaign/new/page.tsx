@@ -22,7 +22,7 @@ const CampaignCreationSuccess = (c: Campaign) => {
             <Typography variant="subtitle1" sx={{ mb: 2, textAlign: 'center' }}>
                 Now, would you like to create a round for this campaign?
                 Your organizers can create rounds for this campaign, too.
-                Please Let them know the campaign id: {c.campaignId} and create a round for this campaign.
+                Please Let them know the details.
             </Typography>
             <Link href={`/campaign/${c.campaignId}/round/new`}>
                 <Button variant="contained" color="success" endIcon={<FprwardIcon />}>
