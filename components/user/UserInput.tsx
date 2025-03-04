@@ -1,13 +1,14 @@
 "use client";
+import { WikimediaUsername } from "@/types";
 import { Autocomplete, TextField } from "@mui/material";
 import { useState } from "react";
 import useSWR from "swr";
 
 type UserInputProps = {
-    value: string[],
-    onChange: (users: string[]) => void
+    value: WikimediaUsername[],
+    onChange: (users: WikimediaUsername[]) => void
     label: string
-    allowList?: string[]
+    allowList?: WikimediaUsername[]
     disabled?: boolean
 }
 const base = `https://commons.wikimedia.org/w/api.php?action=query&list=allusers&aulimit=10&format=json&origin=*&auprefix=`
