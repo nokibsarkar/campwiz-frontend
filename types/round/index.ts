@@ -1,65 +1,72 @@
-import { CommonFilter, IDType, WikimediaUsername } from "@/types/_";
+import { CommonFilter, IDType, WikimediaUsername } from "../_";
 import { Role } from "../role";
 
-export enum MediaType {
-    ARTICLE = 'ARTICLE',
-    AUDIO = 'AUDIO',
-    BITMAP = 'BITMAP',
-    VIDEO = 'VIDEO',
-}
-type MediaTypeSet = MediaType[];
-export enum EvaluationType {
-    BINARY = 'binary',
-    SCORE = 'score',
-    RANKING = 'ranking',
-}
 // These are the restrictions that are applied to the articles that are submitted to the campaign
-export type RoundCommonRestrictions = {
+type RoundCommonRestrictions = {
     allowJuryToParticipate: boolean;
     allowMultipleJudgement: boolean;
-};
-
-
-export enum RoundStatus {
-    PENDING = "PENDING",
-    IMPORTING = "IMPORTING",
-    DISTRIBUTING = "DISTRIBUTING",
-    EVALUATING = "EVALUATING",
-    REJECTED = "REJECTED",
-    CANCELLED = "CANCELLED",
-    PAUSED = "PAUSED",
-    SCHEDULED = "SCHEDULED",
-    ACTIVE = "ACTIVE",
-    COMPLETED = "COMPLETED",
-}
-// These are the restrictions that are applied to the audio and video that are submitted to the campaign
-export type RoundAudioVideoRestrictions = {
-    minimumDurationMilliseconds: number;
-};
-
-// These are the restrictions that are applied to the images that are submitted to the campaign
-export type RoundImageRestrictions = {
-    minimumHeight: number;
-    minimumWidth: number;
-    minimumResolution: number;
-};
-
-export type RoundArticleRestrictions = {
-    maximumSubmissionOfSameArticle: number;
-    allowExpansions: boolean;
-    allowCreations: boolean;
-    minimumTotalBytes: number;
-    minimumTotalWords: number;
-    minimumAddedBytes: number;
-    minimumAddedWords: number;
     secretBallot: boolean;
     blacklist: string;
 };
 
-export type RoundMediaRestrictions = RoundImageRestrictions & RoundAudioVideoRestrictions;
+enum RoundStatus {
+    PENDING = 'PENDING',
+    IMPORTING = 'IMPORTING',
+    DISTRIBUTING = 'DISTRIBUTING',
+    EVALUATING = 'EVALUATING',
+    REJECTED = 'REJECTED',
+    CANCELLED = 'CANCELLED',
+    PAUSED = 'PAUSED',
+    SCHEDULED = 'SCHEDULED',
+    ACTIVE = 'ACTIVE',
+    COMPLETED = 'COMPLETED'
+}
+export enum MediaType {
+    AUDIO = 'AUDIO',
+    VIDEO = 'VIDEO',
+    IMAGE = 'BITMAP',
+    ARTICLE = 'ARTICLE'
+}
+export enum EvaluationType {
+    BINARY = 'binary',
+    RANKING = 'ranking',
+    SCORE = 'score',
+}
+type MediaTypeSet = MediaType[]
 
-// These are the restrictions that are applied to the campaign
-export type RoundRestrictions = RoundCommonRestrictions & RoundMediaRestrictions & RoundArticleRestrictions & {
+
+// These are the restrictions that are applied to the audio and video that are submitted to the campaign
+type RoundAudioRestrictions = {
+    audioMinimumDurationMilliseconds: number;
+    audioMinimumSizeBytes: number;
+};
+
+export type RoundVideoRestrictions = {
+    videoMinimumDurationMilliseconds: number;
+    videoMinimumSizeBytes: number;
+    videoMinimumResolution: number;
+};
+
+// These are the restrictions that are applied to the images that are submitted to the campaign
+type RoundImageRestrictions = {
+    imageMinimumResolution: number;
+    imageMinimumSizeBytes: number;
+};
+
+export type RoundArticleRestrictions = {
+    maximumSubmissionOfSameArticle: number;
+    articleAllowExpansions: boolean;
+    articleAllowCreations: boolean;
+    articleMinimumTotalBytes: number;
+    articleMinimumTotalWords: number;
+    articleMinimumAddedBytes: number;
+    articleMinimumAddedWords: number;
+};
+
+export type RoundMediaRestrictions = RoundImageRestrictions & RoundAudioRestrictions & RoundVideoRestrictions;
+
+// These are the restrictions that are applied to
+type RoundRestrictions = RoundCommonRestrictions & RoundMediaRestrictions & RoundArticleRestrictions & {
     allowedMediaTypes: MediaTypeSet;
 };
 
@@ -71,11 +78,13 @@ export type RoundWritable = {
     isOpen: boolean;
     isPublic: boolean;
     dependsOnRoundId?: string;
-    dependsOnRound?: Round;
     serial: number;
     type: EvaluationType;
-} & RoundRestrictions;
-
+} & RoundRestrictions
+export type RoundCreate = {
+    campaignId: IDType
+    jury: WikimediaUsername[]
+} & RoundWritable
 export type Round = {
     roundId: IDType;
     campaignId: IDType;
@@ -84,16 +93,10 @@ export type Round = {
     totalSubmissions: number;
     status: RoundStatus;
     latestDistributionTaskId?: IDType;
-} & RoundWritable & {
-    roles: Role[];
-};
-export type RoundCreate = {
-    campaignId: IDType;
-    createdById?: IDType;
-    jury: WikimediaUsername[];
-} & RoundWritable;
+    roles: Role[] | null;
+} & RoundWritable
 
 export type RoundFilter = {
     campaignId: IDType;
     status: RoundStatus;
-} & CommonFilter;
+} & CommonFilter

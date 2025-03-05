@@ -1,42 +1,38 @@
 import { Round } from "@/types/round"
-import { DotLottieReact } from "@lottiefiles/dotlottie-react"
 import { Button, Paper, Typography } from "@mui/material"
 import Link from "next/link"
-import FprwardIcon from '@mui/icons-material/ArrowForwardSharp';
 import Backward from '@mui/icons-material/ArrowBackIosNew';
+import AddIcon from '@mui/icons-material/Add';
+import RightArrowIcon from '@mui/icons-material/ArrowForward';
+import RoundDetails from "@/components/round/RoundDetails";
+import LottieWrapper from "@/components/LottieWrapper";
 
-const RoundCreationSuccess = (c: Round) => {
+const RoundCreationSuccess = ({ clearCreatedRound, ...c }: Round & { clearCreatedRound: () => void }) => {
     return (
         <Paper sx={{ padding: 2, textAlign: 'center' }}>
-            {/* <CheckCircleIcon sx={{ fontSize: 80, color: 'success', textAlign: 'center' }} color="success" /> */}
-            <div style={{ maxWidth: '500px', margin: 'auto', width: '99%' }}>
-                <DotLottieReact
-                    src='/success.lottie'
-                    autoplay
-                    loop
-                // speed={1.5}
-                />
-            </div>
-            <Typography variant="h6" sx={{ mb: 2, textAlign: 'center' }}>
+            <LottieWrapper src='/success.lottie' />
+            <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
                 Round Created Successfully
             </Typography>
             <Typography variant="subtitle1" sx={{ mb: 2, textAlign: 'center' }}>
                 Round {c.name} has been created with id <b>{c.roundId}</b>
             </Typography>
-            <Typography variant="subtitle1" sx={{ mb: 2, textAlign: 'center' }}>
-                Now, would you like to create a round for this round?
-                Your organizers can create rounds for this round, too.
-                Please Let them know the details.
+            <Typography variant="h6" sx={{ mb: 2, textAlign: 'center' }}>
+                Details of the round are as follows:
             </Typography>
-
-            <Link href={`/campaign/${c.roundId}`}>
-                <Button variant="contained" color="success" startIcon={<Backward />} sx={{ m: 1 }}>
+            <RoundDetails round={c} />
+            <br />
+            <Link href={`/campaign/${c.campaignId}`}>
+                <Button variant="outlined" color="info" startIcon={<Backward />} sx={{ m: 1 }}>
                     Go to Campaign Page
                 </Button>
             </Link>
-            <Link href={`/campaign/${c.roundId}/round/new`}>
-                <Button variant="outlined" color="success" sx={{ m: 1 }} endIcon={<FprwardIcon />}>
-                    Create Another Round
+            <Button variant="outlined" color="success" sx={{ m: 1 }} endIcon={<AddIcon />} onClick={clearCreatedRound}>
+                Create Another Round
+            </Button>
+            <Link href={`/round/${c.roundId}`}>
+                <Button variant="contained" color="success" endIcon={<RightArrowIcon />} sx={{ m: 1 }}>
+                    Go to Round Page
                 </Button>
             </Link>
         </Paper>

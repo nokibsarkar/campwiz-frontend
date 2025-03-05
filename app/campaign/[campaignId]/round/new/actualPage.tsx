@@ -16,14 +16,14 @@ const CreateRound = ({ campaignId }: { campaignId: string }) => {
         setLoading(true);
         try {
             setError(null);
-            const newRound = await createRound(round);
-            if (!newRound) {
+            const newRoundResponse = await createRound(round);
+            if (!newRoundResponse) {
                 throw new Error('Round creation failed');
             }
-            if ('detail' in newRound) {
-                throw new Error(newRound.detail);
+            if ('detail' in newRoundResponse) {
+                throw new Error(newRoundResponse.detail);
             }
-            setCreatedRound(newRound.data as Round);
+            setCreatedRound(newRoundResponse.data as Round);
         } catch (e) {
             console.error(e);
             setError((e as Error).message);
@@ -32,7 +32,7 @@ const CreateRound = ({ campaignId }: { campaignId: string }) => {
         }
     }, [round]);
     return (
-        createdRound ? <RoundCreationSuccess {...createdRound} /> :
+        createdRound ? <RoundCreationSuccess {...createdRound} clearCreatedRound={() => setCreatedRound(null)} /> :
             <Paper sx={{ padding: 2, }}>
                 <Typography variant="h4" sx={{ m: 2, textAlign: 'center' }}>
                     {loading ? 'Creating Round...' : 'Create Round'}

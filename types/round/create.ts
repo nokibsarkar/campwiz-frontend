@@ -2,35 +2,39 @@ import dayjs from "dayjs"
 import { EvaluationType, MediaType, RoundCreate } from "."
 
 export const initialRoundCreate: RoundCreate = {
-    campaignId: "",
-    jury: [],
-    description: "",
+    allowedMediaTypes: [
+        MediaType.IMAGE
+    ],
+    type: EvaluationType.BINARY,
+    startDate: dayjs().toISOString(),
     endDate: dayjs().toISOString(),
     name: "",
-    startDate: dayjs().toISOString(),
-    isOpen: false,
+    description: "",
     isPublic: false,
-    serial: 0,
-    type: EvaluationType.BINARY, // replace with appropriate EvaluationType value
     allowJuryToParticipate: false,
-    allowMultipleJudgement: false,
-    minimumHeight: 0,
-    minimumWidth: 0,
-    minimumResolution: 0,
-    minimumDurationMilliseconds: 0,
-    maximumSubmissionOfSameArticle: 0,
-    allowExpansions: false,
-    allowCreations: false,
-    minimumTotalBytes: 0,
-    minimumTotalWords: 0,
-    minimumAddedBytes: 0,
-    minimumAddedWords: 0,
-    secretBallot: false,
+    campaignId: "", // Add appropriate initial value
+    jury: [], // Add appropriate initial value
+    isOpen: false,
+    serial: 0,
+    allowMultipleJudgement: true,
+    secretBallot: true,
     blacklist: "",
-    allowedMediaTypes: [
-        MediaType.BITMAP
-    ],
+    audioMinimumDurationMilliseconds: 0,
+    audioMinimumSizeBytes: 0,
+    videoMinimumDurationMilliseconds: 0,
+    videoMinimumSizeBytes: 0,
+    videoMinimumResolution: 0,
+    imageMinimumResolution: 0,
+    imageMinimumSizeBytes: 0,
+    maximumSubmissionOfSameArticle: 0,
+    articleAllowExpansions: false,
+    articleAllowCreations: false,
+    articleMinimumTotalBytes: 0,
+    articleMinimumTotalWords: 0,
+    articleMinimumAddedBytes: 0,
+    articleMinimumAddedWords: 0
 }
+
 export const roundCreateReducer = (state: RoundCreate, action: Partial<RoundCreate>) => {
     return {
         ...state,

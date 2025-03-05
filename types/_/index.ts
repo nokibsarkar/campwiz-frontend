@@ -16,3 +16,7 @@ export type CommonFilter = {
     limit: number
     offset: number
 }
+export const dateFormater = new Intl.DateTimeFormat('en', {
+    dateStyle: 'full',
+    timeStyle: 'long'
+})
