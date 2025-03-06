@@ -14,12 +14,11 @@ export const fetchFromBackend = async (path: string, options?: RequestInit): Pro
         options.headers = new Headers(options.headers)
     }
     options.headers.append('Cookie', cookieStore.toString())
+    options.credentials = 'same-origin'
     const res = await fetch(`${baseURL}${path}`, options)
-    // Set the cookies
     for (const [key, value] of res.headers.entries()) {
         if (key.toLowerCase() === 'set-cookie') {
             const cookieName = value.split('=')[0]
-            console.log('Setting cookie', cookieName, value)
             cookieStore.set(cookieName, value)
         }
     }
