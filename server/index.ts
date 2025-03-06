@@ -18,7 +18,9 @@ export const fetchFromBackend = async (path: string, options?: RequestInit): Pro
     // Set the cookies
     for (const [key, value] of res.headers.entries()) {
         if (key.toLowerCase() === 'set-cookie') {
-            cookieStore.set(value)
+            const cookieName = value.split('=')[0]
+            console.log('Setting cookie', cookieName, value)
+            cookieStore.set(cookieName, value)
         }
     }
     return res

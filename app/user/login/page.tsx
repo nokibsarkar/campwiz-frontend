@@ -7,13 +7,12 @@ import { useSearchParams } from "next/navigation";
 // import SuccessImage from '@/public/success.lottie';
 
 import Link from "next/link";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-const SuccessImage = 'https://lottie.host/419de6fa-e418-44ab-8acb-abb888b8c53b/93OQV6S4lg.lottie';
+import LottieWrapper from "@/components/LottieWrapper";
 const LoginPage = ({ }) => {
+    "use client";
     const searchParams = useSearchParams()
     const next = searchParams.get('next');
     const baseURI = location.origin;
-    console.log('baseURI', baseURI);
     return (
         <Paper sx={{
             padding: 2,
@@ -25,13 +24,7 @@ const LoginPage = ({ }) => {
             top: '50%', left: '50%',
             transform: 'translate(-50%, -50%)'
         }}>
-            <DotLottieReact
-                src={SuccessImage}
-                loop
-                autoplay
-            />
-
-            {/* <AdminPanelSettingsIcon sx={{ fontSize: 80 }} /> */}
+            <LottieWrapper src='/login.lottie' />
             <Typography variant="h3" sx={{ mb: 2 }}>
                 Login
             </Typography>
