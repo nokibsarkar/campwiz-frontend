@@ -15,9 +15,9 @@ const LoginCallbackPage: React.FC = async ({ searchParams }: LoginCallbackPagePr
     let error = null;
     try {
         const res = await loginCallbackAction(code, state);
-        const r = await res.json();
-        if ('detail' in r) {
-            error = r.detail;
+        if (!res.ok) {
+            const j = await res.json();
+            error = j.detail;
         }
     }
     catch (e) {
@@ -25,7 +25,7 @@ const LoginCallbackPage: React.FC = async ({ searchParams }: LoginCallbackPagePr
     }
     return (
         <Paper sx={{ padding: 2 }}>
-            {error ? <LoginError error={error} /> : <LoginSuccess />}
+            {error ? <LoginError error={error} /> : <LoginSuccess to={state} />}
         </Paper>
     );
 };
