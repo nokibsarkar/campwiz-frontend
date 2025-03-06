@@ -9,6 +9,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import LottieWrapper from "@/components/LottieWrapper";
 const LoginPage = ({ }) => {
+    "use client";
     const searchParams = useSearchParams()
     const next = searchParams.get('next');
     const baseURI = location.origin;
