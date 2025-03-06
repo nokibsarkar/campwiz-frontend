@@ -1,16 +1,24 @@
 import { EvaluationType, MediaType, type RoundCreate } from "@/types/round";
-import { Autocomplete, Checkbox, Divider, FormControlLabel, FormGroup, MenuItem, TextField, Typography, } from "@mui/material";
+import { Checkbox, Divider, FormControlLabel, FormGroup, MenuItem, TextField, Typography, } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
-import type { ActionDispatch } from "react";
+import { lazy, type ActionDispatch } from "react";
 import AudioIcon from "@mui/icons-material/AudioFile";
 import VideoIcon from "@mui/icons-material/VideoLibrary";
 import ArticleIcon from "@mui/icons-material/Article";
 import BitmapIcon from "@mui/icons-material/Image";
 import UserInput from "../user/UserInput";
 import RoundInput from "./RoundInput";
+import Diversity3Icon from '@mui/icons-material/Diversity3';
+import Collapse from '@mui/material/Collapse';
+const ArticleRestrictions = lazy(() => import('./RestrictionsArticle'));
 const RoundEditForm = ({ dispatch, loading, disabled = false, ...round }: RoundCreate & { dispatch: ActionDispatch<[Partial<RoundCreate>]>, loading: boolean, disabled?: boolean }) => {
+    const allowedAudio = round.allowedMediaTypes.includes(MediaType.AUDIO);
+    const allowedImage = round.allowedMediaTypes.includes(MediaType.IMAGE);
+    const allowedVideo = round.allowedMediaTypes.includes(MediaType.VIDEO);
+    const allowedArticle = round.allowedMediaTypes.includes(MediaType.ARTICLE);
+
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <RoundInput
@@ -80,7 +88,7 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, ...round }: RoundC
                     Allowed Types:
                 </Typography>
                 <FormControlLabel control={<Checkbox
-                    checked={round.allowedMediaTypes.includes(MediaType.ARTICLE)}
+                    checked={allowedArticle}
                     onChange={(e) => dispatch({ allowedMediaTypes: e.target.checked ? [...round.allowedMediaTypes, MediaType.ARTICLE] : round.allowedMediaTypes.filter((t) => t !== MediaType.ARTICLE) })}
                     disabled={loading || disabled}
                 />}
@@ -88,7 +96,7 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, ...round }: RoundC
                     sx={{ m: 1 }}
                 />
                 <FormControlLabel control={<Checkbox
-                    checked={round.allowedMediaTypes.includes(MediaType.IMAGE)}
+                    checked={allowedImage}
                     onChange={(e) => dispatch({ allowedMediaTypes: e.target.checked ? [...round.allowedMediaTypes, MediaType.IMAGE] : round.allowedMediaTypes.filter((t) => t !== MediaType.IMAGE) })}
                     disabled={loading || disabled}
                 />}
@@ -96,7 +104,7 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, ...round }: RoundC
                     sx={{ m: 1 }}
                 />
                 <FormControlLabel control={<Checkbox
-                    checked={round.allowedMediaTypes.includes(MediaType.AUDIO)}
+                    checked={allowedAudio}
                     onChange={(e) => dispatch({ allowedMediaTypes: e.target.checked ? [...round.allowedMediaTypes, MediaType.AUDIO] : round.allowedMediaTypes.filter((t) => t !== MediaType.AUDIO) })}
                     disabled={loading || disabled}
                 />}
@@ -104,7 +112,7 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, ...round }: RoundC
                     sx={{ m: 1 }}
                 />
                 <FormControlLabel control={<Checkbox
-                    checked={round.allowedMediaTypes.includes(MediaType.VIDEO)}
+                    checked={allowedVideo}
                     onChange={(e) => dispatch({ allowedMediaTypes: e.target.checked ? [...round.allowedMediaTypes, MediaType.VIDEO] : round.allowedMediaTypes.filter((t) => t !== MediaType.VIDEO) })}
                     disabled={loading || disabled}
                 />}
@@ -113,45 +121,37 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, ...round }: RoundC
                 />
 
             </FormGroup>
-            <TextField
-                label="Evaluation Type"
-                variant="outlined"
-                select
-                value={round.type}
-                onChange={(e) => dispatch({ type: e.target.value as EvaluationType })}
-                sx={{ m: 1, width: { xs: '100%', sm: '20%' } }}
-                disabled={loading || disabled}
-            >
-                <MenuItem value={EvaluationType.BINARY}>Binary</MenuItem>
-                <MenuItem value={EvaluationType.SCORE}>Score</MenuItem>
-                <MenuItem value={EvaluationType.RANKING}>Ranking</MenuItem>
-            </TextField>
-            <FormControlLabel control={<Checkbox
-                checked={round.allowedMediaTypes.includes(MediaType.VIDEO)}
-                onChange={(e) => dispatch({ allowedMediaTypes: e.target.checked ? [...round.allowedMediaTypes, MediaType.VIDEO] : round.allowedMediaTypes.filter((t) => t !== MediaType.VIDEO) })}
-                disabled={loading || disabled}
-            />}
-                label={<Typography variant="body1"><VideoIcon /> Video</Typography>}
-                sx={{ m: 1 }}
-            />
-            <Autocomplete
-                multiple
-                id="allowedMediaTypes"
-                options={[MediaType.AUDIO, MediaType.IMAGE, MediaType.VIDEO, MediaType.ARTICLE]}
-                filterSelectedOptions
-                value={round.allowedMediaTypes}
-                onChange={(_, updatedMediaTypes) => dispatch({ allowedMediaTypes: updatedMediaTypes })}
-                sx={{ m: 1, width: { xs: '100%', sm: '48%' } }}
-                renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        variant="outlined"
-                        label="Allowed Media Types"
-                        placeholder="Allowed Media Types"
-                    />
-                )}
-                disabled={loading || disabled}
-            />
+            <Divider />
+
+            <FormGroup sx={{ display: 'block', m: 1 }}>
+                <TextField
+                    label="Evaluation Type"
+                    variant="outlined"
+                    select
+                    value={round.type}
+                    onChange={(e) => dispatch({ type: e.target.value as EvaluationType })}
+                    sx={{ m: 1, width: { xs: '100%', sm: '20%' } }}
+                    disabled={loading || disabled}
+                >
+                    <MenuItem value={EvaluationType.BINARY}>Binary</MenuItem>
+                    <MenuItem value={EvaluationType.SCORE}>Score</MenuItem>
+                    <MenuItem value={EvaluationType.RANKING}>Ranking</MenuItem>
+                </TextField>
+                <FormControlLabel control={<Checkbox
+                    checked={round.allowJuryToParticipate}
+                    onChange={(e) => dispatch({ allowJuryToParticipate: e.target.checked })}
+                    disabled={loading || disabled}
+                />}
+                    label={<Typography variant="body1">
+                        <Diversity3Icon /> Allow the members of the jury to participate on thsi round.
+                    </Typography>}
+                    sx={{ m: 1 }}
+                />
+            </FormGroup>
+            <Collapse in={allowedArticle}>
+                <ArticleRestrictions {...round} dispatch={dispatch} loading={loading} disabled={disabled} />
+            </Collapse>
+
 
         </LocalizationProvider>
     );

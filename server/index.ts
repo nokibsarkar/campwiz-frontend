@@ -1,4 +1,4 @@
-
+"use server"
 import { ResponseError, ResponseSingle } from "../types/_";
 import { cookies } from 'next/headers'
 const baseURL = process.env.NEXT_BASE_URL || ''
@@ -15,6 +15,12 @@ export const fetchFromBackend = async (path: string, options?: RequestInit): Pro
     }
     options.headers.append('Cookie', cookieStore.toString())
     const res = await fetch(`${baseURL}${path}`, options)
+    // Set the cookies
+    for (const [key, value] of res.headers.entries()) {
+        if (key.toLowerCase() === 'set-cookie') {
+            cookieStore.set(value)
+        }
+    }
     return res
 }
 

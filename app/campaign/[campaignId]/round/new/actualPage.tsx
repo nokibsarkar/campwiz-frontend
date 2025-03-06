@@ -6,6 +6,7 @@ import { roundCreateReducer, initialRoundCreate } from "@/types/round/create";
 import ReturnButton from "@/components/ReturnButton";
 import { Round } from "@/types/round";
 import RoundCreationSuccess from "./success";
+import LoadingPopup from "@/components/LoadingPopup";
 const RoundEditForm = lazy(() => import("@/components/round/RoundEditForm"));
 const CreateRound = ({ campaignId }: { campaignId: string }) => {
     const [round, roundDispatch] = useReducer(roundCreateReducer, { ...initialRoundCreate, campaignId });
@@ -38,6 +39,7 @@ const CreateRound = ({ campaignId }: { campaignId: string }) => {
                     {loading ? 'Creating Round...' : 'Create Round'}
                 </Typography>
                 {error && <Typography variant="h6" color="error" sx={{ m: 2, textAlign: 'center' }}>{error}</Typography>}
+                {loading && <LoadingPopup src="/creating.lottie" />}
                 <RoundEditForm {...round} loading={loading} dispatch={roundDispatch} />
                 <br />
                 <ReturnButton disabled={loading} />
