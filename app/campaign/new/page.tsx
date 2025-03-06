@@ -1,32 +1,42 @@
 "use client";
-import { Button, Paper, Typography } from "@mui/material"
+import { Button, CircularProgress, Paper, Typography } from "@mui/material"
 import createCampaign from "@/app/campaign/new/action"
-import { useReducer } from "react";
+import { lazy, useReducer, useState } from "react";
 import { campaignCreateReducer, initialCampaignCreate } from "@/types/campaign/create";
-import CampaignEditForm from "@/components/campaign/Campaign";
+import CampaignEditForm from "@/components/campaign/CampaignEditForm";
 import ReturnButton from "@/components/ReturnButton";
+import { Campaign } from "@/types";
+import useSWRMutation from "swr/mutation";
+import LoadingPopup from "@/components/LoadingPopup";
+const CampaignCreationSuccess = lazy(() => import('@/app/campaign/new/success'));
 
-const CreateCampaign = () => {
+const CreateCampaign_ = () => {
+    const [error, setError] = useState<Error | null>(null);
     const [campaign, campaignDispatch] = useReducer(campaignCreateReducer, initialCampaignCreate);
+    const { data: createdCampaign = null, trigger, isMutating: loading } = useSWRMutation<Campaign | undefined>('/api/campaign', createCampaign.bind(null, campaign), {
+        onError: setError,
+    });
     return (
-        <Paper sx={{ padding: 2, }}>
-            <Typography variant="h3" sx={{ mb: 2 }}>
-                Create Campaign
-            </Typography>
-            <Typography variant="subtitle1">
-                Create a new campaign by filling out the form below.
-            </Typography>
-            <CampaignEditForm {...campaign} dispatch={campaignDispatch} />
-            <br />
-            <ReturnButton />
-            <Button
-                onClick={() => createCampaign(campaign)}
-                variant="contained"
-                color="success"
-            >
-                Create Campaign
-            </Button>
-        </Paper>
+        createdCampaign ? <CampaignCreationSuccess {...createdCampaign} /> :
+            <Paper sx={{ padding: 2, }}>
+                <Typography variant="h3" sx={{ mb: 2 }}>
+                    {loading ? 'Creating Campaign...' : 'Create Campaign'}
+                </Typography>
+                {loading && <LoadingPopup src="/creating.lottie" />}
+                {error && <Typography variant="body1" color="error">{error.message}</Typography>}
+                <CampaignEditForm {...campaign} loading={loading} dispatch={campaignDispatch} />
+                <br />
+                <ReturnButton disabled={loading} />
+                <Button
+                    onClick={() => trigger().catch(setError)}
+                    variant="contained"
+                    color="success"
+                    disabled={loading}
+                >
+                    <CircularProgress size={24} color="inherit" sx={{ display: loading ? 'inline-block' : 'none', mr: 1 }} />
+                    Create Campaign
+                </Button>
+            </Paper>
     )
 }
-export default CreateCampaign
+export default CreateCampaign_

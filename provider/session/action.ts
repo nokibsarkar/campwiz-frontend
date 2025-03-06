@@ -3,21 +3,24 @@
 import { fetchFromBackend } from "@/server";
 import { redirect } from "next/navigation";
 
-
-export const loginInitiateAction = async (pathName: string | null) => {
-    const qs = pathName ? `?next=${pathName}` : '/'
-    const res = await fetchFromBackend('/user/login?' + qs, {
-        redirect: 'manual'
-    });
-    if (res.status === 302) {
-        const location = res.headers.get('Location')
-        if (location) {
-            return redirect(location)
-        } else {
-        }
+const tokenUri = 'https://meta.wikimedia.org/w/rest.php/oauth2/authorize'
+export const loginInitiateAction = async (base: string, pathName: string | null) => {
+    const clientId = process.env.NEXT_AUTH_CLIENT_ID;
+    if (!clientId) {
+        throw new Error('Missing NEXT_AUTH_CLIENT_ID')
     }
+    const qs = new URLSearchParams({
+        redirect_uri: base + '/user/callback',
+        response_type: 'code',
+        client_id: clientId,
+        state: pathName || '/'
+    }).toString()
+    return redirect(`${tokenUri}?${qs}`)
 }
-export const loginCallbackAction = async () => {
-    console.log('Login Callback')
+export const loginCallbackAction = async (code: string, state: string) => {
+    const qs = `?code=${code}&state=${state}`
+    const res = await fetchFromBackend('/user/callback' + qs);
+    console.log(res)
+    return res
 }
 export default loginInitiateAction

@@ -1,0 +1,159 @@
+import { EvaluationType, MediaType, type RoundCreate } from "@/types/round";
+import { Checkbox, Divider, FormControlLabel, FormGroup, MenuItem, TextField, Typography, } from "@mui/material";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
+import { lazy, type ActionDispatch } from "react";
+import AudioIcon from "@mui/icons-material/AudioFile";
+import VideoIcon from "@mui/icons-material/VideoLibrary";
+import ArticleIcon from "@mui/icons-material/Article";
+import BitmapIcon from "@mui/icons-material/Image";
+import UserInput from "../user/UserInput";
+import RoundInput from "./RoundInput";
+import Diversity3Icon from '@mui/icons-material/Diversity3';
+import Collapse from '@mui/material/Collapse';
+const ArticleRestrictions = lazy(() => import('./RestrictionsArticle'));
+const RoundEditForm = ({ dispatch, loading, disabled = false, ...round }: RoundCreate & { dispatch: ActionDispatch<[Partial<RoundCreate>]>, loading: boolean, disabled?: boolean }) => {
+    const allowedAudio = round.allowedMediaTypes.includes(MediaType.AUDIO);
+    const allowedImage = round.allowedMediaTypes.includes(MediaType.IMAGE);
+    const allowedVideo = round.allowedMediaTypes.includes(MediaType.VIDEO);
+    const allowedArticle = round.allowedMediaTypes.includes(MediaType.ARTICLE);
+
+    return (
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <RoundInput
+                filter={{ campaignId: round.campaignId }}
+                value={round.dependsOnRoundId || ''}
+                onChange={(parentRoundId) => dispatch({ dependsOnRoundId: parentRoundId })}
+                label="Parent Round"
+                disabled={loading || disabled}
+                sx={{ m: 1, width: { xs: '100%', sm: '48%' } }}
+            />
+            <TextField
+                label="Name"
+                variant="outlined"
+                sx={{
+                    m: 1, width: {
+                        xs: '100%',
+                        sm: '48%',
+                    }
+                }}
+                onChange={(e) => dispatch({ name: e.target.value })}
+                value={round.name}
+                disabled={loading || disabled}
+            />
+            <DatePicker
+                onChange={(date) => dispatch({ startDate: date?.toISOString() })}
+                value={dayjs(round.startDate)}
+                sx={{ m: 1, width: { xs: '100%', sm: '18%' } }}
+                label="Start Date"
+                disabled={loading || disabled}
+            />
+            <DatePicker
+                onChange={(date) => dispatch({ endDate: date?.toISOString() })}
+                value={dayjs(round.endDate)}
+                sx={{ m: 1, width: { xs: '100%', sm: '18%' } }}
+                label="End Date"
+                disabled={loading || disabled}
+            />
+            <TextField
+                label="Description"
+                variant="outlined"
+                sx={{
+                    m: 1, width: {
+                        xs: '100%',
+                        sm: '48%',
+                    }
+                }}
+                onChange={(e) => dispatch({ description: e.target.value })}
+                value={round.description}
+                multiline
+                disabled={loading || disabled}
+            />
+            <UserInput
+                value={round.jury}
+                onChange={(jury) => dispatch({ jury })}
+                label="Jury"
+                disabled={loading || disabled}
+                sx={{
+                    m: 1, width: {
+                        xs: '100%',
+                        sm: '48%',
+                    }, display: 'inline-block'
+                }}
+            />
+            <Divider />
+            <FormGroup sx={{ m: 1, p: 1, display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', alignItems: 'center' }}>
+                <Typography>
+                    Allowed Types:
+                </Typography>
+                <FormControlLabel control={<Checkbox
+                    checked={allowedArticle}
+                    onChange={(e) => dispatch({ allowedMediaTypes: e.target.checked ? [...round.allowedMediaTypes, MediaType.ARTICLE] : round.allowedMediaTypes.filter((t) => t !== MediaType.ARTICLE) })}
+                    disabled={loading || disabled}
+                />}
+                    label={<Typography variant="body1"><ArticleIcon /> Article</Typography>}
+                    sx={{ m: 1 }}
+                />
+                <FormControlLabel control={<Checkbox
+                    checked={allowedImage}
+                    onChange={(e) => dispatch({ allowedMediaTypes: e.target.checked ? [...round.allowedMediaTypes, MediaType.IMAGE] : round.allowedMediaTypes.filter((t) => t !== MediaType.IMAGE) })}
+                    disabled={loading || disabled}
+                />}
+                    label={<Typography variant="body1"><BitmapIcon /> Image</Typography>}
+                    sx={{ m: 1 }}
+                />
+                <FormControlLabel control={<Checkbox
+                    checked={allowedAudio}
+                    onChange={(e) => dispatch({ allowedMediaTypes: e.target.checked ? [...round.allowedMediaTypes, MediaType.AUDIO] : round.allowedMediaTypes.filter((t) => t !== MediaType.AUDIO) })}
+                    disabled={loading || disabled}
+                />}
+                    label={<Typography variant="body1"><AudioIcon /> Audio</Typography>}
+                    sx={{ m: 1 }}
+                />
+                <FormControlLabel control={<Checkbox
+                    checked={allowedVideo}
+                    onChange={(e) => dispatch({ allowedMediaTypes: e.target.checked ? [...round.allowedMediaTypes, MediaType.VIDEO] : round.allowedMediaTypes.filter((t) => t !== MediaType.VIDEO) })}
+                    disabled={loading || disabled}
+                />}
+                    label={<Typography variant="body1"><VideoIcon /> Video</Typography>}
+                    sx={{ m: 1 }}
+                />
+
+            </FormGroup>
+            <Divider />
+
+            <FormGroup sx={{ display: 'block', m: 1 }}>
+                <TextField
+                    label="Evaluation Type"
+                    variant="outlined"
+                    select
+                    value={round.type}
+                    onChange={(e) => dispatch({ type: e.target.value as EvaluationType })}
+                    sx={{ m: 1, width: { xs: '100%', sm: '20%' } }}
+                    disabled={loading || disabled}
+                >
+                    <MenuItem value={EvaluationType.BINARY}>Binary</MenuItem>
+                    <MenuItem value={EvaluationType.SCORE}>Score</MenuItem>
+                    <MenuItem value={EvaluationType.RANKING}>Ranking</MenuItem>
+                </TextField>
+                <FormControlLabel control={<Checkbox
+                    checked={round.allowJuryToParticipate}
+                    onChange={(e) => dispatch({ allowJuryToParticipate: e.target.checked })}
+                    disabled={loading || disabled}
+                />}
+                    label={<Typography variant="body1">
+                        <Diversity3Icon /> Allow the members of the jury to participate on thsi round.
+                    </Typography>}
+                    sx={{ m: 1 }}
+                />
+            </FormGroup>
+            <Collapse in={allowedArticle}>
+                <ArticleRestrictions {...round} dispatch={dispatch} loading={loading} disabled={disabled} />
+            </Collapse>
+
+
+        </LocalizationProvider>
+    );
+}
+export default RoundEditForm;

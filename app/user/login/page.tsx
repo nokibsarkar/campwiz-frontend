@@ -3,24 +3,28 @@ import Button from "@mui/material/Button"
 import loginInitiateAction from "@/provider/session/action";
 import { Paper, Typography } from "@mui/material";
 import { useSearchParams } from "next/navigation";
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+// import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+// import SuccessImage from '@/public/success.lottie';
+
 import Link from "next/link";
+import LottieWrapper from "@/components/LottieWrapper";
 const LoginPage = ({ }) => {
+    "use client";
     const searchParams = useSearchParams()
-    const next = searchParams.get('next')
+    const next = searchParams.get('next');
+    const baseURI = location.origin;
     return (
         <Paper sx={{
             padding: 2,
             mx: 'auto', my: 2,
-            maxWdth: 500,
+            maxWidth: 500,
             textAlign: 'center',
-            height: '80%',
+            minHeight: '80%',
             position: 'fixed',
             top: '50%', left: '50%',
             transform: 'translate(-50%, -50%)'
         }}>
-
-            <AdminPanelSettingsIcon sx={{ fontSize: 80 }} />
+            <LottieWrapper src='/login.lottie' />
             <Typography variant="h3" sx={{ mb: 2 }}>
                 Login
             </Typography>
@@ -32,7 +36,7 @@ const LoginPage = ({ }) => {
                 on how we handle your data, please refer to our <Link href="/policy/privacy">Privacy Policy</Link>.
             </Typography>
             <Button
-                onClick={() => loginInitiateAction(next)}
+                onClick={() => loginInitiateAction(baseURI, next)}
                 variant="contained"
                 color="success"
                 sx={{

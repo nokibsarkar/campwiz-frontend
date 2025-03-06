@@ -1,13 +1,16 @@
 "use client";
+import { WikimediaUsername } from "@/types";
 import { Autocomplete, TextField } from "@mui/material";
 import { useState } from "react";
 import useSWR from "swr";
 
 type UserInputProps = {
-    value: string[],
-    onChange: (users: string[]) => void
+    value: WikimediaUsername[],
+    onChange: (users: WikimediaUsername[]) => void
     label: string
-    allowList?: string[]
+    allowList?: WikimediaUsername[]
+    disabled?: boolean
+    sx?: { [key: string]: unknown }
 }
 const base = `https://commons.wikimedia.org/w/api.php?action=query&list=allusers&aulimit=10&format=json&origin=*&auprefix=`
 const UserInput = (props: UserInputProps) => {
@@ -35,9 +38,10 @@ const UserInput = (props: UserInputProps) => {
             filterSelectedOptions
             value={props.value}
             onError={(e) => console.error(e)}
+            disabled={props.disabled}
             loading={isLoading}
             onChange={(_, updatedUsers) => props.onChange(updatedUsers)}
-            sx={{ m: 1 }}
+            sx={{ ...(props.sx || {}), m: 1 }}
             renderInput={(params) => (
                 <TextField
                     {...params}
