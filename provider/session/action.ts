@@ -20,7 +20,6 @@ export const loginInitiateAction = async (base: string, pathName: string | null)
 export const loginCallbackAction = async (code: string, state: string) => {
     const qs = `?code=${code}&state=${state}`
     const res = await fetchFromBackend('/user/callback' + qs);
-    console.log(res)
     return res
 }
 export default loginInitiateAction
