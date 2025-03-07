@@ -23,6 +23,17 @@ const nextConfig: NextConfig = {
       }
     }
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+        port: '',
+        pathname: '/wikipedia/commons/**',
+        search: '',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
