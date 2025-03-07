@@ -29,13 +29,13 @@ const AudioApp = ({ src }: AudioAppProps) => {
         audioEle={audio}
         meterWidth={10}
 
-        capColor={'red'}
+        capColor={'green'}
         capHeight={2}
         meterCount={128}
         meterColor={[
-            { stop: 0, color: '#f00' },
+            { stop: 0, color: '#0f0' },
             { stop: 0.5, color: '#0CD7FD' },
-            { stop: 1, color: 'green' }
+            { stop: 1, color: 'red' }
         ]}
         gap={4}
     />}
@@ -43,8 +43,8 @@ const AudioApp = ({ src }: AudioAppProps) => {
             src={src}
             ref={audioRef}
             crossOrigin='anonymous'
-            progressJumpStep={5000}
-            volumeJumpStep={0.1}
+            showJumpControls={false}
+            showSkipControls={false}
         />
     </>);
 }
