@@ -22,7 +22,7 @@ const CreateCampaign_ = () => {
                 <Typography variant="h3" sx={{ mb: 2 }}>
                     {loading ? 'Creating Campaign...' : 'Create Campaign'}
                 </Typography>
-                {loading && <LoadingPopup src="/creating.lottie" />}
+                {loading && <LoadingPopup src="/lottie/creating.lottie" />}
                 {error && <Typography variant="body1" color="error">{error.message}</Typography>}
                 <CampaignEditForm {...campaign} loading={loading} dispatch={campaignDispatch} />
                 <br />
