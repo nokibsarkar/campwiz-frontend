@@ -24,7 +24,7 @@ const LoginPage = ({ }) => {
             top: '50%', left: '50%',
             transform: 'translate(-50%, -50%)'
         }}>
-            <LottieWrapper src='/login.lottie' />
+            <LottieWrapper src='/lottie/login.lottie' />
             <Typography variant="h3" sx={{ mb: 2 }}>
                 Login
             </Typography>
