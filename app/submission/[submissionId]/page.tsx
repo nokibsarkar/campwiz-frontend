@@ -2,6 +2,7 @@ import fetchAPIFromBackendSingleWithErrorHandling from "@/server";
 import { MediaType } from "@/types/round";
 import { Submission } from "@/types/submission";
 import ImagePreview from "./_preview/imagePreview";
+import VideoPreview from "./_preview/videoPreview";
 
 type SubmissionViewPageProps = {
     submissionId: string;
@@ -16,7 +17,9 @@ const SubmissionViewPage = async ({ params }: { params: Promise<SubmissionViewPa
         return <div>{submissionResponse.detail}</div>
     }
     const submission = submissionResponse.data;
-    console.log(submissionResponse)
+    return (
+        <VideoPreview submission={submission} />
+    )
     if (submission.mediatype === MediaType.IMAGE) {
         return <ImagePreview submission={submission} />
     } else if (submission.mediatype === MediaType.VIDEO) {
