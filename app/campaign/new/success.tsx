@@ -7,7 +7,7 @@ import ForwardIcon from '@mui/icons-material/Forward';
 const CampaignCreationSuccess = (c: Campaign) => {
     return (
         <Paper sx={{ padding: 2, textAlign: 'center' }}>
-            <LottieWrapper src='/success.lottie' />
+            <LottieWrapper src='/lottie/success.lottie' />
             <Typography variant="h6" sx={{ mb: 2, textAlign: 'center' }}>
                 Campaign Created Successfully
             </Typography>
