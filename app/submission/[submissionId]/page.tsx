@@ -2,7 +2,9 @@ import fetchAPIFromBackendSingleWithErrorHandling from "@/server";
 import { MediaType } from "@/types/round";
 import { Submission } from "@/types/submission";
 import ImagePreview from "./_preview/imagePreview";
-import VideoPreview from "./_preview/videoPreview";
+import { lazy } from "react";
+const VideoPreview = lazy(() => import("./_preview/videoPreview"));
+const AudioPreview = lazy(() => import("./_preview/audioPreview"));
 
 type SubmissionViewPageProps = {
     submissionId: string;
@@ -17,15 +19,12 @@ const SubmissionViewPage = async ({ params }: { params: Promise<SubmissionViewPa
         return <div>{submissionResponse.detail}</div>
     }
     const submission = submissionResponse.data;
-    return (
-        <VideoPreview submission={submission} />
-    )
     if (submission.mediatype === MediaType.IMAGE) {
         return <ImagePreview submission={submission} />
     } else if (submission.mediatype === MediaType.VIDEO) {
-        return <div>Video Preview</div>
+        return <VideoPreview submission={submission} />
     } else if (submission.mediatype === MediaType.AUDIO) {
-        return <div>Audio Preview</div>
+        return <AudioPreview submission={submission} />
     } else if (submission.mediatype === MediaType.ARTICLE) {
         return <div>Article Preview</div>
     } else {
