@@ -39,7 +39,7 @@ const CreateRound = ({ campaignId }: { campaignId: string }) => {
                     {loading ? 'Creating Round...' : 'Create Round'}
                 </Typography>
                 {error && <Typography variant="h6" color="error" sx={{ m: 2, textAlign: 'center' }}>{error}</Typography>}
-                {loading && <LoadingPopup src="/creating.lottie" />}
+                {loading && <LoadingPopup src="/lottie/loading.lottie" />}
                 <RoundEditForm {...round} loading={loading} dispatch={roundDispatch} />
                 <br />
                 <ReturnButton disabled={loading} />
