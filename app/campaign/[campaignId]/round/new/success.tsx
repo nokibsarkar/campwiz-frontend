@@ -10,7 +10,7 @@ import LottieWrapper from "@/components/LottieWrapper";
 const RoundCreationSuccess = ({ clearCreatedRound, ...c }: Round & { clearCreatedRound: () => void }) => {
     return (
         <Paper sx={{ padding: 2, textAlign: 'center' }}>
-            <LottieWrapper src='/success.lottie' />
+            <LottieWrapper src='/lottie/success.lottie' />
             <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
                 Round Created Successfully
             </Typography>

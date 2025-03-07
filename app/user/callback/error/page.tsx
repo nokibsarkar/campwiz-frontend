@@ -7,7 +7,7 @@ const LoginError = async ({ searchParams }: { searchParams: Promise<{ error: str
     const { error, state = '/' } = await searchParams;
     return (
         <Paper sx={{ padding: 2 }}>
-            <LottieWrapper src='/login-failed.lottie' />
+            <LottieWrapper src='/lottie/login-failed.lottie' />
             <h1 className="text-red-500 font-bold">Sorry there was an error logging you in!</h1>
             <p className="text-red-500 font-bold">{error}</p>
             <Link href={"/user/login?next=" + state}><Button
