@@ -1,11 +1,11 @@
 "use client";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react"
 
-const LottieWrapper = ({ src }: { src: string }) => (
+const LottieWrapper = ({ src, loop = true, }: { src: string, loop?: boolean }) => (
     <div style={{ maxWidth: '500px', margin: 'auto', width: '99%' }}>
         <DotLottieReact
             src={src}
-            loop
+            loop={loop}
             autoplay
         />
     </div>

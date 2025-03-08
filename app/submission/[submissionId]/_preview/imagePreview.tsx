@@ -1,5 +1,6 @@
 import { Submission } from "@/types/submission";
 import Image from "next/image";
+import SubmissionDetails from "./Details";
 
 const ImagePreview = ({ submission }: { submission: Submission }) => {
     return (
@@ -10,11 +11,7 @@ const ImagePreview = ({ submission }: { submission: Submission }) => {
                 width={submission.thumbwidth}
                 height={submission.thumbheight}
             />
-            <div>
-                <h2>{submission.title}</h2>
-                <p>{submission.description}</p>
-                <p dangerouslySetInnerHTML={{ __html: submission.creditHTML }}></p>
-            </div>
+            <SubmissionDetails submission={submission} />
         </div>
     );
 }
