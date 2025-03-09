@@ -11,69 +11,70 @@ const CampaignEditForm = ({ dispatch, loading, disabled = false, ...campaign }: 
             <TextField
                 label="Name"
                 variant="outlined"
-                sx={{ m: 1, width: '50%' }}
+                sx={{ mb: 2, width: '100%' }}
                 onChange={(e) => dispatch({ name: e.target.value })}
                 value={campaign.name}
                 disabled={loading || disabled}
             />
-            <DatePicker
-                onChange={(date) => dispatch({ startDate: date?.toISOString() })}
-                value={dayjs(campaign.startDate)}
-                sx={{ m: 1, width: { xs: '100%', sm: '18%' } }}
-                label="Start Date"
-                disabled={loading || disabled}
-            />
-            <DatePicker
-                onChange={(date) => dispatch({ endDate: date?.toISOString() })}
-                value={dayjs(campaign.endDate)}
-                sx={{ m: 1, width: { xs: '100%', sm: '18%' } }}
-                label="End Date"
-                disabled={loading || disabled}
-            />
-            <TextField
-                label="Description"
-                variant="outlined"
-                sx={{ m: 1, width: '48%' }}
-                onChange={(e) => dispatch({ description: e.target.value })}
-                value={campaign.description}
-                multiline
-                minRows={4}
-                disabled={loading || disabled}
-            />
-            <TextField
-                label="Rules"
-                variant="outlined"
-                sx={{ m: 1, width: '48%' }}
-                onChange={(e) => dispatch({ rules: e.target.value })}
-                value={campaign.rules}
-                multiline
-                minRows={4}
-                disabled={loading || disabled}
-            />
-            <br />
-            <Autocomplete
-                options={[
-                    'commons'
-                ]}
-                renderInput={(params) => <TextField {...params} label="Language" variant="outlined" />}
-                sx={{ m: 1, }}
-                value={campaign.language}
-                onChange={(e, value) => dispatch({ language: value as string })}
-                disabled={loading || disabled}
-            />
-            <UserInput
-                value={campaign.organizers}
-                onChange={(organizers) => dispatch({ organizers })}
-                label="Organizers"
-                disabled={loading || disabled}
-            />
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10, flexFlow: 'wrap' }}>
+                <Autocomplete
+                    options={[
+                        'commons'
+                    ]}
+                    renderInput={(params) => <TextField {...params} label="Language" variant="outlined" />}
+                    sx={{ width: { xs: '100%', sm: '40%' }, mb: 1 }}
+                    value={campaign.language}
+                    onChange={(e, value) => dispatch({ language: value as string })}
+                    disabled={loading || disabled}
+                />
+                <DatePicker
+                    onChange={(date) => dispatch({ startDate: date?.toISOString() })}
+                    value={dayjs(campaign.startDate)}
+                    sx={{ width: { xs: '100%', sm: '27%' }, mb: 1 }}
+                    label="Start Date"
+                    disabled={loading || disabled}
+                />
+                <DatePicker
+                    onChange={(date) => dispatch({ endDate: date?.toISOString() })}
+                    value={dayjs(campaign.endDate)}
+                    sx={{ width: { xs: '100%', sm: '27%' }, mb: 1 }}
+                    label="End Date"
+                    disabled={loading || disabled}
+                />
+            </div>
+
             <UserInput
                 value={campaign.coordinators}
                 onChange={(coordinators) => dispatch({ coordinators })}
                 label="Coordinators"
                 disabled={loading || disabled}
+                sx={{ mb: 2 }}
 
             />
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexFlow: 'wrap' }}>
+                <TextField
+                    label="Description"
+                    variant="outlined"
+                    sx={{ mb: 1, width: { xs: '100%', sm: '49%' } }}
+                    onChange={(e) => dispatch({ description: e.target.value })}
+                    value={campaign.description}
+                    multiline
+                    minRows={4}
+                    disabled={loading || disabled}
+                />
+                <TextField
+                    label="Rules"
+                    variant="outlined"
+                    sx={{ mb: 1, width: { xs: '100%', sm: '49%' } }}
+                    onChange={(e) => dispatch({ rules: e.target.value })}
+                    value={campaign.rules}
+                    multiline
+                    minRows={4}
+                    disabled={loading || disabled}
+                />
+            </div>
+            <br />
+
         </LocalizationProvider>
     );
 }

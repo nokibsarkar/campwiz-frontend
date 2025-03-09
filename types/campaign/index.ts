@@ -11,6 +11,7 @@ export interface Role {
     userId: string
 }
 export interface Campaign {
+    projectId: string
     campaignId: string
     createdAt: string
     createdById: string

@@ -41,7 +41,7 @@ const UserInput = (props: UserInputProps) => {
             disabled={props.disabled}
             loading={isLoading}
             onChange={(_, updatedUsers) => props.onChange(updatedUsers)}
-            sx={{ ...(props.sx || {}), m: 1 }}
+            sx={{ mb: 1, ...(props.sx || {}) }}
             renderInput={(params) => (
                 <TextField
                     {...params}

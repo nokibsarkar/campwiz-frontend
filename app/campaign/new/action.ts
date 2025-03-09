@@ -20,9 +20,6 @@ const createCampaign = async (campaign: CampaignCreate) => {
     if (campaign.coordinators.length === 0) {
         throw new Error('At least one coordinator is required')
     }
-    if (campaign.organizers.length === 0) {
-        throw new Error('At least one organizer is required')
-    }
     if (campaign.language === '') {
         throw new Error('You must select a language. If it is wikimedia Commons, select "commons"')
     }

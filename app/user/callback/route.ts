@@ -15,6 +15,7 @@ export const GET = async (req: NextRequest) => {
     const res = await loginCallbackAction(code, state);
     if (res.status === 302) {
         const url = new URL(res.headers.get('Location') || '/', origin);
+        console.log('Redirecting to', url.toString());
         const response = NextResponse.redirect(url.toString());
         for (const [key, value] of res.headers.entries()) {
             if (key.toLowerCase() === 'set-cookie') {
