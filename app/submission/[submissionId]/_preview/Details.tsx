@@ -1,3 +1,4 @@
+import { MediaType } from "@/types/round"
 import { Submission } from "@/types/submission"
 import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material"
 import React from "react"
@@ -36,6 +37,10 @@ const Duration = ({ duration }: { duration: number }) => {
     return <>{Math.floor(duration / 3600000)}:{Math.round(duration / 60000)}:{duration / 1000}s</>
 }
 const AudioDetails = ({ submission }: DetailsProps) => {
+    if (![MediaType.AUDIO, MediaType.VIDEO].includes(submission.mediatype)) {
+        return null
+    }
+
     return <>
         <KeyValue name="Duration" value={<Duration duration={submission.duration} />} />
         <KeyValue name="Bitrate" value={submission.bitrate} />
@@ -76,4 +81,5 @@ const SubmissionDetails = ({ submission }: DetailsProps) => {
         </div>
     )
 }
+
 export default SubmissionDetails;

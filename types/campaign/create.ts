@@ -7,7 +7,6 @@ export interface CampaignCreate {
     image: string
     language: string
     name: string
-    organizers: WikimediaUsername[]
     rules: string
     startDate: string
 }
@@ -18,9 +17,8 @@ export const initialCampaignCreate: CampaignCreate = {
     image: "",
     language: "",
     name: "",
-    organizers: [],
     rules: "",
-    startDate: (new Date()).toISOString()
+    startDate: (new Date()).toISOString(),
 }
 export const campaignCreateReducer = (state: CampaignCreate, action: Partial<CampaignCreate>) => {
     return {
