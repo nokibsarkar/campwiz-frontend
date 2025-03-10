@@ -9,8 +9,8 @@ import { Campaign } from "@/types";
 import useSWRMutation from "swr/mutation";
 import LoadingPopup from "@/components/LoadingPopup";
 import AddIcon from '@mui/icons-material/Add';
-import Image from "next/image";
 import LoginBackground from "@/public/snowy-hill.svg";
+import Logo from "@/components/Logo";
 const CampaignCreationSuccess = lazy(() => import('@/app/project/[projectId]/new/success'));
 
 const CreateCampaign_ = () => {
@@ -39,7 +39,7 @@ const CreateCampaign_ = () => {
                         borderRadius: 6,
                         backgroundColor: 'rgba(255,255,255,0.8)',
                     }}>
-                        <Image src='/logo.svg' alt="Logo" width={100} height={100} style={{ margin: 'auto' }} />
+                        <Logo />
                         <Typography variant="h3" sx={{ mb: 4, textAlign: 'center', fontSize: { xs: 24, sm: 48 } }}>
                             Create Campaign
                         </Typography>

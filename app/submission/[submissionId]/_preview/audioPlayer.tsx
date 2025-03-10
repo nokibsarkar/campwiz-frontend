@@ -23,8 +23,11 @@ type AudioAppProps = {
     title: string;
     author: string;
 }
-const windowWidth = window.innerWidth;
-
+let windowWidth = 400;
+if (typeof window !== "undefined") {
+    // Client-side-only code
+    windowWidth = window.innerWidth;
+}
 export const AudioApp = ({ src }: AudioAppProps) => {
     const audioRef = createRef<H5AudioPlayer>();
     const [audio, setAudio] = React.useState<HTMLAudioElement | null>(null);

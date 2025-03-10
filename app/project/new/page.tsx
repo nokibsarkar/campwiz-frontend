@@ -8,9 +8,9 @@ import { Project } from "@/types/project";
 import useSWRMutation from "swr/mutation";
 import LoadingPopup from "@/components/LoadingPopup";
 import AddIcon from '@mui/icons-material/Add';
-import Image from "next/image";
 import LoginBackground from "@/public/red-hill.svg";
 import { initialProjectCreate, projectCreateReducer } from "@/types/project";
+import Logo from "@/components/Logo";
 const ProjectCreationSuccess = lazy(() => import('@/app/project/new/success'));
 
 const CreateProject = () => {
@@ -43,7 +43,7 @@ const CreateProject = () => {
                         borderRadius: 6,
                         backgroundColor: 'rgba(255,255,255,0.8)',
                     }}>
-                        <Image src='/logo.svg' alt="Logo" width={100} height={100} style={{ margin: 'auto' }} />
+                        <Logo />
                         <Typography variant="h3" sx={{ mb: 4, textAlign: 'center', fontSize: { xs: 24, sm: 48 } }}>
                             Create Project
                         </Typography>
