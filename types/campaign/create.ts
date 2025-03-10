@@ -1,4 +1,5 @@
 import { WikimediaUsername } from "@/types/_"
+import { RoundStatus } from "../round/status"
 
 export interface CampaignCreate {
     coordinators: WikimediaUsername[]
@@ -9,6 +10,8 @@ export interface CampaignCreate {
     name: string
     rules: string
     startDate: string
+    isPublic: boolean
+    status: RoundStatus
 }
 export const initialCampaignCreate: CampaignCreate = {
     coordinators: [],
@@ -19,6 +22,8 @@ export const initialCampaignCreate: CampaignCreate = {
     name: "",
     rules: "",
     startDate: (new Date()).toISOString(),
+    isPublic: false,
+    status: RoundStatus.PENDING
 }
 export const campaignCreateReducer = (state: CampaignCreate, action: Partial<CampaignCreate>) => {
     return {

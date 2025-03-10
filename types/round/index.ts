@@ -1,5 +1,6 @@
 import { CommonFilter, IDType, WikimediaUsername } from "../_";
 import { Role } from "../role";
+import { RoundStatus } from "./status";
 
 // These are the restrictions that are applied to the articles that are submitted to the campaign
 type RoundCommonRestrictions = {
@@ -9,18 +10,7 @@ type RoundCommonRestrictions = {
     blacklist: string;
 };
 
-enum RoundStatus {
-    PENDING = 'PENDING',
-    IMPORTING = 'IMPORTING',
-    DISTRIBUTING = 'DISTRIBUTING',
-    EVALUATING = 'EVALUATING',
-    REJECTED = 'REJECTED',
-    CANCELLED = 'CANCELLED',
-    PAUSED = 'PAUSED',
-    SCHEDULED = 'SCHEDULED',
-    ACTIVE = 'ACTIVE',
-    COMPLETED = 'COMPLETED'
-}
+
 export enum MediaType {
     AUDIO = 'AUDIO',
     VIDEO = 'VIDEO',

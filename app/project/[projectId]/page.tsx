@@ -2,7 +2,7 @@ import PublicRunningCampaigns from "@/components/campaign/PublicCampaigns";
 import { Paper } from "@mui/material";
 import '@/App.css'
 
-import festivalBackground from '@/public/tanabataremix.svg';
+// import festivalBackground from '@/public/tanabataremix.svg';
 /**
 * This page would be the default dashboard for any Project Lead.
 * He would be see the project he is leading, all the running campaigns and the status of the campaigns.

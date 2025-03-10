@@ -1,10 +1,11 @@
 import type { CampaignCreate } from "@/types/campaign/create";
-import { Autocomplete, TextField, } from "@mui/material";
+import { Autocomplete, FormControlLabel, TextField, Typography, } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import { ActionDispatch } from "react";
 import UserInput from "../user/UserInput";
+import CheckBox from '@mui/material/Checkbox';
 const CampaignEditForm = ({ dispatch, loading, disabled = false, ...campaign }: CampaignCreate & { dispatch: ActionDispatch<[Partial<CampaignCreate>]>, loading: boolean, disabled?: boolean }) => {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -73,8 +74,21 @@ const CampaignEditForm = ({ dispatch, loading, disabled = false, ...campaign }: 
                     disabled={loading || disabled}
                 />
             </div>
-            <br />
-
+            <FormControlLabel
+                control={
+                    <CheckBox
+                        value={campaign.isPublic}
+                        onChange={(e) => dispatch({ isPublic: e.target.checked })}
+                        disabled={loading || disabled}
+                    />
+                }
+                sx={{ my: 2 }}
+                label={
+                    <Typography variant="body1" color="textSecondary">
+                        This Campaign would shown to the public (people other than coordinators, jury, project leaders)
+                    </Typography>
+                }
+            />
         </LocalizationProvider>
     );
 }

@@ -1,16 +1,28 @@
 import { Campaign } from "@/types"
-import { Button, Card, CardActions, CardContent, CardHeader, Chip, Typography } from "@mui/material"
+import { Button, Card, CardActions, CardContent, CardHeader, Typography } from "@mui/material"
+import { styled } from '@mui/material/styles';
 import Link from "next/link"
-import RightArrowIcon from '@mui/icons-material/ArrowRight';
+import RightArrowIcon from '@mui/icons-material/KeyboardArrowRight';
+import Status from "@/components/round/Status";
 // import Image from "next/image";
 
 type SingleCampaignChipProps = {
     campaign: Campaign
 }
+const StyledCard = styled(Card)`
+  ${({ theme }) => `
+  cursor: pointer;
+  transition: ${theme.transitions.create(['transform'], {
+    duration: theme.transitions.duration.standard,
+})};
+  &:hover {
+    transform: scale(1.05);
+  }
+  `}
+`;
 const SingleCampaignChip = ({ campaign }: SingleCampaignChipProps) => {
     return (
-
-        <Card sx={{
+        <StyledCard sx={{
             cursor: 'pointer',
             boxShadow: 1, margin: 1, p: 2,
             display: 'inline-block',
@@ -29,28 +41,31 @@ const SingleCampaignChip = ({ campaign }: SingleCampaignChipProps) => {
             backgroundColor: 'rgba(255,255,255,0.9)',
         }}>
             <CardHeader
-                title={<Typography variant="h6">{campaign.name}</Typography>}
+                title={<Typography variant="h5" color='primary'>{campaign.name}</Typography>}
                 subheader={
-                    <Typography variant="body2">
+                    <Typography variant="caption" color="textSecondary">
                         {new Date(campaign.startDate).toUTCString()} - {new Date(campaign.endDate).toUTCString()}
                     </Typography>
                 }
+                sx={{
+                    mb: -1
+                }}
             />
             <CardContent>
-                <Typography variant="body1">
-                    {campaign.description}
+                <Typography variant="body1" sx={{}}>
+                    {campaign.description?.length > 100 ? campaign.description.slice(0, 100) + '...' : campaign.description}
                 </Typography>
             </CardContent>
             <CardActions sx={{ justifyContent: 'space-between' }}>
-                <Chip label={'Running'} color="success" variant="outlined" sx={{ marginRight: 1, p: 1 }} />
+                <Status status={campaign.status || "Running"} />
                 <Link href={`/campaign/${campaign.campaignId}`} style={{}}>
                     <Button color="primary" endIcon={<RightArrowIcon />} variant="outlined" sx={{ borderRadius: 8, px: 2 }}>
-                        Learn More
+                        Go to Campaign
                     </Button>
 
                 </Link>
             </CardActions>
-        </Card>
+        </StyledCard >
     )
 }
 export default SingleCampaignChip
