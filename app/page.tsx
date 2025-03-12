@@ -13,8 +13,8 @@ export default async function Home() {
   }
   return (
     <div>
-      <Link href="/campaign/new">
-        <Button variant="contained" startIcon={<AddIcon />} color='success'>New Campaign</Button>
+      <Link href="/project/new">
+        <Button variant="contained" startIcon={<AddIcon />} color='success'>New Project</Button>
       </Link>
       <PublicRunningCampaigns limit={10} />
     </div>
