@@ -10,17 +10,26 @@ import PerCampaignBackground from "@/public/Flat-Shaded-Mountains-Scene.svg"
 type PublicRunningCampaignProps = {
     limit: number
 }
-const PublicRunningCampaigns = ({ }: PublicRunningCampaignProps) => {
-    const { data: publicCampaignResponse, error, isLoading } = useSWR('/campaign/', fetchAPIFromBackendSingleWithErrorHandling<Campaign[]>);
-    if (isLoading) return <Skeleton variant="rectangular" width={400} height={200} />
+const PublicRunningCampaigns = ({ limit }: PublicRunningCampaignProps) => {
+    const qs = new URLSearchParams({ limit: String(limit), isOpen: 'true', isHidden: 'false' }).toString()
+    const { data: publicCampaignResponse, error, isLoading } = useSWR('/campaign/?' + qs.toString(), fetchAPIFromBackendSingleWithErrorHandling<Campaign[]>);
+    if (isLoading) return <Skeleton variant="rectangular" width='100%' height={200} sx={{ backgroundColor: 'rgba(0,0,0,0.1)' }}>
+        <Typography variant="h4" sx={{
+            textAlign: 'center', m: 3,
+            backgroundImage: 'linear-gradient(to right, red 20%,  blue 80%)',
+            color: 'transparent',
+            backgroundClip: 'text'
+        }}>
+
+            Public Running Campaigns
+        </Typography>
+    </Skeleton>
     if (error) return <p>Error : {error.message}</p>
     if (!publicCampaignResponse)
         return null;
     if ('detail' in publicCampaignResponse)
         return <p>Error : {error}</p>
-    return <div className="" style={{
-
-    }}>
+    return <div className="" style={{}}>
         <Typography variant="h4" sx={{
             textAlign: 'center', m: 3,
             backgroundImage: 'linear-gradient(to right, red 20%,  blue 80%)',

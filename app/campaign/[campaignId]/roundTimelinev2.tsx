@@ -4,7 +4,6 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from "@mui/material/Box";
 import Status, { getStatusColor, RoundStatusIcon } from "@/components/round/Status";
-import Roundactions from "@/components/round/RoundActions";
 type RoundTimelineProps = {
     rounds: Round[] | null
 }
@@ -21,10 +20,6 @@ function RoundTimeline({ rounds }: RoundTimelineProps) {
                         <Typography variant="h6" sx={{ display: 'inline' }}>
                             {round.name}
                         </Typography>
-                        <Roundactions round={round}
-                            isStartable={!round.isOpen}
-                            isStoppable={round.isOpen}
-                        />
                     </div>
                     <Box key={i} sx={{
                         pl: 2,

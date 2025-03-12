@@ -3,10 +3,16 @@ import "./globals.css";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '@/theme';
+import { Paper } from "@mui/material";
+import { Roboto, } from 'next/font/google';
 
 
-
-
+const roboto = Roboto({
+  weight: ['400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto',
+});
 export const metadata: Metadata = {
   title: "CampWiz nxt",
   description: "A powerful tool for organizing campaigns on Wikimedia projects",
@@ -32,14 +38,15 @@ export default async function RootLayout({
 }>) {
   return (
     <html>
-      <body>
+      <body className={roboto.className}>
         <AppRouterCacheProvider
           options={{ key: 'css' }}
         >
           <ThemeProvider theme={theme}>
-            {children}
+            <Paper elevation={0} sx={{ height: '100vh', overflow: 'auto' }}>
+              {children}
+            </Paper>
           </ThemeProvider>
-          {/* </LocalizationProvider> */}
         </AppRouterCacheProvider>
       </body>
     </html>

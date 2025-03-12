@@ -8,9 +8,7 @@ import Quorum from "./Quorum";
 import JuryList from "./Jury";
 import CircularProgressWithLabel from "./CircularProgressWithLabel";
 
-
 const RoundDetails = ({ round: c }: { round: Round }) => {
-    const progress = 100
     return (
         <Box sx={{
             textAlign: 'left',
@@ -28,7 +26,7 @@ const RoundDetails = ({ round: c }: { round: Round }) => {
                 alignItems: 'center',
                 justifyContent: 'space-between'
             }}>
-                <CircularProgressWithLabel value={progress} size='10em' color='success' />
+                <CircularProgressWithLabel value={100} size='10em' color='success' />
                 <div>
                     <Deadline deadline={c.endDate} />
                     <Description description={c.description} />

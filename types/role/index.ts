@@ -11,3 +11,4 @@ export type Role = {
     TotalEvaluated: number;
     TotalScore: number;
 };
+export type RoleWithUsername = Role & { Username: string };
