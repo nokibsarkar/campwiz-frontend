@@ -2,7 +2,6 @@ import { RoleWithUsername } from "@/types/role";
 import GavelIcon from '@mui/icons-material/Gavel';
 import { Box, Typography } from "@mui/material";
 import AccountIcon from '@mui/icons-material/AccountCircle';
-import LinearProgress from '@mui/material/LinearProgress';
 const Jury = ({ jury }: { jury: RoleWithUsername }) => {
     const progress = jury.TotalAssigned > 0 ? Math.floor(jury.TotalEvaluated / jury.TotalAssigned * 100) : 0;
     return (
@@ -29,11 +28,6 @@ const Jury = ({ jury }: { jury: RoleWithUsername }) => {
             <Typography variant="body1" sx={{ mb: 2, mt: -0.5, }} component='div'>
                 {jury.TotalEvaluated} evaluated
             </Typography>
-
-            <LinearProgress variant="determinate" color="success" value={progress} sx={{
-                height: '14px',
-                borderRadius: 5,
-            }} />
 
         </ Box>
     );

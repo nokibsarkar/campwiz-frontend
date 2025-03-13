@@ -42,7 +42,7 @@ const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
             // transform: 'translate(-50%, -50%)'
         }}>
             <Image src='/logo.svg' alt="Logo" width={100} height={100} style={{ margin: 'auto' }} />
-            <LottieWrapper src='/lottie/login2.lottie' loop={true} />
+            <LottieWrapper src='/lottie/login-required.lottie' loop={true} />
             <Typography variant="h5" sx={{ mb: 2 }}>
                 Let&apos;s Get Started
             </Typography>

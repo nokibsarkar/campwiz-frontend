@@ -22,7 +22,7 @@ const CampaignEditForm = ({ dispatch, loading, disabled = false, ...campaign }: 
                     options={[
                         'commons'
                     ]}
-                    renderInput={(params) => <TextField {...params} label="Language" variant="outlined" />}
+                    renderInput={(params) => <TextField {...params} label="WikiProject" variant="outlined" />}
                     sx={{ width: { xs: '100%', sm: '40%' }, mb: 1 }}
                     value={campaign.language}
                     onChange={(e, value) => dispatch({ language: value as string })}
