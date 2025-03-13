@@ -1,6 +1,5 @@
 name: Deploy to Server
 on: [push]
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,7 +9,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          go-version: "22.x"
+          node-version: "22.x"
       - name: Install dependencies
         run: yarn
       - name: Build
