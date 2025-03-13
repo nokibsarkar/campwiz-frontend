@@ -1,0 +1,39 @@
+name: Deploy to Server
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: Test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          go-version: "22.x"
+      - name: Install dependencies
+        run: yarn
+      - name: Build
+        run: |
+          yarn build
+          mkdir -p campwiz-frontend
+          mv .next campwiz-frontend
+          cp package.json campwiz-frontend
+          cp yarn.lock campwiz-frontend
+          cp -r public campwiz-frontend
+          cp next.config.* campwiz-frontend
+      - name: Setup Deployment Environment
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_rsa
+          chmod 600 id_rsa
+      - name: Send Build to Server
+        run: |
+          rsync -Pav --no-perms --omit-dir-times -e "ssh -i id_rsa" campwiz-frontend/ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH }}"
+      - name: Restart Campwiz
+        run: |
+          ssh -i id_rsa "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "cd ${{ secrets.SSH_REMOTE_PATH }} && yarn && pm2 restart campwiz-frontend --update-env"
+      - name: Delete SSH Key
+        run: |
+          rm id_rsa

@@ -1,9 +1,9 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Container, Grid, Card, CardContent, Button, Drawer, List, ListItem, ListItemText, Box } from "@mui/material";
 
-const primaryColor = "#3a9c6b";
-const secondaryColor = "#3a9c6b";
-const accentColor = "#006699";
+// const primaryColor = "#3a9c6b";
+// const secondaryColor = "#3a9c6b";
+// const accentColor = "#006699";
 const campaignNameColor = "#000000"; // Black color for Campaign Name
 
 const Dashboard: React.FC = () => {
@@ -25,15 +25,15 @@ const Dashboard: React.FC = () => {
       >
         <List>
           {["Home", "Active Campaigns", "Create Campaign", "Create Round", "Admin Panel"].map((text, index) => (
-            <ListItem 
-              button 
-              key={index} 
-              sx={{ 
-                transition: "0.3s", 
-                "&:hover": { 
+            <ListItem
+              // button
+              key={index}
+              sx={{
+                transition: "0.3s",
+                "&:hover": {
                   bgcolor: "#fff", // White background on hover
                   color: "#000", // Black text color on hover
-                  transform: "scale(1.05)" 
+                  transform: "scale(1.05)"
                 },
                 "& .MuiListItemText-root": {
                   textAlign: "center"
