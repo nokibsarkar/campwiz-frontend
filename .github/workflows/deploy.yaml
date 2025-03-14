@@ -30,6 +30,8 @@ jobs:
           yarn build
           mkdir -p campwiz-frontend
           mv .next campwiz-frontend
+          mkdir .next 
+          cp campwiz-frontend/.next/cache .next
           cp package.json campwiz-frontend
           cp yarn.lock campwiz-frontend
           cp -r public campwiz-frontend
