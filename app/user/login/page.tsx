@@ -18,7 +18,6 @@ const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
     const searchParams = useSearchParams()
     const next = searchParams.get('next');
     const baseURI = location.origin;
-    alert(baseURI)
     const [clicked, setClicked] = useState(false);
     return (
         <Paper sx={{

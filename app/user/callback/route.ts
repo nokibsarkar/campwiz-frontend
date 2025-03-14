@@ -2,7 +2,15 @@ import { loginCallbackAction } from "@/provider/session/action";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
-    const origin = req.nextUrl.origin;
+    const scheme = req.headers.get('x-forwarded-proto') || 'http';
+    const host = req.headers.get('host') || 'localhost';
+    if (!host || !scheme) {
+        throw new Error('Missing host or scheme')
+    }
+    const origin = `${scheme}://${host}`;
+    if (!origin) {
+        throw new Error('Missing origin')
+    }
     const searchParams = req.nextUrl.searchParams;
     const code = searchParams.get('code');
     if (!code) {
@@ -22,7 +30,6 @@ export const GET = async (req: NextRequest) => {
         return response
     }
     const url = new URL(res.data.redirect, origin);
-    console.log('Redirecting to', url.toString());
     const response = NextResponse.redirect(url.toString());
     return response
 }
