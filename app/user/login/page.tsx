@@ -15,10 +15,10 @@ import { useState } from "react";
 import WikipediaIcon from "@/components/WikipediaIcon";
 
 const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
-    "use client";
     const searchParams = useSearchParams()
     const next = searchParams.get('next');
     const baseURI = location.origin;
+    alert(baseURI)
     const [clicked, setClicked] = useState(false);
     return (
         <Paper sx={{
