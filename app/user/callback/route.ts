@@ -13,22 +13,16 @@ export const GET = async (req: NextRequest) => {
         return NextResponse.redirect(new URL(`/user/callback/error?error=Missing state`, origin).toString());
     }
     const res = await loginCallbackAction(code, state);
-    if (res.status === 302) {
-        const url = new URL(res.headers.get('Location') || '/', origin);
-        console.log('Redirecting to', url.toString());
-        const response = NextResponse.redirect(url.toString());
-        for (const [key, value] of res.headers.entries()) {
-            if (key.toLowerCase() === 'set-cookie') {
-                response.headers.append('Set-Cookie', value)
-            }
-        }
+    if ('detail' in res) {
+        const qs = new URLSearchParams({
+            error: res.detail,
+            state
+        }).toString();
+        const response = NextResponse.redirect(new URL(`/user/callback/error?${qs}`, origin).toString());
         return response
     }
-    const j = await res.json();
-    const qs = new URLSearchParams({
-        error: j.detail,
-        state
-    }).toString();
-    const response = NextResponse.redirect(new URL(`/user/callback/error?${qs}`, origin).toString());
+    const url = new URL(res.data.redirect, origin);
+    console.log('Redirecting to', url.toString());
+    const response = NextResponse.redirect(url.toString());
     return response
 }

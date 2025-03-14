@@ -1,8 +1,46 @@
 "use server"
+import { ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { ResponseError, ResponseSingle } from "../types/_";
 import { cookies } from 'next/headers'
 const baseURL = process.env.NEXT_BASE_URL || ''
 const API_PATH = '/api/v2';
+const parseCookieString = (cookieString: string): ResponseCookie => {
+    const parts = cookieString.split(';')
+    const cookie: ResponseCookie = {
+        name: '',
+        value: '',
+    }
+    for (const part of parts) {
+        const [key, value] = part.split('=')
+        switch (key.trim().toLowerCase()) {
+            case 'path':
+                cookie.path = value
+                break
+            case 'domain':
+                cookie.domain = value
+                break
+            case 'expires':
+                cookie.expires = value ? new Date(value) : undefined
+                break
+            case 'max-age':
+                cookie.maxAge = parseInt(value)
+                break
+            case 'secure':
+                cookie.secure = true
+                break
+            case 'httponly':
+                cookie.httpOnly = true
+                break
+            case 'samesite':
+                cookie.sameSite = value as 'strict' | 'lax' | 'none'
+                break
+            default:
+                cookie.name = key
+                cookie.value = value
+        }
+    }
+    return cookie
+}
 export const fetchFromBackend = async (path: string, options?: RequestInit): Promise<Response> => {
     const cookieStore = await cookies()
     if (options === undefined) {
@@ -18,8 +56,10 @@ export const fetchFromBackend = async (path: string, options?: RequestInit): Pro
     const res = await fetch(`${baseURL}${path}`, options)
     for (const [key, value] of res.headers.entries()) {
         if (key.toLowerCase() === 'set-cookie') {
-            const cookieName = value.split('=')[0]
-            cookieStore.set(cookieName, value)
+            const cookie = parseCookieString(value)
+            console.log('Setting cookie', cookie)
+            cookieStore.set(cookie)
+
         }
     }
     return res
