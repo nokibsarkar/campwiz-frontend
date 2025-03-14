@@ -1,6 +1,6 @@
 'use client';
 import Button from "@mui/material/Button"
-import loginInitiateAction from "@/provider/session/action";
+import loginInitiateActionClient from "@/provider/session/action";
 import { CircularProgress, Paper, Typography, useMediaQuery } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import ArrowForward from '@mui/icons-material/ArrowForward';
@@ -48,7 +48,7 @@ const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
             </Typography>
             <Button
                 onClick={() => {
-                    loginInitiateAction(baseURI, next)
+                    loginInitiateActionClient(baseURI, next)
                     setClicked(true)
                 }}
                 variant="contained"

@@ -1,25 +1,30 @@
 "use server";
 
-import { fetchFromBackend } from "@/server";
+import fetchAPIFromBackendSingleWithErrorHandling from "@/server";
 import { redirect } from "next/navigation";
 
-const tokenUri = 'https://meta.wikimedia.org/w/rest.php/oauth2/authorize'
+type RedirectResponse = {
+    redirect: string
+}
 export const loginInitiateAction = async (base: string, pathName: string | null) => {
-    const clientId = process.env.NEXT_AUTH_CLIENT_ID;
-    if (!clientId) {
-        throw new Error('Missing NEXT_AUTH_CLIENT_ID')
+    const qs = `?next=${pathName || '/'}`
+    const res = await fetchAPIFromBackendSingleWithErrorHandling<RedirectResponse>('/user/login' + qs, {
+        cache: 'no-cache',
+        credentials: 'include',
+        redirect: 'manual',
+    });
+    if ('detail' in res) {
+        throw new Error(res.detail)
     }
-    const qs = new URLSearchParams({
-        redirect_uri: base + '/user/callback',
-        response_type: 'code',
-        client_id: clientId,
-        state: pathName || '/'
-    }).toString()
-    return redirect(`${tokenUri}?${qs}`)
+    const location = res.data.redirect
+    if (!location) {
+        throw new Error('Location header missing')
+    }
+    return redirect(location)
 }
 export const loginCallbackAction = async (code: string, state: string) => {
     const qs = `?code=${code}&state=${state}`
-    const res = await fetchFromBackend('/user/callback' + qs, {
+    const res = await fetchAPIFromBackendSingleWithErrorHandling<RedirectResponse>('/user/callback' + qs, {
         cache: 'no-cache',
         credentials: 'include',
         redirect: 'manual',
