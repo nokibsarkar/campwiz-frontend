@@ -4,8 +4,7 @@ import { AppBar, Toolbar, Typography, Container, Grid, Card, CardContent, Button
 // const primaryColor = "#3a9c6b";
 // const secondaryColor = "#3a9c6b";
 // const accentColor = "#006699";
-const campaignNameColor = "#000000"; // Black color for Campaign Name
-
+const campaignNameColor = "#000000z"; // Black color for Campaign Names
 const Dashboard: React.FC = () => {
   return (
     <Box sx={{ display: "flex", bgcolor: "#f5f5f5", minHeight: "100vh" }}>
