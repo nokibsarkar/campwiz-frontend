@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  AppBar,
-  Toolbar,
+
+
   Typography,
   Container,
   Grid,
@@ -12,12 +12,9 @@ import {
 } from "@mui/material";
 import { ArrowForward, Add } from "@mui/icons-material";
 import Link from "next/link";
-import CampaignEditForm from "@/components/campaign/CampaignEditForm";
-import { CampaignCreate } from "@/types/campaign/create";
 
-const primaryColor = "#3a9c6b";
-const secondaryColor = "#3a9c6b";
-const accentColor = "#006699";
+
+
 const campaignNameColor = "#000000"; // Black color for Campaign Name
 type DashboardProps = {
   params: Promise< 
