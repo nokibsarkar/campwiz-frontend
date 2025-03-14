@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Container, Paper, Typography } from "@mui/material";
+import { Button, Container,  Typography } from "@mui/material";
 import Logo from '@/components/Logo';
 
 const Dashboard: React.FC = () => {
