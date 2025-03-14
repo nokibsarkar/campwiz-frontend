@@ -57,7 +57,6 @@ export const fetchFromBackend = async (path: string, options?: RequestInit): Pro
     for (const [key, value] of res.headers.entries()) {
         if (key.toLowerCase() === 'set-cookie') {
             const cookie = parseCookieString(value)
-            console.log('Setting cookie', cookie)
             cookieStore.set(cookie)
 
         }
