@@ -1,5 +1,5 @@
 import { IDType } from "../_";
-import { MediaType } from "../round";
+import { EvaluationType, MediaType } from "../round";
 
 export interface Submission {
     submissionId: IDType;
@@ -26,3 +26,20 @@ export interface Submission {
     bitrate: number;
     size: number;
 }
+export interface Evaluation {
+    evaluationId: string
+    submissionId: string
+    judgeId: string
+    participantId: string
+    roundId: string
+    type: EvaluationType
+    score: number
+    comment: string
+    serial: number
+    submission: Submission | null
+    createdAt: string
+    updatedAt: string
+    evaluatedAt: string
+    skipExpirationAt: string
+    distributionTaskId: string
+};

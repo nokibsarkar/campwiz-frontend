@@ -6,10 +6,11 @@ import Typography from '@mui/material/Typography';
 import Box from "@mui/material/Box";
 import Status, { getStatusColor, RoundStatusIcon } from "@/components/round/Status";
 import Roundactions from "@/components/round/RoundActions";
-import RoundCreate from "./RoundCreate";
 import { RoundStatus } from "@/types/round/status";
-import { LinearProgress } from "@mui/material";
-import P from "./round/import/commons/_page";
+import { Button, LinearProgress } from "@mui/material";
+import { Add } from "@mui/icons-material";
+const CoomonsImportPage = React.lazy(() => import("./round/import/commons/_page"));
+const RoundCreate = React.lazy(() => import("./RoundCreate"));
 type RoundTimelineProps = {
     rounds: Round[] | null
     campaignId: string
@@ -18,21 +19,29 @@ function RoundTimeline({ rounds, campaignId }: RoundTimelineProps) {
     rounds = rounds?.toSorted(
         (a, b) => b.roundId.localeCompare(a.roundId)
     ) ?? []
-    const [currentRound, setCurrentRound] = React.useState<Round | null>(null);
+    const [currentRound, setCurrentRound] = React.useState<Round | null>(rounds.length > 0 ? rounds[0] : null);
     const [isNewCreation, setIsNewCreation] = React.useState(false);
     const isCreatable = rounds.length === 0 || rounds[0].status === RoundStatus.COMPLETED || true;
-
-    const [isImporting, setIsImporting] = React.useState(false);
+    const [isImporting, setOpenImportDialogBox] = React.useState(false);
     return (
         <Box sx={{ ml: 1 }} component="div">
             <React.Suspense fallback={<LinearProgress />}>
                 {isNewCreation && <RoundCreate campaignId={campaignId} onAfterCreationSuccess={(round) => {
                     setCurrentRound(round);
                     setIsNewCreation(false);
-                    setIsImporting(true);
+                    setOpenImportDialogBox(true);
                 }} onClose={() => setIsNewCreation(false)} />}
-                {isImporting && <P roundId={currentRound?.roundId ?? ''} />}
+                {isImporting && currentRound && <CoomonsImportPage roundId={currentRound.roundId} onClose={() => setOpenImportDialogBox(false)} />}
             </React.Suspense>
+            {rounds.length === 0 && <Button
+                startIcon={<Add />}
+                variant="contained"
+                color="primary"
+                onClick={() => setIsNewCreation(true)}
+                sx={{ m: 1, px: 3 }}
+            >
+                Create Round
+            </Button>}
             {rounds.map((round, i) => (
                 <div key={i}>
                     <div style={{ textAlign: 'left' }}>
@@ -44,8 +53,13 @@ function RoundTimeline({ rounds, campaignId }: RoundTimelineProps) {
                             isStartable={!round.isOpen}
                             isStoppable={round.isOpen}
                             isCreatable={isCreatable}
+                            isDeletable
+                            isEditable
+                            isImportable
                             onCreateClick={() => setIsNewCreation(true)}
-                            onImportClick={() => setIsImporting(true)}
+                            onImportClick={() => setOpenImportDialogBox(true)}
+                            judgableLink={`/round/${round.roundId}/submission/evaluate`}
+                            hasJudgePermission
                         />
                     </div>
                     <Box key={i} sx={{

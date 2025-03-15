@@ -1,6 +1,6 @@
 "use server"
 import { ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
-import { ResponseError, ResponseSingle } from "../types/_";
+import { ResponseError, ResponseList, ResponseSingle } from "../types/_";
 import { cookies } from 'next/headers'
 const baseURL = process.env.NEXT_BASE_URL || ''
 const API_PATH = '/api/v2';
@@ -68,6 +68,24 @@ export const fetchFromBackend = async (path: string, options?: RequestInit): Pro
 }
 
 async function fetchAPIFromBackendSingleWithErrorHandling<T>(path: string, req?: RequestInit): Promise<ResponseSingle<T> | ResponseError> {
+    try {
+        const res = await fetchFromBackend(`${API_PATH}${path}`, req)
+        const r = await res.json();
+        if (res.ok) {
+            return r
+        } else {
+            return {
+                detail: r.detail
+            }
+        }
+    } catch (e) {
+        return {
+            detail: (e as Error).message
+        }
+    }
+
+}
+export async function fetchAPIFromBackendListWithErrorHandling<T>(path: string, req?: RequestInit): Promise<ResponseList<T> | ResponseError> {
     try {
         const res = await fetchFromBackend(`${API_PATH}${path}`, req)
         const r = await res.json();

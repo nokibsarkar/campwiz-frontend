@@ -1,6 +1,6 @@
 "use client";
 import { WikimediaCategoryName } from "@/types";
-import { Autocomplete, Button, IconButton, List, ListItem, ListItemText, TextField } from "@mui/material";
+import { Autocomplete, Button, CircularProgress, IconButton, List, ListItem, ListItemText, TextField } from "@mui/material";
 import commons2Server from "@/public/commons2server.svg"
 import Image from "next/image";
 import { useState } from "react";
@@ -11,6 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 interface CategoryInputProps {
     onSave: (categories: WikimediaCategoryName[]) => void;
     alreadyIncludedCategories: WikimediaCategoryName[];
+    saving?: boolean;
 }
 type WikimediaCategory = {
     category: WikimediaCategoryName;
@@ -19,7 +20,7 @@ type WikimediaCategory = {
     files: number;
     subcats: number;
 }
-const CategoryInput = ({ alreadyIncludedCategories, onSave }: CategoryInputProps) => {
+const CategoryInput = ({ alreadyIncludedCategories, onSave, saving = false }: CategoryInputProps) => {
     const [addedSet, setAddedSet] = useState(new Set(alreadyIncludedCategories))
     const categories = [...addedSet].sort()
     const [prefix, setPrefix] = useState('')
@@ -39,6 +40,7 @@ const CategoryInput = ({ alreadyIncludedCategories, onSave }: CategoryInputProps
                 filterSelectedOptions
                 value=''
                 onError={(e) => console.error(e)}
+                disabled={saving}
                 loading={isLoading}
                 onChange={(e, updatedUsers) => { if (updatedUsers) setAddedSet(new Set(addedSet.add(updatedUsers))); setPrefix(''); }}
                 renderInput={(params) => (
@@ -49,6 +51,7 @@ const CategoryInput = ({ alreadyIncludedCategories, onSave }: CategoryInputProps
                         placeholder="Categories"
                         value={prefix}
                         onChange={(e) => setPrefix(e.target.value)}
+                        disabled={saving}
                     />
                 )}
             />
@@ -56,7 +59,7 @@ const CategoryInput = ({ alreadyIncludedCategories, onSave }: CategoryInputProps
                 {categories.map((category, index) => (
                     <ListItem key={index}
                         secondaryAction={
-                            <IconButton onClick={() => setAddedSet(new Set(categories.filter((c) => c !== category)))} color="error">
+                            <IconButton onClick={() => setAddedSet(new Set(categories.filter((c) => c !== category)))} color="error" disabled={saving}>
                                 <DeleteIcon />
                             </IconButton>
                         }
@@ -69,7 +72,8 @@ const CategoryInput = ({ alreadyIncludedCategories, onSave }: CategoryInputProps
                     </ListItem>
                 ))}
             </List>
-            <Button startIcon={<ImportIcon />} variant="contained" onClick={() => onSave(categories)} disabled={categories.length === 0}>
+            <Button startIcon={<ImportIcon />} variant="contained" onClick={() => onSave(categories)} disabled={categories.length === 0 || saving}>
+                {saving && <CircularProgress size={20} color="inherit" sx={{ display: saving ? 'inline-block' : 'none' }} />}
                 Import
             </Button>
         </div>

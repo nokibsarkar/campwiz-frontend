@@ -3,8 +3,8 @@ export type ResponseSingle<T> = {
 }
 export type ResponseList<T> = {
     data: T[]
-    next: string
-    prev: string
+    next?: string
+    prev?: string
 }
 
 export type ResponseError = {

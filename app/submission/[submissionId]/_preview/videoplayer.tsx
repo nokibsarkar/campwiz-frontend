@@ -39,7 +39,7 @@ const VideoApp = ({ src, poster }: VideoAppProps) => {
                 controls={true}
                 src={src}
                 poster={poster}
-                style={{ width: "100%", height: "auto", maxWidth: '500px' }}
+                style={{ width: "100%", height: "auto", maxWidth: '500px', maxHeight: '500px' }}
             // onReady={this.onPlayerReady.bind(this)}
             // onPlay={this.onVideoPlay.bind(this)}
             // onPause={this.onVideoPause.bind(this)}
