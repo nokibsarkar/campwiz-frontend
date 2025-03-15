@@ -1,11 +1,7 @@
 
 import fetchAPIFromBackendSingleWithErrorHandling from "@/server";
 import { Round } from "@/types/round";
-import { Container, Typography } from "@mui/material";
-import { lazy, Suspense } from "react";
-const CategoryInput = lazy(() => import('@/components/round/actions/CategoryInput'));
-import startImportTask from "./action";
-import LottieWrapper from "@/components/LottieWrapper";
+import P from "./_page";
 
 type CommonsImportPageProps = {
     params: Promise<
@@ -21,12 +17,7 @@ const CommonsImportPage = async ({ params }: CommonsImportPageProps) => {
     const round = roundResponse.data;
     console.log(round)
     return (
-        <Container>
-            <Typography variant="h4">Import from Commons</Typography>
-            <Suspense fallback={<LottieWrapper src="/lottie/importing.lottie" />}>
-                <CategoryInput onSave={startImportTask.bind(null, roundId)} alreadyIncludedCategories={[]} />
-            </Suspense>
-        </Container>
+        <P roundId={roundId} />
     )
 }
 export default CommonsImportPage

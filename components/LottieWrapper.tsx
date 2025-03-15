@@ -7,6 +7,8 @@ const LottieWrapper = ({ src, loop = true, marginTop }: { src: string, loop?: bo
             src={src}
             loop={loop}
             autoplay
+            speed={0.8}
+
         />
     </div>
 )

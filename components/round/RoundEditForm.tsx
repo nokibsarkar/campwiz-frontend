@@ -9,7 +9,6 @@ import VideoIcon from "@mui/icons-material/VideoLibrary";
 import ArticleIcon from "@mui/icons-material/Article";
 import BitmapIcon from "@mui/icons-material/Image";
 import UserInput from "../user/UserInput";
-import RoundInput from "./RoundInput";
 import Diversity3Icon from '@mui/icons-material/Diversity3';
 import Collapse from '@mui/material/Collapse';
 const ArticleRestrictions = lazy(() => import('./RestrictionsArticle'));
@@ -21,14 +20,14 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, ...round }: RoundC
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <RoundInput
+            {/* <RoundInput
                 filter={{ campaignId: round.campaignId }}
                 value={round.dependsOnRoundId || ''}
                 onChange={(parentRoundId) => dispatch({ dependsOnRoundId: parentRoundId })}
                 label="Parent Round"
                 disabled={loading || disabled}
                 sx={{ m: 1, width: { xs: '100%', sm: '48%' } }}
-            />
+            /> */}
             <TextField
                 label="Name"
                 variant="outlined"

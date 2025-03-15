@@ -21,7 +21,7 @@ const ActualViewPage = ({ campaign }: CampaignViewPageProps) => {
             </Typography>
             <CoordinatorList coordinators={campaign.coordinators} />
             <br />
-            <RoundTimeline rounds={campaign.rounds} />
+            <RoundTimeline rounds={campaign.rounds} campaignId={campaign.campaignId} />
 
         </Paper>
     );

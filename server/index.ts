@@ -52,6 +52,9 @@ export const fetchFromBackend = async (path: string, options?: RequestInit): Pro
         options.headers = new Headers(options.headers)
     }
     options.headers.append('Cookie', cookieStore.toString())
+    if (!options.headers.has('Content-Type')) {
+        options.headers.append('Content-Type', 'application/json')
+    }
     options.credentials = 'same-origin'
     const res = await fetch(`${baseURL}${path}`, options)
     for (const [key, value] of res.headers.entries()) {
