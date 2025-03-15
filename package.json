@@ -19,6 +19,7 @@
     "@mui/material-nextjs": "^6.4.3",
     "@mui/x-date-pickers": "^7.27.1",
     "@noxfed/lottie-webpack-loader": "^1.0.1",
+    "@svgr/webpack": "^8.1.0",
     "dayjs": "^1.11.13",
     "next": "15.2.0",
     "next-video": "^2.1.0",
@@ -29,7 +30,9 @@
     "react-h5-audio-player": "^3.10.0-rc.1",
     "react-video-js-player": "^1.1.1",
     "server-only": "^0.0.1",
-    "swr": "^2.3.2"
+    "svg-inline-loader": "^0.8.2",
+    "swr": "^2.3.2",
+    "url-loader": "^4.1.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

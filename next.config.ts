@@ -20,6 +20,7 @@ const nextConfig: NextConfig = {
     turbo: {
       rules: {
         '*.lottie': ['@noxfed/lottie-webpack-loader'],
+        // '*.svg': ['@svgr/webpack']
       }
     }
   },
