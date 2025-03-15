@@ -1,11 +1,9 @@
 "use server";
 
+import { Task } from "@/app/task";
 import fetchAPIFromBackendSingleWithErrorHandling from "@/server";
 import { WikimediaCategoryName } from "@/types";
-type Task = {
-    id: string;
-    status: string;
-}
+
 
 const startImportTask = async (roundId: string, categories: WikimediaCategoryName[]) => {
     const data = { categories: categories.map((category) => category.replace(/^(?:Category:)?/, 'Category:')) }

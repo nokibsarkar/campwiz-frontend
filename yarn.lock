@@ -7168,6 +7168,11 @@ next-video@^2.1.0:
     undici "^5.28.4"
     yargs "^17.7.2"
 
+next-ws@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/next-ws/-/next-ws-2.0.4.tgz#704a61dfcb4911d561f49a38128d184a43a71737"
+  integrity sha512-r5w6X8J5i7/Cs/cUez7FF+3ZSVAe7aRjuGZ0BuyICKhE71x8RBSlTzluFZ5LmPcXZixGDlKDZoP1brNSPh73eQ==
+
 next@15.2.0:
   version "15.2.0"
   resolved "https://registry.yarnpkg.com/next/-/next-15.2.0.tgz#00f4619ae4322102b08c1a8bf315f7b757525508"
@@ -9488,6 +9493,11 @@ wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==
+
+ws@^8.18.1:
+  version "8.18.1"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.18.1.tgz#ea131d3784e1dfdff91adb0a4a116b127515e3cb"
+  integrity sha512-RKW2aJZMXeMxVpnZ6bck+RswznaxmzdULiBr6KY7XkTnW8uvt0iT9H5DkHUChXrc+uurzwa0rVI16n/Xzjdz1w==
 
 xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.2"
