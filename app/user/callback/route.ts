@@ -11,6 +11,7 @@ export const GET = async (req: NextRequest) => {
     if (!origin) {
         throw new Error('Missing origin')
     }
+    console.log(origin);
     const searchParams = req.nextUrl.searchParams;
     const code = searchParams.get('code');
     if (!code) {
