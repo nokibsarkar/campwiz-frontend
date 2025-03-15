@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { ArrowForward, Add } from "@mui/icons-material";
 import Link from "next/link";
+import Logo from "@/components/Logo";
 
 
 
@@ -25,7 +26,7 @@ type DashboardProps = {
 const Dashboard = async ({params}:DashboardProps) => {
   const {projectId} = await params
   return (
-    <Box sx={{ display: "flex", bgcolor: "#f5f5f5", minHeight: "100vh" }}>
+    <Box sx={{ display: "flex", bgcolor: "white", minHeight: "100vh" }}>
       {/* Main Content */}
       <Box
         component="main"
@@ -37,6 +38,7 @@ const Dashboard = async ({params}:DashboardProps) => {
           alignItems: "center",
         }}
       >
+        <Logo />
         <Container
           sx={{
             my: 4,
@@ -57,7 +59,7 @@ const Dashboard = async ({params}:DashboardProps) => {
               color: "#fff",
             }}
           >
-            Welcome to Campwiz NXT
+            Welcome to Campwiz NXT 
           </Typography>
           <Typography
             variant="subtitle1"
