@@ -20,11 +20,15 @@ type RoundactionsProps = {
     onCreateClick: () => void
     onImportClick: () => void
     judgableLink: string
+    isRedistributable?: boolean
+    onRedistributeClick?: () => void
 }
 const Roundactions = ({ round, isDeletable = false,
     isEditable = false, isStartable = false,
     isStoppable = false, isCreatable = false, isImportable = false,
-    onCreateClick, onImportClick, hasJudgePermission, judgableLink }: RoundactionsProps) => {
+    onCreateClick, onImportClick, hasJudgePermission, judgableLink,
+    isRedistributable = false, onRedistributeClick
+}: RoundactionsProps) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: '10px' }}>
             {isEditable && <Button
@@ -97,6 +101,17 @@ const Roundactions = ({ round, isDeletable = false,
                         Start Evaluation
                     </Button>
                 </Link>
+            }
+            {
+                isRedistributable && <Button
+                    startIcon={<Add />}
+                    variant="contained"
+                    color="primary"
+                    sx={{ m: 1, px: 3 }}
+                    onClick={onRedistributeClick}
+                >
+                    Redistribute Assignments
+                </Button>
             }
         </div>
     );
