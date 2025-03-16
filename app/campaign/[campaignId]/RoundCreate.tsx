@@ -6,7 +6,6 @@ import { roundCreateReducer, initialRoundCreate } from "@/types/round/create";
 import { Round } from "@/types/round";
 import LoadingPopup from "@/components/LoadingPopup";
 const RoundEditForm = lazy(() => import("@/components/round/RoundEditForm"));
-
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 import startImportTask, { startDistributionTask } from "./round/import/commons/action";
@@ -68,7 +67,7 @@ const CreateRound = ({ campaignId, onClose }: { campaignId: string, onAfterCreat
             throw new Error('Round not created yet');
         }
         setStage(Stage.DISTRIBUTE);
-        const distributionTask = await startDistributionTask(createdRound.roundId, ['CampWiz Bot']);
+        const distributionTask = await startDistributionTask(createdRound.roundId, round.jury);
         if ('detail' in distributionTask) {
             throw new Error(distributionTask.detail);
         }

@@ -17,7 +17,7 @@ import WikipediaIcon from "@/components/WikipediaIcon";
 const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
     const searchParams = useSearchParams()
     const next = searchParams.get('next');
-    const baseURI = location.origin;
+    const baseURI = typeof window !== 'undefined' ? location.origin : '';
     const [clicked, setClicked] = useState(false);
     return (
         <Paper sx={{

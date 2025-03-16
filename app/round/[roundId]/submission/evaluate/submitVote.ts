@@ -4,12 +4,13 @@ const submitVote = async (evaluationId: string, score: number) => {
     const data = [{
         evaluationId,
         score,
-        comment: null
+        // comment: null
     }]
-    const resp = await fetchAPIFromBackendSingleWithErrorHandling('/evaluation', {
+    const resp = await fetchAPIFromBackendSingleWithErrorHandling(`/evaluation`, {
         method: 'POST',
         body: JSON.stringify(data)
     })
+    console.log(resp)
     return resp
 }
 export default submitVote

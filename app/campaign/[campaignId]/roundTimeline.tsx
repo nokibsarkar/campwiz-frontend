@@ -77,7 +77,6 @@ const LatestRoundActions = ({ latestRound, campaign, setAction, AllowedToEvaluat
                 variant="contained"
                 color="primary"
                 sx={{ m: 1, px: 3 }}
-                href={judgableLink}
             >
                 Start Evaluation
             </Button>
