@@ -70,6 +70,7 @@ export type RoundWritable = {
     dependsOnRoundId?: string;
     serial: number;
     type: EvaluationType;
+    quorum: number;
 } & RoundRestrictions
 export type RoundCreate = {
     campaignId: IDType
@@ -84,6 +85,7 @@ export type Round = {
     status: RoundStatus;
     latestDistributionTaskId?: IDType;
     roles: Role[] | null;
+    jury: { [k: IDType]: WikimediaUsername } | null;
 } & RoundWritable
 
 export type RoundFilter = {

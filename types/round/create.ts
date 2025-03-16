@@ -11,7 +11,7 @@ export const initialRoundCreate: RoundCreate = {
     name: "",
     description: "",
     isPublic: false,
-    allowJuryToParticipate: false,
+    allowJuryToParticipate: true,
     campaignId: "", // Add appropriate initial value
     jury: [], // Add appropriate initial value
     isOpen: false,
@@ -32,7 +32,8 @@ export const initialRoundCreate: RoundCreate = {
     articleMinimumTotalBytes: 0,
     articleMinimumTotalWords: 0,
     articleMinimumAddedBytes: 0,
-    articleMinimumAddedWords: 0
+    articleMinimumAddedWords: 0,
+    quorum: 0,
 }
 
 export const roundCreateReducer = (state: RoundCreate, action: Partial<RoundCreate>) => {

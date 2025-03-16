@@ -3,10 +3,11 @@ import GavelIcon from '@mui/icons-material/Gavel';
 import { Box, Typography } from "@mui/material";
 import AccountIcon from '@mui/icons-material/AccountCircle';
 const Jury = ({ jury }: { jury: RoleWithUsername }) => {
-    const progress = jury.TotalAssigned > 0 ? Math.floor(jury.TotalEvaluated / jury.TotalAssigned * 100) : 0;
+    const progress = jury.totalAssigned > 0 ? Math.floor(jury.totalEvaluated / jury.totalAssigned * 100) : 0;
     return (
         <Box sx={{
             padding: 3, margin: 1, border: '1px solid #e0e0e0', borderRadius: 7,
+            position: 'relative',
             width: {
                 xs: '100%',
                 sm: 'calc(50% - 20px)',
@@ -17,16 +18,16 @@ const Jury = ({ jury }: { jury: RoleWithUsername }) => {
         }}>
             <Typography variant="h6" sx={{ mb: 0 }} component='div'>
                 <AccountIcon sx={{ display: 'inline-block', mr: 1, }} fontSize="large" />
-                {jury.Username}
+                {jury.username}
             </Typography>
             <Typography variant="h4" sx={{ mb: 2, mt: 1, textAlign: 'center' }} component='div'>
                 {progress}%
             </Typography>
             <Typography variant="body1" sx={{ mb: 2, mt: -0.5, }} component='div'>
-                {jury.TotalAssigned} assigned
+                {jury.totalAssigned} assigned
             </Typography>
             <Typography variant="body1" sx={{ mb: 2, mt: -0.5, }} component='div'>
-                {jury.TotalEvaluated} evaluated
+                {jury.totalEvaluated} evaluated
             </Typography>
 
         </ Box>
@@ -34,13 +35,13 @@ const Jury = ({ jury }: { jury: RoleWithUsername }) => {
 }
 const JuryList = ({ juryList }: { juryList: RoleWithUsername[] }) => {
     return (
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'left' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'left', position: 'relative', width: '100%' }}>
             <GavelIcon sx={{ display: 'inline-block', mr: 1, }} fontSize="large" />
-            <div>
+            <div style={{ width: '100%' }}>
                 <Typography variant="h6" sx={{ mb: 0 }} component='div'>
                     Jury
                 </Typography>
-                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'left', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'left', flexWrap: 'wrap', width: '100%' }}>
                     {juryList.map((jury, i) => (
                         <Jury key={i} jury={jury} />
                     ))}

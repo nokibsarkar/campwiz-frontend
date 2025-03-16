@@ -1,14 +1,20 @@
 import { IDType } from "../_";
-export type RoleType = "Admin" | "Evaluator" | "Participant";
-export type Role = {
-    RoleID: IDType;
-    Type: RoleType;
-    UserID: IDType;
-    CampaignID: IDType;
-    RoundID?: IDType;
-    IsAllowed: boolean;
-    TotalAssigned: number;
-    TotalEvaluated: number;
-    TotalScore: number;
-};
-export type RoleWithUsername = Role & { Username: string };
+export enum RoleType {
+    Coordinator = "coordinator",
+    Jury = "jury",
+}
+export interface Role {
+    roleId: IDType
+    type: RoleType;
+    userId: IDType;
+    projectId: IDType;
+    targetProjectId: IDType | null;
+    campaignId: IDType;
+    roundId: IDType;
+    isAllowed: boolean;
+    totalAssigned: number;
+    totalEvaluated: number;
+    totalScore: number;
+    permission: number;
+}
+export type RoleWithUsername = Role & { username: string };

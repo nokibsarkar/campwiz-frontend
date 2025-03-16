@@ -7,16 +7,39 @@ import Description from "./Description";
 import Quorum from "./Quorum";
 import JuryList from "./Jury";
 import CircularProgressWithLabel from "./CircularProgressWithLabel";
+import { useMemo } from "react";
+import { RoleWithUsername } from "@/types/role";
 
 
 const RoundDetails = ({ round: c }: { round: Round }) => {
-    const progress = 100
+    const [juryList, totalAssigned, totalEvaluated] = useMemo(() => {
+        if (!c.jury || !c.roles) {
+            return [[], 0, 0]
+        }
+        const id2UsernameMap = c.jury;
+        let totalAssigned = 0
+        let totalEvaluated = 0
+        const juryList: RoleWithUsername[] = []
+        for (const role of c.roles) {
+            const username = id2UsernameMap[role.userId]
+            if (username) {
+                juryList.push({ ...role, username: username })
+            }
+            totalAssigned += role.totalAssigned
+            totalEvaluated += role.totalEvaluated
+        }
+        return [juryList, totalAssigned, totalEvaluated]
+
+    }, [c])
+
+    const progress = totalAssigned > 0 ? Math.floor(totalEvaluated / totalAssigned * 100) : 0;
     return (
         <Box sx={{
             textAlign: 'left',
             mx: 'auto',
             display: 'inline-block',
-            width: 'fit-content',
+            minWidth: 300,
+            width: '100%',
             p: 2,
             border: 1,
             borderColor: 'primary.main',
@@ -32,84 +55,10 @@ const RoundDetails = ({ round: c }: { round: Round }) => {
                 <div>
                     <Deadline deadline={c.endDate} />
                     <Description description={c.description} />
-                    <Quorum quorum={20} />
+                    <Quorum quorum={c.quorum} />
                 </div>
-
             </Box>
-            <JuryList juryList={[
-                {
-                    UserID: '1',
-                    Username: 'User1 Useskjhsgb shgja nk ksjhks ksjhksk khjksh jshkkks kjhkjs',
-                    Type: 'Evaluator',
-                    CampaignID: '1',
-                    RoundID: '1',
-                    IsAllowed: true,
-                    RoleID: '1',
-                    TotalAssigned: 20,
-                    TotalEvaluated: 13,
-                    TotalScore: 0,
-                },
-                {
-                    UserID: '1',
-                    Username: 'User1 Useskjhsgb shgja nk ksjhks ksjhksk khjksh jshkkks kjhkjs',
-                    Type: 'Evaluator',
-                    CampaignID: '1',
-                    RoundID: '1',
-                    IsAllowed: true,
-                    RoleID: '1',
-                    TotalAssigned: 20,
-                    TotalEvaluated: 13,
-                    TotalScore: 0,
-                },
-                {
-                    UserID: '1',
-                    Username: 'User1 Useskjhsgb shgja nk ksjhks ksjhksk khjksh jshkkks kjhkjs',
-                    Type: 'Evaluator',
-                    CampaignID: '1',
-                    RoundID: '1',
-                    IsAllowed: true,
-                    RoleID: '1',
-                    TotalAssigned: 20,
-                    TotalEvaluated: 13,
-                    TotalScore: 0,
-                },
-                {
-                    UserID: '1',
-                    Username: 'User1Useskjhsgb shgja nk ksjhks ksjhksk khjksh jshkkks kjhkjs',
-                    Type: 'Evaluator',
-                    CampaignID: '1',
-                    RoundID: '1',
-                    IsAllowed: true,
-                    RoleID: '1',
-                    TotalAssigned: 20,
-                    TotalEvaluated: 13,
-                    TotalScore: 0,
-                },
-                {
-                    UserID: '1',
-                    Username: 'Useskjhsgb shgja nk ksjhks ksjhksk khjksh jshkkks kjhkjs',
-                    Type: 'Evaluator',
-                    CampaignID: '1',
-                    RoundID: '1',
-                    IsAllowed: true,
-                    RoleID: '1',
-                    TotalAssigned: 20,
-                    TotalEvaluated: 13,
-                    TotalScore: 0,
-                },
-                {
-                    UserID: '1',
-                    Username: 'Guidelines skjhsgb shgja nk ksjhks ksjhksk khjksh jshkkks kjhkjs',
-                    Type: 'Evaluator',
-                    CampaignID: '1',
-                    RoundID: '1',
-                    IsAllowed: true,
-                    RoleID: '1',
-                    TotalAssigned: 1000,
-                    TotalEvaluated: 999,
-                    TotalScore: 0,
-                }
-            ]} />
+            <JuryList juryList={juryList} />
         </Box>
     )
 }

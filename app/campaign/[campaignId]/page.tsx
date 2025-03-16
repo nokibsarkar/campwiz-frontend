@@ -13,6 +13,7 @@ const CampaignViewPage = async ({ params }: CampaignViewPageProps) => {
     qs.append('includeRoles', 'true');
     qs.append('includeProject', 'true');
     qs.append('includeRounds', 'true');
+    qs.append('includeRoundRoles', 'true');
     const campaignResponse = await fetchAPIFromBackendSingleWithErrorHandling<Campaign>(`/campaign/${campaignId}/?${qs.toString()}`);
     if (!campaignResponse) {
         return null;

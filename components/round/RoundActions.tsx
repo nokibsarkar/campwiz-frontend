@@ -5,9 +5,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import StopIcon from '@mui/icons-material/Stop';
 import { Add } from "@mui/icons-material";
-import Link from "next/link";
-import JudgeIcon from "@mui/icons-material/HowToVote";
-import { RoundStatus } from "@/types/round/status";
 type RoundactionsProps = {
     round: Round
     isEditable?: boolean
@@ -23,10 +20,10 @@ type RoundactionsProps = {
     isRedistributable?: boolean
     onRedistributeClick?: () => void
 }
-const Roundactions = ({ round, isDeletable = false,
+const Roundactions = ({ isDeletable = false,
     isEditable = false, isStartable = false,
     isStoppable = false, isCreatable = false, isImportable = false,
-    onCreateClick, onImportClick, hasJudgePermission, judgableLink,
+    onCreateClick, onImportClick,
     isRedistributable = false, onRedistributeClick
 }: RoundactionsProps) => {
     return (
@@ -88,19 +85,6 @@ const Roundactions = ({ round, isDeletable = false,
                 >
                     Import
                 </Button>
-            }
-            {
-                hasJudgePermission && round.status == RoundStatus.ACTIVE && <Link href={judgableLink}>
-                    <Button
-                        startIcon={<JudgeIcon />}
-                        variant="contained"
-                        color="primary"
-                        sx={{ m: 1, px: 3 }}
-                        href={judgableLink}
-                    >
-                        Start Evaluation
-                    </Button>
-                </Link>
             }
             {
                 isRedistributable && <Button
