@@ -89,7 +89,7 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, hideAdvanced = fal
             <Divider />
             <FormGroup sx={{ m: 1, p: 1, display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', alignItems: 'center' }}>
                 <Typography>
-                    Allowed Types:
+                    Allowed Submission Types:
                 </Typography>
                 {/* <FormControlLabel control={<Checkbox
                     checked={allowedArticle}
@@ -141,6 +141,19 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, hideAdvanced = fal
             <Divider />
 
             <FormGroup sx={{ display: 'block', m: 1 }}>
+
+                <TextField
+                    label="Round Type"
+                    variant="outlined"
+                    select
+                    value={round.isPublic ? 'Public' : 'Private'}
+                    onChange={(e) => dispatch({ isPublic: e.target.value === 'Public' })}
+                    sx={{ m: 1, width: { xs: '100%', sm: '20%' } }}
+                    disabled={loading || disabled}
+                >
+                    <MenuItem value='Public'>Public</MenuItem>
+                    <MenuItem value='Private'>Private</MenuItem>
+                </TextField>
                 <TextField
                     label="Evaluation Type"
                     variant="outlined"
@@ -160,7 +173,7 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, hideAdvanced = fal
                     disabled={loading || disabled}
                 />}
                     label={<Typography variant="body1">
-                        <Diversity3Icon /> Allow the members of the jury to participate on thsi round.
+                        <Diversity3Icon /> Allow the members of the jury to participate on this round.
                     </Typography>}
                     sx={{ m: 1 }}
                 />
