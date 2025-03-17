@@ -9,7 +9,7 @@ export const GET = async (req: NextRequest) => {
     }
     const origin = `${scheme}://${host}`;
     if (!origin) {
-        throw new Error('Missing origin')
+        throw new Error('Missing origin')   
     }
     console.log(origin);
     const searchParams = req.nextUrl.searchParams;
