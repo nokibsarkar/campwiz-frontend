@@ -13,9 +13,11 @@ import StopIcon from '@mui/icons-material/Pause';
 import Start from '@mui/icons-material/PlayArrow';
 import DoubleTickIcon from '@mui/icons-material/DoneAll';
 import Link from "next/link";
+import EditIcon from '@mui/icons-material/Edit';
 import JudgeIcon from '@mui/icons-material/HowToVote';
 import { updateroundStatus } from "./updateStatus";
 const RoundCreate = React.lazy(() => import("./RoundCreate"));
+const RoundEdit = React.lazy(() => import("./RoundEdit"));
 type RoundTimelineProps = {
     rounds: Round[] | null
     campaign: Campaign
@@ -29,6 +31,17 @@ const CreateRoundButton = ({ onClick }: { onClick: () => void }) => (
         sx={{ m: 1, px: 3 }}
     >
         Create Round
+    </Button>
+)
+const EditRoundButton = ({ onClick }: { onClick: () => void }) => (
+    <Button
+        startIcon={<EditIcon />}
+        variant="contained"
+        color="primary"
+        onClick={onClick}
+        sx={{ m: 1, px: 3 }}
+    >
+        Edit Round
     </Button>
 )
 type ChangeStatusButtonProps = {
@@ -98,6 +111,7 @@ enum SelectedRoundActionStatus {
     creating = 'creating',
     importing = 'importing',
     finalizing = 'finalizing',
+    editing = 'editing',
     none = ''
 }
 const LatestRoundActions = ({ latestRound, campaign, setAction, AllowedToEvaluate, judgableLink, refresh }: { latestRound: Round | null, campaign: Campaign, action: SelectedRoundActionStatus, setAction: (action: SelectedRoundActionStatus) => void, AllowedToEvaluate: boolean, judgableLink: string, refresh: () => void }) => {
@@ -144,6 +158,7 @@ const LatestRoundActions = ({ latestRound, campaign, setAction, AllowedToEvaluat
             />);
 
         } else if (latestRound.status === RoundStatus.PAUSED) {
+            buttons.push(<EditRoundButton onClick={() => setAction(SelectedRoundActionStatus.editing)} />);
             buttons.push(<ChangeStatusButton
                 roundId={latestRound.roundId}
                 color="success" description=""
@@ -196,7 +211,10 @@ function RoundTimeline({ rounds, campaign }: RoundTimelineProps) {
                 {selectedRoundAction === SelectedRoundActionStatus.creating && <RoundCreate campaignId={campaign.campaignId} onAfterCreationSuccess={(round) => {
                     setCurrentRound(round);
                 }} onClose={() => { setSelectedRoundAction(SelectedRoundActionStatus.none); refresh(); }} />}
-                {/* {selectedRoundAction === SelectedRoundActionStatus.importing && currentRound && <CoomonsImportPage roundId={currentRound.roundId} onClose={() => setSelectedRoundAction(SelectedRoundActionStatus.none)} />} */}
+                {currentRound && selectedRoundAction === SelectedRoundActionStatus.editing && <RoundEdit campaignId={campaign.campaignId} onAfterCreationSuccess={(round) => {
+                    setCurrentRound(round);
+                    rounds[0] = round;
+                }} onClose={() => { setSelectedRoundAction(SelectedRoundActionStatus.none); refresh(); }} existingRound={currentRound} />}
             </React.Suspense>
             {rounds.map((round, i) => (
                 <div key={i}>

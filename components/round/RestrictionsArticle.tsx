@@ -1,30 +1,10 @@
 import { RoundCreate } from "@/types/round";
-import { Box, Checkbox, FormControlLabel, TextField, Typography } from "@mui/material";
+import { Checkbox, FormControlLabel, TextField, Typography } from "@mui/material";
 import { ActionDispatch } from "react";
 
 const ArticleRestrictions = ({ dispatch, loading, disabled = false, ...round }: RoundCreate & { dispatch: ActionDispatch<[Partial<RoundCreate>]>, loading: boolean, disabled?: boolean }) => {
-    /*
-    allowJuryToParticipate: false,
-      allowMultipleJudgement: true,
-      secretBallot: true,
-      blacklist: '',
-      imageMinimumResolution: 0,
-      imageMinimumSizeBytes: 0,
-      audioMinimumDurationMilliseconds: 0,
-      audioMinimumSizeBytes: 0,
-      videoMinimumDurationMilliseconds: 0,
-      videoMinimumSizeBytes: 0,
-      videoMinimumResolution: 0,
-      articleMaximumSubmissionOfSameArticle: 0,
-      articleAllowExpansions: false,
-      articleAllowCreations: false,
-      articleMinimumTotalBytes: 0,
-      articleMinimumTotalWords: 0,
-      articleMinimumAddedBytes: 0,
-      articleMinimumAddedWords: 0,
-      */
     return (
-        <Box component='fieldset' sx={{ border: 1, p: 1 }}>
+        <>
             <Typography variant="h6" component='legend'>Restrictions on Article Submissions</Typography>
             <FormControlLabel control={<Checkbox
                 checked={round.articleAllowCreations}
@@ -107,7 +87,7 @@ const ArticleRestrictions = ({ dispatch, loading, disabled = false, ...round }: 
                 value={round.articleMinimumAddedWords}
                 disabled={loading || disabled}
             />
-        </Box>
+        </>
     );
 }
 export default ArticleRestrictions
