@@ -7,12 +7,13 @@ import Box from "@mui/material/Box";
 import Status, { getStatusColor, RoundStatusIcon } from "@/components/round/Status";
 import { RoundStatus } from "@/types/round/status";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, LinearProgress } from "@mui/material";
-import { Add } from "@mui/icons-material";
+import { Add, Start } from "@mui/icons-material";
 import { Campaign } from "@/types";
 import StopIcon from '@mui/icons-material/Stop';
 import DoubleTickIcon from '@mui/icons-material/DoneAll';
 import Link from "next/link";
 import JudgeIcon from '@mui/icons-material/HowToVote';
+import { updateroundStatus } from "./updateStatus";
 const RoundCreate = React.lazy(() => import("./RoundCreate"));
 type RoundTimelineProps = {
     rounds: Round[] | null
@@ -29,31 +30,52 @@ const CreateRoundButton = ({ onClick }: { onClick: () => void }) => (
         Create Round
     </Button>
 )
-const MarkAsFinalButton = ({ }: { onClick: () => void }) => {
+type ChangeStatusButtonProps = {
+    status: RoundStatus
+    label: string
+    color: 'success' | 'error'
+    icon: React.ReactNode
+    description: string
+    onClick?: (round: Round) => void
+    roundId: string
+}
+const ChangeStatusButton = ({ roundId, onClick, status, label, color, description, icon }: ChangeStatusButtonProps) => {
     const [showDialog, setShowDialog] = React.useState(false);
     const finalize = async () => {
-        // await finalizeRound(round.roundId)
+        const res = await updateroundStatus(roundId, status)
+        if (res) {
+            console.log('Round status updated')
+        }
+        if ('detail' in res) {
+            console.error(res.detail)
+            throw new Error(res.detail)
+        }
         setShowDialog(false)
+        if (onClick) {
+            onClick(res.data)
+        }
     }
     return <>
         <Button
-            startIcon={<DoubleTickIcon />}
+            startIcon={icon}
             variant="contained"
-            color="success"
+            color={color}
             onClick={() => setShowDialog(true)}
             sx={{ m: 1, px: 3 }}
         >
-            Mark as Final
+            {label}
         </Button>
         <React.Suspense fallback={<LinearProgress />}>
             {showDialog && <Dialog open={showDialog} onClose={() => setShowDialog(false)}>
-                <DialogTitle>Finalize Round</DialogTitle>
+                <DialogTitle>{label}</DialogTitle>
                 <DialogContent>
-                    <Typography>Are you sure you want to mark this round as final?</Typography>
+                    <Typography>Are you sure you want to mark this round as {status}?</Typography>
+                    <Typography>{description}</Typography>
                 </DialogContent>
                 <DialogActions>
+
+                    <Button onClick={() => setShowDialog(false)} variant="outlined" color="error">No</Button>
                     <Button onClick={finalize} variant="contained" color="success">Yes</Button>
-                    <Button onClick={() => setShowDialog(false)} variant="contained" color="error">No</Button>
                 </DialogActions>
             </Dialog>}
         </React.Suspense>
@@ -87,16 +109,43 @@ const LatestRoundActions = ({ latestRound, campaign, setAction, AllowedToEvaluat
     } else {
         if (latestRound.status === RoundStatus.COMPLETED) {
             buttons.push(<CreateRoundButton onClick={() => setAction(SelectedRoundActionStatus.creating)} />);
-            buttons.push(<MarkAsFinalButton onClick={() => setAction(SelectedRoundActionStatus.finalizing)} />);
+            buttons.push(<ChangeStatusButton
+                roundId={latestRound.roundId}
+                color="success" description=""
+                icon={<DoubleTickIcon />}
+                label="Mark as complete"
+                status={RoundStatus.COMPLETED}
+                onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
+            />);
         } else if (latestRound.status === RoundStatus.ACTIVE) {
-            buttons.push(<Button
-                startIcon={<StopIcon />}
-                variant="contained"
+            buttons.push(<ChangeStatusButton
+                roundId={latestRound.roundId}
                 color="error"
-                sx={{ m: 1, px: 3 }}
-            >
-                Stop
-            </Button>)
+                description=""
+                icon={<StopIcon />}
+                label="Pause"
+                status={RoundStatus.PAUSED}
+                onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
+            />);
+
+        } else if (latestRound.status === RoundStatus.PAUSED) {
+            buttons.push(<ChangeStatusButton
+                roundId={latestRound.roundId}
+                color="success" description=""
+                icon={<DoubleTickIcon />}
+                label="Mark as complete"
+                status={RoundStatus.COMPLETED}
+                onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
+            />);
+            buttons.push(<ChangeStatusButton
+                roundId={latestRound.roundId}
+                color="error"
+                description=""
+                icon={<Start />}
+                label="Start"
+                status={RoundStatus.ACTIVE}
+                onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
+            />);
         }
     }
 
