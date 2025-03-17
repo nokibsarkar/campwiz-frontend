@@ -43,6 +43,7 @@ jobs:
           mv .next campwiz-frontend
           mkdir .next 
           cp -r campwiz-frontend/.next/cache .next
+          ls -al .next/
           cp package.json campwiz-frontend
           cp yarn.lock campwiz-frontend
           cp -r public campwiz-frontend
