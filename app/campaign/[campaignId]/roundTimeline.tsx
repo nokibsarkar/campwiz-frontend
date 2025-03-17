@@ -7,9 +7,10 @@ import Box from "@mui/material/Box";
 import Status, { getStatusColor, RoundStatusIcon } from "@/components/round/Status";
 import { RoundStatus } from "@/types/round/status";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, LinearProgress } from "@mui/material";
-import { Add, Start } from "@mui/icons-material";
+import { Add } from "@mui/icons-material";
 import { Campaign } from "@/types";
-import StopIcon from '@mui/icons-material/Stop';
+import StopIcon from '@mui/icons-material/Pause';
+import Start from '@mui/icons-material/PlayArrow';
 import DoubleTickIcon from '@mui/icons-material/DoneAll';
 import Link from "next/link";
 import JudgeIcon from '@mui/icons-material/HowToVote';
@@ -38,21 +39,31 @@ type ChangeStatusButtonProps = {
     description: string
     onClick?: (round: Round) => void
     roundId: string
+    refresh: () => void
 }
-const ChangeStatusButton = ({ roundId, onClick, status, label, color, description, icon }: ChangeStatusButtonProps) => {
+const ChangeStatusButton = ({ roundId, onClick, status, label, color, description, icon, refresh }: ChangeStatusButtonProps) => {
     const [showDialog, setShowDialog] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
     const finalize = async () => {
-        const res = await updateroundStatus(roundId, status)
-        if (res) {
-            console.log('Round status updated')
-        }
-        if ('detail' in res) {
-            console.error(res.detail)
-            throw new Error(res.detail)
-        }
-        setShowDialog(false)
-        if (onClick) {
-            onClick(res.data)
+        try {
+            setLoading(true)
+            const res = await updateroundStatus(roundId, status)
+            if (res) {
+                console.log('Round status updated')
+            }
+            if ('detail' in res) {
+                console.error(res.detail)
+                throw new Error(res.detail)
+            }
+            setShowDialog(false)
+            refresh()
+            if (onClick) {
+                onClick(res.data)
+            }
+        } catch (e) {
+            console.error(e)
+        } finally {
+            setLoading(false)
         }
     }
     return <>
@@ -62,6 +73,8 @@ const ChangeStatusButton = ({ roundId, onClick, status, label, color, descriptio
             color={color}
             onClick={() => setShowDialog(true)}
             sx={{ m: 1, px: 3 }}
+            loading={loading}
+            disabled={showDialog}
         >
             {label}
         </Button>
@@ -71,11 +84,11 @@ const ChangeStatusButton = ({ roundId, onClick, status, label, color, descriptio
                 <DialogContent>
                     <Typography>Are you sure you want to mark this round as {status}?</Typography>
                     <Typography>{description}</Typography>
+                    {loading && <LinearProgress />}
                 </DialogContent>
                 <DialogActions>
-
-                    <Button onClick={() => setShowDialog(false)} variant="outlined" color="error">No</Button>
-                    <Button onClick={finalize} variant="contained" color="success">Yes</Button>
+                    <Button onClick={() => setShowDialog(false)} variant="outlined" color="error" disabled={loading}>No</Button>
+                    <Button onClick={finalize} variant="contained" color="success" disabled={loading} loading={loading}>Yes</Button>
                 </DialogActions>
             </Dialog>}
         </React.Suspense>
@@ -87,7 +100,7 @@ enum SelectedRoundActionStatus {
     finalizing = 'finalizing',
     none = ''
 }
-const LatestRoundActions = ({ latestRound, campaign, setAction, AllowedToEvaluate, judgableLink }: { latestRound: Round | null, campaign: Campaign, action: SelectedRoundActionStatus, setAction: (action: SelectedRoundActionStatus) => void, AllowedToEvaluate: boolean, judgableLink: string }) => {
+const LatestRoundActions = ({ latestRound, campaign, setAction, AllowedToEvaluate, judgableLink, refresh }: { latestRound: Round | null, campaign: Campaign, action: SelectedRoundActionStatus, setAction: (action: SelectedRoundActionStatus) => void, AllowedToEvaluate: boolean, judgableLink: string, refresh: () => void }) => {
     // if no round is avaliable, return a create round button
     const buttons: React.ReactNode[] = []
     if (campaign.status !== RoundStatus.ACTIVE)
@@ -116,6 +129,7 @@ const LatestRoundActions = ({ latestRound, campaign, setAction, AllowedToEvaluat
                 label="Mark as complete"
                 status={RoundStatus.COMPLETED}
                 onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
+                refresh={refresh}
             />);
         } else if (latestRound.status === RoundStatus.ACTIVE) {
             buttons.push(<ChangeStatusButton
@@ -126,6 +140,7 @@ const LatestRoundActions = ({ latestRound, campaign, setAction, AllowedToEvaluat
                 label="Pause"
                 status={RoundStatus.PAUSED}
                 onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
+                refresh={refresh}
             />);
 
         } else if (latestRound.status === RoundStatus.PAUSED) {
@@ -136,6 +151,7 @@ const LatestRoundActions = ({ latestRound, campaign, setAction, AllowedToEvaluat
                 label="Mark as complete"
                 status={RoundStatus.COMPLETED}
                 onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
+                refresh={refresh}
             />);
             buttons.push(<ChangeStatusButton
                 roundId={latestRound.roundId}
@@ -145,6 +161,7 @@ const LatestRoundActions = ({ latestRound, campaign, setAction, AllowedToEvaluat
                 label="Start"
                 status={RoundStatus.ACTIVE}
                 onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
+                refresh={refresh}
             />);
         }
     }
@@ -159,15 +176,26 @@ function RoundTimeline({ rounds, campaign }: RoundTimelineProps) {
     rounds = rounds?.toSorted(
         (a, b) => b.roundId.localeCompare(a.roundId)
     ) ?? []
+    const refresh = () => {
+        if (typeof window !== 'undefined') {
+            window.location.reload();
+        }
+    }
     const [currentRound, setCurrentRound] = React.useState<Round | null>(rounds.length > 0 ? rounds[0] : null);
     const [selectedRoundAction, setSelectedRoundAction] = React.useState<SelectedRoundActionStatus>(SelectedRoundActionStatus.none);
     return (
         <Box sx={{ ml: 1 }} component="div">
-            <LatestRoundActions latestRound={currentRound} campaign={campaign} action={selectedRoundAction} setAction={setSelectedRoundAction} AllowedToEvaluate={true} judgableLink={`/round/${currentRound?.roundId}/submission/evaluate`} />
+            <LatestRoundActions
+                latestRound={currentRound} campaign={campaign}
+                action={selectedRoundAction} setAction={setSelectedRoundAction}
+                AllowedToEvaluate={true}
+                judgableLink={`/round/${currentRound?.roundId}/submission/evaluate`}
+                refresh={refresh}
+            />
             <React.Suspense fallback={<LinearProgress />}>
                 {selectedRoundAction === SelectedRoundActionStatus.creating && <RoundCreate campaignId={campaign.campaignId} onAfterCreationSuccess={(round) => {
                     setCurrentRound(round);
-                }} onClose={() => setSelectedRoundAction(SelectedRoundActionStatus.none)} />}
+                }} onClose={() => { setSelectedRoundAction(SelectedRoundActionStatus.none); refresh(); }} />}
                 {/* {selectedRoundAction === SelectedRoundActionStatus.importing && currentRound && <CoomonsImportPage roundId={currentRound.roundId} onClose={() => setSelectedRoundAction(SelectedRoundActionStatus.none)} />} */}
             </React.Suspense>
             {rounds.map((round, i) => (

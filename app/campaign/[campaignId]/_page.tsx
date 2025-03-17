@@ -1,4 +1,4 @@
-
+"use server";
 import { Campaign, WikimediaUsername } from "@/types";
 import { Chip, Paper, Typography } from "@mui/material";
 import RoundTimeline from "./roundTimeline";
