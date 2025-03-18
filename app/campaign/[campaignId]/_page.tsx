@@ -23,7 +23,9 @@ const ActualViewPage = ({ campaign, session }: CampaignViewPageProps) => {
             </Typography>
             <CoordinatorList coordinators={campaign.coordinators} />
             <br />
-            <RoundTimeline rounds={campaign.rounds} campaign={campaign} session={session} />
+            <RoundTimeline rounds={campaign.rounds} campaign={campaign} session={session}
+                isCoordinator={campaign.coordinators?.includes(session?.username || '') === true}
+            />
 
         </Paper>
     );

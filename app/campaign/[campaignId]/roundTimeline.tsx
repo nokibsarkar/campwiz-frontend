@@ -17,12 +17,15 @@ import EditIcon from '@mui/icons-material/Edit';
 import JudgeIcon from '@mui/icons-material/HowToVote';
 import { updateroundStatus } from "./updateStatus";
 import { Session } from "@/types/user/session";
+import DownloadIcon from '@mui/icons-material/Download';
+import { getRawAPIPath } from "@/server";
 const RoundCreate = React.lazy(() => import("./RoundCreate"));
 const RoundEdit = React.lazy(() => import("./RoundEdit"));
 type RoundTimelineProps = {
     rounds: Round[] | null
     campaign: Campaign
     session: Session | null
+    isCoordinator: boolean
 }
 const CreateRoundButton = ({ onClick }: { onClick: () => void }) => (
     <Button
@@ -109,6 +112,56 @@ const ChangeStatusButton = ({ roundId, onClick, status, label, color, descriptio
         </React.Suspense>
     </>
 }
+const ExportToCSVButton = ({ roundId }: { roundId: string }) => {
+    "use client"
+    const [loading, setLoading] = React.useState(false);
+    const [error, setError] = React.useState<string | null>(null);
+    const exportToCSV = async () => {
+        try {
+            setLoading(true)
+            const res = await fetch(await getRawAPIPath(`/round/${roundId}/results/csv`), {
+                headers: {
+                    'Content-Type': 'text/csv',
+                    'Accept': 'text/csv',
+                    'Access-Control-Allow-Origin': '*',
+                },
+                method: 'GET',
+                credentials: 'include',
+
+            })
+            const blob = await res.blob()
+            const url = window.URL.createObjectURL(blob)
+            const a = document.createElement('a')
+            a.download = `round-${roundId}.csv`
+            a.href = url
+            a.click()
+            window.URL.revokeObjectURL(url)
+            if (res.ok) {
+                console.log('Exported')
+            } else {
+                console.error('Failed to export')
+            }
+        } catch (e) {
+            console.error(e)
+            setError((e as Error).message)
+        } finally {
+            setLoading(false)
+        }
+    }
+    return <Button
+        startIcon={<DownloadIcon />}
+        variant={error ? 'outlined' : 'contained'}
+        color={error ? 'error' : 'success'}
+        onClick={exportToCSV}
+        sx={{ m: 1, px: 3 }}
+        loading={loading}
+        disabled={loading}
+
+    >
+        Download Results as CSV
+    </Button>
+
+}
 enum SelectedRoundActionStatus {
     creating = 'creating',
     importing = 'importing',
@@ -116,73 +169,68 @@ enum SelectedRoundActionStatus {
     editing = 'editing',
     none = ''
 }
-const LatestRoundActions = ({ latestRound, campaign, setAction, AllowedToEvaluate, judgableLink, refresh }: { latestRound: Round | null, campaign: Campaign, action: SelectedRoundActionStatus, setAction: (action: SelectedRoundActionStatus) => void, AllowedToEvaluate: boolean, judgableLink: string, refresh: () => void }) => {
+const LatestRoundActions = ({ latestRound, campaign, setAction, isJury, judgableLink, refresh, isCoordinator }: { latestRound: Round | null, campaign: Campaign, action: SelectedRoundActionStatus, setAction: (action: SelectedRoundActionStatus) => void, isJury: boolean, judgableLink: string, refresh: () => void, isCoordinator: boolean }) => {
     // if no round is avaliable, return a create round button
     const buttons: React.ReactNode[] = []
     if (campaign.status !== RoundStatus.ACTIVE)
-        return <Button disabled>Cannot create round</Button>
+        return null
+    if (isJury && latestRound && latestRound.status === RoundStatus.ACTIVE) {
+        buttons.push(<Link href={judgableLink}>
+            <Button
+                startIcon={<JudgeIcon />}
+                variant="contained"
+                color="primary"
+                sx={{ m: 1, px: 3 }}
+            >
+                Start Evaluation
+            </Button>
+        </Link>)
+    }
+    if (isCoordinator) {
+        if (!latestRound) {
+            buttons.push(<CreateRoundButton onClick={() => setAction(SelectedRoundActionStatus.creating)} />)
+        } else {
+            if (latestRound.status === RoundStatus.COMPLETED) {
+                if (isCoordinator) {
+                    buttons.push(<ExportToCSVButton roundId={latestRound.roundId} />);
+                }
+                buttons.push(<CreateRoundButton onClick={() => setAction(SelectedRoundActionStatus.creating)} />);
+            } else if (latestRound.status === RoundStatus.ACTIVE) {
+                buttons.push(<ChangeStatusButton
+                    roundId={latestRound.roundId}
+                    color="error"
+                    description=""
+                    icon={<StopIcon />}
+                    label="Pause"
+                    status={RoundStatus.PAUSED}
+                    onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
+                    refresh={refresh}
+                />);
 
-    if (!latestRound) {
-        buttons.push(<CreateRoundButton onClick={() => setAction(SelectedRoundActionStatus.creating)} />)
-    } else {
-        if (latestRound.status === RoundStatus.COMPLETED) {
-            buttons.push(<CreateRoundButton onClick={() => setAction(SelectedRoundActionStatus.creating)} />);
-            buttons.push(<ChangeStatusButton
-                roundId={latestRound.roundId}
-                color="success" description=""
-                icon={<DoubleTickIcon />}
-                label="Mark as complete"
-                status={RoundStatus.COMPLETED}
-                onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
-                refresh={refresh}
-            />);
-        } else if (latestRound.status === RoundStatus.ACTIVE) {
-            buttons.push(<ChangeStatusButton
-                roundId={latestRound.roundId}
-                color="error"
-                description=""
-                icon={<StopIcon />}
-                label="Pause"
-                status={RoundStatus.PAUSED}
-                onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
-                refresh={refresh}
-            />);
-            if (AllowedToEvaluate) {
-                buttons.push(<Link href={judgableLink}>
-                    <Button
-                        startIcon={<JudgeIcon />}
-                        variant="contained"
-                        color="primary"
-                        sx={{ m: 1, px: 3 }}
-                    >
-                        Start Evaluation
-                    </Button>
-                </Link>)
+
+            } else if (latestRound.status === RoundStatus.PAUSED) {
+                buttons.push(<EditRoundButton onClick={() => setAction(SelectedRoundActionStatus.editing)} />);
+                buttons.push(<ChangeStatusButton
+                    roundId={latestRound.roundId}
+                    color="success" description=""
+                    icon={<DoubleTickIcon />}
+                    label="Mark as complete"
+                    status={RoundStatus.COMPLETED}
+                    onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
+                    refresh={refresh}
+                />);
+                buttons.push(<ChangeStatusButton
+                    roundId={latestRound.roundId}
+                    color="error"
+                    description=""
+                    icon={<Start />}
+                    label="Start"
+                    status={RoundStatus.ACTIVE}
+                    onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
+                    refresh={refresh}
+                />);
             }
-
-        } else if (latestRound.status === RoundStatus.PAUSED) {
-            buttons.push(<EditRoundButton onClick={() => setAction(SelectedRoundActionStatus.editing)} />);
-            buttons.push(<ChangeStatusButton
-                roundId={latestRound.roundId}
-                color="success" description=""
-                icon={<DoubleTickIcon />}
-                label="Mark as complete"
-                status={RoundStatus.COMPLETED}
-                onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
-                refresh={refresh}
-            />);
-            buttons.push(<ChangeStatusButton
-                roundId={latestRound.roundId}
-                color="error"
-                description=""
-                icon={<Start />}
-                label="Start"
-                status={RoundStatus.ACTIVE}
-                onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
-                refresh={refresh}
-            />);
         }
-
     }
 
     return (
@@ -195,7 +243,7 @@ const LatestRoundActions = ({ latestRound, campaign, setAction, AllowedToEvaluat
         </div>
     )
 }
-function RoundTimeline({ rounds, campaign, session }: RoundTimelineProps) {
+function RoundTimeline({ rounds, campaign, session, isCoordinator }: RoundTimelineProps) {
     rounds = rounds?.toSorted(
         (a, b) => b.roundId.localeCompare(a.roundId)
     ) ?? []
@@ -212,9 +260,10 @@ function RoundTimeline({ rounds, campaign, session }: RoundTimelineProps) {
             <LatestRoundActions
                 latestRound={currentRound} campaign={campaign}
                 action={selectedRoundAction} setAction={setSelectedRoundAction}
-                AllowedToEvaluate={allowedToVote}
+                isJury={allowedToVote}
                 judgableLink={`/round/${currentRound?.roundId}/submission/evaluate`}
                 refresh={refresh}
+                isCoordinator={isCoordinator}
             />
             <React.Suspense fallback={<LinearProgress />}>
                 {selectedRoundAction === SelectedRoundActionStatus.creating && <RoundCreate campaignId={campaign.campaignId} onAfterCreationSuccess={(round) => {
