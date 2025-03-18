@@ -2,12 +2,14 @@
 import { Campaign, WikimediaUsername } from "@/types";
 import { Chip, Paper, Typography } from "@mui/material";
 import RoundTimeline from "./roundTimeline";
+import { Session } from "@/types/user/session";
 
 type CampaignViewPageProps = {
     campaign: Campaign
+    session: Session | null
 };
 
-const ActualViewPage = ({ campaign }: CampaignViewPageProps) => {
+const ActualViewPage = ({ campaign, session }: CampaignViewPageProps) => {
     return (
         <Paper sx={{ p: 2, m: 2 }}>
             <Typography variant="h2">
@@ -21,7 +23,7 @@ const ActualViewPage = ({ campaign }: CampaignViewPageProps) => {
             </Typography>
             <CoordinatorList coordinators={campaign.coordinators} />
             <br />
-            <RoundTimeline rounds={campaign.rounds} campaign={campaign} />
+            <RoundTimeline rounds={campaign.rounds} campaign={campaign} session={session} />
 
         </Paper>
     );

@@ -21,9 +21,9 @@ const GetEvaluationPage = async ({ params }: { params: Promise<{ roundId: string
         return <p>Error : {evaluations.detail}</p>
     }
     return (
-        <div>
-            <h1>Evaluations</h1>
-            <p>Round: {round.name}</p>
+        <div className="p-2 text-center">
+            <h1 className="text-3xl">{round.name}</h1>
+            <h2 className="text-lg text-slate-600" >78 remaing out of 78</h2>
             <EvaluationManager roundId={round.roundId} initailEvaluations={evaluations.data} next={evaluations.next} />
         </div>
     );
