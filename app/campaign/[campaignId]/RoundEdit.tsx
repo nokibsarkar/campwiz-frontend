@@ -8,8 +8,7 @@ import LoadingPopup from "@/components/LoadingPopup";
 const RoundEditForm = lazy(() => import("@/components/round/RoundEditForm"));
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
-import DistributionStatusThingy from "./round/distribute/distributingStatusSthingy";
-import DistributionWidget from "./round/distribute/importWidget";
+import DistributionDialog from "./round/distribute/DistributionWidget";
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -32,7 +31,10 @@ const EditDialog = ({ campaignId, onClose, existingRound, setUpdatedRound, setSt
 
 
     // Detect whether the jury has changed
-    const isJuryChanged = useMemo(() => {
+    const needRedistribution = useMemo(() => {
+        if (existingRound.quorum !== round.quorum) {
+            return true;
+        }
         const existingJury = new Set(Object.values(existingRound.jury || {}))
         if (round.jury.length !== existingJury.size) {
             return true;
@@ -40,7 +42,7 @@ const EditDialog = ({ campaignId, onClose, existingRound, setUpdatedRound, setSt
         const newJury = new Set(round.jury || [])
         const intersection = existingJury.intersection(newJury);
         return intersection.size !== existingJury.size;
-    }, [existingRound, round.jury]);
+    }, [existingRound.jury, existingRound.quorum, round.jury, round.quorum]);
     const updateRoundClient = useCallback(async () => {
         setLoading(true);
         try {
@@ -54,7 +56,7 @@ const EditDialog = ({ campaignId, onClose, existingRound, setUpdatedRound, setSt
             }
             const updatedRound = updatedRoundResponse.data as Round;
             setUpdatedRound(updatedRound);
-            if (isJuryChanged) {
+            if (needRedistribution) {
                 setStage(Stage.DISTRIBUTE);
             } else {
                 setStage(Stage.SUCCESS);
@@ -67,7 +69,7 @@ const EditDialog = ({ campaignId, onClose, existingRound, setUpdatedRound, setSt
         } finally {
             setLoading(false);
         }
-    }, [existingRound.roundId, isJuryChanged, round, setStage, setUpdatedRound]);
+    }, [existingRound.roundId, needRedistribution, round, setStage, setUpdatedRound]);
     return (<Dialog open={true}
         sx={{
             width: {
@@ -111,26 +113,25 @@ const EditDialog = ({ campaignId, onClose, existingRound, setUpdatedRound, setSt
 }
 const EditRound = ({ campaignId, onClose, existingRound }: { campaignId: string, onAfterCreationSuccess: (round: Round) => void, onClose: () => void, existingRound: Round }) => {
     const [stage, setStage] = useState<Stage>(Stage.EDIT);
-    const [taskId, setTaskId] = useState<string>('');
 
     const [updatedRound, setUpdatedRound] = useState<Round | null>(null);
-    const jury = useMemo(() => {
-        return Object.values(existingRound.jury || {})
-    }, [existingRound.jury]);
+
     return (stage === Stage.EDIT ? <EditDialog
         campaignId={campaignId}
         onClose={onClose}
         existingRound={existingRound}
         setUpdatedRound={setUpdatedRound}
         setStage={setStage}
-    /> : stage === Stage.DISTRIBUTE ? <DistributionWidget
+    /> : stage === Stage.DISTRIBUTE ? <DistributionDialog
         roundId={updatedRound?.roundId || ''}
-        juries={jury}
-        afterDistribution={(t) => {
-            setTaskId(t.taskId);
-            setStage(Stage.DISTRIBUTING);
+        juries={Object.values(updatedRound?.jury || {})}
+        afterDistribution={() => {
+            // setTaskId(t.taskId);
+            // setStage(Stage.DISTRIBUTING);
+            setStage(Stage.SUCCESS);
         }}
-    /> : stage === Stage.DISTRIBUTING ? <DistributionStatusThingy taskId={taskId} onSuccess={() => setStage(Stage.SUCCESS)} /> : stage === Stage.SUCCESS ? <Dialog open={true}
+        onClose={onClose}
+    /> : stage === Stage.SUCCESS ? <Dialog open={true}
         sx={{
             width: {
                 xs: '100%',

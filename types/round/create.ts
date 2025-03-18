@@ -24,7 +24,7 @@ export const initialRoundCreate: RoundCreate = {
     videoMinimumDurationMilliseconds: 0,
     videoMinimumSizeBytes: 0,
     videoMinimumResolution: 0,
-    imageMinimumResolution: 0,
+    imageMinimumResolution: 2000000, // 2MP
     imageMinimumSizeBytes: 0,
     maximumSubmissionOfSameArticle: 1,
     articleAllowExpansions: true,
@@ -33,7 +33,7 @@ export const initialRoundCreate: RoundCreate = {
     articleMinimumTotalWords: 0,
     articleMinimumAddedBytes: 0,
     articleMinimumAddedWords: 0,
-    quorum: 0,
+    quorum: 1,
 }
 
 export const roundCreateReducer = (state: RoundCreate, action: Partial<RoundCreate>) => {
