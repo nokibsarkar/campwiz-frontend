@@ -85,15 +85,13 @@ const CreateRound = ({ campaignId, onClose }: { campaignId: string, onAfterCreat
                 maxWidth: '100%',
             }
         }}
-
-
         slots={{
             transition: Transition
         }} onClose={onClose}>
         <DialogTitle>
             Create a new round
         </DialogTitle>
-        <DialogContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <DialogContent>
             {error && <Typography variant="h6" color="error" sx={{ m: 2, textAlign: 'center' }}>{error}</Typography>}
             {loading && <LoadingPopup src="/lottie/loading.lottie" />}
             {stage === Stage.CREATE && <RoundEditForm {...round} loading={loading} dispatch={roundDispatch} />}

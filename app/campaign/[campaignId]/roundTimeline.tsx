@@ -247,8 +247,7 @@ function RoundTimeline({ rounds, campaign, session }: RoundTimelineProps) {
 
                     </Box>
                 </div>
-            ))
-            }
+            ))}
         </Box>
     );
 }
