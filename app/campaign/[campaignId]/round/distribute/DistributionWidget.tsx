@@ -1,10 +1,10 @@
 
 import { WikimediaUsername } from "@/types"
-import { startDistributionTask } from "../import/commons/action"
 import { Task } from "@/app/task"
 import { useState } from "react"
 import { Button, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle, FormControlLabel, Typography } from "@mui/material"
 import DistributionStatusThingy from "./distributingStatusSthingy"
+import startDistributionTask from "./startDistributionTask"
 
 type DistributionWidgetProps = {
     roundId: string

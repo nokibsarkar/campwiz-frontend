@@ -8,9 +8,9 @@ import LoadingPopup from "@/components/LoadingPopup";
 const RoundEditForm = lazy(() => import("@/components/round/RoundEditForm"));
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
-import { startDistributionTask } from "./round/import/commons/action";
 import DistributionStatusThingy from "./round/distribute/distributingStatusSthingy";
 import ImportFromCommonsDialog from "./round/import/commons/_page";
+import startDistributionTask from "./round/distribute/startDistributionTask";
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
