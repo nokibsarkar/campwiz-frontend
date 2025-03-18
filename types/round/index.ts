@@ -92,3 +92,15 @@ export type RoundFilter = {
     campaignId: IDType;
     status: RoundStatus;
 } & CommonFilter
+export interface SubmissionResultSummary {
+    readonly averageScore: number;
+    readonly submissionCount: number;
+}
+export interface SubmissionResult {
+    readonly author: string;
+    readonly juryCount: number;
+    readonly name: string;
+    readonly score: number;
+    readonly submissionId: string;
+    readonly type: string;
+}
