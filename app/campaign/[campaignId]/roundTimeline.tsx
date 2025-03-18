@@ -19,6 +19,7 @@ import { updateroundStatus } from "./updateStatus";
 import { Session } from "@/types/user/session";
 import DownloadIcon from '@mui/icons-material/Download';
 import { getRawAPIPath } from "@/server";
+import ImportFromRoundDialog from "./round/import/round/_page";
 const RoundCreate = React.lazy(() => import("./RoundCreate"));
 const RoundEdit = React.lazy(() => import("./RoundEdit"));
 type RoundTimelineProps = {
@@ -209,6 +210,19 @@ const LatestRoundActions = ({ latestRound, campaign, setAction, isJury, judgable
 
 
             } else if (latestRound.status === RoundStatus.PAUSED) {
+                if (latestRound.totalSubmissions == 0) {
+                    buttons.push(
+                        <Button
+                            startIcon={<StopIcon />}
+                            variant="contained"
+                            color="primary"
+                            onClick={() => setAction(SelectedRoundActionStatus.importing)}
+                            sx={{ m: 1, px: 3 }}
+                        >
+                            Import
+                        </Button>
+                    );
+                }
                 buttons.push(<EditRoundButton onClick={() => setAction(SelectedRoundActionStatus.editing)} />);
                 buttons.push(<ChangeStatusButton
                     roundId={latestRound.roundId}
@@ -253,7 +267,7 @@ function RoundTimeline({ rounds, campaign, session, isCoordinator }: RoundTimeli
         }
     }
     const [currentRound, setCurrentRound] = React.useState<Round | null>(rounds.length > 0 ? rounds[0] : null);
-    const allowedToVote = currentRound !== null && currentRound.jury !== null && session !== null && Object.values(currentRound.jury).includes(session.username);
+    const allowedToVote = currentRound !== null && (currentRound.isPublic || (currentRound.jury !== null && session !== null && Object.values(currentRound.jury).includes(session.username)));
     const [selectedRoundAction, setSelectedRoundAction] = React.useState<SelectedRoundActionStatus>(SelectedRoundActionStatus.none);
     return (
         <Box sx={{ ml: 1 }} component="div">
@@ -273,6 +287,21 @@ function RoundTimeline({ rounds, campaign, session, isCoordinator }: RoundTimeli
                     setCurrentRound(round);
                     rounds[0] = round;
                 }} onClose={() => { setSelectedRoundAction(SelectedRoundActionStatus.none); refresh(); }} existingRound={currentRound} />}
+                {currentRound && selectedRoundAction === SelectedRoundActionStatus.importing && (
+                    currentRound?.dependsOnRoundId ? <ImportFromRoundDialog
+                        round={currentRound}
+                        onClose={() => {
+                            setSelectedRoundAction(SelectedRoundActionStatus.none);
+                            refresh();
+                        }}
+                    /> : <ImportFromRoundDialog
+                        round={currentRound}
+                        onClose={() => {
+                            setSelectedRoundAction(SelectedRoundActionStatus.none);
+                            refresh();
+                        }}
+                    />
+                )}
             </React.Suspense>
             {rounds.map((round, i) => (
                 <div key={i}>

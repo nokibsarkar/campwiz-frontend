@@ -17,7 +17,12 @@ const ImportFromRoundWidget = ({ currentRound, importing, setImporting, afterImp
     const [taskID, setTaskID] = useState('')
     const [scores, setScores] = useState<string>('')
     // const [mediaType, setMediaType] = useState<string>('')
-    const { data: summaryResponse, isLoading, } = useSWR(`/round/${currentRound.dependsOnRoundId}/results/summary`, fetchAPIFromBackendListWithErrorHandling<SubmissionResultSummary>)
+    const { data: summaryResponse, isLoading, } = useSWR(`/round/${currentRound.dependsOnRoundId}/results/summary`, fetchAPIFromBackendListWithErrorHandling<SubmissionResultSummary>, {
+        revalidateOnFocus: true,
+        revalidateOnReconnect: true,
+        revalidateOnMount: true,
+
+    })
     const startImporting = async (scores: string, fromId?: string) => {
         try {
             if (!fromId) {
@@ -46,13 +51,13 @@ const ImportFromRoundWidget = ({ currentRound, importing, setImporting, afterImp
     }
     const summaryScore = summaryResponse.data;
     return (taskID ? <StatusThingy taskId={taskID} onSuccess={afterImport} /> : <Suspense fallback={<LottieWrapper src="/lottie/importing.lottie" />}>
-        <div style={{ textAlign: 'center' }}>
-            <h2>Import from Round</h2>
+        <div className="flex flex-col gap-4">
             <TextField
                 label="Score"
                 placeholder="Select a score"
                 select
                 fullWidth
+                value={scores}
                 variant="outlined"
                 onChange={(e) => setScores(e.target.value)}
             >

@@ -1,5 +1,5 @@
 "use client";
-import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material"
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material"
 import createRound from "@/app/campaign/[campaignId]/round/new/action"
 import React, { lazy, useCallback, useReducer, useState } from "react";
 import { roundCreateReducer, initialRoundCreate } from "@/types/round/create";
@@ -24,7 +24,8 @@ const Transition = React.forwardRef(function Transition(
 enum Stage {
     CREATE = 'create',
     IMPORT = 'import',
-    DISTRIBUTE = 'distribute'
+    DISTRIBUTE = 'distribute',
+    SUCCESS = 'success'
 }
 const CreateRound = ({ campaignId, onClose }: { campaignId: string, onAfterCreationSuccess: (round: Round) => void, onClose: () => void }) => {
     const [round, roundDispatch] = useReducer(roundCreateReducer, { ...initialRoundCreate, campaignId });
@@ -67,6 +68,10 @@ const CreateRound = ({ campaignId, onClose }: { campaignId: string, onAfterCreat
         if (!createdRound) {
             throw new Error('Round not created yet');
         }
+        if (createdRound.isPublic) {
+            setStage(Stage.SUCCESS)
+            return
+        }
         setStage(Stage.DISTRIBUTE);
         const distributionTask = await startDistributionTask(createdRound.roundId, round.jury);
         if ('detail' in distributionTask) {
@@ -105,15 +110,24 @@ const CreateRound = ({ campaignId, onClose }: { campaignId: string, onAfterCreat
                 <Button onClick={onClose} variant="outlined" color="error" disabled={loading}>
                     Cancel
                 </Button>
-                <Button
+                {stage === Stage.CREATE ? <Button
                     onClick={createRoundClient}
                     variant="contained"
                     color="success"
                     disabled={loading}
+                    loading={loading}
                 >
-                    <CircularProgress size={24} color="inherit" sx={{ display: loading ? 'inline-block' : 'none', mr: 1 }} />
                     Create Round
                 </Button>
+                    : <Button
+                        onClick={onClose}
+                        variant="contained"
+                        color="error"
+                        disabled={loading}
+                    >
+                        Close
+                    </Button>}
+
             </DialogActions>
         </Dialog>
         )

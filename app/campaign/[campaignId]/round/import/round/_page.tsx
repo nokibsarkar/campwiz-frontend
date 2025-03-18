@@ -9,7 +9,7 @@ const ImportFromRoundDialog = ({ round, onClose }: { round: Round, onClose: () =
     return (
         <Dialog open={true} onClose={onClose}>
             <DialogTitle>
-                Import from Commons
+                Import from the previous round
             </DialogTitle>
             <DialogContent>
                 <ImportWidget currentRound={round} importing={importing} setImporting={setImporting} afterImport={onClose} />
