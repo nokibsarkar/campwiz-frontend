@@ -11,6 +11,7 @@ import { TransitionProps } from '@mui/material/transitions';
 import DistributionStatusThingy from "./round/distribute/distributingStatusSthingy";
 import ImportFromCommonsDialog from "./round/import/commons/_page";
 import startDistributionTask from "./round/distribute/startDistributionTask";
+import ImportFromRoundDialog from "./round/import/round/_page";
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -73,46 +74,49 @@ const CreateRound = ({ campaignId, onClose }: { campaignId: string, onAfterCreat
         }
         setTaskId(distributionTask.data.taskId);
     }
-    return (createdRound && stage === Stage.IMPORT) ? <ImportFromCommonsDialog roundId={createdRound?.roundId} onClose={distribute} /> : (<Dialog open={true}
-        sx={{
-            width: {
-                xs: '100%',
-                sm: '80%',
-            },
-            margin: 'auto',
-            '& .MuiDialog-paper': {
-                width: '100%',
-                maxWidth: '100%',
-            }
-        }}
-        slots={{
-            transition: Transition
-        }} onClose={onClose}>
-        <DialogTitle>
-            Create a new round
-        </DialogTitle>
-        <DialogContent>
-            {error && <Typography variant="h6" color="error" sx={{ m: 2, textAlign: 'center' }}>{error}</Typography>}
-            {loading && <LoadingPopup src="/lottie/loading.lottie" />}
-            {stage === Stage.CREATE && <RoundEditForm {...round} loading={loading} dispatch={roundDispatch} />}
-            {stage === Stage.DISTRIBUTE && <DistributionStatusThingy taskId={taskId} onSuccess={onClose} />}
-        </DialogContent>
-        <DialogActions sx={{ justifyContent: 'space-between', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}>
-            <Button onClick={onClose} variant="outlined" color="error" disabled={loading}>
-                Cancel
-            </Button>
-            <Button
-                onClick={createRoundClient}
-                variant="contained"
-                color="success"
-                disabled={loading}
-            >
-                <CircularProgress size={24} color="inherit" sx={{ display: loading ? 'inline-block' : 'none', mr: 1 }} />
-                Create Round
-            </Button>
-        </DialogActions>
-    </Dialog>
-    )
+    return (createdRound && stage === Stage.IMPORT) ?
+        (createdRound.dependsOnRoundId ? <ImportFromRoundDialog round={createdRound} onClose={distribute} /> :
+            <ImportFromCommonsDialog roundId={createdRound.roundId} onClose={distribute} />
+        ) : (<Dialog open={true}
+            sx={{
+                width: {
+                    xs: '100%',
+                    sm: '80%',
+                },
+                margin: 'auto',
+                '& .MuiDialog-paper': {
+                    width: '100%',
+                    maxWidth: '100%',
+                }
+            }}
+            slots={{
+                transition: Transition
+            }} onClose={onClose}>
+            <DialogTitle>
+                Create a new round
+            </DialogTitle>
+            <DialogContent>
+                {error && <Typography variant="h6" color="error" sx={{ m: 2, textAlign: 'center' }}>{error}</Typography>}
+                {loading && <LoadingPopup src="/lottie/loading.lottie" />}
+                {stage === Stage.CREATE && <RoundEditForm {...round} loading={loading} dispatch={roundDispatch} />}
+                {stage === Stage.DISTRIBUTE && <DistributionStatusThingy taskId={taskId} onSuccess={console.log} />}
+            </DialogContent>
+            <DialogActions sx={{ justifyContent: 'space-between', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}>
+                <Button onClick={onClose} variant="outlined" color="error" disabled={loading}>
+                    Cancel
+                </Button>
+                <Button
+                    onClick={createRoundClient}
+                    variant="contained"
+                    color="success"
+                    disabled={loading}
+                >
+                    <CircularProgress size={24} color="inherit" sx={{ display: loading ? 'inline-block' : 'none', mr: 1 }} />
+                    Create Round
+                </Button>
+            </DialogActions>
+        </Dialog>
+        )
 }
 
 export default CreateRound
