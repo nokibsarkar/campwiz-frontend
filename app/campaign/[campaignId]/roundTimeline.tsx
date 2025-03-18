@@ -16,11 +16,13 @@ import Link from "next/link";
 import EditIcon from '@mui/icons-material/Edit';
 import JudgeIcon from '@mui/icons-material/HowToVote';
 import { updateroundStatus } from "./updateStatus";
+import { Session } from "@/types/user/session";
 const RoundCreate = React.lazy(() => import("./RoundCreate"));
 const RoundEdit = React.lazy(() => import("./RoundEdit"));
 type RoundTimelineProps = {
     rounds: Round[] | null
     campaign: Campaign
+    session: Session | null
 }
 const CreateRoundButton = ({ onClick }: { onClick: () => void }) => (
     <Button
@@ -119,18 +121,7 @@ const LatestRoundActions = ({ latestRound, campaign, setAction, AllowedToEvaluat
     const buttons: React.ReactNode[] = []
     if (campaign.status !== RoundStatus.ACTIVE)
         return <Button disabled>Cannot create round</Button>
-    if (latestRound && latestRound.status === RoundStatus.ACTIVE && AllowedToEvaluate) {
-        buttons.push(<Link href={judgableLink}>
-            <Button
-                startIcon={<JudgeIcon />}
-                variant="contained"
-                color="primary"
-                sx={{ m: 1, px: 3 }}
-            >
-                Start Evaluation
-            </Button>
-        </Link>)
-    }
+
     if (!latestRound) {
         buttons.push(<CreateRoundButton onClick={() => setAction(SelectedRoundActionStatus.creating)} />)
     } else {
@@ -156,6 +147,18 @@ const LatestRoundActions = ({ latestRound, campaign, setAction, AllowedToEvaluat
                 onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
                 refresh={refresh}
             />);
+            if (AllowedToEvaluate) {
+                buttons.push(<Link href={judgableLink}>
+                    <Button
+                        startIcon={<JudgeIcon />}
+                        variant="contained"
+                        color="primary"
+                        sx={{ m: 1, px: 3 }}
+                    >
+                        Start Evaluation
+                    </Button>
+                </Link>)
+            }
 
         } else if (latestRound.status === RoundStatus.PAUSED) {
             buttons.push(<EditRoundButton onClick={() => setAction(SelectedRoundActionStatus.editing)} />);
@@ -179,6 +182,7 @@ const LatestRoundActions = ({ latestRound, campaign, setAction, AllowedToEvaluat
                 refresh={refresh}
             />);
         }
+
     }
 
     return buttons.map((button, i) => (
@@ -187,7 +191,7 @@ const LatestRoundActions = ({ latestRound, campaign, setAction, AllowedToEvaluat
         </React.Fragment>
     ))
 }
-function RoundTimeline({ rounds, campaign }: RoundTimelineProps) {
+function RoundTimeline({ rounds, campaign, session }: RoundTimelineProps) {
     rounds = rounds?.toSorted(
         (a, b) => b.roundId.localeCompare(a.roundId)
     ) ?? []
@@ -197,16 +201,19 @@ function RoundTimeline({ rounds, campaign }: RoundTimelineProps) {
         }
     }
     const [currentRound, setCurrentRound] = React.useState<Round | null>(rounds.length > 0 ? rounds[0] : null);
+    const allowedToVote = currentRound !== null && currentRound.jury !== null && session !== null && Object.values(currentRound.jury).includes(session.username);
     const [selectedRoundAction, setSelectedRoundAction] = React.useState<SelectedRoundActionStatus>(SelectedRoundActionStatus.none);
     return (
         <Box sx={{ ml: 1 }} component="div">
-            <LatestRoundActions
-                latestRound={currentRound} campaign={campaign}
-                action={selectedRoundAction} setAction={setSelectedRoundAction}
-                AllowedToEvaluate={true}
-                judgableLink={`/round/${currentRound?.roundId}/submission/evaluate`}
-                refresh={refresh}
-            />
+            <div style={{ textAlign: 'right' }}>
+                <LatestRoundActions
+                    latestRound={currentRound} campaign={campaign}
+                    action={selectedRoundAction} setAction={setSelectedRoundAction}
+                    AllowedToEvaluate={allowedToVote}
+                    judgableLink={`/round/${currentRound?.roundId}/submission/evaluate`}
+                    refresh={refresh}
+                />
+            </div>
             <React.Suspense fallback={<LinearProgress />}>
                 {selectedRoundAction === SelectedRoundActionStatus.creating && <RoundCreate campaignId={campaign.campaignId} onAfterCreationSuccess={(round) => {
                     setCurrentRound(round);
@@ -222,6 +229,9 @@ function RoundTimeline({ rounds, campaign }: RoundTimelineProps) {
                         <RoundStatusIcon status={round.status} /> <Status status={round.status} />
                         <Typography variant="h6" sx={{ display: 'inline' }}>
                             {round.name}
+                        </Typography>
+                        <Typography variant="subtitle1" sx={{ display: 'inline', color: 'text.secondary' }}>
+                            &nbsp;({round.roundId})
                         </Typography>
                     </div>
                     <Box key={i} sx={{

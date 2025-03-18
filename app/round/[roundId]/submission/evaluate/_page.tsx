@@ -9,6 +9,7 @@ import { Button } from "@mui/material";
 import { useState } from "react";
 import submitVote from "./submitVote";
 import loadNextEvaluation from "./loadNextEvaluation";
+import Image from "next/image";
 
 type EvaluationManagerProps = {
     roundId: string
@@ -16,7 +17,37 @@ type EvaluationManagerProps = {
     next?: string
 
 }
+const EvaluationPagination = ({ evaluations, cursor, setCursor }: { evaluations: Evaluation[], cursor: number, setCursor: (cursor: number) => void }) => {
+    let firstCursor = cursor - 2;
+    let lastCursor = cursor + 3;
+    if (firstCursor < 0) {
+        lastCursor -= firstCursor;
+        firstCursor = 0;
+    } else if (lastCursor > evaluations.length) {
+        firstCursor -= lastCursor - evaluations.length;
+        lastCursor = evaluations.length;
+    } else {
+        lastCursor = Math.min(evaluations.length, lastCursor);
+    }
+    return (
+        <div className="flex justify-between flex-row overflow-x-auto">
+            {evaluations.slice(firstCursor, lastCursor).map((evaluation, index) => (
+                <div key={evaluation.evaluationId} onClick={() => setCursor(firstCursor + index)}
+                    className={`cursor-pointer p-2 border border-gray-200 mx-1 inline-block max-w-xs rounded-lg ${cursor === firstCursor + index ? 'bg-gray-200' : ''}`}
+                >
+                    <Image
+                        src={evaluation.submission?.thumburl as string}
+                        alt={evaluation.submission?.title || ''}
+                        width={70}
+                        height={70}
+                        unoptimized
+                    />
 
+                </div>
+            ))}
+        </div>
+    )
+}
 const EvaluationManager = ({ initailEvaluations, roundId }: EvaluationManagerProps) => {
     const [evaluations, setEvaluations] = useState<Evaluation[]>(initailEvaluations)
     const [cursor, setCursor] = useState(0);
@@ -29,7 +60,7 @@ const EvaluationManager = ({ initailEvaluations, roundId }: EvaluationManagerPro
                 console.error(resp.detail)
             } else {
                 console.log('Submited')
-                evaluations.shift()
+                // evaluations.shift()
                 // setEvaluations([...evaluations]);
                 setCursor(Math.min(cursor + 1, evaluations.length));
                 const resp = await loadNextEvaluation({
@@ -61,8 +92,7 @@ const EvaluationManager = ({ initailEvaluations, roundId }: EvaluationManagerPro
     }
     return (
         <div>
-            <Button onClick={() => setCursor(cursor - 1)} disabled={cursor === 0}>Previous</Button>
-            <Button onClick={() => setCursor(cursor + 1)} disabled={cursor === evaluations.length - 1}>Next</Button>
+            <EvaluationPagination evaluations={evaluations} cursor={cursor} setCursor={setCursor} />
             <Button onClick={() => submit(currentEvaluation.evaluationId, 0)} color="error" variant="contained">
                 No
             </Button>

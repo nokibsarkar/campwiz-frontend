@@ -1,6 +1,7 @@
 import fetchAPIFromBackendSingleWithErrorHandling from "@/server";
 import ActualViewPage from "./_page";
 import { Campaign } from "@/types";
+import fetchSession from "@/server/session";
 
 type CampaignViewPageProps = {
     params: Promise<{
@@ -8,6 +9,7 @@ type CampaignViewPageProps = {
     }>
 };
 const CampaignViewPage = async ({ params }: CampaignViewPageProps) => {
+    const session = await fetchSession();
     const { campaignId } = await params;
     const qs = new URLSearchParams();
     qs.append('includeRoles', 'true');
@@ -23,7 +25,7 @@ const CampaignViewPage = async ({ params }: CampaignViewPageProps) => {
     }
     const campaign = campaignResponse.data;
     return (
-        <ActualViewPage campaign={campaign} />
+        <ActualViewPage campaign={campaign} session={session} />
     );
 };
 export default CampaignViewPage;
