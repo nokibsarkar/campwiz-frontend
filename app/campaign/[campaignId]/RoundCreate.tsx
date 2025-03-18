@@ -8,9 +8,9 @@ import LoadingPopup from "@/components/LoadingPopup";
 const RoundEditForm = lazy(() => import("@/components/round/RoundEditForm"));
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
-import startImportTask, { startDistributionTask } from "./round/import/commons/action";
-import StatusThingy from "./round/import/commons/importingStatusSthingy";
 import DistributionStatusThingy from "./round/distribute/distributingStatusSthingy";
+import ImportFromCommonsDialog from "./round/import/commons/_page";
+import startDistributionTask from "./round/distribute/startDistributionTask";
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -45,14 +45,14 @@ const CreateRound = ({ campaignId, onClose }: { campaignId: string, onAfterCreat
                 throw new Error(newRoundResponse.detail);
             }
             const newround = newRoundResponse.data as Round;
-            setCreatedRound(newRoundResponse.data as Round);
+            setCreatedRound(newround);
             setStage(Stage.IMPORT);
-            const taskResponse = await startImportTask(newround.roundId, ['Bangladesh']);
-            if ('detail' in taskResponse) {
-                throw new Error(taskResponse.detail);
-            }
-            setTaskId(taskResponse.data.taskId);
-            setStage(Stage.IMPORT);
+            // const taskResponse = await startImportTask(newround.roundId, ['Bangladesh']);
+            // if ('detail' in taskResponse) {
+            //     throw new Error(taskResponse.detail);
+            // }
+            // setTaskId(taskResponse.data.taskId);
+            // setStage(Stage.IMPORT);
 
             // onAfterCreationSuccess(newRoundResponse.data as Round);
         } catch (e) {
@@ -73,7 +73,7 @@ const CreateRound = ({ campaignId, onClose }: { campaignId: string, onAfterCreat
         }
         setTaskId(distributionTask.data.taskId);
     }
-    return (<Dialog open={true}
+    return (createdRound && stage === Stage.IMPORT) ? <ImportFromCommonsDialog roundId={createdRound?.roundId} onClose={distribute} /> : (<Dialog open={true}
         sx={{
             width: {
                 xs: '100%',
@@ -85,8 +85,6 @@ const CreateRound = ({ campaignId, onClose }: { campaignId: string, onAfterCreat
                 maxWidth: '100%',
             }
         }}
-
-
         slots={{
             transition: Transition
         }} onClose={onClose}>
@@ -97,7 +95,6 @@ const CreateRound = ({ campaignId, onClose }: { campaignId: string, onAfterCreat
             {error && <Typography variant="h6" color="error" sx={{ m: 2, textAlign: 'center' }}>{error}</Typography>}
             {loading && <LoadingPopup src="/lottie/loading.lottie" />}
             {stage === Stage.CREATE && <RoundEditForm {...round} loading={loading} dispatch={roundDispatch} />}
-            {stage === Stage.IMPORT && <StatusThingy taskId={taskId} onSuccess={distribute} />}
             {stage === Stage.DISTRIBUTE && <DistributionStatusThingy taskId={taskId} onSuccess={onClose} />}
         </DialogContent>
         <DialogActions sx={{ justifyContent: 'space-between', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}>

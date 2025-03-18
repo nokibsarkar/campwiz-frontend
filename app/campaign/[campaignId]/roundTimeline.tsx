@@ -185,11 +185,15 @@ const LatestRoundActions = ({ latestRound, campaign, setAction, AllowedToEvaluat
 
     }
 
-    return buttons.map((button, i) => (
-        <React.Fragment key={i}>
-            {button}
-        </React.Fragment>
-    ))
+    return (
+        <div style={{ textAlign: 'right' }}>
+            {buttons.map((button, i) => (
+                <React.Fragment key={i}>
+                    {button}
+                </React.Fragment>
+            ))}
+        </div>
+    )
 }
 function RoundTimeline({ rounds, campaign, session }: RoundTimelineProps) {
     rounds = rounds?.toSorted(
@@ -205,15 +209,13 @@ function RoundTimeline({ rounds, campaign, session }: RoundTimelineProps) {
     const [selectedRoundAction, setSelectedRoundAction] = React.useState<SelectedRoundActionStatus>(SelectedRoundActionStatus.none);
     return (
         <Box sx={{ ml: 1 }} component="div">
-            <div style={{ textAlign: 'right' }}>
-                <LatestRoundActions
-                    latestRound={currentRound} campaign={campaign}
-                    action={selectedRoundAction} setAction={setSelectedRoundAction}
-                    AllowedToEvaluate={allowedToVote}
-                    judgableLink={`/round/${currentRound?.roundId}/submission/evaluate`}
-                    refresh={refresh}
-                />
-            </div>
+            <LatestRoundActions
+                latestRound={currentRound} campaign={campaign}
+                action={selectedRoundAction} setAction={setSelectedRoundAction}
+                AllowedToEvaluate={allowedToVote}
+                judgableLink={`/round/${currentRound?.roundId}/submission/evaluate`}
+                refresh={refresh}
+            />
             <React.Suspense fallback={<LinearProgress />}>
                 {selectedRoundAction === SelectedRoundActionStatus.creating && <RoundCreate campaignId={campaign.campaignId} onAfterCreationSuccess={(round) => {
                     setCurrentRound(round);
@@ -245,8 +247,7 @@ function RoundTimeline({ rounds, campaign, session }: RoundTimelineProps) {
 
                     </Box>
                 </div>
-            ))
-            }
+            ))}
         </Box>
     );
 }
