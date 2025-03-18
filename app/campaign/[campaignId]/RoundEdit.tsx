@@ -1,6 +1,6 @@
 "use client";
 import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material"
-import { updateRound } from "@/app/campaign/[campaignId]/round/new/action"
+import createRound from "@/app/campaign/[campaignId]/round/new/action"
 import React, { lazy, useCallback, useMemo, useReducer, useState } from "react";
 import { roundCreateReducer } from "@/types/round/create";
 import { Round } from "@/types/round";
@@ -47,7 +47,7 @@ const EditDialog = ({ campaignId, onClose, existingRound, setUpdatedRound, setSt
         setLoading(true);
         try {
             setError(null);
-            const updatedRoundResponse = await updateRound(existingRound.roundId, round);
+            const updatedRoundResponse = await createRound(round);
             if (!updatedRoundResponse) {
                 throw new Error('Round creation failed');
             }
@@ -69,7 +69,7 @@ const EditDialog = ({ campaignId, onClose, existingRound, setUpdatedRound, setSt
         } finally {
             setLoading(false);
         }
-    }, [existingRound.roundId, needRedistribution, round, setStage, setUpdatedRound]);
+    }, [needRedistribution, round, setStage, setUpdatedRound]);
     return (<Dialog open={true}
         sx={{
             width: {
