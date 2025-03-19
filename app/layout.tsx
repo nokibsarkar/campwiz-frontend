@@ -22,11 +22,11 @@ export const metadata: Metadata = {
       url: "https://github.com/nokibsarkar",
     },
     {
-      name: "Tiven Gonsalves",
-    },
-    {
       name: "Mst. Rukaiya Islam Tanni",
       url: "https://github.com/Tonni28",
+    },
+    {
+      name: "Tiven Gonsalves",
     }
   ]
 };
