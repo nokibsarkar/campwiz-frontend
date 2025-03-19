@@ -2,15 +2,17 @@
 import * as React from 'react';
 import PublicRunningCampaigns from '@/components/campaign/PublicCampaigns';
 import HeroBanner from '@/components/home/HeroBanner';
-import AssignedCampaigns from '@/components/campaign/AssignCampaigns';
-import { Typography } from '@mui/material';
-import Footer from '@/components/home/Footer';
 
+import { LinearProgress, Typography } from '@mui/material';
+import Footer from '@/components/home/Footer';
+const AssignedCampaigns = React.lazy(() => import('@/components/campaign/AssignCampaigns'));
 const Dashboard = async () => {
   return (
     <>
       <HeroBanner showLoginButton showProjectDashboardLink />
-      <AssignedCampaigns limit={5} />
+      <React.Suspense fallback={<LinearProgress sx={{ m: 2 }} />}>
+        <AssignedCampaigns limit={5} />
+      </React.Suspense>
 
       <div className="" style={{}}>
         <Typography variant="h4" sx={{

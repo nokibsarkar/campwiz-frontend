@@ -9,7 +9,7 @@ type HeroBannerProps = {
     showProjectDashboardLink: boolean
 }
 const LoginButton = () => (
-    <Link href="/login">
+    <Link href="/user/login">
         <Button
             variant="contained"
             startIcon={<LockOpenIcon />}
