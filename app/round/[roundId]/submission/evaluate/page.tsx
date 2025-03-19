@@ -1,7 +1,7 @@
 import fetchAPIFromBackendSingleWithErrorHandling from "@/server";
 import { Round } from "@/types/round";
 import loadNextEvaluation from "./loadNextEvaluation";
-import EvaluationManager from "./_page";
+import EvaluationManager from "./EvaluationManager";
 
 const GetEvaluationPage = async ({ params }: { params: Promise<{ roundId: string, }> }) => {
     const { roundId } = await params;
@@ -13,7 +13,7 @@ const GetEvaluationPage = async ({ params }: { params: Promise<{ roundId: string
         return <p>Error : {roundResponse.detail}</p>
     }
     const round = roundResponse.data;
-    const evaluations = await loadNextEvaluation({ roundId: round.roundId, limit: 10, includeSubmissions: true });
+    const evaluations = await loadNextEvaluation({ roundId: round.roundId, limit: 20, includeSubmissions: true });
     if (!evaluations) {
         return null;
     }

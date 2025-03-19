@@ -1,8 +1,10 @@
 import { Submission } from "@/types/submission";
 import Image from "next/image";
 import SubmissionDetails from "./Details";
+import blurDataURL from "./blurDataURL";
+import React from "react";
 
-const ImagePreview = ({ submission }: { submission: Submission }) => {
+const ImagePreview = ({ submission, votingComponent }: { submission: Submission, votingComponent: React.ReactNode }) => {
     return (
         <div>
             <Image
@@ -12,8 +14,9 @@ const ImagePreview = ({ submission }: { submission: Submission }) => {
                 height={Math.min(submission.thumbheight, 400)}
                 placeholder="blur"
                 unoptimized
-                blurDataURL="data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                blurDataURL={blurDataURL}
             />
+            {votingComponent}
             <SubmissionDetails submission={submission} />
         </div>
     );
