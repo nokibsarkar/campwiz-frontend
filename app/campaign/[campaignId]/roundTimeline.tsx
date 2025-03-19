@@ -5,21 +5,12 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from "@mui/material/Box";
 import Status, { getStatusColor, RoundStatusIcon } from "@/components/round/Status";
-import { RoundStatus } from "@/types/round/status";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, LinearProgress } from "@mui/material";
-import { Add } from "@mui/icons-material";
 import { Campaign } from "@/types";
-import StopIcon from '@mui/icons-material/Pause';
-import Start from '@mui/icons-material/PlayArrow';
-import DoubleTickIcon from '@mui/icons-material/DoneAll';
-import Link from "next/link";
-import EditIcon from '@mui/icons-material/Edit';
-import JudgeIcon from '@mui/icons-material/HowToVote';
-import { updateroundStatus } from "./updateStatus";
 import { Session } from "@/types/user/session";
-import DownloadIcon from '@mui/icons-material/Download';
-import { getRawAPIPath } from "@/server";
 import ImportFromRoundDialog from "./round/import/round/_page";
+import LatestRoundActions from "./LatestRoundAction";
+import { LinearProgress } from "@mui/material";
+import SelectedRoundActionStatus from "./SelectedActionStatus";
 const RoundCreate = React.lazy(() => import("./RoundCreate"));
 const RoundEdit = React.lazy(() => import("./RoundEdit"));
 type RoundTimelineProps = {
@@ -28,235 +19,7 @@ type RoundTimelineProps = {
     session: Session | null
     isCoordinator: boolean
 }
-const CreateRoundButton = ({ onClick }: { onClick: () => void }) => (
-    <Button
-        startIcon={<Add />}
-        variant="contained"
-        color="primary"
-        onClick={onClick}
-        sx={{ m: 1, px: 3 }}
-    >
-        Create Round
-    </Button>
-)
-const EditRoundButton = ({ onClick }: { onClick: () => void }) => (
-    <Button
-        startIcon={<EditIcon />}
-        variant="contained"
-        color="primary"
-        onClick={onClick}
-        sx={{ m: 1, px: 3 }}
-    >
-        Edit Round
-    </Button>
-)
-type ChangeStatusButtonProps = {
-    status: RoundStatus
-    label: string
-    color: 'success' | 'error'
-    icon: React.ReactNode
-    description: string
-    onClick?: (round: Round) => void
-    roundId: string
-    refresh: () => void
-}
-const ChangeStatusButton = ({ roundId, onClick, status, label, color, description, icon, refresh }: ChangeStatusButtonProps) => {
-    const [showDialog, setShowDialog] = React.useState(false);
-    const [loading, setLoading] = React.useState(false);
-    const finalize = async () => {
-        try {
-            setLoading(true)
-            const res = await updateroundStatus(roundId, status)
-            if (res) {
-                console.log('Round status updated')
-            }
-            if ('detail' in res) {
-                console.error(res.detail)
-                throw new Error(res.detail)
-            }
-            setShowDialog(false)
-            refresh()
-            if (onClick) {
-                onClick(res.data)
-            }
-        } catch (e) {
-            console.error(e)
-        } finally {
-            setLoading(false)
-        }
-    }
-    return <>
-        <Button
-            startIcon={icon}
-            variant="contained"
-            color={color}
-            onClick={() => setShowDialog(true)}
-            sx={{ m: 1, px: 3 }}
-            loading={loading}
-            disabled={showDialog}
-        >
-            {label}
-        </Button>
-        <React.Suspense fallback={<LinearProgress />}>
-            {showDialog && <Dialog open={showDialog} onClose={() => setShowDialog(false)}>
-                <DialogTitle>{label}</DialogTitle>
-                <DialogContent>
-                    <Typography>Are you sure you want to mark this round as {status}?</Typography>
-                    <Typography>{description}</Typography>
-                    {loading && <LinearProgress />}
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={() => setShowDialog(false)} variant="outlined" color="error" disabled={loading}>No</Button>
-                    <Button onClick={finalize} variant="contained" color="success" disabled={loading} loading={loading}>Yes</Button>
-                </DialogActions>
-            </Dialog>}
-        </React.Suspense>
-    </>
-}
-const ExportToCSVButton = ({ roundId }: { roundId: string }) => {
-    "use client"
-    const [loading, setLoading] = React.useState(false);
-    const [error, setError] = React.useState<string | null>(null);
-    const exportToCSV = async () => {
-        try {
-            setLoading(true)
-            const res = await fetch(await getRawAPIPath(`/round/${roundId}/results/csv`), {
-                headers: {
-                    'Content-Type': 'text/csv',
-                    'Accept': 'text/csv',
-                    'Access-Control-Allow-Origin': '*',
-                },
-                method: 'GET',
-                credentials: 'include',
 
-            })
-            const blob = await res.blob()
-            const url = window.URL.createObjectURL(blob)
-            const a = document.createElement('a')
-            a.download = `round-${roundId}.csv`
-            a.href = url
-            a.click()
-            window.URL.revokeObjectURL(url)
-            if (res.ok) {
-                console.log('Exported')
-            } else {
-                console.error('Failed to export')
-            }
-        } catch (e) {
-            console.error(e)
-            setError((e as Error).message)
-        } finally {
-            setLoading(false)
-        }
-    }
-    return <Button
-        startIcon={<DownloadIcon />}
-        variant={error ? 'outlined' : 'contained'}
-        color={error ? 'error' : 'success'}
-        onClick={exportToCSV}
-        sx={{ m: 1, px: 3 }}
-        loading={loading}
-        disabled={loading}
-
-    >
-        Download Results as CSV
-    </Button>
-
-}
-enum SelectedRoundActionStatus {
-    creating = 'creating',
-    importing = 'importing',
-    finalizing = 'finalizing',
-    editing = 'editing',
-    none = ''
-}
-const LatestRoundActions = ({ latestRound, campaign, setAction, isJury, judgableLink, refresh, isCoordinator }: { latestRound: Round | null, campaign: Campaign, action: SelectedRoundActionStatus, setAction: (action: SelectedRoundActionStatus) => void, isJury: boolean, judgableLink: string, refresh: () => void, isCoordinator: boolean }) => {
-    // if no round is avaliable, return a create round button
-    const buttons: React.ReactNode[] = []
-    if (campaign.status !== RoundStatus.ACTIVE)
-        return null
-    if (isJury && latestRound && latestRound.status === RoundStatus.ACTIVE) {
-        buttons.push(<Link href={judgableLink}>
-            <Button
-                startIcon={<JudgeIcon />}
-                variant="contained"
-                color="primary"
-                sx={{ m: 1, px: 3 }}
-            >
-                Start Evaluation
-            </Button>
-        </Link>)
-    }
-    if (isCoordinator) {
-        if (!latestRound) {
-            buttons.push(<CreateRoundButton onClick={() => setAction(SelectedRoundActionStatus.creating)} />)
-        } else {
-            if (latestRound.status === RoundStatus.COMPLETED) {
-                if (isCoordinator) {
-                    buttons.push(<ExportToCSVButton roundId={latestRound.roundId} />);
-                }
-                buttons.push(<CreateRoundButton onClick={() => setAction(SelectedRoundActionStatus.creating)} />);
-            } else if (latestRound.status === RoundStatus.ACTIVE) {
-                buttons.push(<ChangeStatusButton
-                    roundId={latestRound.roundId}
-                    color="error"
-                    description=""
-                    icon={<StopIcon />}
-                    label="Pause"
-                    status={RoundStatus.PAUSED}
-                    onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
-                    refresh={refresh}
-                />);
-
-
-            } else if (latestRound.status === RoundStatus.PAUSED) {
-                if (latestRound.totalSubmissions == 0) {
-                    buttons.push(
-                        <Button
-                            startIcon={<StopIcon />}
-                            variant="contained"
-                            color="primary"
-                            onClick={() => setAction(SelectedRoundActionStatus.importing)}
-                            sx={{ m: 1, px: 3 }}
-                        >
-                            Import
-                        </Button>
-                    );
-                }
-                buttons.push(<EditRoundButton onClick={() => setAction(SelectedRoundActionStatus.editing)} />);
-                buttons.push(<ChangeStatusButton
-                    roundId={latestRound.roundId}
-                    color="success" description=""
-                    icon={<DoubleTickIcon />}
-                    label="Mark as complete"
-                    status={RoundStatus.COMPLETED}
-                    onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
-                    refresh={refresh}
-                />);
-                buttons.push(<ChangeStatusButton
-                    roundId={latestRound.roundId}
-                    color="error"
-                    description=""
-                    icon={<Start />}
-                    label="Start"
-                    status={RoundStatus.ACTIVE}
-                    onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
-                    refresh={refresh}
-                />);
-            }
-        }
-    }
-
-    return (
-        <div style={{ textAlign: 'right' }}>
-            {buttons.map((button, i) => (
-                <React.Fragment key={i}>
-                    {button}
-                </React.Fragment>
-            ))}
-        </div>
-    )
-}
 function RoundTimeline({ rounds, campaign, session, isCoordinator }: RoundTimelineProps) {
     rounds = rounds?.toSorted(
         (a, b) => b.roundId.localeCompare(a.roundId)
@@ -322,7 +85,6 @@ function RoundTimeline({ rounds, campaign, session, isCoordinator }: RoundTimeli
                         borderLeftColor: `${getStatusColor(round.status)}.main`
                     }}>
                         <RoundDetails round={round} />
-
                     </Box>
                 </div>
             ))}
