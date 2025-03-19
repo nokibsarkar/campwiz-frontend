@@ -8,8 +8,9 @@ import { Typography } from '@mui/material';
 const Dashboard = async () => {
   return (
     <>
-      <HeroBanner />
+      <HeroBanner showLoginButton showProjectDashboardLink />
       <AssignedCampaigns limit={5} />
+
       <div className="" style={{}}>
         <Typography variant="h4" sx={{
           textAlign: 'center', m: 3,
