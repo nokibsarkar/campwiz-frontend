@@ -20,7 +20,7 @@ type EvaluationManagerProps = {
 const EvaluationPagination = ({ evaluations, cursor, setCursor, isSmall }: { evaluations: Evaluation[], cursor: number, setCursor: (cursor: number) => void, isSmall: boolean }) => {
     const forwardStep = isSmall ? 3 : 8;
     const backwardStep = isSmall ? 3 : 8;
-    const imageDimension = isSmall ? 70 : 90;
+    const imageDimension = isSmall ? 50 : 90;
     let firstCursor = cursor - backwardStep;
     let lastCursor = cursor + forwardStep;
     if (firstCursor < 0) {
