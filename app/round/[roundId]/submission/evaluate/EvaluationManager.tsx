@@ -5,7 +5,7 @@ import ImagePreview from "@/app/submission/[submissionId]/_preview/imagePreview"
 import VideoPreview from "@/app/submission/[submissionId]/_preview/videoPreview";
 import { MediaType } from "@/types/round";
 import { Evaluation } from "@/types/submission";
-import { Button } from "@mui/material";
+import { Button, useMediaQuery } from "@mui/material";
 import { useState } from "react";
 import submitVote from "./submitVote";
 import loadNextEvaluation from "./loadNextEvaluation";
@@ -17,9 +17,12 @@ type EvaluationManagerProps = {
     next?: string
 
 }
-const EvaluationPagination = ({ evaluations, cursor, setCursor }: { evaluations: Evaluation[], cursor: number, setCursor: (cursor: number) => void }) => {
-    let firstCursor = cursor - 2;
-    let lastCursor = cursor + 3;
+const EvaluationPagination = ({ evaluations, cursor, setCursor, isSmall }: { evaluations: Evaluation[], cursor: number, setCursor: (cursor: number) => void, isSmall: boolean }) => {
+    const forwardStep = isSmall ? 3 : 8;
+    const backwardStep = isSmall ? 3 : 8;
+    const imageDimension = isSmall ? 70 : 90;
+    let firstCursor = cursor - backwardStep;
+    let lastCursor = cursor + forwardStep;
     if (firstCursor < 0) {
         lastCursor -= firstCursor;
         firstCursor = 0;
@@ -30,16 +33,17 @@ const EvaluationPagination = ({ evaluations, cursor, setCursor }: { evaluations:
         lastCursor = Math.min(evaluations.length, lastCursor);
     }
     return (
-        <div className="flex justify-between flex-row overflow-x-auto">
+        <div className="flex justify-between flex-row flex-wrap sm:max-w-1/4 sm:max-h-full overflow-x-auto mb-3 rounded items-baseline">
             {evaluations.slice(firstCursor, lastCursor).map((evaluation, index) => (
                 <div key={evaluation.evaluationId} onClick={() => setCursor(firstCursor + index)}
-                    className={`cursor-pointer p-2 border border-gray-200 mx-1 inline-block max-w-xs rounded-lg ${cursor === firstCursor + index ? 'bg-gray-200' : ''}`}
+                    className={`cursor-pointer p-2 border border-gray-200 mx-1 inline-block h-max content-baseline rounded-lg ${cursor === firstCursor + index ? 'bg-gray-200' : ''}`}
+                    style={{ width: `${imageDimension}px`, }}
                 >
                     <Image
                         src={evaluation.submission?.thumburl as string}
                         alt={evaluation.submission?.title || ''}
-                        width={70}
-                        height={70}
+                        width={imageDimension}
+                        height={imageDimension}
                         unoptimized
                     />
 
@@ -52,6 +56,7 @@ const EvaluationManager = ({ initailEvaluations, roundId }: EvaluationManagerPro
     const [evaluations, setEvaluations] = useState<Evaluation[]>(initailEvaluations)
     const [cursor, setCursor] = useState(0);
     const [next, setNext] = useState('')
+    const isSmall = useMediaQuery('(max-width: 600px)');
     // const { data, error, isLoading, mutate : triggerFetching } = useSWR({ roundId, limit: 1, includeSubmission: true, next }, loadNextEvaluation,  { revalidateOnMount: false, revalidateOnFocus: false });
     const submit = async (evaluationId: string, score: number) => {
         try {
@@ -64,7 +69,7 @@ const EvaluationManager = ({ initailEvaluations, roundId }: EvaluationManagerPro
                 // setEvaluations([...evaluations]);
                 setCursor(Math.min(cursor + 1, evaluations.length));
                 const resp = await loadNextEvaluation({
-                    roundId, limit: 10, includeSubmissions: true, next
+                    roundId, limit: 1, includeSubmissions: true, next
                 });
                 if ('detail' in resp) {
                     console.error(resp.detail)
@@ -91,16 +96,20 @@ const EvaluationManager = ({ initailEvaluations, roundId }: EvaluationManagerPro
         return <p>No submission</p>
     }
     return (
-        <div>
-            <EvaluationPagination evaluations={evaluations} cursor={cursor} setCursor={setCursor} />
-            <Button onClick={() => submit(currentEvaluation.evaluationId, 0)} color="error" variant="contained">
-                No
-            </Button>
-            <Button onClick={() => submit(currentEvaluation.evaluationId, 100)} color="success" variant="contained">
-                Yes
-            </Button>
+        <div className="flex gap-4 justify-center flex-col sm:flex-row">
+            <EvaluationPagination evaluations={evaluations} cursor={cursor} setCursor={setCursor} isSmall={isSmall} />
+
             {currentSubmission.mediatype === MediaType.IMAGE && (
-                <ImagePreview submission={currentSubmission} />
+                <ImagePreview submission={currentSubmission} votingComponent={
+                    <>
+                        <Button onClick={() => submit(currentEvaluation.evaluationId, 0)} color="error" variant="contained">
+                            No
+                        </Button>
+                        <Button onClick={() => submit(currentEvaluation.evaluationId, 100)} color="success" variant="contained">
+                            Yes
+                        </Button>
+                    </>
+                } />
             )}
             {currentSubmission.mediatype === MediaType.VIDEO && (
                 <VideoPreview submission={currentSubmission} />
