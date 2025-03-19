@@ -3,7 +3,6 @@ import * as React from 'react';
 import PublicRunningCampaigns from '@/components/campaign/PublicCampaigns';
 import HeroBanner from '@/components/home/HeroBanner';
 import AssignedCampaigns from '@/components/campaign/AssignCampaigns';
-import Footer from '@/components/home/Footer';
 import { Typography } from '@mui/material';
 
 const Dashboard = async () => {
@@ -22,7 +21,6 @@ const Dashboard = async () => {
         </Typography>
         <PublicRunningCampaigns limit={10} />
       </div>
-      <Footer />
     </>
   );
 };

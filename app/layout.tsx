@@ -5,6 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from '@/theme';
 import { Paper } from "@mui/material";
 import { Roboto, } from 'next/font/google';
+import Footer from "@/components/home/Footer";
 
 
 const roboto = Roboto({
@@ -38,17 +39,17 @@ export default async function RootLayout({
 }>) {
   return (
     <html>
-      <body className={roboto.className}>
-        <AppRouterCacheProvider
-          options={{ key: 'css' }}
-        >
-          <ThemeProvider theme={theme}>
-            <Paper elevation={0} sx={{ height: '100vh', overflow: 'auto' }}>
-              {children}
-            </Paper>
-          </ThemeProvider>
-        </AppRouterCacheProvider>
-      </body>
+      <AppRouterCacheProvider
+        options={{ key: 'css' }}
+      >
+        <ThemeProvider theme={theme}>
+          <Paper component='body' className={`h-full w-full p-0 m-0 overflow-auto ${roboto.className}`} sx={{ m: 0, p: 0 }} elevation={0}>
+            {children}
+            <Footer />
+          </Paper>
+
+        </ThemeProvider>
+      </AppRouterCacheProvider>
     </html>
   );
 }
