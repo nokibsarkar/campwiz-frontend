@@ -10,7 +10,7 @@ export const initialRoundCreate: RoundCreate = {
     endDate: dayjs().toISOString(),
     name: "",
     description: "",
-    isPublic: false,
+    isPublicJury: false,
     allowJuryToParticipate: true,
     campaignId: "", // Add appropriate initial value
     jury: [], // Add appropriate initial value

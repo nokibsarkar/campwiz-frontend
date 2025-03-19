@@ -68,7 +68,7 @@ const CreateRound = ({ campaignId, onClose }: { campaignId: string, onAfterCreat
         if (!createdRound) {
             throw new Error('Round not created yet');
         }
-        if (createdRound.isPublic) {
+        if (createdRound.isPublicJury) {
             setStage(Stage.SUCCESS)
             return
         }
