@@ -57,6 +57,7 @@ const LatestRoundActions = ({ latestRound, campaign, setAction, isJury, judgable
             </Button>
         </Link>)
     }
+    console.log("isCoordinator", isCoordinator)
     if (isCoordinator) {
         if (!latestRound) {
             buttons.push(<CreateRoundButton onClick={() => setAction(SelectedRoundActionStatus.creating)} />)
