@@ -1,6 +1,7 @@
 import Link from "next/link";
 import AddIcon from '@mui/icons-material/Add';
 import { Button } from "@mui/material";
+import Logo from "@/components/Logo";
 const NewProjectButton = () => (
     <Link href="/project/new">
         <Button
@@ -25,8 +26,12 @@ const NewProjectButton = () => (
 )
 const ProjectDashboard = async () => (
     <div>
-        <h1>Project Dashboard</h1>
-        <NewProjectButton />
+
+        <Logo />
+        <div className="flex flex-row justify-between p-5">
+            <h1 className="text-2xl font-bold">Project Dashboard</h1>
+            <NewProjectButton />
+        </div>
     </div>
 )
 export default ProjectDashboard;
