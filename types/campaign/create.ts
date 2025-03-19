@@ -25,11 +25,14 @@ export const initialCampaignCreate: CampaignCreate = {
     isPublic: false,
     status: RoundStatus.PENDING
 }
-export const campaignCreateReducer = (state: CampaignCreate, action: Partial<CampaignCreate>) => {
+export interface CampaignUpdate extends CampaignCreate {
+    campaignId: string
+}
+export const campaignReducer = (state: CampaignCreate | CampaignUpdate, action: Partial<CampaignCreate | CampaignUpdate>) => {
     return {
         ...state,
         ...action
     }
 }
-export type CampaignCreateAction = Partial<CampaignCreate>
-export type CampaignCreateDispatch = (action: CampaignCreateAction) => void
+export type CampaignAction = Partial<CampaignCreate | CampaignUpdate>
+export type CampaignCreateDispatch = (action: CampaignAction) => void

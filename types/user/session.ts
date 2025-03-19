@@ -1,6 +1,8 @@
 import { User } from "./user";
 type PermissionName = (
-    'PermissionApproveRejectCampaign' | 'PermissionCreateCampaign' | 'PermissionCreateUser' | 'PermissionDeleteCampaign' | 'PermissionDeleteUser' | 'PermissionEditCampaign' | 'PermissionEditUser' | 'PermissionViewCampaign' | 'PermissionViewUser'
+    'PermissionApproveRejectCampaign' | 'PermissionCreateCampaign' | 'PermissionCreateUser' | 'PermissionDeleteCampaign'
+    | 'PermissionDeleteUser' | 'PermissionEditCampaign' | 'PermissionEditUser' | 'PermissionViewCampaign' | 'PermissionViewUser'
+    | 'PermissionOtherProjectAccess' | 'PermissionUpdateCampaignDetails'
 )
 type PermissionNumericValue = number
 export type PermissionMap = {

@@ -1,4 +1,4 @@
-import type { CampaignCreate } from "@/types/campaign/create";
+import { initialCampaignCreate, type CampaignCreate } from "@/types/campaign/create";
 import { Autocomplete, FormControlLabel, TextField, Typography, } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import { ActionDispatch } from "react";
 import UserInput from "../user/UserInput";
 import CheckBox from '@mui/material/Checkbox';
-const CampaignEditForm = ({ dispatch, loading, disabled = false, ...campaign }: CampaignCreate & { dispatch: ActionDispatch<[Partial<CampaignCreate>]>, loading: boolean, disabled?: boolean }) => {
+const CampaignEditForm = ({ dispatch, loading, disabled = false, disableOnPrivate = false, ...campaign }: CampaignCreate & { dispatch: ActionDispatch<[Partial<CampaignCreate>]>, loading: boolean, disabled?: boolean, disableOnPrivate?: boolean }) => {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <TextField
@@ -82,6 +82,7 @@ const CampaignEditForm = ({ dispatch, loading, disabled = false, ...campaign }: 
                         disabled={loading || disabled}
                     />
                 }
+                disabled={disableOnPrivate && !initialCampaignCreate.isPublic}
                 sx={{ my: 2 }}
                 label={
                     <Typography variant="body1" color="textSecondary">

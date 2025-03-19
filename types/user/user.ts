@@ -3,4 +3,5 @@ export interface User {
     registeredAt: string;
     username: string;
     permission: number;
+    projectId: string;
 }

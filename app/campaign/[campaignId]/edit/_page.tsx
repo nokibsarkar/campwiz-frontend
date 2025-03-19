@@ -1,22 +1,22 @@
 "use client";
-import { Button, CircularProgress, Paper, Typography } from "@mui/material"
+import { Button, Paper, Typography } from "@mui/material"
 import createCampaign from "@/app/project/[projectId]/new/action"
 import { lazy, useReducer, useState } from "react";
-import { campaignReducer, initialCampaignCreate } from "@/types/campaign/create";
+import { campaignReducer, CampaignUpdate } from "@/types/campaign/create";
 import CampaignEditForm from "@/components/campaign/CampaignEditForm";
 import ReturnButton from "@/components/ReturnButton";
 import { Campaign } from "@/types";
 import useSWRMutation from "swr/mutation";
 import LoadingPopup from "@/components/LoadingPopup";
-import AddIcon from '@mui/icons-material/Add';
 import LoginBackground from "@/public/snowy-hill.svg";
 import Logo from "@/components/Logo";
+import SaveIcon from '@mui/icons-material/Save';
 const CampaignCreationSuccess = lazy(() => import('@/app/project/[projectId]/new/success'));
 
-const CreateCampaign_ = () => {
+const EditCampaign = ({ initialCampaign }: { initialCampaign: CampaignUpdate }) => {
     const [error, setError] = useState<Error | null>(null);
-    const [campaign, campaignDispatch] = useReducer(campaignReducer, initialCampaignCreate);
-    const { data: createdCampaign = null, trigger, isMutating: loading } = useSWRMutation<Campaign | undefined>('/api/campaign', createCampaign.bind(null, campaign), {
+    const [campaign, campaignDispatch] = useReducer(campaignReducer, initialCampaign);
+    const { data: updatedCampaign = null, trigger, isMutating: loading } = useSWRMutation<Campaign | undefined>(`/api/campaign/${initialCampaign.campaignId}`, createCampaign.bind(null, campaign), {
         onError: setError,
     });
     return (
@@ -31,7 +31,7 @@ const CreateCampaign_ = () => {
                 backgroundColor: 'rgba(255,255,255,0.4)',
                 justifyContent: 'center', alignItems: 'center'
             }}>
-                {createdCampaign ? <CampaignCreationSuccess {...createdCampaign} /> :
+                {updatedCampaign ? <CampaignCreationSuccess {...updatedCampaign} /> :
                     <Paper sx={{
                         padding: 2, px: 3, width: '100%', maxWidth: 800, position: 'absolute',
                         top: '50%', left: '50%',
@@ -41,10 +41,10 @@ const CreateCampaign_ = () => {
                     }}>
                         <Logo />
                         <Typography variant="h3" sx={{ mb: 4, textAlign: 'center', fontSize: { xs: 24, sm: 48 } }}>
-                            Create Campaign
+                            Update Campaign
                         </Typography>
                         {loading && <LoadingPopup src="/lottie/creating.lottie" />}
-                        <CampaignEditForm {...campaign} loading={loading} dispatch={campaignDispatch} />
+                        <CampaignEditForm {...campaign} loading={loading} dispatch={campaignDispatch} disableOnPrivate />
                         {error && <Typography variant="body1" color="error" sx={{ mb: 1 }}>{error.message}</Typography>}
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
                             <ReturnButton disabled={loading} sx={{ m: 0, borderRadius: 10, px: 2 }} />
@@ -54,10 +54,10 @@ const CreateCampaign_ = () => {
                                 color="success"
                                 disabled={loading}
                                 sx={{ borderRadius: 10 }}
-                                startIcon={<AddIcon />}
+                                startIcon={<SaveIcon />}
+                                loading={loading}
                             >
-                                <CircularProgress size={24} color="inherit" sx={{ display: loading ? 'inline-block' : 'none', mr: 1 }} />
-                                Create Campaign
+                                Update Campaign
                             </Button>
                         </div>
                     </Paper>}
@@ -65,4 +65,4 @@ const CreateCampaign_ = () => {
         </div>
     )
 }
-export default CreateCampaign_
+export default EditCampaign
