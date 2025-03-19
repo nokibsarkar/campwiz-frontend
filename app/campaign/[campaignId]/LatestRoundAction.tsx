@@ -40,11 +40,11 @@ const EditRoundButton = ({ onClick }: { onClick: () => void }) => (
 
 
 
-const LatestRoundActions = ({ latestRound, campaign, setAction, isJury, judgableLink, refresh, isCoordinator }: { latestRound: Round | null, campaign: Campaign, action: SelectedRoundActionStatus, setAction: (action: SelectedRoundActionStatus) => void, isJury: boolean, judgableLink: string, refresh: () => void, isCoordinator: boolean }) => {
+const LatestRoundActions = ({ latestRound, setAction, isJury, judgableLink, refresh, isCoordinator }: { latestRound: Round | null, campaign: Campaign, action: SelectedRoundActionStatus, setAction: (action: SelectedRoundActionStatus) => void, isJury: boolean, judgableLink: string, refresh: () => void, isCoordinator: boolean }) => {
     // if no round is avaliable, return a create round button
     const buttons: React.ReactNode[] = []
-    if (campaign.status !== RoundStatus.ACTIVE)
-        return null
+    // if (campaign.status !== RoundStatus.ACTIVE)
+    //     return null
     if (isJury && latestRound && latestRound.status === RoundStatus.ACTIVE) {
         buttons.push(<Link href={judgableLink}>
             <Button
