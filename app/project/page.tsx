@@ -84,14 +84,14 @@ const ProjectDashboard = async () => {
             shadow-lg
         ">
             <h2 className="text-xl font-bold">Other Projects</h2>
-            <div className="flex flex-row flex-wrap">
-                {projects.filter(project => project.projectId !== projectId).map(project => (
-                    <SinglProjectChip
-                        key={project.projectId}
-                        project={project}
-                    />
-                ))}
-            </div>
+            {/* <div className="flex flex-row flex-wrap"> */}
+            {projects.filter(project => project.projectId !== projectId).map(project => (
+                <SinglProjectChip
+                    key={project.projectId}
+                    project={project}
+                />
+            ))}
+            {/* </div> */}
         </div>
     </div>
 }
