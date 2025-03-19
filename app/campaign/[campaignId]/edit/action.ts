@@ -2,9 +2,9 @@
 
 import fetchAPIFromBackendSingleWithErrorHandling from "@/server";
 import { Campaign } from "@/types";
-import { CampaignCreate } from "@/types/campaign/create";
+import { CampaignUpdate } from "@/types/campaign/create";
 
-const createCampaign = async (campaign: CampaignCreate) => {
+const updateCampaign = async (campaign: CampaignUpdate) => {
     if (campaign.name === '') {
         throw new Error('Campaign name cannot be empty')
     }
@@ -23,7 +23,7 @@ const createCampaign = async (campaign: CampaignCreate) => {
     if (campaign.language === '') {
         throw new Error('You must select a language. If it is wikimedia Commons, select "commons"')
     }
-    const res = await fetchAPIFromBackendSingleWithErrorHandling<Campaign>(`/campaign/`, {
+    const res = await fetchAPIFromBackendSingleWithErrorHandling<Campaign>(`/campaign/` + campaign.campaignId, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -35,4 +35,4 @@ const createCampaign = async (campaign: CampaignCreate) => {
     }
     return res.data
 }
-export default createCampaign
+export default updateCampaign

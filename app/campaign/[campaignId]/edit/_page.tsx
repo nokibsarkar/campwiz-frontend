@@ -1,6 +1,5 @@
 "use client";
 import { Button, Paper, Typography } from "@mui/material"
-import createCampaign from "@/app/project/[projectId]/new/action"
 import { lazy, useReducer, useState } from "react";
 import { campaignReducer, CampaignUpdate } from "@/types/campaign/create";
 import CampaignEditForm from "@/components/campaign/CampaignEditForm";
@@ -11,12 +10,13 @@ import LoadingPopup from "@/components/LoadingPopup";
 import LoginBackground from "@/public/snowy-hill.svg";
 import Logo from "@/components/Logo";
 import SaveIcon from '@mui/icons-material/Save';
+import updateCampaign from "./action";
 const CampaignCreationSuccess = lazy(() => import('@/app/project/[projectId]/new/success'));
 
 const EditCampaign = ({ initialCampaign }: { initialCampaign: CampaignUpdate }) => {
     const [error, setError] = useState<Error | null>(null);
     const [campaign, campaignDispatch] = useReducer(campaignReducer, initialCampaign);
-    const { data: updatedCampaign = null, trigger, isMutating: loading } = useSWRMutation<Campaign | undefined>(`/api/campaign/${initialCampaign.campaignId}`, createCampaign.bind(null, campaign), {
+    const { data: updatedCampaign = null, trigger, isMutating: loading } = useSWRMutation<Campaign | undefined>(`/api/campaign/${initialCampaign.campaignId}`, updateCampaign.bind(null, campaign as CampaignUpdate), {
         onError: setError,
     });
     return (
