@@ -22,11 +22,12 @@ export const metadata: Metadata = {
       url: "https://github.com/nokibsarkar",
     },
     {
-      name: "Tiven Gonsalves",
-    },
-    {
       name: "Mst. Rukaiya Islam Tanni",
       url: "https://github.com/Tonni28",
+    },
+    {
+      name: "Tiven Gonsalves",
+
     }
   ]
 };
@@ -38,17 +39,16 @@ export default async function RootLayout({
 }>) {
   return (
     <html>
-      <body className={roboto.className}>
-        <AppRouterCacheProvider
-          options={{ key: 'css' }}
-        >
-          <ThemeProvider theme={theme}>
-            <Paper elevation={0} sx={{ height: '100vh', overflow: 'auto' }}>
-              {children}
-            </Paper>
-          </ThemeProvider>
-        </AppRouterCacheProvider>
-      </body>
+      <AppRouterCacheProvider
+        options={{ key: 'css' }}
+      >
+        <ThemeProvider theme={theme}>
+          <Paper component='body' className={`h-full w-full p-0 m-0 overflow-auto ${roboto.className}`} sx={{ m: 0, p: 0 }} elevation={0}>
+            {children}
+          </Paper>
+
+        </ThemeProvider>
+      </AppRouterCacheProvider>
     </html>
   );
 }

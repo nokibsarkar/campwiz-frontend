@@ -1,6 +1,9 @@
 import Image from 'next/image'
 import LogoSvg from '@/public/logo.svg'
+import Link from 'next/link'
 const Logo = () => (
-    <Image src={LogoSvg} alt="Logo" width={100} height={100} style={{ margin: 'auto' }} />
+    <Link href="/" className='cursor-pointer'>
+        <Image src={LogoSvg} alt="Logo of CampWiz" height={80} style={{ margin: 'auto' }} />
+    </Link>
 )
 export default Logo
