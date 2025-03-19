@@ -66,7 +66,7 @@ export type RoundWritable = {
     startDate: string;
     endDate: string;
     isOpen: boolean;
-    isPublic: boolean;
+    isPublicJury: boolean;
     dependsOnRoundId?: string;
     serial: number;
     type: EvaluationType;

@@ -146,8 +146,8 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, hideAdvanced = fal
                     label="Round Type"
                     variant="outlined"
                     select
-                    value={round.isPublic ? 'Public' : 'Private'}
-                    onChange={(e) => dispatch({ isPublic: e.target.value === 'Public' })}
+                    value={round.isPublicJury ? 'Public' : 'Private'}
+                    onChange={(e) => dispatch({ isPublicJury: e.target.value === 'Public' })}
                     sx={{ m: 1, width: { xs: '100%', sm: '20%' } }}
                     disabled={loading || disabled}
                 >

@@ -30,7 +30,7 @@ function RoundTimeline({ rounds, campaign, session, isCoordinator }: RoundTimeli
         }
     }
     const [currentRound, setCurrentRound] = React.useState<Round | null>(rounds.length > 0 ? rounds[0] : null);
-    const allowedToVote = currentRound !== null && (currentRound.isPublic || (currentRound.jury !== null && session !== null && Object.values(currentRound.jury).includes(session.username)));
+    const allowedToVote = currentRound !== null && (currentRound.isPublicJury || (currentRound.jury !== null && session !== null && Object.values(currentRound.jury).includes(session.username)));
     console.log("allowedToVote", currentRound?.jury)
     const [selectedRoundAction, setSelectedRoundAction] = React.useState<SelectedRoundActionStatus>(SelectedRoundActionStatus.none);
     return (
