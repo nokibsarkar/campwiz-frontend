@@ -29,7 +29,6 @@ const CampaignViewPage = async ({ params }: CampaignViewPageProps) => {
         return <p>Error : {campaignResponse.detail}</p>
     }
     const campaign = campaignResponse.data;
-    console.log(campaign.coordinators, session?.username, campaign.coordinators?.includes(session?.username || ''))
     return (
         <Paper sx={{ p: 2, m: 2 }}>
             <Logo />
