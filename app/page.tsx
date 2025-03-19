@@ -4,6 +4,7 @@ import PublicRunningCampaigns from '@/components/campaign/PublicCampaigns';
 import HeroBanner from '@/components/home/HeroBanner';
 import AssignedCampaigns from '@/components/campaign/AssignCampaigns';
 import { Typography } from '@mui/material';
+import Footer from '@/components/home/Footer';
 
 const Dashboard = async () => {
   return (
@@ -22,6 +23,8 @@ const Dashboard = async () => {
         </Typography>
         <PublicRunningCampaigns limit={10} />
       </div>
+
+      <Footer />
     </>
   );
 };
