@@ -11,6 +11,7 @@ export const config = {
         * - favicon.ico, sitemap.xml, robots.txt (metadata files)
         */
         '/((?!policy|user/(?:login|callback)|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|lottie|logo.svg).*)',
+        '/$',
     ]
 }
 /*
