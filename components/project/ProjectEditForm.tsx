@@ -38,7 +38,7 @@ const ProjectEditForm = ({ dispatch, loading, disabled = false, autoSuggestId = 
                     variant="outlined"
                     sx={{ mb: 1, width: { xs: '100%', sm: '49%' } }}
                     onChange={(e) => dispatch({ url: e.target.value })}
-                    value={campaign.url}
+                    value={campaign.url || ''}
                     disabled={loading || disabled}
                 />
             </div>
@@ -50,7 +50,7 @@ const ProjectEditForm = ({ dispatch, loading, disabled = false, autoSuggestId = 
                 sx={{ mb: 2 }}
             />
             <ImageInput
-                value={campaign.logoUrl}
+                value={campaign.logoUrl || ''}
                 onChange={(logoUrl) => dispatch({ logoUrl })}
                 label="Logo"
                 disabled={loading || disabled}

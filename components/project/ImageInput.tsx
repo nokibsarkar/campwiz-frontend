@@ -34,7 +34,7 @@ const ImageInput = (props: ImageInputProps) => {
             options={options || []}
             getOptionLabel={(option) => option.title}
             filterSelectedOptions
-            value={options?.find((option) => option.url === props.value)}
+            value={options?.find((option) => option.url === props.value) || null}
             isOptionEqualToValue={(option, value) => option.url === value.url}
             onError={(e) => console.error(e)}
             disabled={props.disabled}

@@ -6,8 +6,11 @@ export interface Project {
     projectId: string;
     projectLeads: WikimediaUsername[];
     url: string;
+
 }
 export type ProjectCreate = Project;
+
+export type ProjectUpdate = Project & { projectLeads: WikimediaUsername[] };
 export const initialProjectCreate: ProjectCreate = {
     logoUrl: "",
     name: "",
@@ -16,6 +19,12 @@ export const initialProjectCreate: ProjectCreate = {
     url: ""
 }
 export const projectCreateReducer = (state: ProjectCreate, action: Partial<ProjectCreate>) => {
+    return {
+        ...state,
+        ...action
+    }
+}
+export const projectUpdateReducer = (state: ProjectUpdate, action: Partial<ProjectUpdate>) => {
     return {
         ...state,
         ...action
