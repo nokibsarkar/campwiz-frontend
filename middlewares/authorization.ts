@@ -2,11 +2,15 @@ import fetchSession from "@/server/session";
 import { NextRequest, NextResponse } from "next/server";
 
 const AuthorizationMiddleWare = async (req: NextRequest) => {
-    const session = await fetchSession();
-    if (session === null) {
-        const url = new URL('/user/login', req.nextUrl)
-        url.searchParams.set('next', req.nextUrl.pathname)
-        return NextResponse.redirect(url)
+    if (req.nextUrl.pathname.match(/\/$/))
+        return NextResponse.next()
+    if (!req.nextUrl.pathname.startsWith('/user/login')) {
+        const session = await fetchSession();
+        if (session === null) {
+            const url = new URL('/user/login', req.nextUrl)
+            url.searchParams.set('next', req.nextUrl.pathname)
+            return NextResponse.redirect(url)
+        }
     }
     return NextResponse.next()
 }
