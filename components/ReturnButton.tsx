@@ -1,10 +1,15 @@
 "use client"
-import Button from "@mui/material/Button";
+import Button, { ButtonProps } from "@mui/material/Button";
 import LeftArrowIcon from "@mui/icons-material/ArrowBackIosNew";
-
-const ReturnButton = () => {
+type ReturnButtonProps = {
+    disabled?: boolean
+    sx?: ButtonProps['sx']
+}
+const ReturnButton = ({ disabled, sx }: ReturnButtonProps) => {
     return (
         <Button
+            disabled={disabled}
+            sx={sx}
             onClick={(() => typeof window !== 'undefined' && window.history.back())}
             variant="text"
             color="primary"
