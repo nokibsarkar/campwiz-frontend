@@ -163,8 +163,8 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, hideAdvanced = fal
                     sx={{ m: 1, width: { xs: '100%', sm: '20%' } }}
                     disabled={loading || disabled}
                 >
-                    <MenuItem value={EvaluationType.BINARY}>Binary</MenuItem>
-                    <MenuItem value={EvaluationType.SCORE}>Score</MenuItem>
+                    <MenuItem value={EvaluationType.BINARY}>Yes / No</MenuItem>
+                    <MenuItem value={EvaluationType.SCORE}>Rating (1 - 5)</MenuItem>
                     <MenuItem value={EvaluationType.RANKING}>Ranking</MenuItem>
                 </TextField>
                 <FormControlLabel control={<Checkbox

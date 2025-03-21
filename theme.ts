@@ -1,6 +1,22 @@
 
 'use client';
 import { createTheme } from '@mui/material/styles';
+
+declare module '@mui/material/styles' {
+  interface Palette {
+    dalgona: Palette['primary'];
+  }
+  interface PaletteOptions {
+    dalgona?: PaletteOptions['primary'];
+  }
+}
+// Update the Button's color options to include a salmon option
+declare module '@mui/material/IconButton' {
+  interface IconButtonPropsColorOverrides {
+    dalgona: true;
+  }
+}
+
 // const lora = Lora({
 //   weight: ['400', '500', '700'],
 //   subsets: ['latin'],
@@ -21,6 +37,11 @@ const theme = createTheme({
     },
     primary: {
       main: '#006699'
+    },
+    dalgona: {
+      main: '#ad8851',
+      light: '#ad8851',
+      dark: '#ad8851'
     }
   },
   cssVariables: true,
