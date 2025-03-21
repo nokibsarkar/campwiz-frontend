@@ -43,10 +43,9 @@ export default async function RootLayout({
         options={{ key: 'css' }}
       >
         <ThemeProvider theme={theme}>
-          <Paper component='body' className={`h-full w-full p-0 m-0 overflow-auto ${roboto.className}`} sx={{ m: 0, p: 0 }} elevation={0}>
+          <Paper component='body' className={`h-full w-full p-0 m-0 overflow-auto ${roboto.className}`} sx={{ m: 0, p: 0, height: '100%', width: '100%', position: 'absolute' }} elevation={0}>
             {children}
           </Paper>
-
         </ThemeProvider>
       </AppRouterCacheProvider>
     </html>

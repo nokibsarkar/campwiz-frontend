@@ -1,6 +1,6 @@
 import { MediaType } from "@/types/round"
 import { Submission } from "@/types/submission"
-import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material"
+import { Table, TableBody, TableCell, TableRow, Typography } from "@mui/material"
 import React from "react"
 
 type DetailsProps = {
@@ -61,15 +61,8 @@ const MediaDetails = ({ submission }: DetailsProps) => {
 const SubmissionDetails = ({ submission }: DetailsProps) => {
     return (
         <div className="p-2">
-            <Typography variant="h6">{submission.title}</Typography>
+            <Typography variant="h6" sx={{ textAlign: 'center' }}>{submission.title}</Typography>
             <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell colSpan={2}>
-                            {submission.title}
-                        </TableCell>
-                    </TableRow>
-                </TableHead>
                 <TableBody>
                     <KeyValue name="Author" value={submission.author} />
                     <KeyValue name="Description" value={submission.description} />
