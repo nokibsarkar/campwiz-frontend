@@ -1,13 +1,18 @@
 "use client"
-import { Button } from "@mui/material";
-import { useRouter } from "next/navigation";
+import Button from "@mui/material/Button";
 import LeftArrowIcon from "@mui/icons-material/ArrowBackIosNew";
-const ReturnButton = ({ disabled = false, sx = {} }: { disabled?: boolean, sx?: { [k: string]: unknown } }) => {
-    const router = useRouter();
+
+const ReturnButton = () => {
     return (
-        <Button disabled={disabled} onClick={() => router.back()} variant="outlined" color="error" sx={{ m: 2, p: 1, ...sx }} startIcon={<LeftArrowIcon />}>
+        <Button
+            onClick={(() => typeof window !== 'undefined' && window.history.back())}
+            variant="text"
+            color="primary"
+            startIcon={<LeftArrowIcon />}
+            className="absolute left-4 z-20 m-1"
+        >
             Return
         </Button>
-    );
+    )
 }
 export default ReturnButton

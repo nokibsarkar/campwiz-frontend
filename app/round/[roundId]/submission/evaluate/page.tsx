@@ -26,6 +26,7 @@ const Page = async ({ params }: { params: Promise<{ roundId: string }> }) => {
         roundId={round.roundId}
         initailEvaluations={evaluations.data}
         next={evaluations.next}
+        campaignId={round.campaignId}
         limit={1}
     />
 }

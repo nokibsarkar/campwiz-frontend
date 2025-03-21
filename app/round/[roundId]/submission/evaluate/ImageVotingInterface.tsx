@@ -6,19 +6,17 @@ import loadNextEvaluation from "./loadNextEvaluation"
 import { Evaluation } from "@/types/submission"
 import { Button, LinearProgress } from "@mui/material"
 import SubmissionDetails from "@/app/submission/[submissionId]/_preview/Details"
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import submitVote from "./submitVote"
 import { EvaluationType } from "@/types/round"
-import BackWardArrowIcon from "@mui/icons-material/ArrowBackIosNew";
-const loadSubmission = async (url: string) => {
+import Link from "next/link"
+import ReturnButton from "@/components/ReturnButton"
+const prefetchSubmissionPreview = async (url: string) => {
     try {
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error(response.statusText);
         }
-        const headers = response.headers;
-        const contentType = headers.get('content-type');
-        console.log(contentType);
         const blob = await response.blob();
         const localURL = URL.createObjectURL(blob);
         return { url: localURL };
@@ -61,26 +59,41 @@ const VotingOrRatingInterface = ({ evaluation, setCurrentCursor }: { evaluation:
         </div>
     )
 }
-const ReturnButton = () => {
+
+const AllSet = ({ campaignId }: { roundId: string, campaignId: string }) => {
     return (
-        <Button
-            onClick={(() => typeof window !== 'undefined' && window.history.back())}
-            variant="text"
-            color="primary"
-            startIcon={<BackWardArrowIcon />}
-            className="absolute top-4 left-4 z-20"
-        >
-            Return
-        </Button>
+        <div className="flex flex-col items-center justify-center h-full w-full">
+            <Logo />
+            <div className="text-center">
+                <h1 className="text-2xl font-bold">All Set</h1>
+                <p className="text-lg">Seems like, You have no pending submissions to evaluate in this round.</p>
+                <div className="flex-row flex justify-center">
+                    <ReturnButton />
+                    <Link href={`/campaign/${campaignId}`}>
+                        <Button variant="contained" color="primary" sx={{ m: 1 }}>
+                            Go to Round
+                        </Button>
+                    </Link>
+                </div>
+            </div>
+        </div>
     )
 }
-const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, next: initialNext, limit = 1 }: { roundId: string, initailEvaluations: Evaluation[], next?: string, limit: number }) => {
+const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, next: initialNext, limit = 1, campaignId }: { roundId: string, initailEvaluations: Evaluation[], next?: string, limit: number, campaignId: string }) => {
     const [evaluations, setEvaluations] = React.useState<Evaluation[]>(initialEvaluations);
     const [next, setNext] = React.useState<string | undefined>(initialNext);
     const [currentCursor, setCurrentCursor] = React.useState(0);
     const [isLoading, setIsLoading] = React.useState(false);
     const currentEvalution = evaluations?.[currentCursor];
-    const nextEvaluation = evaluations?.[currentCursor + 1];
+    const [error, setError] = useState<string | null>(null);
+    // It would determine whether any more evaluations are available or not.
+    const [hasNextEvaluation, setHasNextEvauation] = useState<boolean>(evaluations?.length > currentCursor);
+    const nextEvaluation = hasNextEvaluation ? evaluations[currentCursor + 1] : null;
+    /*
+    First try to check if any nextEvaluation is available.
+    If avaliable, then check if the submission url is a http url. If it is, then load the submission.
+    When the cursor is at the end of the evaluations, then load the next evaluations and also load their submissions one by one.
+    **/
     useEffect(() => {
         if (!next) {
             return;
@@ -91,62 +104,76 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
         if (!limit) {
             return;
         }
-        if (currentCursor === evaluations.length - 1) {
-            setIsLoading(true);
-            loadNextEvaluation({ roundId, limit: 1, includeSubmissions: true, next }).then((resp) => {
-                if (!resp) {
-                    return null;
-                }
-                if ('detail' in resp) {
-                    return { error: resp.detail }
-                }
-                const evaluations = resp.data;
-                for (const evaluation of evaluations) {
-                    if (evaluation.submission) {
-                        const { submission } = evaluation;
-                        if (submission.url.startsWith('http')) {
-                            console.log('loading submission');
-                            loadSubmission(submission.url).then((res) => {
-                                if ('error' in res) {
-                                    console.error(res.error);
-                                    return;
-                                }
-                                submission.url = res.url;
-                            })
-                        }
-                    }
-                }
-                setNext(resp.next);
-                setEvaluations([...evaluations, ...evaluations]);
-            }).finally(() => {
-                setIsLoading(false);
-            })
+        if (!hasNextEvaluation) {
+            return;
         }
-    }, [currentCursor, evaluations.length, limit, next, roundId]);
-    useEffect(() => {
-        if (nextEvaluation) {
-            if (nextEvaluation.submission) {
-                const { submission } = nextEvaluation;
-                if (submission.url.startsWith('http')) {
-                    console.log('loading next submission');
-                    loadSubmission(submission.url).then((res) => {
-                        if ('error' in res) {
-                            console.error(res.error);
-                            return;
-                        }
-                        submission.url = res.url;
-                    })
-                }
+        if (currentCursor < evaluations.length - 1) {
+            return;
+        }
+        setIsLoading(true);
+        loadNextEvaluation({ roundId, limit, next }).then(async (response) => {
+            if (!response) {
+                return;
             }
+            if ('detail' in response) {
+                setError(response.detail);
+                return;
+            }
+            const addedEvaluations = response.data;
+
+            setEvaluations((evaluations) => [...evaluations, ...addedEvaluations]);
+            setNext(response.next);
+            setHasNextEvauation(response.next !== undefined && response.next !== next)
+            setIsLoading(false);
+        });
+        setIsLoading(false);
+    }, [currentCursor, evaluations.length, hasNextEvaluation, limit, next, roundId]);
+    useEffect(() => {
+        if (!nextEvaluation)
+            return;
+        if (!nextEvaluation.submission)
+            return;
+        if (!nextEvaluation.submission.url)
+            return;
+        if (nextEvaluation.submission.url.startsWith("http")) {
+            console.log("Prefetching the next submission preview : ", nextEvaluation.submission.url);
+            prefetchSubmissionPreview(nextEvaluation.submission.url).then((response) => {
+                if (response.error)
+                    return;
+                if (!response.url)
+                    return;
+                setEvaluations((evaluations) => {
+                    const updatedEvaluations = evaluations.map((evaluation, index) => {
+                        if (!evaluation.submission)
+                            return evaluation;
+                        if (index === currentCursor + 1)
+                            return {
+                                ...evaluation,
+                                submission: {
+                                    ...evaluation.submission,
+                                    url: response.url,
+                                    submissionId: evaluation.submission.submissionId || '' // Ensure submissionId is always a string
+                                }
+                            }
+                        return evaluation;
+                    })
+                    return updatedEvaluations;
+                })
+            }
+            )
         }
-    }, [nextEvaluation,])
+    }, [currentCursor, nextEvaluation]);
+    if (!currentEvalution)
+        return <AllSet roundId={roundId} campaignId={campaignId} />
+
     return (
         <div className="flex sm:flex-row h-full flex-col  w-full">
             <div className="flex flex-row items-start relative sm:h-full w-full h-16 sm:w-1/4 overflow-y-auto">
                 <ReturnButton />
                 {isLoading && <LinearProgress />}
+                {error && <p>{error}</p>}
             </div>
-            {!isLoading && evaluations && (
+            {evaluations && (
                 [EvaluationType.BINARY, EvaluationType.SCORE].includes(currentEvalution.type) &&
                 <VotingOrRatingInterface
                     evaluation={currentEvalution}
