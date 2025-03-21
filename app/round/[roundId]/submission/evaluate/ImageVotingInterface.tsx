@@ -6,11 +6,13 @@ import loadNextEvaluation from "./loadNextEvaluation"
 import { Evaluation } from "@/types/submission"
 import { Button, LinearProgress } from "@mui/material"
 import SubmissionDetails from "@/app/submission/[submissionId]/_preview/Details"
-import React, { useEffect, useState } from "react"
+import React, { lazy, Suspense, useEffect, useState } from "react"
 import submitVote from "./submitVote"
-import { EvaluationType } from "@/types/round"
+import { EvaluationType, MediaType } from "@/types/round"
 import Link from "next/link"
 import ReturnButton from "@/components/ReturnButton"
+const VideoApp = lazy(() => import("@/app/submission/[submissionId]/_preview/videoplayer"));
+const AudioPlayer = lazy(() => import("@/app/submission/[submissionId]/_preview/audioPlayer"));
 const prefetchSubmissionPreview = async (url: string) => {
     try {
         const response = await fetch(url);
@@ -52,8 +54,21 @@ const VotingOrRatingInterface = ({ evaluation, setCurrentCursor, }: { evaluation
         <div className="relative h-11/12 sm:h-full w-full sm:w-3/4 overflow-y-auto block">
             <div className="h-3/4 flex flex-col mb-1 justify-between">
                 <Logo />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={submission.url || '/red-hill.svg'} alt={submission.title} className="mx-auto block h-full w-auto" />
+
+                {
+                    // eslint-disable-next-line @next/next/no-img-element
+                    submission.mediatype === MediaType.IMAGE && <img src={submission.url || '/red-hill.svg'} alt={submission.title} className="mx-auto block h-full w-auto" />
+                }
+                {submission.mediatype === MediaType.VIDEO &&
+                    <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
+                        <VideoApp poster={submission.thumburl} src={submission.url} />
+                    </Suspense>
+                }
+                {submission.mediatype === MediaType.AUDIO &&
+                    <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
+                        <AudioPlayer src={submission.url} title={submission.title} author={submission.author} />
+                    </Suspense>
+                }
                 {evaluation.type === EvaluationType.BINARY &&
                     <BinaryVotingInterface goNext={() => setCurrentCursor((cursor) => cursor + 1)} goPrevious={() => setCurrentCursor((cursor) => cursor - 1)} submitScore={submit} score={evaluation.score} saving={saving} />
                 }
@@ -144,6 +159,9 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
         if (!nextEvaluation.submission)
             return;
         if (!nextEvaluation.submission.url)
+            return;
+        // only prefetch image previews
+        if (nextEvaluation.submission.mediatype !== MediaType.IMAGE)
             return;
         if (nextEvaluation.submission.url.startsWith("http")) {
             console.log("Prefetching the next submission preview : ", nextEvaluation.submission.url);

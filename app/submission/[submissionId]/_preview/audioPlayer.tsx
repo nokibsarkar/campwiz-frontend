@@ -1,7 +1,7 @@
 "use client";
 import React, { createRef, useEffect } from 'react';
 import type H5AudioPlayer from 'react-h5-audio-player';
-import AudioPlayer from 'react-h5-audio-player';
+import AudioPlayerRaw from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 // import 'react-h5-audio-player/lib/styles.less' Use LESS
 // import 'react-h5-audio-player/src/styles.scss' Use SASS
@@ -55,7 +55,7 @@ export const AudioApp = ({ src }: AudioAppProps) => {
         ]}
         gap={4}
     />}
-        <AudioPlayer
+        <AudioPlayerRaw
             src={src}
             ref={audioRef}
             crossOrigin='anonymous'
@@ -66,7 +66,7 @@ export const AudioApp = ({ src }: AudioAppProps) => {
 }
 
 
-function MediaControlCard({ src, title, author }: AudioAppProps) {
+function AudioPlayer({ src, title, author }: AudioAppProps) {
     const theme = useTheme();
     const audioRef = createRef<HTMLAudioElement>();
     const [mAudio, setAudio] = React.useState<HTMLAudioElement | null>(null);
@@ -146,4 +146,4 @@ function MediaControlCard({ src, title, author }: AudioAppProps) {
 }
 
 
-export default MediaControlCard
+export default AudioPlayer
