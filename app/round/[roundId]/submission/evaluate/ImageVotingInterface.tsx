@@ -24,16 +24,26 @@ const prefetchSubmissionPreview = async (url: string) => {
         return { error: (error as Error).message }
     }
 }
-const VotingOrRatingInterface = ({ evaluation, setCurrentCursor }: { evaluation: Evaluation, roundId: string, setCurrentCursor: React.Dispatch<React.SetStateAction<number>> }) => {
+const VotingOrRatingInterface = ({ evaluation, setCurrentCursor, }: { evaluation: Evaluation, roundId: string, setCurrentCursor: React.Dispatch<React.SetStateAction<number>> }) => {
+    const [saving, setSaving] = useState(false);
     const submit = async (score: number) => {
-        const response = await submitVote(evaluation.evaluationId, score);
-        if (!response) {
-            return null;
+        try {
+            if (saving) return;
+            setSaving(true);
+
+            const response = await submitVote(evaluation.evaluationId, score);
+            if (!response) {
+                return null;
+            }
+            if ('detail' in response) {
+                return { error: response.detail }
+            }
+            setCurrentCursor((cursor) => cursor + 1);
+        } catch (error) {
+            return { error: (error as Error).message }
+        } finally {
+            setSaving(false);
         }
-        if ('detail' in response) {
-            return { error: response.detail }
-        }
-        setCurrentCursor((cursor) => cursor + 1);
     }
     if (!evaluation) return null;
     const { submission } = evaluation;
@@ -45,11 +55,11 @@ const VotingOrRatingInterface = ({ evaluation, setCurrentCursor }: { evaluation:
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={submission.url || '/red-hill.svg'} alt={submission.title} className="mx-auto block h-full w-auto" />
                 {evaluation.type === EvaluationType.BINARY &&
-                    <BinaryVotingInterface goNext={() => setCurrentCursor((cursor) => cursor + 1)} goPrevious={() => setCurrentCursor((cursor) => cursor - 1)} submitScore={submit} score={evaluation.score} />
+                    <BinaryVotingInterface goNext={() => setCurrentCursor((cursor) => cursor + 1)} goPrevious={() => setCurrentCursor((cursor) => cursor - 1)} submitScore={submit} score={evaluation.score} saving={saving} />
                 }
                 {
                     evaluation.type === EvaluationType.SCORE &&
-                    <RatingVotingInterface score={evaluation.score} goNext={() => setCurrentCursor((cursor) => cursor + 1)} goPrevious={() => setCurrentCursor((cursor) => cursor - 1)} submitScore={submit} />
+                    <RatingVotingInterface score={evaluation.score} goNext={() => setCurrentCursor((cursor) => cursor + 1)} goPrevious={() => setCurrentCursor((cursor) => cursor - 1)} submitScore={submit} saving={saving} />
                 }
 
             </div>

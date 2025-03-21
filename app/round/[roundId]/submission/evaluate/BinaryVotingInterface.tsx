@@ -4,21 +4,24 @@ import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import CrossIcon from '@/public/cross.svg';
 import OkIcon from '@/public/ok.svg';
+import OKoutlinedICON from '@/public/ok-outlined.svg';
+import CrossOutlinedICON from '@/public/cross-outlined.svg';
 import Image from "next/image";
 import type { VotingInterfaceProps } from './VotingInterface';
-const BinaryVotingInterface = ({ goNext, goPrevious, submitScore }: VotingInterfaceProps) => {
+const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, saving, score }: VotingInterfaceProps) => {
+    const [currentScore, setCurrentScore] = React.useState(score)
     return (
         <div className="flex justify-center">
-            <IconButton color="primary" size="large" onClick={goPrevious}>
+            <IconButton color="primary" size="large" onClick={goPrevious} disabled={saving} loading={saving}>
                 <SkipPreviousIcon />
             </IconButton>
-            <IconButton color="primary" size="large" onClick={() => submitScore(0)}>
-                <Image src={CrossIcon.src} alt="cross" width={24} height={24} />
+            <IconButton color="primary" size="large" onClick={() => { setCurrentScore(0); submitScore(0); }} disabled={saving} loading={saving}>
+                <Image src={currentScore === 0 ? CrossIcon.src : CrossOutlinedICON.src} alt="no" width={24} height={24} />
             </IconButton>
-            <IconButton color="primary" size="large" onClick={() => submitScore(100)}>
-                <Image src={OkIcon.src} alt="ok" width={24} height={24} />
+            <IconButton color="primary" size="large" onClick={() => { setCurrentScore(100); submitScore(100); }} disabled={saving} loading={saving}>
+                <Image src={currentScore === 100 ? OkIcon.src : OKoutlinedICON.src} alt="yes" width={24} height={24} />
             </IconButton>
-            <IconButton color="primary" size="large" onClick={goNext}>
+            <IconButton color="primary" size="large" onClick={goNext} disabled={saving} loading={saving}>
                 <SkipNextIcon />
             </IconButton>
         </div>

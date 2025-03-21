@@ -3,4 +3,5 @@ export type VotingInterfaceProps = {
     goPrevious: () => void;
     submitScore: (score: number) => void;
     score: number | null;
+    saving: boolean;
 }
