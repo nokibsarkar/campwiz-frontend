@@ -4,35 +4,6 @@ type VideoAppProps = {
     poster: string;
 }
 const VideoApp = ({ src, poster }: VideoAppProps) => {
-    // onPlayerReady(player: { play: () => void }) {
-    //     console.log("Player is ready: ", player);
-    //     this.player = player;
-    // }
-
-    // onVideoPlay(duration: number) {
-    //     console.log("Video played at: ", duration);
-    // }
-
-    // onVideoPause(duration: number) {
-    //     console.log("Video paused at: ", duration);
-    // }
-
-    // onVideoTimeUpdate(duration: number) {
-    //     console.log("Time updated: ", duration);
-    // }
-
-    // onVideoSeeking(duration: number) {
-    //     console.log("Video seeking: ", duration);
-    // }
-
-    // onVideoSeeked(from: number, to: number) {
-    //     console.log(`Video seeked from ${from} to ${to}`);
-    // }
-
-    // onVideoEnd() {
-    //     console.log("Video ended");
-    // }
-
     return (
         <div style={{ maxHeight: '400px', maxWidth: '700px', margin: 'auto' }}>
             <VideoPlayer
