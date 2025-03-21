@@ -39,7 +39,6 @@ const VideoApp = ({ src, poster }: VideoAppProps) => {
                 controls={true}
                 src={src}
                 poster={poster}
-
             // style={{ width: "100%", height: "auto", maxWidth: '900px', maxHeight: '400px' }}
             // className='h-full'
             // onReady={this.onPlayerReady.bind(this)}
