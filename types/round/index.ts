@@ -94,7 +94,7 @@ export type RoundFilter = {
 } & CommonFilter
 export interface SubmissionResultSummary {
     readonly averageScore: number;
-    readonly submissionCount: number;
+    submissionCount: number;
 }
 export interface SubmissionResult {
     readonly author: string;
