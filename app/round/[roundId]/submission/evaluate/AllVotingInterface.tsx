@@ -1,7 +1,5 @@
 "use client"
 import Logo from "@/components/Logo"
-import BinaryVotingInterface from "./BinaryVotingInterface"
-import RatingVotingInterface from "./RatingVotingInterface"
 import loadNextEvaluation from "./loadNextEvaluation"
 import { Evaluation } from "@/types/submission"
 import { Button, LinearProgress } from "@mui/material"
@@ -13,6 +11,9 @@ import Link from "next/link"
 import ReturnButton from "@/components/ReturnButton"
 const VideoApp = lazy(() => import("@/app/submission/[submissionId]/_preview/videoplayer"));
 const AudioPlayer = lazy(() => import("@/app/submission/[submissionId]/_preview/audioPlayer"));
+const RankingVotingInterface = lazy(() => import("./RankingVotingInterface"));
+const BinaryVotingInterface = lazy(() => import("./BinaryVotingInterface"));
+const RatingVotingInterface = lazy(() => import("./RatingVotingInterface"));
 const prefetchSubmissionPreview = async (url: string) => {
     try {
         const response = await fetch(url);
@@ -70,11 +71,15 @@ const VotingOrRatingInterface = ({ evaluation, setCurrentCursor, }: { evaluation
                     </Suspense>
                 }
                 {evaluation.type === EvaluationType.BINARY &&
-                    <BinaryVotingInterface goNext={() => setCurrentCursor((cursor) => cursor + 1)} goPrevious={() => setCurrentCursor((cursor) => cursor - 1)} submitScore={submit} score={evaluation.score} saving={saving} />
+                    <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
+                        <BinaryVotingInterface goNext={() => setCurrentCursor((cursor) => cursor + 1)} goPrevious={() => setCurrentCursor((cursor) => cursor - 1)} submitScore={submit} score={evaluation.score} saving={saving} />
+                    </Suspense>
                 }
                 {
                     evaluation.type === EvaluationType.SCORE &&
-                    <RatingVotingInterface score={evaluation.score} goNext={() => setCurrentCursor((cursor) => cursor + 1)} goPrevious={() => setCurrentCursor((cursor) => cursor - 1)} submitScore={submit} saving={saving} />
+                    <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
+                        <RatingVotingInterface score={evaluation.score} goNext={() => setCurrentCursor((cursor) => cursor + 1)} goPrevious={() => setCurrentCursor((cursor) => cursor - 1)} submitScore={submit} saving={saving} />
+                    </Suspense>
                 }
 
             </div>
@@ -145,7 +150,6 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
                 return;
             }
             const addedEvaluations = response.data;
-
             setEvaluations((evaluations) => [...evaluations, ...addedEvaluations]);
             setNext(response.next);
             setHasNextEvauation(response.next !== undefined && response.next !== next)
@@ -209,6 +213,20 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
                     setCurrentCursor={setCurrentCursor}
                 />
             )}
+            {currentEvalution.type === EvaluationType.RANKING &&
+                <Suspense fallback={<LinearProgress />}>
+                    <RankingVotingInterface
+                        goNext={() => setCurrentCursor((cursor) => cursor + 1)}
+                        goPrevious={() => setCurrentCursor((cursor) => cursor - 1)}
+                        saving={false}
+                        score={currentEvalution.score}
+                        submitScore={() => {
+                            console.log("submitting ranking");
+                        }}
+                        key={currentEvalution.evaluationId}
+                    />
+                </Suspense>
+            }
         </div>
     )
 }
