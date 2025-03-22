@@ -9,7 +9,8 @@ import CrossOutlinedICON from '@/public/cross-outlined.svg';
 import Image from "next/image";
 import type { VotingInterfaceProps } from './VotingInterface';
 const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, saving, score }: VotingInterfaceProps) => {
-    const [currentScore, setCurrentScore] = React.useState(score)
+    const [currentScore, setCurrentScore] = React.useState(score);
+    console.log('Current Score', currentScore)
     return (
         <div className="flex justify-center">
             <IconButton color="primary" size="large" onClick={goPrevious} disabled={saving} loading={saving}>

@@ -123,16 +123,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
     When the cursor is at the end of the evaluations, then load the next evaluations and also load their submissions one by one.
     **/
     useEffect(() => {
-        if (!next) {
-            return;
-        }
-        if (!roundId) {
-            return;
-        }
-        if (!limit) {
-            return;
-        }
-        if (!hasNextEvaluation) {
+        if (!next || !roundId || !limit || !hasNextEvaluation || !evaluations || !evaluations.length) {
             return;
         }
         if (currentCursor < evaluations.length - 1) {
@@ -150,11 +141,11 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
             const addedEvaluations = response.data;
             setEvaluations((evaluations) => [...evaluations, ...addedEvaluations]);
             setNext(response.next);
-            setHasNextEvauation(response.next !== undefined && response.next !== next)
+            setHasNextEvauation(response.next !== undefined && response.next !== next && response.next !== "");
             setIsLoading(false);
         });
         setIsLoading(false);
-    }, [currentCursor, evaluations.length, hasNextEvaluation, limit, next, roundId]);
+    }, [currentCursor, evaluations, evaluations.length, hasNextEvaluation, limit, next, roundId]);
     useEffect(() => {
         if (!nextEvaluation)
             return;
