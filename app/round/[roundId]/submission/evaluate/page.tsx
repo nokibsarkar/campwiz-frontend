@@ -1,6 +1,6 @@
 
 import fetchAPIFromBackendSingleWithErrorHandling from "@/server";
-import EvaluationManager from "./ImageVotingInterface"
+import EvaluationManager from "./AllVotingInterface"
 import loadNextEvaluation from "./loadNextEvaluation";
 import { Round } from "@/types/round";
 
