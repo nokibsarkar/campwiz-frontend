@@ -11,9 +11,12 @@ import { Add } from "@mui/icons-material";
 import React from 'react';
 import { Round } from '@/types/round';
 import { Campaign } from '@/types';
+import PublishIcon from '@mui/icons-material/Publish';
 import SelectedRoundActionStatus from './SelectedActionStatus';
 import ExportToCSVButton from './ExportButton';
 import ChangeStatusButton from './ChangeStatusButton';
+import DeleteButton from './DeleteButton';
+
 const CreateRoundButton = ({ onClick }: { onClick: () => void }) => (
     <Button
         startIcon={<Add />}
@@ -57,7 +60,6 @@ const LatestRoundActions = ({ latestRound, setAction, isJury, judgableLink, refr
             </Button>
         </Link>)
     }
-    console.log("isCoordinator", isCoordinator)
     if (isCoordinator) {
         if (!latestRound) {
             buttons.push(<CreateRoundButton onClick={() => setAction(SelectedRoundActionStatus.creating)} />)
@@ -78,13 +80,15 @@ const LatestRoundActions = ({ latestRound, setAction, isJury, judgableLink, refr
                     onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
                     refresh={refresh}
                 />);
-
-
             } else if (latestRound.status === RoundStatus.PAUSED) {
+                buttons.push(<DeleteButton
+                    roundId={latestRound.roundId}
+                    refresh={refresh}
+                />);
                 if (latestRound.totalSubmissions == 0) {
                     buttons.push(
                         <Button
-                            startIcon={<StopIcon />}
+                            startIcon={<PublishIcon />}
                             variant="contained"
                             color="primary"
                             onClick={() => setAction(SelectedRoundActionStatus.importing)}

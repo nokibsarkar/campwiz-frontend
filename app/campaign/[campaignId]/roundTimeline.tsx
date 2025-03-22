@@ -11,6 +11,7 @@ import ImportFromRoundDialog from "./round/import/round/_page";
 import LatestRoundActions from "./LatestRoundAction";
 import { LinearProgress } from "@mui/material";
 import SelectedRoundActionStatus from "./SelectedActionStatus";
+import ImportFromCommonsDialog from "./round/import/commons/_page";
 const RoundCreate = React.lazy(() => import("./RoundCreate"));
 const RoundEdit = React.lazy(() => import("./RoundEdit"));
 type RoundTimelineProps = {
@@ -31,7 +32,6 @@ function RoundTimeline({ rounds, campaign, session, isCoordinator }: RoundTimeli
     }
     const [currentRound, setCurrentRound] = React.useState<Round | null>(rounds.length > 0 ? rounds[0] : null);
     const allowedToVote = currentRound !== null && (currentRound.isPublicJury || (currentRound.jury !== null && session !== null && Object.values(currentRound.jury).includes(session.username)));
-    console.log("allowedToVote", currentRound?.jury)
     const [selectedRoundAction, setSelectedRoundAction] = React.useState<SelectedRoundActionStatus>(SelectedRoundActionStatus.none);
     return (
         <Box sx={{ ml: 1 }} component="div">
@@ -58,8 +58,8 @@ function RoundTimeline({ rounds, campaign, session, isCoordinator }: RoundTimeli
                             setSelectedRoundAction(SelectedRoundActionStatus.none);
                             refresh();
                         }}
-                    /> : <ImportFromRoundDialog
-                        round={currentRound}
+                    /> : <ImportFromCommonsDialog
+                        roundId={currentRound.roundId}
                         onClose={() => {
                             setSelectedRoundAction(SelectedRoundActionStatus.none);
                             refresh();
