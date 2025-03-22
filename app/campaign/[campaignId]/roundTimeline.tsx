@@ -32,14 +32,14 @@ function RoundTimeline({ rounds, campaign, session, isCoordinator }: RoundTimeli
         }
     }
     const [currentRound, setCurrentRound] = React.useState<Round | null>(rounds.length > 0 ? rounds[0] : null);
-    const allowedToVote = currentRound !== null && (currentRound.isPublicJury || (currentRound.jury !== null && session !== null && Object.values(currentRound.jury).includes(session.username)));
+    const isUserEligibleToVote = currentRound !== null && currentRound.jury !== null && session !== null && Object.values(currentRound.jury).includes(session.username);
     const [selectedRoundAction, setSelectedRoundAction] = React.useState<SelectedRoundActionStatus>(SelectedRoundActionStatus.none);
     return (
         <Box sx={{ ml: 1 }} component="div">
             <LatestRoundActions
                 latestRound={currentRound} campaign={campaign}
                 action={selectedRoundAction} setAction={setSelectedRoundAction}
-                isJury={allowedToVote}
+                isJury={isUserEligibleToVote}
                 judgableLink={`/round/${currentRound?.roundId}/submission/evaluate`}
                 refresh={refresh}
                 isCoordinator={isCoordinator}
@@ -56,7 +56,12 @@ function RoundTimeline({ rounds, campaign, session, isCoordinator }: RoundTimeli
                     currentRound?.dependsOnRoundId ? <ImportFromRoundDialog
                         round={currentRound}
                         afterImport={() => {
-                            setSelectedRoundAction(SelectedRoundActionStatus.distributing);
+                            if (currentRound.isPublicJury) {
+                                setSelectedRoundAction(SelectedRoundActionStatus.none);
+                                refresh();
+                            } else {
+                                setSelectedRoundAction(SelectedRoundActionStatus.distributing);
+                            }
                         }}
                         onClose={() => {
                             setSelectedRoundAction(SelectedRoundActionStatus.none);
@@ -65,7 +70,12 @@ function RoundTimeline({ rounds, campaign, session, isCoordinator }: RoundTimeli
                     /> : <ImportFromCommonsDialog
                         round={currentRound}
                         afterImport={() => {
-                            setSelectedRoundAction(SelectedRoundActionStatus.distributing);
+                            if (currentRound.isPublicJury) {
+                                setSelectedRoundAction(SelectedRoundActionStatus.none);
+                                refresh();
+                            } else {
+                                setSelectedRoundAction(SelectedRoundActionStatus.distributing);
+                            }
                         }}
                         onClose={() => {
                             setSelectedRoundAction(SelectedRoundActionStatus.none);

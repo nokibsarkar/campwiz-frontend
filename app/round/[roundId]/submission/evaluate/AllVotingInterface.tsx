@@ -8,7 +8,6 @@ import React, { lazy, Suspense, useEffect, useState } from "react"
 import submitVote from "./submitVote"
 import { EvaluationType, MediaType } from "@/types/round"
 import Link from "next/link"
-import ReturnButton from "@/components/ReturnButton"
 const VideoApp = lazy(() => import("@/app/submission/[submissionId]/_preview/videoplayer"));
 const AudioPlayer = lazy(() => import("@/app/submission/[submissionId]/_preview/audioPlayer"));
 const RankingVotingInterface = lazy(() => import("./RankingVotingInterface"));
@@ -98,7 +97,6 @@ const AllSet = ({ campaignId }: { roundId: string, campaignId: string }) => {
                 <h1 className="text-2xl font-bold">All Set</h1>
                 <p className="text-lg">Seems like, You have no pending submissions to evaluate in this round.</p>
                 <div className="flex-row flex justify-center">
-                    <ReturnButton />
                     <Link href={`/campaign/${campaignId}`}>
                         <Button variant="contained" color="primary" sx={{ m: 1 }}>
                             Go to Round
@@ -201,7 +199,6 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
     return (
         <div className="flex sm:flex-row h-full flex-col  w-full">
             <div className="flex flex-row items-start relative sm:h-full w-full h-16 sm:w-1/4 overflow-y-auto">
-                <ReturnButton />
                 {isLoading && <LinearProgress />}
                 {error && <p>{error}</p>}
             </div>
