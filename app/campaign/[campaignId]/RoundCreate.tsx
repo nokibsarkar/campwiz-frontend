@@ -80,8 +80,8 @@ const CreateRound = ({ campaignId, onClose }: { campaignId: string, onAfterCreat
         setTaskId(distributionTask.data.taskId);
     }
     return (createdRound && stage === Stage.IMPORT) ?
-        (createdRound.dependsOnRoundId ? <ImportFromRoundDialog round={createdRound} onClose={distribute} /> :
-            <ImportFromCommonsDialog roundId={createdRound.roundId} onClose={distribute} />
+        (createdRound.dependsOnRoundId ? <ImportFromRoundDialog round={createdRound} afterImport={distribute} onClose={onClose} /> :
+            <ImportFromCommonsDialog round={createdRound} onClose={onClose} afterImport={distribute} />
         ) : (<Dialog open={true}
             sx={{
                 width: {
