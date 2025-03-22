@@ -54,6 +54,7 @@ const ProjectDashboard = async () => {
         }
         myProject = myProjectResponse.data;
     }
+    const otherProjects = projects.filter(project => project.projectId !== projectId) || [];
     return <div>
         <Logo />
         <div className="flex flex-row justify-between p-5">
@@ -76,7 +77,7 @@ const ProjectDashboard = async () => {
             </Suspense>
         </div>
         }
-        <div className="
+        {otherProjects.length > 0 && <div className="
             flex flex-row flex-wrap
             gap-4
             p-5
@@ -86,7 +87,7 @@ const ProjectDashboard = async () => {
         ">
             <h2 className="text-xl font-bold">Other Projects</h2>
             {/* <div className="flex flex-row flex-wrap"> */}
-            {projects.filter(project => project.projectId !== projectId).map(project => (
+            {otherProjects.map(project => (
                 <SinglProjectChip
                     key={project.projectId}
                     project={project}
@@ -94,6 +95,7 @@ const ProjectDashboard = async () => {
             ))}
             {/* </div> */}
         </div>
+        }
     </div>
 }
 export default ProjectDashboard;

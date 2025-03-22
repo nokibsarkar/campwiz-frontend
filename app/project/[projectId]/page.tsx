@@ -45,8 +45,7 @@ const Dashboard = async ({ params }: DashboardProps) => {
 		return <div>{campaignListResponse.detail}</div>
 	}
 	const campaigns = campaignListResponse.data;
-	return (<Box sx={{ display: "flex", bgcolor: "white", minHeight: "100vh" }}>
-		{/* Main Content */}
+	return (<div style={{ display: "flex", backgroundColor: "white", minHeight: "100vh" }}>
 		<Box
 			component="main"
 			sx={{
@@ -183,7 +182,7 @@ const Dashboard = async ({ params }: DashboardProps) => {
 				</Grid>
 			</Container>
 		</Box>
-	</Box>
+	</div>
 	);
 };
 

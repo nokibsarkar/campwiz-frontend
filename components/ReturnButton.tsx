@@ -1,15 +1,19 @@
 "use client"
 import Button, { ButtonProps } from "@mui/material/Button";
 import LeftArrowIcon from "@mui/icons-material/ArrowBackIosNew";
+import { usePathname } from "next/navigation";
 type ReturnButtonProps = {
     disabled?: boolean
-    sx?: ButtonProps['sx']
+    sx?: ButtonProps['sx'],
+    hiddenIn?: string[]
 }
-const ReturnButton = ({ disabled, sx }: ReturnButtonProps) => {
+const ReturnButton = ({ disabled, sx, hiddenIn = [] }: ReturnButtonProps) => {
+    const pathName = usePathname()
+    if (hiddenIn.includes(pathName)) return null
     return (
         <Button
             disabled={disabled}
-            sx={sx}
+            sx={{ m: 1, cursor: 'pointer', display: 'inline-block', ...(sx || {}), zIndex: 20 }}
             onClick={(() => typeof window !== 'undefined' && window.history.back())}
             variant="text"
             color="primary"
