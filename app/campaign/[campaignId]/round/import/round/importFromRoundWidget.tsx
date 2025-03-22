@@ -15,9 +15,22 @@ type ImportFromRoundWidgetProps = {
 }
 const ImportFromRoundWidget = ({ currentRound, importing, setImporting, afterImport }: ImportFromRoundWidgetProps) => {
     const [taskID, setTaskID] = useState('')
-    const [scores, setScores] = useState<string>('')
+    const [score, setScore] = useState<string>('')
     // const [mediaType, setMediaType] = useState<string>('')
-    const { data: summaryResponse, isLoading, } = useSWR(`/round/${currentRound.dependsOnRoundId}/results/summary`, fetchAPIFromBackendListWithErrorHandling<SubmissionResultSummary>, {
+    const { data: summaryResponse, isLoading, } = useSWR(`/round/${currentRound.dependsOnRoundId}/results/summary`, async (url: string) => {
+        const resp = await fetchAPIFromBackendListWithErrorHandling<SubmissionResultSummary>(url)
+        if ('data' in resp) {
+            const { data: summary } = resp
+            // make all the scores cumulative
+            let cumulative = 0
+            for (let i = 0; i < summary.length; i++) {
+                cumulative += summary[i].submissionCount
+                summary[i].submissionCount = cumulative
+            }
+            resp.data = summary
+        }
+        return resp
+    }, {
         revalidateOnFocus: true,
         revalidateOnReconnect: true,
         revalidateOnMount: true,
@@ -53,19 +66,20 @@ const ImportFromRoundWidget = ({ currentRound, importing, setImporting, afterImp
     return (taskID ? <StatusThingy taskId={taskID} onSuccess={afterImport} /> : <Suspense fallback={<LottieWrapper src="/lottie/importing.lottie" />}>
         <div className="flex flex-col gap-4">
             <TextField
-                label="Score"
-                placeholder="Select a score"
+                label="Minimum Passing Score"
+                placeholder="Select a score above which submissions will be imported"
                 select
                 fullWidth
-                value={scores}
+                value={score}
                 sx={{ my: 1 }}
                 variant="outlined"
-                onChange={(e) => setScores(e.target.value)}
+                onChange={(e) => setScore(e.target.value)}
+                helperText={score !== '' && `Importing submissions with score above ${score}% (${summaryScore.find((submission) => submission.averageScore >= parseInt(score))?.submissionCount || 0} media)`}
             >
-                {summaryScore.map((submission, i) => <MenuItem key={i} value={submission.averageScore}>{submission.averageScore}% - {submission.submissionCount}</MenuItem>)}
+                {summaryScore.map((submission, i) => <MenuItem key={i} value={submission.averageScore}>{submission.averageScore}% - {submission.submissionCount} Files</MenuItem>)}
             </TextField>
             <Button
-                onClick={() => startImporting(scores, currentRound.dependsOnRoundId,)}
+                onClick={() => startImporting(score, currentRound.dependsOnRoundId,)}
                 disabled={importing}
                 // sx={{ my: 1 }}
                 loading={importing}
