@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import IconButton from '@mui/material/IconButton';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
@@ -8,9 +8,11 @@ import OKoutlinedICON from '@/public/ok-outlined.svg';
 import CrossOutlinedICON from '@/public/cross-outlined.svg';
 import Image from "next/image";
 import type { VotingInterfaceProps } from './VotingInterface';
-const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, saving, score }: VotingInterfaceProps) => {
-    const [currentScore, setCurrentScore] = React.useState(score);
-    console.log('Current Score', currentScore)
+const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, saving, evaluation }: VotingInterfaceProps) => {
+    const [currentScore, setCurrentScore] = React.useState<number | null>(evaluation.score)
+    useEffect(() => {
+        setCurrentScore(evaluation.score)
+    }, [evaluation]);
     return (
         <div className="flex justify-center">
             <IconButton color="primary" size="large" onClick={goPrevious} disabled={saving} loading={saving}>

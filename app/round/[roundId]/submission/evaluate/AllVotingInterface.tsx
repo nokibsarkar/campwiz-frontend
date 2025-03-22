@@ -50,11 +50,11 @@ const VotingOrRatingInterface = ({ evaluation, setCurrentCursor, }: { evaluation
     if (!evaluation) return null;
     const { submission } = evaluation;
     if (!submission) return null;
+
     return (
         <div className="relative h-11/12 sm:h-full w-full sm:w-3/4 overflow-y-auto block">
             <div className="h-3/4 flex flex-col mb-1 justify-between">
                 <Logo />
-
                 {
                     // eslint-disable-next-line @next/next/no-img-element
                     submission.mediatype === MediaType.IMAGE && <img src={submission.url || '/red-hill.svg'} alt={submission.title} className="mx-auto block h-full w-auto" />
@@ -71,13 +71,19 @@ const VotingOrRatingInterface = ({ evaluation, setCurrentCursor, }: { evaluation
                 }
                 {evaluation.type === EvaluationType.BINARY &&
                     <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
-                        <BinaryVotingInterface goNext={() => setCurrentCursor((cursor) => cursor + 1)} goPrevious={() => setCurrentCursor((cursor) => cursor - 1)} submitScore={submit} score={evaluation.score} saving={saving} />
+                        <BinaryVotingInterface
+                            goNext={() => setCurrentCursor((cursor) => cursor + 1)}
+                            goPrevious={() => setCurrentCursor((cursor) => cursor - 1)}
+                            submitScore={submit}
+                            evaluation={evaluation}
+                            saving={saving}
+                        />
                     </Suspense>
                 }
                 {
                     evaluation.type === EvaluationType.SCORE &&
                     <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
-                        <RatingVotingInterface score={evaluation.score} goNext={() => setCurrentCursor((cursor) => cursor + 1)} goPrevious={() => setCurrentCursor((cursor) => cursor - 1)} submitScore={submit} saving={saving} />
+                        <RatingVotingInterface evaluation={evaluation} goNext={() => setCurrentCursor((cursor) => cursor + 1)} goPrevious={() => setCurrentCursor((cursor) => cursor - 1)} submitScore={submit} saving={saving} />
                     </Suspense>
                 }
 
@@ -146,6 +152,10 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
         });
         setIsLoading(false);
     }, [currentCursor, evaluations, evaluations.length, hasNextEvaluation, limit, next, roundId]);
+
+
+
+
     useEffect(() => {
         if (!nextEvaluation)
             return;
@@ -186,7 +196,6 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
     }, [currentCursor, nextEvaluation]);
     if (!currentEvalution)
         return <AllSet roundId={roundId} campaignId={campaignId} />
-
     return (
         <div className="flex sm:flex-row h-full flex-col  w-full">
             <div className="flex flex-row items-start relative sm:h-full w-full h-16 sm:w-1/4 overflow-y-auto">
@@ -207,7 +216,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
                         goNext={() => setCurrentCursor((cursor) => cursor + 1)}
                         goPrevious={() => setCurrentCursor((cursor) => cursor - 1)}
                         saving={false}
-                        score={currentEvalution.score}
+                        evaluation={currentEvalution}
                         submitScore={() => {
                             console.log("submitting ranking");
                         }}
