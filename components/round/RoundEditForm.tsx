@@ -22,6 +22,7 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, hideAdvanced = fal
     const allowedVideo = round.allowedMediaTypes.includes(MediaType.VIDEO);
     const allowedArticle = round.allowedMediaTypes.includes(MediaType.ARTICLE);
     const [advancedMode, setAdvancedMode] = useState(false);
+    const maxQuorum = round.isPublicJury ? 25 : Math.max(round.jury.length, 1);
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -33,6 +34,44 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, hideAdvanced = fal
                 disabled={loading || disabled}
                 sx={{ m: 1, width: { xs: '100%', sm: '48%' } }}
             /> */}
+            <FormGroup sx={{ display: 'block', m: 1 }}>
+
+                <TextField
+                    label="Round Type"
+                    variant="outlined"
+                    select
+                    value={round.isPublicJury ? 'Public' : 'Private'}
+                    onChange={(e) => dispatch({ isPublicJury: e.target.value === 'Public' })}
+                    sx={{ m: 1, width: { xs: '100%', sm: '20%' } }}
+                    disabled={loading || disabled}
+                >
+                    <MenuItem value='Public'>Public</MenuItem>
+                    <MenuItem value='Private'>Private</MenuItem>
+                </TextField>
+                <TextField
+                    label="Evaluation Type"
+                    variant="outlined"
+                    select
+                    value={round.type}
+                    onChange={(e) => dispatch({ type: e.target.value as EvaluationType })}
+                    sx={{ m: 1, width: { xs: '100%', sm: '20%' } }}
+                    disabled={loading || disabled}
+                >
+                    <MenuItem value={EvaluationType.BINARY}>Yes / No</MenuItem>
+                    <MenuItem value={EvaluationType.SCORE}>Rating (1 - 5)</MenuItem>
+                    <MenuItem value={EvaluationType.RANKING}>Ranking</MenuItem>
+                </TextField>
+                <FormControlLabel control={<Checkbox
+                    checked={round.allowJuryToParticipate}
+                    onChange={(e) => dispatch({ allowJuryToParticipate: e.target.checked })}
+                    disabled={loading || disabled}
+                />}
+                    label={<Typography variant="body1">
+                        <Diversity3Icon /> Allow the members of the jury to participate on this round.
+                    </Typography>}
+                    sx={{ m: 1 }}
+                />
+            </FormGroup>
             <TextField
                 label="Name"
                 variant="outlined"
@@ -74,7 +113,7 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, hideAdvanced = fal
                 multiline
                 disabled={loading || disabled}
             />
-            <UserInput
+            {!round.isPublicJury && <UserInput
                 value={round.jury}
                 onChange={(jury) => dispatch({ jury, quorum: Math.min(round.quorum, jury.length) })}
                 label="Jury"
@@ -85,7 +124,7 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, hideAdvanced = fal
                         sm: '48%',
                     }, display: 'inline-block'
                 }}
-            />
+            />}
             <Divider />
             <FormGroup sx={{ m: 1, p: 1, display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', alignItems: 'center' }}>
                 <Typography>
@@ -131,7 +170,7 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, hideAdvanced = fal
                 <Slider
                     min={1}
                     size='medium'
-                    max={(round.jury ?? []).length} marks
+                    max={maxQuorum} marks
                     valueLabelDisplay='on'
                     value={round.quorum || 1}
                     onChange={(_, value) => dispatch({ quorum: value as number })}
@@ -140,44 +179,7 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, hideAdvanced = fal
             </FormGroup>
             <Divider />
 
-            <FormGroup sx={{ display: 'block', m: 1 }}>
 
-                <TextField
-                    label="Round Type"
-                    variant="outlined"
-                    select
-                    value={round.isPublicJury ? 'Public' : 'Private'}
-                    onChange={(e) => dispatch({ isPublicJury: e.target.value === 'Public' })}
-                    sx={{ m: 1, width: { xs: '100%', sm: '20%' } }}
-                    disabled={loading || disabled}
-                >
-                    <MenuItem value='Public'>Public</MenuItem>
-                    <MenuItem value='Private'>Private</MenuItem>
-                </TextField>
-                <TextField
-                    label="Evaluation Type"
-                    variant="outlined"
-                    select
-                    value={round.type}
-                    onChange={(e) => dispatch({ type: e.target.value as EvaluationType })}
-                    sx={{ m: 1, width: { xs: '100%', sm: '20%' } }}
-                    disabled={loading || disabled}
-                >
-                    <MenuItem value={EvaluationType.BINARY}>Yes / No</MenuItem>
-                    <MenuItem value={EvaluationType.SCORE}>Rating (1 - 5)</MenuItem>
-                    <MenuItem value={EvaluationType.RANKING}>Ranking</MenuItem>
-                </TextField>
-                <FormControlLabel control={<Checkbox
-                    checked={round.allowJuryToParticipate}
-                    onChange={(e) => dispatch({ allowJuryToParticipate: e.target.checked })}
-                    disabled={loading || disabled}
-                />}
-                    label={<Typography variant="body1">
-                        <Diversity3Icon /> Allow the members of the jury to participate on this round.
-                    </Typography>}
-                    sx={{ m: 1 }}
-                />
-            </FormGroup>
             {!hideAdvanced && <>
                 <Button
                     startIcon={<SettingsIcon />}
@@ -188,7 +190,6 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, hideAdvanced = fal
                 >
                     Advanced Settings
                 </Button>
-
                 <Suspense fallback={<LinearProgress />}>
                     <Collapse in={advancedMode} component='div' sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', alignItems: 'center' }}>
                         {allowedArticle && <fieldset style={{ border: '1px solid grey', padding: '8px', display: 'inline-block', margin: '5px' }}>
