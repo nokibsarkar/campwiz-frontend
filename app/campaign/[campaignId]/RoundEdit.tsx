@@ -32,6 +32,10 @@ const EditDialog = ({ campaignId, onClose, existingRound, setUpdatedRound, setSt
 
     // Detect whether the jury has changed
     const needRedistribution = useMemo(() => {
+        // public jury does not need redistribution
+        if (round.isPublicJury) {
+            return false;
+        }
         if (existingRound.quorum !== round.quorum) {
             return true;
         }
@@ -42,7 +46,7 @@ const EditDialog = ({ campaignId, onClose, existingRound, setUpdatedRound, setSt
         const newJury = new Set(round.jury || [])
         const intersection = existingJury.intersection(newJury);
         return intersection.size !== existingJury.size;
-    }, [existingRound.jury, existingRound.quorum, round.jury, round.quorum]);
+    }, [existingRound.jury, existingRound.quorum, round.isPublicJury, round.jury, round.quorum]);
     const updateRoundClient = useCallback(async () => {
         setLoading(true);
         try {

@@ -16,6 +16,7 @@ import SelectedRoundActionStatus from './SelectedActionStatus';
 import ExportToCSVButton from './ExportButton';
 import ChangeStatusButton from './ChangeStatusButton';
 import DeleteButton from './DeleteButton';
+import AddAsJuryButton from './AddAsJury';
 
 const CreateRoundButton = ({ onClick }: { onClick: () => void }) => (
     <Button
@@ -48,26 +49,28 @@ const LatestRoundActions = ({ latestRound, setAction, isJury, judgableLink, refr
     const buttons: React.ReactNode[] = []
     // if (campaign.status !== RoundStatus.ACTIVE)
     //     return null
-    if (isJury && latestRound && latestRound.status === RoundStatus.ACTIVE) {
-        buttons.push(<Link href={judgableLink}>
-            <Button
-                startIcon={<JudgeIcon />}
-                variant="contained"
-                color="primary"
-                sx={{ m: 1, px: 3 }}
-            >
-                Start Evaluation
-            </Button>
-        </Link>)
+    if (latestRound && latestRound.status === RoundStatus.ACTIVE) {
+        if (isJury)
+            buttons.push(<Link href={judgableLink}>
+                <Button
+                    startIcon={<JudgeIcon />}
+                    variant="contained"
+                    color="primary"
+                    sx={{ m: 1, px: 3 }}
+                >
+                    Start Evaluation
+                </Button>
+            </Link>)
+        else {
+            buttons.push(<AddAsJuryButton roundId={latestRound.roundId} refresh={refresh} />)
+        }
     }
     if (isCoordinator) {
         if (!latestRound) {
             buttons.push(<CreateRoundButton onClick={() => setAction(SelectedRoundActionStatus.creating)} />)
         } else {
             if (latestRound.status === RoundStatus.COMPLETED) {
-                if (isCoordinator) {
-                    buttons.push(<ExportToCSVButton roundId={latestRound.roundId} />);
-                }
+                buttons.push(<ExportToCSVButton roundId={latestRound.roundId} />);
                 buttons.push(<CreateRoundButton onClick={() => setAction(SelectedRoundActionStatus.creating)} />);
             } else if (latestRound.status === RoundStatus.ACTIVE) {
                 buttons.push(<ChangeStatusButton
