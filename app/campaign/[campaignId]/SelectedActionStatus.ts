@@ -3,6 +3,7 @@ enum SelectedRoundActionStatus {
     importing = 'importing',
     finalizing = 'finalizing',
     editing = 'editing',
+    distributing = 'distributing',
     none = ''
 }
 

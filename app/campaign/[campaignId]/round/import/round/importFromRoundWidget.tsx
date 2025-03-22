@@ -5,7 +5,7 @@ import LottieWrapper from "@/components/LottieWrapper"
 import { Round, SubmissionResultSummary } from "@/types/round"
 import useSWR from "swr"
 import { fetchAPIFromBackendListWithErrorHandling } from "@/server"
-import { Button, MenuItem, TextField } from "@mui/material"
+import { Button, LinearProgress, MenuItem, TextField } from "@mui/material"
 
 type ImportFromRoundWidgetProps = {
     currentRound: Round
@@ -41,7 +41,7 @@ const ImportFromRoundWidget = ({ currentRound, importing, setImporting, afterImp
         }
     }
     if (isLoading) {
-        return <LottieWrapper src="/lottie/loading.lottie" />
+        return <LinearProgress />
     }
     if (!summaryResponse) {
         return <div>Failed to load summary</div>
@@ -58,6 +58,7 @@ const ImportFromRoundWidget = ({ currentRound, importing, setImporting, afterImp
                 select
                 fullWidth
                 value={scores}
+                sx={{ my: 1 }}
                 variant="outlined"
                 onChange={(e) => setScores(e.target.value)}
             >
@@ -66,6 +67,7 @@ const ImportFromRoundWidget = ({ currentRound, importing, setImporting, afterImp
             <Button
                 onClick={() => startImporting(scores, currentRound.dependsOnRoundId,)}
                 disabled={importing}
+                // sx={{ my: 1 }}
                 loading={importing}
                 variant="contained"
                 color="primary"
