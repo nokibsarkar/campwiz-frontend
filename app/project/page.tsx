@@ -44,7 +44,7 @@ const ProjectDashboard = async () => {
     const projects = ProjectResponse.data;
     const { projectId } = session;
     let myProject = projects.find(project => project.projectId === projectId);
-    if (!myProject) {
+    if (!myProject && projectId !== null) {
         const myProjectResponse = await fetchAPIFromBackendSingleWithErrorHandling<Project>(`/project/${projectId}?includeRoles=true`);
         if (!myProjectResponse) {
             return <div>Failed to fetch your project</div>
@@ -60,7 +60,7 @@ const ProjectDashboard = async () => {
             <h1 className="text-2xl font-bold">Project Dashboard</h1>
             <NewProjectButton />
         </div>
-        <div className="
+        {myProject && <div className="
             flex flex-row flex-wrap
             gap-4
             p-5
@@ -75,6 +75,7 @@ const ProjectDashboard = async () => {
                 />
             </Suspense>
         </div>
+        }
         <div className="
             flex flex-row flex-wrap
             gap-4
