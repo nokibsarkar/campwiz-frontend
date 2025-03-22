@@ -10,7 +10,6 @@ const submitVote = async (evaluationId: string, score: number) => {
         method: 'POST',
         body: JSON.stringify(data)
     })
-    console.log(resp)
     return resp
 }
 export default submitVote

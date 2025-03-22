@@ -136,7 +136,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
             return;
         }
         setIsLoading(true);
-        loadNextEvaluation({ roundId, limit, next }).then(async (response) => {
+        loadNextEvaluation({ roundId, limit, next, includeSubmissions: true }).then(async (response) => {
             if (!response) {
                 return;
             }
