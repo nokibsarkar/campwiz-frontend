@@ -45,7 +45,7 @@ export default async function RootLayout({
       >
         <ThemeProvider theme={theme}>
           <Paper component='body' className={`h-full w-full p-0 m-0 overflow-auto ${roboto.className}`} sx={{ m: 0, p: 0, height: '100%', width: '100%', position: 'absolute' }} elevation={0}>
-            <ReturnButton hiddenIn={['/']} />
+            <ReturnButton hiddenIn={['/', '/user/login']} />
             {children}
           </Paper>
         </ThemeProvider>
