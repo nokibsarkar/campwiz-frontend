@@ -52,7 +52,7 @@ export const DistributionWidget = ({ juries: initialJuries, }: DistributionWidge
         </div>
     )
 }
-const DistributionDialog = ({ juries: initialJuries, roundId, afterDistribution, }: DistributionWidgetProps) => {
+const DistributionDialog = ({ juries: initialJuries, roundId, afterDistribution, onClose }: DistributionWidgetProps) => {
     const [juryMap, setJuryMap] = useState<{ [key: WikimediaUsername]: boolean }>(initialJuries.reduce((acc, jury) => ({ ...acc, [jury]: true }), {}))
     const juries = Object.keys(juryMap).filter((key) => juryMap[key]);
     const [distributing, setDistributing] = useState(false);
@@ -70,7 +70,7 @@ const DistributionDialog = ({ juries: initialJuries, roundId, afterDistribution,
         setTask(task);
     }
     return (
-        <Dialog open={true} onClose={() => { }}>
+        <Dialog open={true} onClose={onClose}>
             <DialogTitle>Distribute Task</DialogTitle>
             <DialogContent>
                 {distributing && task ? <DistributionStatusThingy taskId={task.taskId} onSuccess={(t) => { setDistributing(false); afterDistribution(t) }} />
@@ -111,7 +111,7 @@ const DistributionDialog = ({ juries: initialJuries, roundId, afterDistribution,
                 }
             </DialogContent>
             <DialogActions>
-                <Button onClick={() => { }}>Cancel</Button>
+                <Button onClick={onClose}>Cancel</Button>
                 <Button onClick={distribute} variant="contained" color="primary" sx={{ marginTop: '1rem' }} loading={distributing} disabled={distributing}>
                     Distribute
                 </Button>

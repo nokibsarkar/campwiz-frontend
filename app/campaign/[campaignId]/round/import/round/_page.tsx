@@ -2,9 +2,9 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material"
 import { useState } from "react"
 import ImportWidget from "./importFromRoundWidget"
-import { Round } from "@/types/round"
+import { ImportDialogProps } from "../ImportDialogProps"
 
-const ImportFromRoundDialog = ({ round, onClose }: { round: Round, onClose: () => void }) => {
+const ImportFromRoundDialog = ({ round, onClose, afterImport }: ImportDialogProps) => {
     const [importing, setImporting] = useState(false)
     return (
         <Dialog open={true} onClose={onClose}>
@@ -12,7 +12,7 @@ const ImportFromRoundDialog = ({ round, onClose }: { round: Round, onClose: () =
                 Import from the previous round
             </DialogTitle>
             <DialogContent>
-                <ImportWidget currentRound={round} importing={importing} setImporting={setImporting} afterImport={onClose} />
+                <ImportWidget currentRound={round} importing={importing} setImporting={setImporting} afterImport={afterImport} />
             </DialogContent>
             <DialogActions>
                 <Button onClick={onClose} variant="outlined" color="error" disabled={importing} loading={importing}>

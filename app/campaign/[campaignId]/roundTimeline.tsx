@@ -12,6 +12,7 @@ import LatestRoundActions from "./LatestRoundAction";
 import { LinearProgress } from "@mui/material";
 import SelectedRoundActionStatus from "./SelectedActionStatus";
 import ImportFromCommonsDialog from "./round/import/commons/_page";
+import DistributionDialog from "./round/distribute/DistributionWidget";
 const RoundCreate = React.lazy(() => import("./RoundCreate"));
 const RoundEdit = React.lazy(() => import("./RoundEdit"));
 type RoundTimelineProps = {
@@ -54,18 +55,36 @@ function RoundTimeline({ rounds, campaign, session, isCoordinator }: RoundTimeli
                 {currentRound && selectedRoundAction === SelectedRoundActionStatus.importing && (
                     currentRound?.dependsOnRoundId ? <ImportFromRoundDialog
                         round={currentRound}
+                        afterImport={() => {
+                            setSelectedRoundAction(SelectedRoundActionStatus.distributing);
+                        }}
                         onClose={() => {
                             setSelectedRoundAction(SelectedRoundActionStatus.none);
                             refresh();
                         }}
                     /> : <ImportFromCommonsDialog
-                        roundId={currentRound.roundId}
+                        round={currentRound}
+                        afterImport={() => {
+                            setSelectedRoundAction(SelectedRoundActionStatus.distributing);
+                        }}
                         onClose={() => {
                             setSelectedRoundAction(SelectedRoundActionStatus.none);
                             refresh();
                         }}
                     />
                 )}
+                {currentRound && selectedRoundAction === SelectedRoundActionStatus.distributing && <DistributionDialog
+                    roundId={currentRound.roundId}
+                    juries={Object.values(currentRound.jury || {})}
+                    afterDistribution={() => {
+                        // setTaskId(t.taskId);
+                        // setStage(Stage.DISTRIBUTING);
+                        setSelectedRoundAction(SelectedRoundActionStatus.none);
+                        refresh();
+                    }}
+                    onClose={() => { setSelectedRoundAction(SelectedRoundActionStatus.none); refresh(); }}
+                />}
+
             </React.Suspense>
             {rounds.map((round, i) => (
                 <div key={i}>
