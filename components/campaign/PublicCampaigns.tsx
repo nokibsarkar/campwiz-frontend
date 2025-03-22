@@ -4,14 +4,14 @@ import fetchAPIFromBackendSingleWithErrorHandling from "@/server"
 import { Campaign } from "@/types"
 import useSWR from "swr"
 import SingleCampaignChip from "./SingleCampaignChip"
-import { Box, Skeleton } from "@mui/material"
+import Skeleton from "@mui/material/Skeleton"
 import PerCampaignBackground from "@/public/Flat-Shaded-Mountains-Scene.svg"
 
 type PublicRunningCampaignProps = {
     limit: number
 }
 const PublicRunningCampaigns = ({ limit }: PublicRunningCampaignProps) => {
-    const qs = new URLSearchParams({ limit: String(limit), isOpen: 'true', isHidden: 'false' }).toString()
+    const qs = new URLSearchParams({ limit: String(limit), isClosed: 'false', isHidden: 'false' }).toString()
     const { data: publicCampaignResponse, error, isLoading } = useSWR('/campaign/?' + qs.toString(), fetchAPIFromBackendSingleWithErrorHandling<Campaign[]>);
     if (isLoading) return <Skeleton variant="rectangular" width='100%' height={200} sx={{ backgroundColor: 'rgba(0,0,0,0.1)' }} />
     if (error) return <p>Error : {error.message}</p>
@@ -19,15 +19,14 @@ const PublicRunningCampaigns = ({ limit }: PublicRunningCampaignProps) => {
         return null;
     if ('detail' in publicCampaignResponse)
         return <p>Error : {error}</p>
-    return <Box sx={{
-        display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap', px: 2,
-
-
+    return publicCampaignResponse.data.length > 0 ? <div style={{
+        display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap',
         backgroundImage: `url(${PerCampaignBackground.src})`,
-    }} className="justify-self-auto">
-        {(publicCampaignResponse?.data || []).map((v, i) => (
-            <SingleCampaignChip campaign={v} key={i} />
-        ))}
-    </Box>
+    }} className="justify-self-auto px-2">
+        {publicCampaignResponse.data.map(v => <SingleCampaignChip campaign={v} key={v.campaignId} />)}
+    </div>
+        : <div className="justify-self-auto p-1 mb-2 block text-center">
+            <h3 className="text-2xl font-bold">No Running Campaigns</h3>
+        </div>
 }
 export default PublicRunningCampaigns

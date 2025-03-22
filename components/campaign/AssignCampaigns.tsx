@@ -11,7 +11,7 @@ type AssignedCampaignProps = {
     limit: number
 }
 const AssignedCampaigns = ({ limit }: AssignedCampaignProps) => {
-    const qs = new URLSearchParams({ limit: String(limit), isOpen: 'true', isHidden: 'true' }).toString()
+    const qs = new URLSearchParams({ limit: String(limit), isClosed: 'true', isHidden: 'true' }).toString()
 
     const { data: publicCampaignResponse, error, isLoading } = useSWR('/campaign/?' + qs.toString(), fetchAPIFromBackendSingleWithErrorHandling<Campaign[]>);
     if (isLoading) return <Skeleton variant="rectangular" width='100%' height={200} sx={{ backgroundColor: 'rgba(0,0,0,0.1)' }} />

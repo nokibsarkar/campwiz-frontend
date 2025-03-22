@@ -4,7 +4,7 @@ import PublicRunningCampaigns from '@/components/campaign/PublicCampaigns';
 import HeroBanner from '@/components/home/HeroBanner';
 
 import { LinearProgress, Typography } from '@mui/material';
-import Footer from '@/components/home/Footer';
+// import Footer from '@/components/home/Footer';
 import fetchSession from '@/server/session';
 const AssignedCampaigns = React.lazy(() => import('@/components/campaign/AssignCampaigns'));
 const Dashboard = async () => {
@@ -28,8 +28,7 @@ const Dashboard = async () => {
         </Typography>
         <PublicRunningCampaigns limit={10} />
       </div>
-
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
