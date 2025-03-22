@@ -4,7 +4,7 @@ export interface Task {
     createdById: string
     data: number[]
     failedCount: number
-    failedIds: string[]
+    failedIds: { [key: string]: string }
     remainingCount: number
     roundId: string
     status: string
