@@ -10,7 +10,6 @@ import { EvaluationType, MediaType } from "@/types/round"
 import Link from "next/link"
 const VideoApp = lazy(() => import("@/app/submission/[submissionId]/_preview/videoplayer"));
 const AudioPlayer = lazy(() => import("@/app/submission/[submissionId]/_preview/audioPlayer"));
-const RankingVotingInterface = lazy(() => import("./RankingVotingInterface"));
 const BinaryVotingInterface = lazy(() => import("./BinaryVotingInterface"));
 const RatingVotingInterface = lazy(() => import("./RatingVotingInterface"));
 const prefetchSubmissionPreview = async (url: string) => {
@@ -26,74 +25,7 @@ const prefetchSubmissionPreview = async (url: string) => {
         return { error: (error as Error).message }
     }
 }
-const VotingOrRatingInterface = ({ evaluation, setCurrentCursor, }: { evaluation: Evaluation, roundId: string, setCurrentCursor: React.Dispatch<React.SetStateAction<number>> }) => {
-    const [saving, setSaving] = useState(false);
-    const submit = async (score: number) => {
-        try {
-            if (saving) return;
-            setSaving(true);
 
-            const response = await submitVote(evaluation.evaluationId, score);
-            if (!response) {
-                return null;
-            }
-            if ('detail' in response) {
-                return { error: response.detail }
-            }
-            setCurrentCursor((cursor) => cursor + 1);
-        } catch (error) {
-            return { error: (error as Error).message }
-        } finally {
-            setSaving(false);
-        }
-    }
-    if (!evaluation) return null;
-    const { submission } = evaluation;
-    if (!submission) return null;
-
-    return (
-        <div className="relative h-11/12 sm:h-full w-full sm:w-3/4 overflow-y-auto block">
-            <div className="h-3/4 flex flex-col mb-1 justify-between">
-                <Logo />
-                {
-                    // eslint-disable-next-line @next/next/no-img-element
-                    submission.mediatype === MediaType.IMAGE && <img src={submission.url || '/red-hill.svg'} alt={submission.title} className="mx-auto block h-full w-auto" />
-                }
-                {submission.mediatype === MediaType.VIDEO &&
-                    <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
-                        <VideoApp poster={submission.thumburl} src={submission.url} />
-                    </Suspense>
-                }
-                {submission.mediatype === MediaType.AUDIO &&
-                    <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
-                        <AudioPlayer src={submission.url} title={submission.title} author={submission.author} />
-                    </Suspense>
-                }
-                {evaluation.type === EvaluationType.BINARY &&
-                    <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
-                        <BinaryVotingInterface
-                            goNext={() => setCurrentCursor((cursor) => cursor + 1)}
-                            goPrevious={() => setCurrentCursor((cursor) => cursor - 1)}
-                            submitScore={submit}
-                            evaluation={evaluation}
-                            saving={saving}
-                        />
-                    </Suspense>
-                }
-                {
-                    evaluation.type === EvaluationType.SCORE &&
-                    <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
-                        <RatingVotingInterface evaluation={evaluation} goNext={() => setCurrentCursor((cursor) => cursor + 1)} goPrevious={() => setCurrentCursor((cursor) => cursor - 1)} submitScore={submit} saving={saving} />
-                    </Suspense>
-                }
-
-            </div>
-            <div className="block h-1/4 z-18  relative rounded-4xl border-t p-4">
-                <SubmissionDetails submission={submission} />
-            </div>
-        </div>
-    )
-}
 
 const AllSet = ({ campaignId }: { roundId: string, campaignId: string }) => {
     return (
@@ -113,16 +45,36 @@ const AllSet = ({ campaignId }: { roundId: string, campaignId: string }) => {
         </div>
     )
 }
-const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, next: initialNext, limit = 1, campaignId }: { roundId: string, initailEvaluations: Evaluation[], next?: string, limit: number, campaignId: string }) => {
+const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEvaluations, next: initialNext, limit = 1, campaignId }: { roundId: string, initailEvaluations: Evaluation[], next?: string, limit: number, campaignId: string }) => {
     const [evaluations, setEvaluations] = React.useState<Evaluation[]>(initialEvaluations);
     const [next, setNext] = React.useState<string | undefined>(initialNext);
     const [currentCursor, setCurrentCursor] = React.useState(0);
     const [isLoading, setIsLoading] = React.useState(false);
-    const currentEvalution = evaluations?.[currentCursor];
+    const currentEvaluation = evaluations?.[currentCursor];
     const [error, setError] = useState<string | null>(null);
     // It would determine whether any more evaluations are available or not.
     const [hasNextEvaluation, setHasNextEvauation] = useState<boolean>(evaluations?.length > currentCursor);
     const nextEvaluation = hasNextEvaluation ? evaluations[currentCursor + 1] : null;
+    const [saving, setSaving] = useState(false);
+    const submit = async (score: number) => {
+        try {
+            if (saving) return;
+            setSaving(true);
+            const response = await submitVote(currentEvaluation.evaluationId, score);
+            if (!response) {
+                return null;
+            }
+            if ('detail' in response) {
+                return { error: response.detail }
+            }
+            setCurrentCursor((cursor) => cursor + 1);
+        } catch (error) {
+            return { error: (error as Error).message }
+        } finally {
+            setSaving(false);
+        }
+    }
+
     /*
     First try to check if any nextEvaluation is available.
     If avaliable, then check if the submission url is a http url. If it is, then load the submission.
@@ -152,10 +104,6 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
         });
         setIsLoading(false);
     }, [currentCursor, evaluations, evaluations.length, hasNextEvaluation, limit, next, roundId]);
-
-
-
-
     useEffect(() => {
         if (!nextEvaluation)
             return;
@@ -194,8 +142,11 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
             )
         }
     }, [currentCursor, nextEvaluation]);
-    if (!currentEvalution)
+
+    if (!currentEvaluation)
         return <AllSet roundId={roundId} campaignId={campaignId} />
+    const { submission } = currentEvaluation;
+    if (!submission) return null;
     return (
         <div className="flex sm:flex-row h-full flex-col  w-full">
             <div className="flex flex-row items-start relative sm:h-full w-full h-16 sm:w-1/4 overflow-y-auto">
@@ -203,28 +154,48 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
                 {error && <p>{error}</p>}
             </div>
             {evaluations && (
-                [EvaluationType.BINARY, EvaluationType.SCORE].includes(currentEvalution.type) &&
-                <VotingOrRatingInterface
-                    evaluation={currentEvalution}
-                    roundId={roundId}
-                    setCurrentCursor={setCurrentCursor}
-                />
+                <div className="relative h-11/12 sm:h-full w-full sm:w-3/4 overflow-y-auto block">
+                    <div className="h-3/4 flex flex-col mb-1 justify-between">
+                        <Logo />
+                        {
+                            // eslint-disable-next-line @next/next/no-img-element
+                            submission.mediatype === MediaType.IMAGE && <img src={submission.url || '/red-hill.svg'} alt={submission.title} className="mx-auto block h-full w-auto" />
+                        }
+                        {submission.mediatype === MediaType.VIDEO &&
+                            <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
+                                <VideoApp poster={submission.thumburl} src={submission.url} />
+                            </Suspense>
+                        }
+                        {submission.mediatype === MediaType.AUDIO &&
+                            <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
+                                <AudioPlayer src={submission.url} title={submission.title} author={submission.author} />
+                            </Suspense>
+                        }
+                        {currentEvaluation.type === EvaluationType.BINARY &&
+                            <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
+                                <BinaryVotingInterface
+                                    goNext={() => setCurrentCursor((cursor) => cursor + 1)}
+                                    goPrevious={() => setCurrentCursor((cursor) => cursor - 1)}
+                                    submitScore={submit}
+                                    evaluation={currentEvaluation}
+                                    saving={saving}
+                                />
+                            </Suspense>
+                        }
+                        {
+                            currentEvaluation.type === EvaluationType.SCORE &&
+                            <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
+                                <RatingVotingInterface evaluation={currentEvaluation} goNext={() => setCurrentCursor((cursor) => cursor + 1)} goPrevious={() => setCurrentCursor((cursor) => cursor - 1)} submitScore={submit} saving={saving} />
+                            </Suspense>
+                        }
+
+                    </div>
+                    <div className="block h-1/4 z-18  relative rounded-4xl border-t p-4">
+                        <SubmissionDetails submission={submission} />
+                    </div>
+                </div>
             )}
-            {currentEvalution.type === EvaluationType.RANKING &&
-                <Suspense fallback={<LinearProgress />}>
-                    <RankingVotingInterface
-                        goNext={() => setCurrentCursor((cursor) => cursor + 1)}
-                        goPrevious={() => setCurrentCursor((cursor) => cursor - 1)}
-                        saving={false}
-                        evaluation={currentEvalution}
-                        submitScore={() => {
-                            console.log("submitting ranking");
-                        }}
-                        key={currentEvalution.evaluationId}
-                    />
-                </Suspense>
-            }
         </div>
     )
 }
-export default EvaluationManager
+export default ScoreOrBinaryVotingInterface

@@ -1,9 +1,12 @@
 
 import fetchAPIFromBackendSingleWithErrorHandling from "@/server";
-import EvaluationManager from "./AllVotingInterface"
 import loadNextEvaluation from "./loadNextEvaluation";
-import { Round } from "@/types/round";
-
+import { EvaluationType, Round } from "@/types/round";
+import { lazy, Suspense } from "react";
+import LinearProgress from "@mui/material/LinearProgress";
+const ScoreOrBinaryVotingInterface = lazy(() => import("./BinaryOrScoreVotingInterface"));
+const RankingVotingInterface = lazy(() => import("./RankingVotingInterface"));
+const RankingBatchSize = 20;
 
 const Page = async ({ params }: { params: Promise<{ roundId: string }> }) => {
     const { roundId } = await params;
@@ -15,19 +18,29 @@ const Page = async ({ params }: { params: Promise<{ roundId: string }> }) => {
         return <p>Error : {roundResponse.detail}</p>
     }
     const round = roundResponse.data;
-    const evaluations = await loadNextEvaluation({ roundId: round.roundId, limit: 5, includeSubmissions: true });
+    const limit = round.type === EvaluationType.RANKING ? RankingBatchSize : 5;
+    const evaluations = await loadNextEvaluation({ roundId: round.roundId, limit: limit, includeSubmissions: true });
     if (!evaluations) {
         return null;
     }
     if ('detail' in evaluations) {
         return <p>Error : {evaluations.detail}</p>
     }
-    return <EvaluationManager
-        roundId={round.roundId}
-        initailEvaluations={evaluations.data}
-        next={evaluations.next}
-        campaignId={round.campaignId}
-        limit={1}
-    />
+    return <Suspense fallback={<LinearProgress />}>
+        {[EvaluationType.BINARY, EvaluationType.SCORE].includes(round.type) && <ScoreOrBinaryVotingInterface
+            roundId={round.roundId}
+            initailEvaluations={evaluations.data}
+            next={evaluations.next}
+            campaignId={round.campaignId}
+            limit={1}
+        />}
+        {round.type === EvaluationType.RANKING && <RankingVotingInterface
+            roundId={round.roundId}
+            initailEvaluations={evaluations.data}
+            next={evaluations.next}
+            campaignId={round.campaignId}
+            limit={RankingBatchSize}
+        />}
+    </Suspense>
 }
 export default Page
