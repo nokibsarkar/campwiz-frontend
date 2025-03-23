@@ -13,8 +13,8 @@ type PrivateJuryProps = {
 const submitVote = async (props: PublicJuryProps | PrivateJuryProps) => {
     const { isPublicJury, score } = props
     if (isPublicJury) {
-        const { roundId, submissionId: Id } = props as PublicJuryProps
-        const url = `/evaluation/public/${roundId}/${Id}`
+        const { roundId, submissionId } = props as PublicJuryProps
+        const url = `/evaluation/public/${roundId}/${submissionId}`
         const data = {
             score,
             // comment: null
