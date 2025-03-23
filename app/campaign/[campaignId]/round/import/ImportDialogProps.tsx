@@ -1,4 +1,4 @@
-import { Round } from "@/types/round"
+import type { Round } from "@/types/round"
 
 export type ImportDialogProps = {
     round: Round,
