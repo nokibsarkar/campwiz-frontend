@@ -1,7 +1,5 @@
 import React from "react";
 import {
-
-
 	Typography,
 	Container,
 	Grid,
@@ -9,6 +7,7 @@ import {
 	CardContent,
 	Button,
 	Box,
+	Chip,
 } from "@mui/material";
 import { ArrowForward, Add } from "@mui/icons-material";
 import Link from "next/link";
@@ -29,7 +28,7 @@ type DashboardProps = {
 
 const Dashboard = async ({ params }: DashboardProps) => {
 	const { projectId } = await params
-	const myProjectResponse = await fetchAPIFromBackendSingleWithErrorHandling<Project>(`/project/${projectId}?includeRoles=true`);
+	const myProjectResponse = await fetchAPIFromBackendSingleWithErrorHandling<Project>(`/project/${projectId}?includeProjectLeads=true`);
 	if (!myProjectResponse) {
 		return <div>Failed to fetch your project</div>
 	}
@@ -37,6 +36,7 @@ const Dashboard = async ({ params }: DashboardProps) => {
 		return <div>{myProjectResponse.detail}</div>
 	}
 	const project = myProjectResponse.data;
+	const projectLeads = project.projectLeads || [];
 	const campaignListResponse = await fetchAPIFromBackendListWithErrorHandling<Campaign>(`/campaign/?projectId=${projectId}`);
 	if (!campaignListResponse) {
 		return <div>Failed to fetch campaigns</div>
@@ -100,6 +100,16 @@ const Dashboard = async ({ params }: DashboardProps) => {
 						Settings
 					</Button>
 				</Link>
+				<br />
+				{projectLeads.map((lead) => (
+					<Chip label={lead} sx={{
+						mt: 2,
+						borderColor: "white",
+						bgcolor: "white",
+						borderRadius: 30,
+						transition: "0.3s",
+					}} key={lead} />
+				))}
 			</Container>
 
 			{/* Active Campaigns */}
