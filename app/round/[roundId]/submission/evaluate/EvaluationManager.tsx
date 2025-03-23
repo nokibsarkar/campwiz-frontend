@@ -15,6 +15,7 @@ type EvaluationManagerProps = {
     roundId: string
     initailEvaluations: Evaluation[]
     next?: string
+    isPublicJury: boolean
 
 }
 const EvaluationPagination = ({ evaluations, cursor, setCursor, isSmall }: { evaluations: Evaluation[], cursor: number, setCursor: (cursor: number) => void, isSmall: boolean }) => {
@@ -52,7 +53,7 @@ const EvaluationPagination = ({ evaluations, cursor, setCursor, isSmall }: { eva
         </div>
     )
 }
-const EvaluationManager = ({ initailEvaluations, roundId }: EvaluationManagerProps) => {
+const EvaluationManager = ({ initailEvaluations, roundId, isPublicJury }: EvaluationManagerProps) => {
     const [evaluations, setEvaluations] = useState<Evaluation[]>(initailEvaluations)
     const [cursor, setCursor] = useState(0);
     const [next, setNext] = useState('')
@@ -60,7 +61,7 @@ const EvaluationManager = ({ initailEvaluations, roundId }: EvaluationManagerPro
     // const { data, error, isLoading, mutate : triggerFetching } = useSWR({ roundId, limit: 1, includeSubmission: true, next }, loadNextEvaluation,  { revalidateOnMount: false, revalidateOnFocus: false });
     const submit = async (evaluationId: string, score: number) => {
         try {
-            const resp = await submitVote(evaluationId, score)
+            const resp = await submitVote({ evaluationId, score, isPublicJury, submissionId: evaluations[cursor].submissionId, roundId });
             if ('detail' in resp) {
                 console.error(resp.detail)
             } else {
@@ -69,7 +70,8 @@ const EvaluationManager = ({ initailEvaluations, roundId }: EvaluationManagerPro
                 // setEvaluations([...evaluations]);
                 setCursor(Math.min(cursor + 1, evaluations.length));
                 const resp = await loadNextEvaluation({
-                    roundId, limit: 1, includeSubmissions: true, next
+                    roundId, limit: 1, includeSubmissions: true, next,
+                    isPublic: isPublicJury
                 });
                 if ('detail' in resp) {
                     console.error(resp.detail)

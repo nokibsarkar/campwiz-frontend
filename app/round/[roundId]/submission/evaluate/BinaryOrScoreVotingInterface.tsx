@@ -45,7 +45,7 @@ const AllSet = ({ campaignId }: { roundId: string, campaignId: string }) => {
         </div>
     )
 }
-const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEvaluations, next: initialNext, limit = 1, campaignId }: { roundId: string, initailEvaluations: Evaluation[], next?: string, limit: number, campaignId: string }) => {
+const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEvaluations, next: initialNext, limit = 1, campaignId, isPublicJury }: { roundId: string, initailEvaluations: Evaluation[], next?: string, limit: number, campaignId: string, isPublicJury: boolean }) => {
     const [evaluations, setEvaluations] = React.useState<Evaluation[]>(initialEvaluations);
     const [next, setNext] = React.useState<string | undefined>(initialNext);
     const [currentCursor, setCurrentCursor] = React.useState(0);
@@ -59,8 +59,10 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
     const submit = async (score: number) => {
         try {
             if (saving) return;
+            if (!currentEvaluation) return;
+            if (!currentEvaluation.submission) return;
             setSaving(true);
-            const response = await submitVote(currentEvaluation.evaluationId, score);
+            const response = await submitVote({ evaluationId: currentEvaluation.evaluationId, score, isPublicJury, roundId, submissionId: currentEvaluation.submission.submissionId });
             if (!response) {
                 return null;
             }
@@ -88,7 +90,7 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
             return;
         }
         setIsLoading(true);
-        loadNextEvaluation({ roundId, limit, next, includeSubmissions: true }).then(async (response) => {
+        loadNextEvaluation({ roundId, limit, next, includeSubmissions: true, isPublic: isPublicJury }).then(async (response) => {
             if (!response) {
                 return;
             }
@@ -103,7 +105,7 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
             setIsLoading(false);
         });
         setIsLoading(false);
-    }, [currentCursor, evaluations, evaluations.length, hasNextEvaluation, limit, next, roundId]);
+    }, [currentCursor, evaluations, evaluations.length, hasNextEvaluation, isPublicJury, limit, next, roundId]);
     useEffect(() => {
         if (!nextEvaluation)
             return;
