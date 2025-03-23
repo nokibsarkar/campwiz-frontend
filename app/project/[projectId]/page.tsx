@@ -114,7 +114,6 @@ const Dashboard = async ({ params }: DashboardProps) => {
 
 			{/* Active Campaigns */}
 			<Container>
-
 				<Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
 					<Typography
 						variant="h5"
@@ -131,7 +130,6 @@ const Dashboard = async ({ params }: DashboardProps) => {
 							Create Campaign
 						</Button>
 					</Link>
-
 				</Box>
 				<Grid container spacing={3}>
 					{
