@@ -100,7 +100,7 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, hideAdvanced = fal
                 disabled={loading || disabled}
             />
             <TextField
-                label="Description"
+                label="Guidelines"
                 variant="outlined"
                 sx={{
                     m: 1, width: {
