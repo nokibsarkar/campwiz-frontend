@@ -45,7 +45,7 @@ const useStyles = {
     }
 }
 
-const RankingVotingInterface = ({ initailEvaluations, limit, roundId, }: { roundId: string, initailEvaluations: Evaluation[], next?: string, limit: number, campaignId: string }) => {
+const RankingVotingInterface = ({ initailEvaluations, limit, roundId, isPublicJury }: { roundId: string, initailEvaluations: Evaluation[], next?: string, limit: number, campaignId: string, isPublicJury: boolean }) => {
     const classes = useStyles;
     const [evaluations, setEvaluations] = useState<Evaluation[]>(initailEvaluations);
     const [next, setNext] = useState<string | undefined>("");
@@ -58,7 +58,7 @@ const RankingVotingInterface = ({ initailEvaluations, limit, roundId, }: { round
             return;
         }
         setIsLoading(true);
-        loadNextEvaluation({ roundId, limit, next, includeSubmissions: true }).then(async (response) => {
+        loadNextEvaluation({ roundId, limit, next, includeSubmissions: true, isPublic: isPublicJury }).then(async (response) => {
             if (!response) {
                 return;
             }
@@ -73,7 +73,7 @@ const RankingVotingInterface = ({ initailEvaluations, limit, roundId, }: { round
             setIsLoading(false);
         });
         setIsLoading(false);
-    }, [limit, next, hasNextEvaluation, evaluations, roundId]);
+    }, [limit, next, hasNextEvaluation, evaluations, roundId, isPublicJury]);
     const onSortEnd = (oldIndex: number, newIndex: number) => {
         console.log(oldIndex, newIndex);
         setEvaluations((array) => arrayMoveImmutable(array, oldIndex, newIndex));
