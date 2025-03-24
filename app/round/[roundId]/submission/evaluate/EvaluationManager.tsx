@@ -61,7 +61,13 @@ const EvaluationManager = ({ initailEvaluations, roundId, isPublicJury }: Evalua
     // const { data, error, isLoading, mutate : triggerFetching } = useSWR({ roundId, limit: 1, includeSubmission: true, next }, loadNextEvaluation,  { revalidateOnMount: false, revalidateOnFocus: false });
     const submit = async (evaluationId: string, score: number) => {
         try {
-            const resp = await submitVote({ evaluationId, score, isPublicJury, submissionId: evaluations[cursor].submissionId, roundId });
+            const resp = await submitVote(
+                roundId,
+                isPublicJury,
+                [
+                    { evaluationId, score, comment: null, submissionId: evaluations[cursor].submissionId }
+                ]
+            );
             if ('detail' in resp) {
                 console.error(resp.detail)
             } else {

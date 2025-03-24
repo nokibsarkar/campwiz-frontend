@@ -1,41 +1,19 @@
 import fetchAPIFromBackendSingleWithErrorHandling from "@/server"
-type PublicJuryProps = {
-    isPublicJury: boolean
-    roundId: string
-    submissionId: string
+type Vote = {
     score: number
+    comment: string | null
+    submissionId?: string
+    evaluationId?: string
 }
-type PrivateJuryProps = {
-    evaluationId: string
-    score: number
-    isPublicJury: boolean
-}
-const submitVote = async (props: PublicJuryProps | PrivateJuryProps) => {
-    const { isPublicJury, score } = props
+const submitVote = async (roundId: string, isPublicJury: boolean, votes: Vote[]) => {
+    let url = `/evaluation/`
     if (isPublicJury) {
-        const { roundId, submissionId } = props as PublicJuryProps
-        const url = `/evaluation/public/${roundId}/${submissionId}`
-        const data = {
-            score,
-            // comment: null
-        }
-        const resp = await fetchAPIFromBackendSingleWithErrorHandling(url, {
-            method: 'POST',
-            body: JSON.stringify(data)
-        })
-        return resp
-    } else {
-        const { evaluationId: Id } = props as PrivateJuryProps
-        const data = [{
-            evaluationId: Id,
-            score,
-            // comment: null
-        }]
-        const resp = await fetchAPIFromBackendSingleWithErrorHandling(`/evaluation`, {
-            method: 'POST',
-            body: JSON.stringify(data)
-        })
-        return resp
+        url = `/evaluation/public/${roundId}`
     }
+    const resp = await fetchAPIFromBackendSingleWithErrorHandling(url, {
+        method: 'POST',
+        body: JSON.stringify(votes)
+    })
+    return resp
 }
 export default submitVote

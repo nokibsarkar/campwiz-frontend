@@ -62,7 +62,13 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
             if (!currentEvaluation) return;
             if (!currentEvaluation.submission) return;
             setSaving(true);
-            const response = await submitVote({ evaluationId: currentEvaluation.evaluationId, score, isPublicJury, roundId, submissionId: currentEvaluation.submission.submissionId });
+            const response = await submitVote(
+                roundId,
+                isPublicJury,
+                [
+                    { evaluationId: currentEvaluation.evaluationId, score, comment: null, submissionId: currentEvaluation.submission.submissionId }
+                ]
+            );
             if (!response) {
                 return null;
             }

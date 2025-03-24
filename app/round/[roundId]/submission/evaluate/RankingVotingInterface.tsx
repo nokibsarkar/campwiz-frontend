@@ -7,8 +7,8 @@ import "./index.css"
 import ViewIcon from "@mui/icons-material/Visibility";
 import { Evaluation, Submission } from "@/types/submission";
 import Image from "next/image";
-import { fetchAPIFromBackendListWithErrorHandling } from "@/server";
 import loadNextEvaluation from "./loadNextEvaluation";
+import submitVote from "./submitVote";
 
 const useStyles = {
     root: {
@@ -87,10 +87,7 @@ const RankingVotingInterface = ({ initailEvaluations, limit, roundId, isPublicJu
                 comment: null
             }
         });
-        const resp = await fetchAPIFromBackendListWithErrorHandling<Evaluation>(`/evaluation`, {
-            method: 'POST',
-            body: JSON.stringify(newEvaluations)
-        });
+        const resp = submitVote(roundId, isPublicJury, newEvaluations);
         if (!resp) {
             return;
         }
@@ -173,6 +170,8 @@ const RankingVotingInterface = ({ initailEvaluations, limit, roundId, isPublicJu
                 variant="contained"
                 color="primary"
                 onClick={saveRanking}
+                loading={isLoading}
+                disabled={isLoading}
                 // startIcon={<FavoriteIcon />}
                 sx={{
                     mr: 0,
