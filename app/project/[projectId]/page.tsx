@@ -17,6 +17,7 @@ import { Project } from "@/types/project";
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Campaign } from "@/types";
 import fetchSession from "@/server/session";
+import Image from "next/image";
 
 
 
@@ -59,7 +60,7 @@ const Dashboard = async ({ params }: DashboardProps) => {
 			component="main"
 			sx={{
 				flexGrow: 1,
-				p: 3,
+				p: 1,
 				display: "flex",
 				flexDirection: "column",
 				alignItems: "center",
@@ -68,16 +69,26 @@ const Dashboard = async ({ params }: DashboardProps) => {
 			<Logo />
 			<Container
 				sx={{
-					my: 4,
+					my: 1,
 					textAlign: "center",
 					bgcolor: "#006699",
-					p: 4,
+					p: 2,
 					borderRadius: 3,
 					boxShadow: 3,
 					transition: "0.3s",
 					"&:hover": { boxShadow: 6 },
+					display: 'block'
 				}}
+				component='div'
 			>
+				<Image
+					src={project.logoUrl}
+					alt={project.name}
+					width={100}
+					height={100}
+					unoptimized={true}
+					style={{ 'display': 'block', 'margin': 'auto' }}
+				/>
 				<Typography
 					variant="h4"
 					fontWeight="bold"
@@ -92,7 +103,7 @@ const Dashboard = async ({ params }: DashboardProps) => {
 					<Button
 						variant="outlined"
 						sx={{
-							mt: 2,
+							mt: 1,
 							borderColor: "white",
 							color: "#006699",
 							bgcolor: "white",
