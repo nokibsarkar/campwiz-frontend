@@ -15,7 +15,8 @@ export enum MediaType {
     AUDIO = 'AUDIO',
     VIDEO = 'VIDEO',
     IMAGE = 'BITMAP',
-    ARTICLE = 'ARTICLE'
+    ARTICLE = 'ARTICLE',
+    DRAWING = 'DRAWING',
 }
 export enum EvaluationType {
     BINARY = 'binary',

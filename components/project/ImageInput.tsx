@@ -1,4 +1,5 @@
 "use client";
+import { MediaType } from "@/types/round";
 import { Autocomplete, TextField } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
@@ -16,14 +17,16 @@ type ImageInputProps = {
 type WikimediaImage = {
     title: string
     url: string
+    mediatype: MediaType
 }
-const base = `https://commons.wikimedia.org/w/api.php?action=query&format=json&list=allimages&formatversion=2&aiprop=url&origin=*&aiprefix=`
+const base = `https://commons.wikimedia.org/w/api.php?action=query&format=json&list=allimages&formatversion=2&aiprop=url|mediatype&origin=*&aiprefix=`
 const ImageInput = (props: ImageInputProps) => {
     const [inputValue, setInputValue] = useState<string>('');
     const fetcher = async (url: string): Promise<WikimediaImage[]> => {
-        const response = await fetch(url);
+        const response = await fetch(url, { cache: 'force-cache' });
         const data = await response.json();
-        return data?.query.allimages ?? []
+        const images: WikimediaImage[] = data?.query.allimages ?? [];
+        return images.filter((image: WikimediaImage) => image.mediatype === MediaType.IMAGE || image.mediatype === MediaType.DRAWING);
     }
     const { isLoading, data: options } = useSWR(inputValue === '' ? null : base + inputValue, fetcher, {
         onLoadingSlow(key, config) {
