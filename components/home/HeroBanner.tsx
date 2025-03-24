@@ -24,7 +24,7 @@ const HeroBanner = ({ session }: HeroBannerProps) => {
                     color: "#006699", // Blue color for the text
                 }}
             >
-                Welcome to Campwiz NXT
+                Welcome {session?.username} to Campwiz NXT
             </Typography>
             <Typography variant="subtitle1" color="gray" sx={{ fontFamily: "Lora, serif" }}>
                 Taking jury experience to another level
