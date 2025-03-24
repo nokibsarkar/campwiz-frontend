@@ -1,5 +1,5 @@
 "use client";
-import { Button, Card, CardActions, CardContent, CardHeader, Chip, Typography } from "@mui/material"
+import { Button, Card, CardActions, CardContent, CardHeader, CardMedia, Chip, Typography } from "@mui/material"
 import { styled } from '@mui/material/styles';
 import Link from "next/link"
 import RightArrowIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -41,6 +41,17 @@ const SinglProjectChip = ({ project }: SinglProjectChipProps) => {
                 mx: 2,
                 backgroundColor: 'rgba(255,255,255,0.9)',
             }}>
+            <CardMedia
+                component="img"
+                image={project.logoUrl}
+                alt={project.name}
+                sx={{
+                    objectFit: 'cover',
+                    borderRadius: 8,
+                    height: '100px',
+                    maxWidth: '100%',
+                }}
+            />
             <CardHeader
                 title={<>
                     <Typography variant="h5" color='primary' style={{ display: 'inline', marginRight: '8px' }}>{project.name}</Typography>
@@ -52,6 +63,7 @@ const SinglProjectChip = ({ project }: SinglProjectChipProps) => {
                     mb: -1
                 }}
             />
+
             <CardContent>
                 Project Leads:
                 {
