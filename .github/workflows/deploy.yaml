@@ -40,10 +40,17 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn
       - name: Build
-        env:
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         run: |
           yarn build
+      - name: Create Sentry Release
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+        uses: getsentry/action-release@v3
+        with:
+          version: ${{ github.sha }}
+          sourcemaps: ".next/static/**"
       - name: Package Build
         run: |
           mkdir -p campwiz-frontend
