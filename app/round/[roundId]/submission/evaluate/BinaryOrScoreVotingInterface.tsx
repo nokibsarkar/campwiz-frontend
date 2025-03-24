@@ -2,12 +2,12 @@
 import Logo from "@/components/Logo"
 import loadNextEvaluation from "./loadNextEvaluation"
 import { Evaluation } from "@/types/submission"
-import { Button, LinearProgress } from "@mui/material"
+import LinearProgress from "@mui/material/LinearProgress"
 import SubmissionDetails from "@/app/submission/[submissionId]/_preview/Details"
 import React, { lazy, Suspense, useEffect, useState } from "react"
 import submitVote from "./submitVote"
 import { EvaluationType, MediaType } from "@/types/round"
-import Link from "next/link"
+import AllSet from "./AllSet"
 const VideoApp = lazy(() => import("@/app/submission/[submissionId]/_preview/videoplayer"));
 const AudioPlayer = lazy(() => import("@/app/submission/[submissionId]/_preview/audioPlayer"));
 const BinaryVotingInterface = lazy(() => import("./BinaryVotingInterface"));
@@ -27,24 +27,7 @@ const prefetchSubmissionPreview = async (url: string) => {
 }
 
 
-const AllSet = ({ campaignId }: { roundId: string, campaignId: string }) => {
-    return (
-        <div className="flex flex-col items-center justify-center h-full w-full">
-            <Logo />
-            <div className="text-center">
-                <h1 className="text-2xl font-bold">All Set</h1>
-                <p className="text-lg">Seems like, You have no pending submissions to evaluate in this round.</p>
-                <div className="flex-row flex justify-center">
-                    <Link href={`/campaign/${campaignId}`}>
-                        <Button variant="contained" color="primary" sx={{ m: 1 }}>
-                            Go to Round
-                        </Button>
-                    </Link>
-                </div>
-            </div>
-        </div>
-    )
-}
+
 const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEvaluations, next: initialNext, limit = 1, campaignId, isPublicJury }: { roundId: string, initailEvaluations: Evaluation[], next?: string, limit: number, campaignId: string, isPublicJury: boolean }) => {
     const [evaluations, setEvaluations] = React.useState<Evaluation[]>(initialEvaluations);
     const [next, setNext] = React.useState<string | undefined>(initialNext);

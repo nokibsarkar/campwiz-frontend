@@ -9,6 +9,7 @@ import { Evaluation, Submission } from "@/types/submission";
 import Image from "next/image";
 import loadNextEvaluation from "./loadNextEvaluation";
 import submitVote from "./submitVote";
+import AllSet from "./AllSet";
 
 const useStyles = {
     root: {
@@ -45,7 +46,7 @@ const useStyles = {
     }
 }
 
-const RankingVotingInterface = ({ initailEvaluations, limit, roundId, isPublicJury }: { roundId: string, initailEvaluations: Evaluation[], next?: string, limit: number, campaignId: string, isPublicJury: boolean }) => {
+const RankingVotingInterface = ({ initailEvaluations, limit, roundId, isPublicJury, campaignId }: { roundId: string, initailEvaluations: Evaluation[], next?: string, limit: number, campaignId: string, isPublicJury: boolean }) => {
     const classes = useStyles;
     const [evaluations, setEvaluations] = useState<Evaluation[]>(initailEvaluations);
     const [next, setNext] = useState<string | undefined>("");
@@ -84,7 +85,8 @@ const RankingVotingInterface = ({ initailEvaluations, limit, roundId, isPublicJu
             return {
                 evaluationId: evaluation.evaluationId,
                 score: perPositionPoint * (evaluations.length - index),
-                comment: null
+                comment: null,
+                submissionId: evaluation.submissionId
             }
         });
         const resp = submitVote(roundId, isPublicJury, newEvaluations);
@@ -98,11 +100,11 @@ const RankingVotingInterface = ({ initailEvaluations, limit, roundId, isPublicJu
             setEvaluations([]);
         }
     };
-    if (isLoading) {
-        return <p>Loading...</p>
-    }
     if (error) {
         return <p>Error : {error}</p>
+    }
+    if (evaluations.length === 0) {
+        return <AllSet campaignId={campaignId} roundId={roundId} />
     }
 
     return (
@@ -116,8 +118,8 @@ const RankingVotingInterface = ({ initailEvaluations, limit, roundId, isPublicJu
                 }}
                 draggedItemClassName='k'
             >
-                {evaluations.map(({ evaluationId, submission, }, position) => submission && (
-                    <SortableItem key={evaluationId}>
+                {evaluations.map(({ submission, }, position) => submission && (
+                    <SortableItem key={submission.submissionId}>
                         <Badge
                             overlap="circular"
                             anchorOrigin={{
