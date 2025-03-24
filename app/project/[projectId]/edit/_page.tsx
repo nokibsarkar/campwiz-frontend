@@ -10,7 +10,7 @@ import LoginBackground from "@/public/red-hill.svg";
 import Logo from "@/components/Logo";
 import SaveIcon from '@mui/icons-material/Save';
 import updateProject from "./action";
-const ProjectCreationSuccess = lazy(() => import('@/app/project/new/success'));
+const ProjectUpdateSuccess = lazy(() => import('@/app/project/[projectId]/edit/success'));
 
 const UpdateProject = ({ initialProject }: { initialProject: Project }) => {
     const [error, setError] = useState<Error | null>(null);
@@ -34,7 +34,7 @@ const UpdateProject = ({ initialProject }: { initialProject: Project }) => {
                 backgroundColor: 'rgba(255,255,255,0.4)',
                 justifyContent: 'center', alignItems: 'center'
             }}>
-                {createdProject ? <ProjectCreationSuccess {...createdProject} reset={reset} /> :
+                {createdProject ? <ProjectUpdateSuccess {...createdProject} reset={reset} /> :
                     <Paper sx={{
                         padding: 2, px: 3, width: '100%', maxWidth: 800, position: 'absolute',
                         top: '50%', left: '50%',
