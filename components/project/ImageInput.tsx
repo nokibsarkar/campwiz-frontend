@@ -63,6 +63,7 @@ const ImageInput = (props: ImageInputProps) => {
                 width={props.width || 100}
                 height={props.height || 100}
                 style={{ margin: 'auto' }}
+                unoptimized
             />
         </>
     );
