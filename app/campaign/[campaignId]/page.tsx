@@ -4,9 +4,12 @@ import fetchSession from "@/server/session";
 import { Campaign, WikimediaUsername } from "@/types";
 import { Chip, Paper, Typography } from "@mui/material";
 import RoundTimeline from "./roundTimeline";
+import DateRangeIcon from '@mui/icons-material/DateRange'
+import RuleIcon from '@mui/icons-material/Rule';
 // import DeleteIcon from '@mui/icons-material/Delete';
 import Logo from "@/components/Logo";
 import EditButton from "./EditButton";
+import Description from "@/components/round/Description";
 
 type CampaignViewPageProps = {
     params: Promise<{
@@ -43,12 +46,13 @@ const CampaignViewPage = async ({ params }: CampaignViewPageProps) => {
                     )}
                 </div>
             </div>
-            <Typography variant="subtitle1">
-                {new Date(campaign.startDate).toUTCString()} - {new Date(campaign.endDate).toUTCString()}
-            </Typography>
-            <Typography variant="body1">
-                {campaign.description}
-            </Typography>
+            <br />
+            <Description
+                description={`${new Date(campaign.startDate).toDateString()} - ${new Date(campaign.endDate).toDateString()}`}
+                label="Duration" Icon={DateRangeIcon}
+            />
+            <Description description={campaign.description} label="Description" />
+            <Description description={campaign.rules} label="Rules" Icon={RuleIcon} />
             <CoordinatorList coordinators={campaign.coordinators} />
             <br />
             <RoundTimeline rounds={campaign.rounds} campaign={campaign} session={session}

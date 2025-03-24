@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material"
+import Typography from '@mui/material/Typography'
 import { useMemo } from "react"
 import DateRangeIcon from '@mui/icons-material/DateRange'
 
@@ -27,16 +27,16 @@ const Deadline = ({ deadline }: { deadline: string }) => {
         const seconds = Math.floor(diff / MILLISECONDS_IN_A_SECOND)
         return [d, `In ${seconds} seconds`]
     }, [deadline])
-    return <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'left' }}>
+    return <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'left' }}>
         <DateRangeIcon sx={{ display: 'inline-block', mr: 1, }} fontSize="large" />
-        <Box sx={{ display: 'inline-block', }}>
+        <div style={{ display: 'inline-block', }}>
             <Typography variant="h6" sx={{ mb: 0 }} component='div'>
                 Deadline
             </Typography>
             <Typography variant="body1" sx={{ mb: 2, mt: -0.5, }} component='div'>
                 {d.toDateString()} <Typography variant="body1" color="textSecondary" sx={{ display: 'inline' }}>({time})</Typography>
             </Typography>
-        </Box>
-    </Box>
+        </div>
+    </div>
 }
 export default Deadline
