@@ -19,6 +19,7 @@
     "@mui/material-nextjs": "^6.4.3",
     "@mui/x-date-pickers": "^7.27.1",
     "@noxfed/lottie-webpack-loader": "^1.0.1",
+    "@sentry/nextjs": "^9",
     "@svgr/webpack": "^8.1.0",
     "array-move": "^4.0.0",
     "dayjs": "^1.11.13",
