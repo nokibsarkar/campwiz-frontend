@@ -85,7 +85,7 @@ const ProjectDashboard = async () => {
             rounded-lg
             shadow-lg
         ">
-            <h2 className="text-xl font-bold">Other Projects</h2>
+            <h2 className="text-xl font-bold block">Other Projects</h2>
             {/* <div className="flex flex-row flex-wrap"> */}
             {otherProjects.map(project => (
                 <SinglProjectChip
