@@ -16,6 +16,7 @@ import fetchAPIFromBackendSingleWithErrorHandling, { fetchAPIFromBackendListWith
 import { Project } from "@/types/project";
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Campaign } from "@/types";
+import fetchSession from "@/server/session";
 
 
 
@@ -27,7 +28,15 @@ type DashboardProps = {
 }
 
 const Dashboard = async ({ params }: DashboardProps) => {
-	const { projectId } = await params
+	const { projectId } = await params;
+	const session = await fetchSession();
+	if (!session) {
+		return <div>Not logged in</div>
+	}
+	const canAccessOtherProject = (session.permission & session.permissionMap.PermissionOtherProjectAccess) === session.permissionMap.PermissionOtherProjectAccess;
+	if (!canAccessOtherProject && session.projectId !== projectId) {
+		return <div>Not allowed to access this project</div>
+	}
 	const myProjectResponse = await fetchAPIFromBackendSingleWithErrorHandling<Project>(`/project/${projectId}?includeProjectLeads=true`);
 	if (!myProjectResponse) {
 		return <div>Failed to fetch your project</div>

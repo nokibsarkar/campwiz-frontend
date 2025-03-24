@@ -108,6 +108,6 @@ export const LogoutButtton = () => {
             },
         }}
     >
-        {isSmall ? null : 'Logout'}
+        {!isSmall && 'Logout'}
     </Button>
 }
