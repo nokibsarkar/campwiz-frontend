@@ -29,10 +29,11 @@ export const LoginButton = () => (
         </Button>
     </Link>
 )
-export const ProjectDashboard = () => {
+export const ProjectDashboard = ({ projectId, canAccessOtherProject }: { projectId: string | null, canAccessOtherProject: boolean }) => {
     const isSmall = useMediaQuery('(max-width:600px)');
+    const url = canAccessOtherProject ? `/project/` : `/project/${projectId}`;
     return (
-        <Link href="/project">
+        <Link href={url}>
             <Button
                 variant="contained"
                 startIcon={<DashboardIcon />}

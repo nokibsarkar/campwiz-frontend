@@ -7,7 +7,9 @@ type HeroBannerProps = {
 }
 
 const HeroBanner = ({ session }: HeroBannerProps) => {
-    const showProjectDashboardLink = session !== null && (session.permission & session.permissionMap.PermissionOtherProjectAccess) === session.permissionMap.PermissionOtherProjectAccess;
+    const canAccessOtherProject = session !== null && (session.permission & session.permissionMap.PermissionOtherProjectAccess) === session.permissionMap.PermissionOtherProjectAccess;
+    const accessibleProjectId = session?.projectId || null;
+    const showProjectDashboardLink = session !== null && (canAccessOtherProject || accessibleProjectId !== null);
     const showLoginButton = session === null;
     const showLogout = session !== null;
     return (
@@ -30,7 +32,7 @@ const HeroBanner = ({ session }: HeroBannerProps) => {
             <div className="flex justify-center mt-4">
                 {showLoginButton && <LoginButton />}
                 {showLogout && <LogoutButtton />}
-                {showProjectDashboardLink && <ProjectDashboard />}
+                {showProjectDashboardLink && <ProjectDashboard projectId={accessibleProjectId} canAccessOtherProject={canAccessOtherProject} />}
                 <DocumentationButton />
 
             </div>
