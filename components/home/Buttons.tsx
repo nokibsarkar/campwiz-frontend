@@ -58,24 +58,26 @@ export const ProjectDashboard = ({ projectId, canAccessOtherProject }: { project
 export const DocumentationButton = () => {
     const isSmall = useMediaQuery('(max-width:600px)');
     return (
-        <Button
-            variant="outlined"
-            startIcon={<ContactSupportIcon />}
-            sx={{
-                borderColor: "#006699", // Blue border color
-                color: "#006699", // Blue text color
-                borderRadius: 30,
-                m: 1,
-                transition: "0.3s",
-                "&:hover": {
-                    bgcolor: "#006699", // Blue background on hover
-                    color: "#fff", // White text on hover
-                    transform: "scale(1.05)",
-                },
-            }}
-        >
-            {isSmall ? null : 'Documentation'}
-        </Button>
+        <Link href='https://github.com/nokibsarkar/campwiz'>
+            <Button
+                variant="outlined"
+                startIcon={<ContactSupportIcon />}
+                sx={{
+                    borderColor: "#006699", // Blue border color
+                    color: "#006699", // Blue text color
+                    borderRadius: 30,
+                    m: 1,
+                    transition: "0.3s",
+                    "&:hover": {
+                        bgcolor: "#006699", // Blue background on hover
+                        color: "#fff", // White text on hover
+                        transform: "scale(1.05)",
+                    },
+                }}
+            >
+                {isSmall ? null : 'Documentation'}
+            </Button>
+        </Link>
     )
 }
 export const LogoutButtton = () => {
