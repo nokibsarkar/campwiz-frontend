@@ -15,7 +15,8 @@ const ProjectUpdateSuccess = lazy(() => import('@/app/project/[projectId]/edit/s
 const UpdateProject = ({ initialProject }: { initialProject: Project }) => {
     const [error, setError] = useState<Error | null>(null);
     const [project, projectDispatch] = useReducer(projectUpdateReducer, initialProject);
-    const { data: createdProject = null, trigger, isMutating: loading, reset: resetMutation } = useSWRMutation<Project | undefined>(`/api/project${initialProject.projectId}`, updateProject.bind(null, project), {
+    const url = `/project/${initialProject.projectId}`;
+    const { data: createdProject = null, trigger, isMutating: loading, reset: resetMutation } = useSWRMutation<Project | undefined>(url, updateProject.bind(null, project), {
         onError: setError,
     });
     const reset = () => {
@@ -47,7 +48,7 @@ const UpdateProject = ({ initialProject }: { initialProject: Project }) => {
                             Update Project
                         </Typography>
                         {loading && <LoadingPopup src="/lottie/creating.lottie" />}
-                        <ProjectEditForm {...project} loading={loading} dispatch={projectDispatch} />
+                        <ProjectEditForm {...project} loading={loading} dispatch={projectDispatch} disbaleId autoSuggestId={false} />
                         {error && <Typography variant="body1" color="error" sx={{ mb: 1 }}>{error.message}</Typography>}
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
                             <ReturnButton disabled={loading} sx={{ m: 0, borderRadius: 10, px: 2 }} />

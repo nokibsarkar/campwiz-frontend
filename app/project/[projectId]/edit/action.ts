@@ -3,7 +3,7 @@
 import fetchAPIFromBackendSingleWithErrorHandling from "@/server";
 import { Project, ProjectUpdate } from "@/types/project";
 
-const updateProject = async (project: ProjectUpdate) => {
+const updateProject = async (project: ProjectUpdate, url: string) => {
     if (project.name === '') {
         throw new Error('Project name cannot be empty')
     }
@@ -19,7 +19,7 @@ const updateProject = async (project: ProjectUpdate) => {
     if (project.projectLeads.length === 0) {
         throw new Error('At least one coordinator is required')
     }
-    const res = await fetchAPIFromBackendSingleWithErrorHandling<Project>(`/project/${project.projectId}?includeProjectLeads=true`, {
+    const res = await fetchAPIFromBackendSingleWithErrorHandling<Project>(`${url}?includeProjectLeads=true`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
