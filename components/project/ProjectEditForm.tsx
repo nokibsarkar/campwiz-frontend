@@ -4,7 +4,9 @@ import { ActionDispatch, useState } from "react";
 import UserInput from "../user/UserInput";
 import { ProjectCreate } from "@/types/project";
 import ImageInput from "./ImageInput";
-const ProjectEditForm = ({ dispatch, loading, disabled = false, autoSuggestId = true, ...campaign }: ProjectCreate & { dispatch: ActionDispatch<[Partial<ProjectCreate>]>, loading: boolean, disabled?: boolean, autoSuggestId?: boolean }) => {
+const LogoHeight = 100;
+const LogoWidth = 100;
+const ProjectEditForm = ({ dispatch, loading, disabled = false, autoSuggestId = true, disbaleId, ...campaign }: ProjectCreate & { dispatch: ActionDispatch<[Partial<ProjectCreate>]>, loading: boolean, disabled?: boolean, autoSuggestId: boolean, disbaleId: boolean }) => {
     const [isDirtyByUser, setIsDirtyByUser] = useState(false);
     return (
         <div>
@@ -31,7 +33,7 @@ const ProjectEditForm = ({ dispatch, loading, disabled = false, autoSuggestId = 
                         dispatch({ projectId: e.target.value })
                     }}
                     value={campaign.projectId}
-                    disabled={loading || disabled}
+                    disabled={loading || disabled || disbaleId}
                 />
                 <TextField
                     label="Website"
@@ -50,11 +52,13 @@ const ProjectEditForm = ({ dispatch, loading, disabled = false, autoSuggestId = 
                 sx={{ mb: 2 }}
             />
             <ImageInput
-                value={campaign.logoUrl || ''}
+                value={campaign.logoUrl}
                 onChange={(logoUrl) => dispatch({ logoUrl })}
                 label="Logo"
                 disabled={loading || disabled}
                 sx={{ mb: 2 }}
+                height={LogoHeight}
+                width={LogoWidth}
             />
 
         </div>

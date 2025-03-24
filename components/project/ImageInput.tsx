@@ -1,5 +1,6 @@
 "use client";
 import { Autocomplete, TextField } from "@mui/material";
+import Image from "next/image";
 import { useState } from "react";
 import useSWR from "swr";
 
@@ -9,6 +10,8 @@ type ImageInputProps = {
     label: string
     disabled?: boolean
     sx?: { [key: string]: unknown }
+    height?: number
+    width?: number
 }
 type WikimediaImage = {
     title: string
@@ -29,29 +32,39 @@ const ImageInput = (props: ImageInputProps) => {
         revalidateOnFocus: false, revalidateOnReconnect: false,
     });
     return (
-        <Autocomplete
-            id={props.label}
-            options={options || []}
-            getOptionLabel={(option) => option.title}
-            filterSelectedOptions
-            value={options?.find((option) => option.url === props.value) || null}
-            isOptionEqualToValue={(option, value) => option.url === value.url}
-            onError={(e) => console.error(e)}
-            disabled={props.disabled}
-            loading={isLoading}
-            onChange={(_, updatedUrl) => props.onChange(updatedUrl?.url || '')}
-            sx={{ mb: 1, ...(props.sx || {}) }}
-            renderInput={(params) => (
-                <TextField
-                    {...params}
-                    variant="outlined"
-                    label={props.label}
-                    placeholder={props.label}
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                />
-            )}
-        />
+        <>
+
+            <Autocomplete
+                id={props.label}
+                options={options || []}
+                getOptionLabel={(option) => option.title}
+                filterSelectedOptions
+                value={options?.find((option) => option.url === props.value) || null}
+                isOptionEqualToValue={(option, value) => option.url === value.url}
+                onError={(e) => console.error(e)}
+                disabled={props.disabled}
+                loading={isLoading}
+                onChange={(_, updatedUrl) => props.onChange(updatedUrl?.url || '')}
+                sx={{ mb: 1, ...(props.sx || {}) }}
+                renderInput={(params) => (
+                    <TextField
+                        {...params}
+                        variant="outlined"
+                        label={props.label}
+                        placeholder={props.label}
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                    />
+                )}
+            />
+            <Image
+                src={props.value || '/logo.svg'}
+                alt="Logo"
+                width={props.width || 100}
+                height={props.height || 100}
+                style={{ margin: 'auto' }}
+            />
+        </>
     );
 }
 export default ImageInput;
