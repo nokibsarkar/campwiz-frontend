@@ -7,10 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment: Test
-    env:
-      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-      SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js
@@ -44,13 +41,12 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn
       - name: Build
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         run: |
           yarn build
-      - name: Create Sentry Release
-        uses: getsentry/action-release@v3
-        with:
-          release: ${{ github.sha }}
-          sourcemaps: ".next/static/**"
       - name: Package Build
         run: |
           mkdir -p campwiz-frontend
