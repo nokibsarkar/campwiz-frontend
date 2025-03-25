@@ -11,7 +11,7 @@ const createRound = async (round: RoundCreate) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(round),
-        })
+        });
         return res
     } catch (error) {
         console.error(error)

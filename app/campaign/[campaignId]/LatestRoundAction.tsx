@@ -61,7 +61,7 @@ const LatestRoundActions = ({ latestRound, setAction, isJury, judgableLink, refr
                     Start Evaluation
                 </Button>
             </Link>)
-        else {
+        else if (latestRound.isPublicJury) {
             buttons.push(<AddAsJuryButton roundId={latestRound.roundId} refresh={refresh} />)
         }
     }

@@ -8,7 +8,7 @@ const UpdateCampaign = async ({ params }: { params: Promise<{ campaignId: string
     if (!session) {
         return <div>Not logged in</div>
     }
-    const { permissionMap: { PermissionOtherProjectAccess, PermissionUpdateCampaignDetails }, projectId, permission } = session;
+    const { permissionMap: { PermissionOtherProjectAccess, }, projectId, permission } = session;
     const { campaignId } = await params;
     const isAdmin = (PermissionOtherProjectAccess & permission) === PermissionOtherProjectAccess;
     const campaignResponse = await fetchAPIFromBackendSingleWithErrorHandling<Campaign>(`/campaign/${campaignId}?includeRoles=true`);
@@ -16,7 +16,7 @@ const UpdateCampaign = async ({ params }: { params: Promise<{ campaignId: string
         return <div>{campaignResponse.detail}</div>
     }
     const campaign = campaignResponse.data;
-    const hasCampaignEditAccess = campaign.projectId === projectId && (PermissionUpdateCampaignDetails & permission) === PermissionUpdateCampaignDetails;
+    const hasCampaignEditAccess = campaign.projectId === projectId //&& (PermissionUpdateCampaignDetails & permission) === PermissionUpdateCampaignDetails;
     if (!isAdmin && !hasCampaignEditAccess) {
         return <div>Either Admin or Project Lead can edit this campaign</div>
     }
