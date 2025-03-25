@@ -10,8 +10,8 @@ const ProjectUpdate = async ({ params }: { params: Promise<{ projectId: string }
         return <div>Not logged in</div>
     }
     const canAccessOtherProject = (session.permission & session.permissionMap.PermissionOtherProjectAccess) === session.permissionMap.PermissionOtherProjectAccess;
-    if (!canAccessOtherProject && session.projectId !== projectId) {
-        return <div>Not allowed to access this project</div>
+    if (!canAccessOtherProject) {
+        return <div>Not allowed to update this project</div>
     }
     const projectResponse = await fetchAPIFromBackendSingleWithErrorHandling<Project>(`/project/${projectId}?includeProjectLeads=true`);
     if ('detail' in projectResponse) {

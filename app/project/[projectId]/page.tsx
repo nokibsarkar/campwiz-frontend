@@ -99,27 +99,29 @@ const Dashboard = async ({ params }: DashboardProps) => {
 				>
 					Welcome to {project.name}
 				</Typography>
-				<Link href={`/project/${projectId}/edit`}>
-					<Button
-						variant="outlined"
-						sx={{
-							mt: 1,
-							borderColor: "white",
-							color: "#006699",
-							bgcolor: "white",
-							borderRadius: 30,
-							transition: "0.3s",
-							"&:hover": {
-								bgcolor: "#006699",
-								color: "#fff",
-								transform: "scale(1.05)",
-							},
-						}}
-						endIcon={<SettingsIcon />}
-					>
-						Settings
-					</Button>
-				</Link>
+				{canAccessOtherProject &&
+					<Link href={`/project/${projectId}/edit`}>
+						<Button
+							variant="outlined"
+							sx={{
+								mt: 1,
+								borderColor: "white",
+								color: "#006699",
+								bgcolor: "white",
+								borderRadius: 30,
+								transition: "0.3s",
+								"&:hover": {
+									bgcolor: "#006699",
+									color: "#fff",
+									transform: "scale(1.05)",
+								},
+							}}
+							endIcon={<SettingsIcon />}
+						>
+							Settings
+						</Button>
+					</Link>
+				}
 				<br />
 				{projectLeads.map((lead) => (
 					<Chip label={lead} sx={{
