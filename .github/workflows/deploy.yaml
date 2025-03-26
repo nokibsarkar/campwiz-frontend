@@ -51,7 +51,7 @@ jobs:
           mkdir -p campwiz-frontend
           mv .next campwiz-frontend
           mkdir .next 
-          cp -r campwiz-frontend/.next/cache .next
+          mv campwiz-frontend/.next/cache .next
           ls -al .next/
           cp package.json campwiz-frontend
           cp yarn.lock campwiz-frontend
