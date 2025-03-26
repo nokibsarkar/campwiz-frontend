@@ -18,19 +18,18 @@ const RatingVotingInterface = ({ goNext, goPrevious, submitScore, saving, evalua
                 <SkipPreviousIcon />
             </IconButton>
             {
-                [20, 40, 60, 80, 100].map((i) => {
-                    return (
-                        <IconButton
-                            color="dalgona" size="large" key={i}
-                            onClick={() => { setCurrentScore(i); submitScore(i) }}
-                            onMouseOver={() => !saving && setCurrentScore(i)}
-                            onMouseOut={() => !saving && setCurrentScore(evaluation.score)}
-                            disabled={saving}
-                        >
-                            {i <= (currentScore || 0) ? <StarIcon /> : <OutlinedStart />}
-                        </IconButton>
-                    )
-                })
+                [20, 40, 60, 80, 100].map((i) => (
+                    <IconButton
+                        color="dalgona" size="large" key={i}
+                        onClick={() => { setCurrentScore(i); submitScore(i) }}
+                        onMouseOver={() => !saving && setCurrentScore(i)}
+                        onMouseOut={() => !saving && setCurrentScore(evaluation.score)}
+                        disabled={saving}
+                    >
+                        {i <= (currentScore || 0) ? <StarIcon /> : <OutlinedStart />}
+                    </IconButton>
+                )
+                )
             }
 
             <IconButton color="primary" size="large" onClick={goNext}>

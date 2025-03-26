@@ -39,9 +39,7 @@ const theme = createTheme({
       main: '#006699'
     },
     dalgona: {
-      main: '#ad8851',
-      light: '#ad8851',
-      dark: '#ad8851'
+      main: '#d9aa59',
     }
   },
   cssVariables: true,

@@ -140,17 +140,22 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
     if (!submission) return null;
     return (
         <div className="flex sm:flex-row h-full flex-col  w-full">
-            <div className="flex flex-row items-start relative sm:h-full w-full h-16 sm:w-1/4 overflow-y-auto">
+            {/* <div className="flex flex-row items-start relative sm:h-full w-full h-16 sm:w-1/4 overflow-y-auto">
                 {isLoading && <LinearProgress />}
                 {error && <p>{error}</p>}
-            </div>
+            </div> */}
             {evaluations && (
-                <div className="relative h-11/12 sm:h-full w-full sm:w-3/4 overflow-y-auto block">
+                <div className="relative h-11/12 sm:h-full w-full overflow-y-auto block">
                     <div className="h-3/4 flex flex-col mb-1 justify-between">
                         <Logo />
+                        {error && <p className="text-center text-lg text-red-600 font-bold">{error}</p>}
                         {
                             // eslint-disable-next-line @next/next/no-img-element
-                            submission.mediatype === MediaType.IMAGE && <img src={submission.url || '/red-hill.svg'} alt={submission.title} className="mx-auto block h-full w-auto" />
+                            submission.mediatype === MediaType.IMAGE && <img
+                                src={submission.url || '/red-hill.svg'}
+                                alt={submission.title}
+                                className="mx-auto block h-full w-auto"
+                            />
                         }
                         {submission.mediatype === MediaType.VIDEO &&
                             <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
@@ -169,14 +174,19 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
                                     goPrevious={() => setCurrentCursor((cursor) => cursor - 1)}
                                     submitScore={submit}
                                     evaluation={currentEvaluation}
-                                    saving={saving}
+                                    saving={saving || isLoading}
                                 />
                             </Suspense>
                         }
                         {
                             currentEvaluation.type === EvaluationType.SCORE &&
                             <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
-                                <RatingVotingInterface evaluation={currentEvaluation} goNext={() => setCurrentCursor((cursor) => cursor + 1)} goPrevious={() => setCurrentCursor((cursor) => cursor - 1)} submitScore={submit} saving={saving} />
+                                <RatingVotingInterface
+                                    evaluation={currentEvaluation}
+                                    goNext={() => setCurrentCursor((cursor) => cursor + 1)}
+                                    goPrevious={() => setCurrentCursor((cursor) => cursor - 1)}
+                                    submitScore={submit} saving={saving || isLoading}
+                                />
                             </Suspense>
                         }
 
