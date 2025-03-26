@@ -17,6 +17,10 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "CampWiz nxt",
   description: "A powerful tool for organizing campaigns on Wikimedia projects",
+  applicationName: "CampWiz",
+  icons: {
+    icon: "/favicon.ico",
+  },
   authors: [
     {
       name: "Nokib Sarkar",
