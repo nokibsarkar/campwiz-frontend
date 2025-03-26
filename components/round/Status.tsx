@@ -1,7 +1,12 @@
 import { RoundStatus } from "@/types/round/status"
 import { WorkHistory } from "@mui/icons-material"
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { Chip, CircularProgress } from "@mui/material"
+import Chip from '@mui/material/Chip';
+import StopIcon from '@mui/icons-material/Pause';
+import CircleIcon from '@mui/icons-material/FiberManualRecord';
+// import StartIcon from '@mui/icons-material/PlayArrow';
+import DoubleTickIcon from '@mui/icons-material/DoneAll';
+import NoticeIcon from '@mui/icons-material/NotificationImportant';
 
 const Status = ({ status }: { status: RoundStatus }) => {
     return <Chip label={status} color={getStatusColor(status)} variant="outlined" sx={{ marginRight: 1, p: 1 }} />
@@ -35,30 +40,18 @@ export const RoundStatusIcon = ({ status }: { status: RoundStatus }) => {
     }
     switch (status) {
         case RoundStatus.COMPLETED:
-            return <CheckCircleIcon color={getStatusColor(status)} {...commonProps} />
+            return <DoubleTickIcon color={getStatusColor(status)} {...commonProps} />
         case RoundStatus.CANCELLED:
-            return <CheckCircleIcon color={getStatusColor(status)} {...commonProps} />
+            return <NoticeIcon color={getStatusColor(status)} {...commonProps} />
         case RoundStatus.EVALUATING:
             return <CheckCircleIcon color={getStatusColor(status)} {...commonProps} />
         case RoundStatus.PAUSED:
-            return <CheckCircleIcon color={getStatusColor(status)} {...commonProps} />
+            return <StopIcon color={getStatusColor(status)} {...commonProps} />
         case RoundStatus.PENDING:
             return <WorkHistory color={getStatusColor(status)} {...commonProps} />
         case RoundStatus.ACTIVE:
             return (
-                <CircularProgress
-                    size={20}
-                    thickness={5}
-                    {...commonProps}
-                    sx={{
-                        // ...commonProps.sx,
-                        color: getStatusColor(status),
-                        zIndex: 1,
-                        position: 'relative',
-                        ml: -1.5,
-                        mr: 1,
-                    }}
-                />
+                <CircleIcon color={getStatusColor(status)} {...commonProps} />
             )
         default:
             return <CheckCircleIcon color={getStatusColor(status)} {...commonProps} />
