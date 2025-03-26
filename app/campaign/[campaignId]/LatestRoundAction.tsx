@@ -58,7 +58,7 @@ const LatestRoundActions = ({ latestRound, setAction, isJury, judgableLink, refr
                     color="primary"
                     sx={{ m: 1, px: 3 }}
                 >
-                    Start Evaluation
+                    Evaluation Area
                 </Button>
             </Link>)
         else if (latestRound.isPublicJury) {
