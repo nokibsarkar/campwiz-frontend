@@ -4,7 +4,7 @@ import loginInitiateActionClient from "@/provider/session/action";
 import { CircularProgress, Paper, Typography, useMediaQuery } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import ArrowForward from '@mui/icons-material/ArrowForward';
-import LoginBackground from '@/public/login-background-2.gif';
+import LoginBackground from '@/public/login4.gif';
 // import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 // import SuccessImage from '@/public/success.lottie';
 
@@ -85,9 +85,10 @@ const LoginPage = ({ }) => {
 
     return (<Paper sx={{
         backgroundImage: `url(${LoginBackground.src})`,
-        // backgroundSize: '50% 100%',
-        // backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
+        backgroundSize: '60% auto',
+        backgroundRepeat: 'no-repeat',
+        backgroundPositionY: 'center',
+        // backgroundSize: 'cover',
         position: 'fixed',
         top: 0,
         left: 0,
