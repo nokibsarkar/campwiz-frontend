@@ -4,7 +4,7 @@ import loginInitiateActionClient from "@/provider/session/action";
 import { CircularProgress, Paper, Typography, useMediaQuery } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import ArrowForward from '@mui/icons-material/ArrowForward';
-import LoginBackground from '@/public/login4.gif';
+import LoginBackground from '@/public/login5.gif';
 // import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 // import SuccessImage from '@/public/success.lottie';
 
