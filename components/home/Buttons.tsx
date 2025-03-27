@@ -1,87 +1,119 @@
 "use client";
-import { Button, useMediaQuery } from "@mui/material"
+import { Button, IconButton, useMediaQuery } from "@mui/material"
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import Link from "next/link"
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import logout from "./action";
+// import IconButton from '@mui/material/IconButton';
 import { useState } from "react";
-export const LoginButton = () => (
-    <Link href="/user/login">
-        <Button
-            variant="contained"
-            startIcon={<LockOpenIcon />}
-            sx={{
-                bgcolor: "#006699", // Blue background color
-                color: "#fff", // White text color
-                borderRadius: 30,
-                m: 1,
-                px: 2,
-                transition: "0.3s",
-                "&:hover": {
-                    bgcolor: "#00557d", // Darker blue background on hover
-                    transform: "scale(1.05)",
-                },
-            }}
-        >
-            Login
-        </Button>
-    </Link>
-)
-export const ProjectDashboard = ({ projectId, canAccessOtherProject }: { projectId: string | null, canAccessOtherProject: boolean }) => {
+export const LoginButton = () => {
+    const isSmall = useMediaQuery('(max-width:600px)');
+    const sx = {
+        bgcolor: "#006699", // Blue background color
+        color: "#fff", // White text color
+        borderRadius: 30,
+        m: 1,
+        px: 2,
+        transition: "0.3s",
+        "&:hover": {
+            bgcolor: "#00557d", // Darker blue background on hover
+            transform: "scale(1.05)",
+        },
+    }
+    return (
+        <Link href="/user/login">
+            {isSmall ? <IconButton
+                sx={sx}
+            >
+                <LockOpenIcon />
+            </IconButton> : <Button
+                variant="contained"
+                startIcon={<LockOpenIcon />}
+                sx={sx}
+            >
+                {isSmall ? null : 'Login'}
+            </Button>
+            }
+        </Link>
+    )
+}
+export const DhashboardButton = ({ projectId, canAccessOtherProject }: { projectId: string | null, canAccessOtherProject: boolean }) => {
     const isSmall = useMediaQuery('(max-width:600px)');
     const url = canAccessOtherProject ? `/project/` : `/project/${projectId}`;
+    const sx = {
+        bgcolor: "#006699", // Blue background color
+        color: "#fff", // White text color
+        borderRadius: 30,
+        transition: "0.3s",
+        m: 1,
+        "&:hover": {
+            bgcolor: "#00557d", // Darker blue background on hover
+            transform: "scale(1.05)",
+        },
+    }
     return (
         <Link href={url}>
-            <Button
+            {isSmall ? <IconButton
+                sx={sx}
+            >
+                <DashboardIcon />
+            </IconButton> : <Button
                 variant="contained"
                 startIcon={<DashboardIcon />}
-
-                sx={{
-                    bgcolor: "#006699", // Blue background color
-                    color: "#fff", // White text color
-                    borderRadius: 30,
-                    transition: "0.3s",
-                    m: 1,
-                    "&:hover": {
-                        bgcolor: "#00557d", // Darker blue background on hover
-                        transform: "scale(1.05)",
-                    },
-                }}
+                sx={sx}
             >
                 {isSmall ? null : 'Dashboard'}
             </Button>
+            }
         </Link>
     )
 }
 export const DocumentationButton = () => {
     const isSmall = useMediaQuery('(max-width:600px)');
+    const sx = {
+        borderColor: "#006699", // Blue border color
+        color: "#006699", // Blue text color
+        borderRadius: 30,
+        m: 1,
+        transition: "0.3s",
+        "&:hover": {
+            bgcolor: "#006699", // Blue background on hover
+            color: "#fff", // White text on hover
+            transform: "scale(1.05)",
+        },
+    }
     return (
         <Link href='https://github.com/nokibsarkar/campwiz'>
-            <Button
+            {isSmall ? <IconButton
+                sx={sx}
+            >
+                <ContactSupportIcon />
+            </IconButton> : <Button
                 variant="outlined"
                 startIcon={<ContactSupportIcon />}
-                sx={{
-                    borderColor: "#006699", // Blue border color
-                    color: "#006699", // Blue text color
-                    borderRadius: 30,
-                    m: 1,
-                    transition: "0.3s",
-                    "&:hover": {
-                        bgcolor: "#006699", // Blue background on hover
-                        color: "#fff", // White text on hover
-                        transform: "scale(1.05)",
-                    },
-                }}
+                sx={sx}
             >
                 {isSmall ? null : 'Documentation'}
             </Button>
+            }
         </Link>
     )
 }
 export const LogoutButtton = () => {
     const isSmall = useMediaQuery('(max-width:600px)');
+    const sx = {
+        bgcolor: "#ff0000", // Red background color
+        color: "#fff", // White text color
+        borderRadius: 30,
+        m: 1,
+        transition: "0.3s",
+        "&:hover": {
+            bgcolor: "#d60000", // Darker red background on hover
+            transform: "scale(1.05)",
+        },
+    }
     const [loggingOut, setLoggingOut] = useState(false);
     const perFormLogout = async () => {
         setLoggingOut(true);
@@ -91,23 +123,24 @@ export const LogoutButtton = () => {
             setTimeout(window.location.reload.bind(window.location), 1000);
         }
     }
-    return <Button
-        variant="contained"
-        startIcon={<PowerSettingsNewIcon />}
-        onClick={perFormLogout}
-        disabled={loggingOut}
-        loading={loggingOut}
-        color="error"
-        sx={{
-            borderRadius: 30,
-            m: 1,
-            px: { xs: 0, sm: 2 },
-            transition: "0.3s",
-            "&:hover": {
-                transform: "scale(1.05)",
-            },
-        }}
-    >
-        {!isSmall && 'Logout'}
-    </Button>
+    return (
+        isSmall ? <IconButton
+            sx={sx}
+            onClick={perFormLogout}
+            disabled={loggingOut}
+        >
+            <PowerSettingsNewIcon />
+        </IconButton> : <Button
+            variant="contained"
+            startIcon={<PowerSettingsNewIcon />}
+            onClick={perFormLogout}
+            disabled={loggingOut}
+            loading={loggingOut}
+            color="error"
+            sx={sx}
+        >
+            {!isSmall && 'Logout'}
+        </Button>
+
+    )
 }

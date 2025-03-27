@@ -1,7 +1,7 @@
 import Logo from "@/components/Logo"
 import { Typography } from "@mui/material"
 import { Session } from "@/types/user/session";
-import { DocumentationButton, LoginButton, LogoutButtton, ProjectDashboard } from "./Buttons";
+import { DocumentationButton, LoginButton, LogoutButtton, DhashboardButton } from "./Buttons";
 type HeroBannerProps = {
     session: Session | null
 }
@@ -32,7 +32,7 @@ const HeroBanner = ({ session }: HeroBannerProps) => {
             <div className="flex justify-center mt-4">
                 {showLoginButton && <LoginButton />}
                 {showLogout && <LogoutButtton />}
-                {showProjectDashboardLink && <ProjectDashboard projectId={accessibleProjectId} canAccessOtherProject={canAccessOtherProject} />}
+                {showProjectDashboardLink && <DhashboardButton projectId={accessibleProjectId} canAccessOtherProject={canAccessOtherProject} />}
                 <DocumentationButton />
 
             </div>

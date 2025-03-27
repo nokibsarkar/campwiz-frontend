@@ -5,7 +5,7 @@ import { Campaign } from "@/types"
 import useSWR from "swr"
 import SingleCampaignChip from "./SingleCampaignChip"
 import { Box, Skeleton, Typography } from "@mui/material"
-import PerCampaignBackground from "@/public/Flat-Shaded-Mountains-Scene.svg"
+import PerCampaignBackground from "@/public/campaign5.svg"
 
 type AssignedCampaignProps = {
     limit: number
@@ -33,6 +33,7 @@ const AssignedCampaigns = ({ limit }: AssignedCampaignProps) => {
         <Box sx={{
             display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap', px: 2,
             backgroundImage: `url(${PerCampaignBackground.src})`,
+            backgroundSize: 'contain',
         }} className="justify-self-auto">
             {publicCampaignResponse ? (publicCampaignResponse.data || []).map((v, i) => (
                 <SingleCampaignChip campaign={v} key={i} />
