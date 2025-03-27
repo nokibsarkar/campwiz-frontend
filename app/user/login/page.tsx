@@ -85,7 +85,11 @@ const LoginPage = ({ }) => {
 
     return (<Paper sx={{
         backgroundImage: `url(${LoginBackground.src})`,
-        backgroundSize: '60% auto',
+
+        backgroundSize: {
+            xs: '100% auto',
+            sm: '60% auto',
+        },
         backgroundRepeat: 'no-repeat',
         backgroundPositionY: 'center',
         // backgroundSize: 'cover',
