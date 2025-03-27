@@ -5,7 +5,7 @@ import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import Link from "next/link"
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import logout from "./action";
+import logout from "./logout";
 // import IconButton from '@mui/material/IconButton';
 import { useState } from "react";
 export const LoginButton = () => {
