@@ -4,7 +4,7 @@ import loadNextEvaluation from "./loadNextEvaluation";
 import { EvaluationType, Round } from "@/types/round";
 import { lazy, Suspense } from "react";
 import LinearProgress from "@mui/material/LinearProgress";
-const ScoreOrBinaryVotingInterface = lazy(() => import("./BinaryOrScoreVotingInterface"));
+const ScoreOrBinaryVotingInterface = lazy(() => import("./BinaryOrScoreVotingInterface2"));
 const RankingVotingInterface = lazy(() => import("./RankingVotingInterface"));
 const RankingBatchSize = 20;
 

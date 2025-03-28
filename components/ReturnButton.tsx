@@ -9,7 +9,14 @@ type ReturnButtonProps = {
 }
 const ReturnButton = ({ disabled, sx, hiddenIn }: ReturnButtonProps) => {
     const pathName = usePathname()
-    if (hiddenIn && hiddenIn.includes(pathName)) return null
+    if (hiddenIn) {
+        for (const path of hiddenIn) {
+            const r = new RegExp(path)
+            if (r.test(pathName)) {
+                return null
+            }
+        }
+    }
     return (
         <Button
             disabled={disabled}
