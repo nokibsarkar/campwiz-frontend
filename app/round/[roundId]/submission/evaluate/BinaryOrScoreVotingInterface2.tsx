@@ -215,7 +215,7 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
                         submission={submission}
                     />}
                     {error && <p className="text-center text-lg text-red-600 font-bold">{error}</p>}
-                    {currentEvaluation.type !== EvaluationType.BINARY &&
+                    {currentEvaluation.type === EvaluationType.BINARY &&
                         <BinaryVotingInterface
                             goNext={() => setCurrentCursor((cursor) => cursor + 1)}
                             goPrevious={() => setCurrentCursor((cursor) => cursor - 1)}
@@ -225,7 +225,7 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
                         />
                     }
                     {
-                        currentEvaluation.type !== EvaluationType.SCORE &&
+                        currentEvaluation.type === EvaluationType.SCORE &&
                         <RatingVotingInterface
                             evaluation={currentEvaluation}
                             goNext={() => setCurrentCursor((cursor) => cursor + 1)}
