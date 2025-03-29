@@ -59,15 +59,16 @@ const MediaDetails = ({ submission }: DetailsProps) => {
     </>
 }
 const SubmissionDetails = ({ submission }: DetailsProps) => {
+    const truncatedDescription = submission.description?.length > 300 ? submission.description?.slice(0, 300) + '...' : submission.description;
     return (
         <div className="p-2">
             <Typography variant="h6" sx={{ textAlign: 'center' }}>{submission.title}</Typography>
             <Table>
                 <TableBody>
                     <KeyValue name="Author" value={submission.author} />
-                    <KeyValue name="Description" value={submission.description} />
-                    <KeyValue name="Submitted At (on this system)" value={new Date(submission.submittedAt).toString()} />
-                    <KeyValue name="Created At (on wikimedia server)" value={new Date(submission.createdAtServer).toString()} />
+                    <KeyValue name="Description" value={truncatedDescription} />
+                    {/* <KeyValue name="Submitted At (on this system)" value={new Date(submission.submittedAt).toString()} />
+                    <KeyValue name="Created At (on wikimedia server)" value={new Date(submission.createdAtServer).toString()} /> */}
                     <MediaDetails submission={submission} />
                 </TableBody>
             </Table>

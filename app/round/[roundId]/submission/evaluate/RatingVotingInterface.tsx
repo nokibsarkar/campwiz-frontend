@@ -13,9 +13,9 @@ const RatingVotingInterface = ({ goNext, goPrevious, submitScore, saving, evalua
         setCurrentScore(evaluation.score)
     }, [evaluation]);
     return (
-        <div className="flex justify-center">
+        <div className="flex justify-around items-start">
             <IconButton color="primary" size="large" onClick={goPrevious} disabled={saving} loading={saving}>
-                <SkipPreviousIcon />
+                <SkipPreviousIcon fontSize='large' />
             </IconButton>
             {
                 [20, 40, 60, 80, 100].map((i) => (
@@ -26,14 +26,14 @@ const RatingVotingInterface = ({ goNext, goPrevious, submitScore, saving, evalua
                         onMouseOut={() => !saving && setCurrentScore(evaluation.score)}
                         disabled={saving}
                     >
-                        {i <= (currentScore || 0) ? <StarIcon /> : <OutlinedStart />}
+                        {i <= (currentScore || 0) ? <StarIcon fontSize='large' /> : <OutlinedStart fontSize='large' />}
                     </IconButton>
                 )
                 )
             }
 
             <IconButton color="primary" size="large" onClick={goNext}>
-                <SkipNextIcon />
+                <SkipNextIcon fontSize='large' />
             </IconButton>
         </div>
     )
