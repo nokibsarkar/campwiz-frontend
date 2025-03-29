@@ -104,15 +104,8 @@ export const DocumentationButton = () => {
 export const LogoutButtton = () => {
     const isSmall = useMediaQuery('(max-width:600px)');
     const sx = {
-        bgcolor: "#ff0000", // Red background color
-        color: "#fff", // White text color
         borderRadius: 30,
         m: 1,
-        transition: "0.3s",
-        "&:hover": {
-            bgcolor: "#d60000", // Darker red background on hover
-            transform: "scale(1.05)",
-        },
     }
     const [loggingOut, setLoggingOut] = useState(false);
     const perFormLogout = async () => {
@@ -128,6 +121,8 @@ export const LogoutButtton = () => {
             sx={sx}
             onClick={perFormLogout}
             disabled={loggingOut}
+            color="error"
+            loading={loggingOut}
         >
             <PowerSettingsNewIcon />
         </IconButton> : <Button

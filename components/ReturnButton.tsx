@@ -8,9 +8,10 @@ type ReturnButtonProps = {
     disabled?: boolean
     sx?: ButtonProps['sx'],
     hiddenIn?: string[],
-    alwaysBig?: boolean
+    alwaysBig?: boolean,
+    to?: string
 }
-const ReturnButton = ({ disabled, sx, hiddenIn, alwaysBig = false }: ReturnButtonProps) => {
+const ReturnButton = ({ disabled, sx, hiddenIn, alwaysBig = false, to }: ReturnButtonProps) => {
     const pathName = usePathname()
     const isSmall = useMediaQuery('(max-width:600px)');
     if (hiddenIn) {
@@ -21,12 +22,20 @@ const ReturnButton = ({ disabled, sx, hiddenIn, alwaysBig = false }: ReturnButto
             }
         }
     }
+    const onClick = () => {
+        if (typeof window !== 'undefined') {
+            if (to)
+                window.location.replace(to)
+            else
+                window.history.back()
+        }
+    }
     return (
         !isSmall || alwaysBig ? (
             <Button
                 disabled={disabled}
                 sx={{ m: 1, cursor: 'pointer', display: 'inline-block', ...(sx || {}), zIndex: 20 }}
-                onClick={(() => typeof window !== 'undefined' && window.history.back())}
+                onClick={onClick}
                 variant="text"
                 color="primary"
                 startIcon={<LeftArrowIcon />}
