@@ -83,6 +83,7 @@ export type Round = {
     createdAt?: string;
     createdById: IDType;
     totalSubmissions: number;
+    totalEvaluatedSubmissions: number;
     status: RoundStatus;
     latestDistributionTaskId?: IDType;
     roles: Role[] | null;

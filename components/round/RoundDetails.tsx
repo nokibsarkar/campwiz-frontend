@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Deadline from "./Deadline";
 import Description from "./Description";
 import Quorum from "./Quorum";
+import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
 import JuryList from "./Jury";
 import CircularProgressWithLabel from "./CircularProgressWithLabel";
 import { useMemo } from "react";
@@ -55,6 +56,7 @@ const RoundDetails = ({ round: c }: { round: Round }) => {
                 <div>
                     <Deadline deadline={c.endDate} />
                     <Description description={c.description} />
+                    <Description description={`${c.totalEvaluatedSubmissions} out of ${c.totalSubmissions}`} label='Total Evaluated' Icon={HistoryEduIcon} />
                     <Quorum quorum={c.quorum} />
                 </div>
             </Box>
