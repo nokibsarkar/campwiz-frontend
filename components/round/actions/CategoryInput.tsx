@@ -24,8 +24,9 @@ const CategoryInput = ({ alreadyIncludedCategories, onSave, saving = false }: Ca
     const [addedSet, setAddedSet] = useState(new Set(alreadyIncludedCategories))
     const categories = [...addedSet].sort()
     const [prefix, setPrefix] = useState('')
-    const url = `https://commons.wikimedia.org/w/api.php?action=query&format=json&list=allcategories&formatversion=2&acprefix=${prefix}&origin=*&aclimit=10&acprop=size`
-    const { data: categoryOptions, isLoading, error } = useSWR(prefix ? url : null, async (url) => {
+    const replaced = prefix.replace(/^ *[Cc]ategory *:/i, '');
+    const url = `https://commons.wikimedia.org/w/api.php?action=query&format=json&list=allcategories&formatversion=2&acprefix=${replaced}&origin=*&aclimit=10&acprop=size`
+    const { data: categoryOptions, isLoading, error } = useSWR(replaced ? url : null, async (url) => {
         const response = await fetch(url)
         const json = await response.json()
         return json.query.allcategories.map((category: WikimediaCategory) => category.category)
@@ -47,8 +48,9 @@ const CategoryInput = ({ alreadyIncludedCategories, onSave, saving = false }: Ca
                     <TextField
                         {...params}
                         variant="outlined"
-                        label="Categories"
-                        placeholder="Categories"
+                        label="Categories (Without Category: prefix)"
+                        placeholder="Category (without Category: prefix)"
+                        helperText="Type to search for categories without Category: prefix"
                         value={prefix}
                         onChange={(e) => setPrefix(e.target.value)}
                         disabled={saving}
