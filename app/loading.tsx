@@ -1,13 +1,24 @@
 "use client";
-
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import AnimatedLogo from "@/public/logo-animated.svg";
+import Image from "next/image";
 
 const GlobalLoadingPage = () => {
     return (
-        <DotLottieReact
-            src="https://lottie.host/62d4bd23-64c5-4095-949a-00d2e0c49138/k21d20cBOr.lottie"
-            loop
-            autoplay
+        <Image
+            src={AnimatedLogo.src}
+            alt="Loading..."
+            width={200}
+            height={200}
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            priority
+            style={{
+                width: "200px",
+                height: "200px",
+                position: "fixed",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+            }}
         />
     );
 }
