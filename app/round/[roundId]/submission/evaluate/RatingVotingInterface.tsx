@@ -14,7 +14,7 @@ const RatingVotingInterface = ({ goNext, goPrevious, submitScore, saving, evalua
     }, [evaluation]);
     return (
         <div className="flex justify-around items-start">
-            <IconButton color="primary" size="large" onClick={goPrevious} disabled={saving} loading={saving}>
+            <IconButton color="primary" size="large" onClick={goPrevious} disabled={saving}>
                 <SkipPreviousIcon fontSize='large' />
             </IconButton>
             {
@@ -32,7 +32,7 @@ const RatingVotingInterface = ({ goNext, goPrevious, submitScore, saving, evalua
                 )
             }
 
-            <IconButton color="primary" size="large" onClick={goNext} disabled={saving} loading={saving}>
+            <IconButton color="primary" size="large" onClick={goNext} disabled={saving}>
                 <SkipNextIcon fontSize='large' />
             </IconButton>
         </div>

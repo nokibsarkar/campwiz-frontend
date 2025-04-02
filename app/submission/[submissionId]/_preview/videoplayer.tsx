@@ -28,7 +28,7 @@ const VideoApp = ({ src, poster, height, width }: VideoAppProps) => {
             calculatedHeight = windowheight
             computedWidth = windowheight * width / height
         }
-        return computedWidth;
+        return `${computedWidth}px`;
 
     }, [height, width])
     return (
