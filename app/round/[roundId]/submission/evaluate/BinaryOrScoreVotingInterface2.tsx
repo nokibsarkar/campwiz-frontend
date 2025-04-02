@@ -193,7 +193,7 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
 
                     // eslint-disable-next-line @next/next/no-img-element
                     submission.mediatype === MediaType.IMAGE && <img
-                        src={submission.url || '/red-hill.svg'}
+                        src={submission.thumburl || '/red-hill.svg'}
                         alt={submission.title}
                         className="mx-auto block object-contain max-h-5/6"
                     // fill
@@ -224,6 +224,7 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
                             submitScore={submit}
                             evaluation={currentEvaluation}
                             saving={saving || isLoading}
+                            noPrevious={currentCursor === 0}
                         />
                     }
                     {
@@ -233,6 +234,7 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
                             goNext={() => setCurrentCursor((cursor) => cursor + 1)}
                             goPrevious={() => setCurrentCursor((cursor) => cursor - 1)}
                             submitScore={submit} saving={saving || isLoading}
+                            noPrevious={currentCursor === 0}
                         />
                     }
 
