@@ -5,7 +5,7 @@ type VideoAppProps = {
 }
 const VideoApp = ({ src, poster }: VideoAppProps) => {
     return (
-        <div style={{ maxHeight: '400px', maxWidth: '700px', margin: 'auto' }}>
+        <div style={{ maxHeight: '90%', maxWidth: '700px', margin: 'auto' }}>
             <VideoPlayer
                 controls={true}
                 src={src}

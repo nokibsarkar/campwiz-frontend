@@ -140,6 +140,7 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
             return;
         if (!nextEvaluation.submission.url)
             return;
+        // Removed console.log to avoid unintended logging in production
         // only prefetch image previews
         if (nextEvaluation.submission.mediatype !== MediaType.IMAGE)
             return;
