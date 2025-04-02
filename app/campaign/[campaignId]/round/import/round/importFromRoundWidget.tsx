@@ -65,22 +65,24 @@ const ImportFromRoundWidget = ({ currentRound, importing, setImporting, afterImp
     const summaryScore = summaryResponse.data;
     return (taskID ? <StatusThingy taskId={taskID} onSuccess={afterImport} /> : <Suspense fallback={<LottieWrapper src="/lottie/importing.lottie" />}>
         <div className="flex flex-col gap-4">
-            <TextField
-                label="Minimum Passing Score"
-                placeholder="Select a score above which submissions will be imported"
-                select
-                fullWidth
-                value={score}
-                sx={{ my: 1 }}
-                variant="outlined"
-                onChange={(e) => setScore(e.target.value)}
-                helperText={score !== '' && `Importing submissions with score above ${score}% (${summaryScore.find((submission) => submission.averageScore >= parseInt(score))?.submissionCount || 0} media)`}
-            >
-                {summaryScore.map((submission, i) => <MenuItem key={i} value={submission.averageScore}>{submission.averageScore}% - {submission.submissionCount} Files</MenuItem>)}
-            </TextField>
+            {summaryScore.length === 0 ? <div>No submissions to import</div> :
+                <TextField
+                    label="Minimum Passing Score"
+                    placeholder="Select a score above which submissions will be imported"
+                    select
+                    fullWidth
+                    value={score}
+                    sx={{ my: 1 }}
+                    variant="outlined"
+                    onChange={(e) => setScore(e.target.value)}
+                    helperText={score !== '' && `Importing submissions with score above ${score}% (${summaryScore.find((submission) => submission.averageScore >= parseInt(score))?.submissionCount || 0} media)`}
+                >
+                    {summaryScore.map((submission, i) => <MenuItem key={i} value={submission.averageScore}>{submission.averageScore}% - {submission.submissionCount} Files</MenuItem>)}
+                </TextField>
+            }
             <Button
                 onClick={() => startImporting(score, currentRound.dependsOnRoundId,)}
-                disabled={importing}
+                disabled={importing || score === ''}
                 // sx={{ my: 1 }}
                 loading={importing}
                 variant="contained"
