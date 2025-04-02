@@ -13,7 +13,7 @@ import { RoleWithUsername } from "@/types/role";
 
 
 const RoundDetails = ({ round: c }: { round: Round }) => {
-    const [juryList, totalAssigned, totalEvaluated] = useMemo(() => {
+    const [juryList,] = useMemo(() => {
         if (!c.jury || !c.roles) {
             return [[], 0, 0]
         }
@@ -33,7 +33,8 @@ const RoundDetails = ({ round: c }: { round: Round }) => {
 
     }, [c])
 
-    const progress = totalAssigned > 0 ? Math.floor(totalEvaluated / totalAssigned * 100) : 0;
+    const { totalSubmissions, totalEvaluatedSubmissions } = c
+    const progress = totalSubmissions > 0 ? Math.floor(totalEvaluatedSubmissions / totalSubmissions * 100) : 0;
     return (
         <Box sx={{
             textAlign: 'left',
@@ -56,7 +57,8 @@ const RoundDetails = ({ round: c }: { round: Round }) => {
                 <div>
                     <Deadline deadline={c.endDate} />
                     <Description description={c.description} />
-                    <Description description={`${c.totalEvaluatedSubmissions} out of ${c.totalSubmissions}`} label='Total Evaluated' Icon={HistoryEduIcon} />
+                    <Description description={`${c.totalEvaluatedSubmissions} evaluated out of ${c.totalSubmissions}`} label='Submissions' Icon={HistoryEduIcon} />
+                    <Description description={`${c.totalEvaluatedAssignments} evaluated out of ${c.totalAssignments}`} label='Total Assignments' Icon={HistoryEduIcon} />
                     <Quorum quorum={c.quorum} />
                 </div>
             </Box>
