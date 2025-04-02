@@ -67,7 +67,8 @@ export const fetchFromBackend = async (path: string, options?: RequestInit): Pro
     return res
 }
 export const getRawAPIPath = async function (path: string): Promise<string> {
-    return `${baseURL}${API_PATH}${path}`
+    const base = baseURL.search(/localhost/) === -1 ? baseURL : ''
+    return `${base}${API_PATH}${path}`
 }
 async function fetchAPIFromBackendSingleWithErrorHandling<T>(path: string, req?: RequestInit): Promise<ResponseSingle<T> | ResponseError> {
     try {
