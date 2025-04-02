@@ -55,7 +55,6 @@ jobs:
           ls -al .next/
           cp package.json campwiz-frontend
           cp yarn.lock campwiz-frontend
-          cp -r public campwiz-frontend
           cp next.config.* campwiz-frontend
       - name: Setup Deployment Environment
         run: |
