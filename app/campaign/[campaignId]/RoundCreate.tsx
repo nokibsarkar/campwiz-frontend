@@ -53,7 +53,6 @@ const CreateRound = ({ campaignId, onClose }: { campaignId: string, onAfterCreat
             // Audio
             round.audioMinimumSizeBytes = 1 * round.audioMinimumSizeBytes;
             round.audioMinimumDurationMilliseconds = 1 * round.audioMinimumDurationMilliseconds;
-            round.audioMinimumSizeBytes = 1 * round.audioMinimumSizeBytes;
             const newRoundResponse = await createRound(round);
             if (!newRoundResponse) {
                 throw new Error('Round creation failed');
