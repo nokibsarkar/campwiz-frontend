@@ -41,7 +41,7 @@ let nextConfig: NextConfig = {
 };
 const WithBundleAnalyzer = BundleAnalyzer({
   enabled: true,
-  // openAnalyzer: false,
+  openAnalyzer: false,
 });
 nextConfig = WithBundleAnalyzer(nextConfig);
 export default withSentryConfig(nextConfig, {
