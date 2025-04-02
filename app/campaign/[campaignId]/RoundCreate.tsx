@@ -39,6 +39,20 @@ const CreateRound = ({ campaignId, onClose }: { campaignId: string, onAfterCreat
         setLoading(true);
         try {
             setError(null);
+            round.articleMinimumAddedBytes = 1 * round.articleMinimumAddedBytes;
+            round.articleMinimumAddedWords = 1 * round.articleMinimumAddedWords;
+            round.articleMinimumTotalBytes = 1 * round.articleMinimumTotalBytes;
+            round.articleMinimumTotalWords = 1 * round.articleMinimumTotalWords;
+            // Image
+            round.imageMinimumSizeBytes = 1 * round.imageMinimumSizeBytes;
+            round.imageMinimumResolution = 1 * round.imageMinimumResolution;
+            // Video
+            round.videoMinimumSizeBytes = 1 * round.videoMinimumSizeBytes;
+            round.videoMinimumResolution = 1 * round.videoMinimumResolution;
+            round.videoMinimumDurationMilliseconds = 1 * round.videoMinimumDurationMilliseconds;
+            // Audio
+            round.audioMinimumSizeBytes = 1 * round.audioMinimumSizeBytes;
+            round.audioMinimumDurationMilliseconds = 1 * round.audioMinimumDurationMilliseconds;
             const newRoundResponse = await createRound(round);
             if (!newRoundResponse) {
                 throw new Error('Round creation failed');

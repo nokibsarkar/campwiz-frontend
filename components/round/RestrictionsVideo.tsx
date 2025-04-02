@@ -13,7 +13,7 @@ const VideoRestrictions = ({ dispatch, loading, disabled = false, ...round }: Ro
                     m: 1,
                     display: 'inline-block'
                 }}
-                onChange={(e) => dispatch({ videoMinimumResolution: parseInt(e.target.value) })}
+                onChange={(e) => dispatch({ videoMinimumResolution: e.target.value as unknown as number })}
                 value={round.videoMinimumResolution}
                 disabled={loading || disabled}
             />
@@ -24,7 +24,7 @@ const VideoRestrictions = ({ dispatch, loading, disabled = false, ...round }: Ro
                     m: 1,
                     display: 'inline-block'
                 }}
-                onChange={(e) => dispatch({ videoMinimumSizeBytes: parseInt(e.target.value) })}
+                onChange={(e) => dispatch({ videoMinimumSizeBytes: e.target.value as unknown as number })}
                 value={round.videoMinimumSizeBytes}
                 disabled={loading || disabled}
             />
@@ -35,7 +35,7 @@ const VideoRestrictions = ({ dispatch, loading, disabled = false, ...round }: Ro
                     m: 1,
                     display: 'inline-block'
                 }}
-                onChange={(e) => dispatch({ videoMinimumDurationMilliseconds: parseInt(e.target.value) })}
+                onChange={(e) => dispatch({ videoMinimumDurationMilliseconds: e.target.value as unknown as number })}
                 value={round.videoMinimumDurationMilliseconds}
                 disabled={loading || disabled}
             />

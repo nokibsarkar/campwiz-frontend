@@ -85,18 +85,18 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, hideAdvanced = fal
                 value={round.name}
                 disabled={loading || disabled}
             />
-            <DatePicker
+            {/* <DatePicker
                 onChange={(date) => dispatch({ startDate: date?.toISOString() })}
                 value={dayjs(round.startDate)}
                 sx={{ m: 1, width: { xs: '100%', sm: '18%' } }}
                 label="Start Date"
                 disabled={loading || disabled}
-            />
+            /> */}
             <DatePicker
                 onChange={(date) => dispatch({ endDate: date?.toISOString() })}
                 value={dayjs(round.endDate)}
-                sx={{ m: 1, width: { xs: '100%', sm: '18%' } }}
-                label="End Date"
+                sx={{ m: 1, width: { xs: '100%', sm: '48%' } }}
+                label="Deadline"
                 disabled={loading || disabled}
             />
             <TextField
