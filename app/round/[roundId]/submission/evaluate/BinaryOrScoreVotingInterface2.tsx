@@ -177,6 +177,7 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
         return <AllSet roundId={roundId} campaignId={campaignId} />
     const { submission } = currentEvaluation;
     if (!submission) return null;
+
     return (
         <div className="flex h-full w-full sm:flex-row flex-col">
             <div className="relative w-full sm:w-2/3 h-11/12">
@@ -200,7 +201,7 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
                 }
                 {submission.mediatype === MediaType.VIDEO &&
                     <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
-                        <VideoApp poster={submission.thumburl} src={submission.url} />
+                        <VideoApp poster={submission.thumburl} src={submission.url} height={submission.height} width={submission.width} />
                     </Suspense>
                 }
                 {submission.mediatype === MediaType.AUDIO &&
@@ -210,7 +211,7 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
                 }
 
             </div>
-            <div className="relative h-1/12 sm:h-full w-full sm:w-1/3">
+            <div className="relative h-1/12 sm:h-full w-full sm:w-1/3 flex flex-col justify-center items-center">
                 <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
                     {!isSmall && <SubmissionDetails
                         submission={submission}
