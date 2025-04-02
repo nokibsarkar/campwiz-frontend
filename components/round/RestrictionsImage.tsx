@@ -13,7 +13,7 @@ const ImageRestrictions = ({ dispatch, loading, disabled = false, ...round }: Ro
                     m: 1,
                     display: 'inline-block'
                 }}
-                onChange={(e) => dispatch({ imageMinimumResolution: parseInt(e.target.value) })}
+                onChange={(e) => dispatch({ imageMinimumResolution: e.target.value as unknown as number })}
                 value={round.imageMinimumResolution}
                 disabled={loading || disabled}
             />
@@ -24,7 +24,7 @@ const ImageRestrictions = ({ dispatch, loading, disabled = false, ...round }: Ro
                     m: 1,
                     display: 'inline-block'
                 }}
-                onChange={(e) => dispatch({ imageMinimumSizeBytes: parseInt(e.target.value) })}
+                onChange={(e) => dispatch({ imageMinimumSizeBytes: e.target.value as unknown as number })}
                 value={round.imageMinimumSizeBytes}
                 disabled={loading || disabled}
             />

@@ -47,11 +47,12 @@ const CategoryInput = ({ alreadyIncludedCategories, onSave, saving = false }: Ca
                     <TextField
                         {...params}
                         variant="outlined"
-                        label="Categories"
+                        label="Categories (Without Category: Prefix)"
                         placeholder="Categories"
                         value={prefix}
-                        onChange={(e) => setPrefix(e.target.value)}
+                        onChange={(e) => setPrefix(e.target.value.trim().replace(/^[Cc]ategory:/, ''))}
                         disabled={saving}
+                        helperText='Type a category name to search (Without Category: Prefix)'
                     />
                 )}
             />
