@@ -48,14 +48,9 @@ jobs:
           yarn build
       - name: Package Build
         run: |
-          mkdir -p campwiz-frontend
-          mv .next campwiz-frontend
-          mkdir .next 
-          mv campwiz-frontend/.next/cache .next
           ls -al .next/
-          cp package.json campwiz-frontend
-          cp yarn.lock campwiz-frontend
-          cp next.config.* campwiz-frontend
+          cp public  .next/standalone -r
+          cp .next/static .next/standalone/.next -r
       - name: Setup Deployment Environment
         run: |
           mkdir -p ~/.ssh
@@ -64,10 +59,10 @@ jobs:
           chmod 600 id_rsa
       - name: Send Build to Server
         run: |
-          rsync -Pav --no-perms --omit-dir-times -e "ssh -i id_rsa" campwiz-frontend/ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH }}"
+          rsync -Pav --no-perms --omit-dir-times -e "ssh -i id_rsa" .next/standalone/ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH }}"
       - name: Restart Campwiz
         run: |
-          ssh -i id_rsa "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "cd ${{ secrets.SSH_REMOTE_PATH }} && yarn install --production && pm2 restart campwiz-frontend --update-env"
+          ssh -i id_rsa "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "cd ${{ secrets.SSH_REMOTE_PATH }} && pm2 restart campwiz-frontend --update-env"
       - name: Delete SSH Key
         run: |
           rm id_rsa
