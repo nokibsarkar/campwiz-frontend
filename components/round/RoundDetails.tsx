@@ -58,7 +58,7 @@ const RoundDetails = ({ round: c }: { round: Round }) => {
                     <Deadline deadline={c.endDate} />
                     <Description description={c.description} />
                     <Description description={`${c.totalEvaluatedSubmissions} evaluated out of ${c.totalSubmissions}`} label='Submissions' Icon={HistoryEduIcon} />
-                    <Description description={`${c.totalEvaluatedAssignments} evaluated out of ${c.totalAssignments}`} label='Total Assignments' Icon={HistoryEduIcon} />
+                    <Description description={`${c.totalEvaluatedAssignments} evaluated out of ${c.totalAssignments}`} label='Assignments' Icon={HistoryEduIcon} />
                     <Quorum quorum={c.quorum} />
                 </div>
             </Box>
