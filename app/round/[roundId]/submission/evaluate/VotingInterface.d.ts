@@ -6,4 +6,6 @@ export type VotingInterfaceProps = {
     submitScore: (score: number) => void;
     evaluation: Evaluation;
     saving: boolean;
+    noPrevious?: boolean;
+    noNext?: boolean;
 }
