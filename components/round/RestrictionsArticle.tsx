@@ -50,7 +50,7 @@ const ArticleRestrictions = ({ dispatch, loading, disabled = false, ...round }: 
                     m: 1,
                     display: 'inline-block'
                 }}
-                onChange={(e) => dispatch({ articleMinimumTotalBytes: parseInt(e.target.value) })}
+                onChange={(e) => dispatch({ articleMinimumTotalBytes: e.target.value as unknown as number })}
                 value={round.articleMinimumTotalBytes}
                 disabled={loading || disabled}
             />
@@ -61,7 +61,7 @@ const ArticleRestrictions = ({ dispatch, loading, disabled = false, ...round }: 
                     m: 1,
                     display: 'inline-block'
                 }}
-                onChange={(e) => dispatch({ articleMinimumTotalWords: parseInt(e.target.value) })}
+                onChange={(e) => dispatch({ articleMinimumTotalWords: e.target.value as unknown as number })}
                 value={round.articleMinimumTotalWords}
                 disabled={loading || disabled}
             />
@@ -72,7 +72,7 @@ const ArticleRestrictions = ({ dispatch, loading, disabled = false, ...round }: 
                     m: 1,
                     display: 'inline-block'
                 }}
-                onChange={(e) => dispatch({ articleMinimumAddedBytes: parseInt(e.target.value) })}
+                onChange={(e) => dispatch({ articleMinimumAddedBytes: e.target.value as unknown as number })}
                 value={round.articleMinimumAddedBytes}
                 disabled={loading || disabled}
             />
@@ -83,7 +83,7 @@ const ArticleRestrictions = ({ dispatch, loading, disabled = false, ...round }: 
                     m: 1,
                     display: 'inline-block'
                 }}
-                onChange={(e) => dispatch({ articleMinimumAddedWords: parseInt(e.target.value) })}
+                onChange={(e) => dispatch({ articleMinimumAddedWords: e.target.value as unknown as number })}
                 value={round.articleMinimumAddedWords}
                 disabled={loading || disabled}
             />

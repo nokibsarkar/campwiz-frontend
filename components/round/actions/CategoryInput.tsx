@@ -33,7 +33,7 @@ const CategoryInput = ({ alreadyIncludedCategories, onSave, saving = false }: Ca
     })
     return (
         <div style={{ textAlign: 'center' }}>
-            <Image src={commons2Server.src} alt={''} width={400} height={186} style={{ margin: 1, display: 'block', textAlign: 'center' }} />
+            <Image src={commons2Server.src} alt='Import from Commons Representational Image' width={400} height={186} style={{ margin: 1, display: 'block', textAlign: 'center', }} />
             {error && <div>Failed to load</div>}
             <Autocomplete
                 id="categories"
@@ -48,12 +48,12 @@ const CategoryInput = ({ alreadyIncludedCategories, onSave, saving = false }: Ca
                     <TextField
                         {...params}
                         variant="outlined"
-                        label="Categories (Without Category: prefix)"
-                        placeholder="Category (without Category: prefix)"
-                        helperText="Type to search for categories without Category: prefix"
+                        label="Categories (Without Category: Prefix)"
+                        placeholder="Categories"
                         value={prefix}
-                        onChange={(e) => setPrefix(e.target.value)}
+                        onChange={(e) => setPrefix(e.target.value.trim().replace(/^[Cc]ategory:/, ''))}
                         disabled={saving}
+                        helperText='Type a category name to search (Without Category: Prefix)'
                     />
                 )}
             />

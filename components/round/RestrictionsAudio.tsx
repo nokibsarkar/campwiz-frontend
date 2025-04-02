@@ -13,7 +13,7 @@ const AudioRestrictions = ({ dispatch, loading, disabled = false, ...round }: Ro
                     m: 1,
                     display: 'inline-block'
                 }}
-                onChange={(e) => dispatch({ audioMinimumDurationMilliseconds: parseInt(e.target.value) })}
+                onChange={(e) => dispatch({ audioMinimumDurationMilliseconds: e.target.value as unknown as number })}
                 value={round.audioMinimumDurationMilliseconds}
                 disabled={loading || disabled}
             />
@@ -24,7 +24,7 @@ const AudioRestrictions = ({ dispatch, loading, disabled = false, ...round }: Ro
                     m: 1,
                     display: 'inline-block'
                 }}
-                onChange={(e) => dispatch({ audioMinimumSizeBytes: parseInt(e.target.value) })}
+                onChange={(e) => dispatch({ audioMinimumSizeBytes: e.target.value as unknown as number })}
                 value={round.audioMinimumSizeBytes}
                 disabled={loading || disabled}
             />
