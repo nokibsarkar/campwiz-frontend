@@ -21,14 +21,14 @@ const VideoApp = ({ src, poster, height, width }: VideoAppProps) => {
             windowheight = window.innerHeight * 5 / 6 * 0.9// parseInt(c.height.replace('px', ''))
             windowwidth = window.innerWidth * 0.6 // parseInt(c.width.replace('px', ''))
         }
-        let calculatedHeight = windowheight, calculatedWidth = windowwidth;
+        let calculatedHeight = windowheight, computedWidth = windowwidth;
         // try to fit width first
         calculatedHeight = windowwidth * height / width
         if (calculatedHeight > windowheight) {
             calculatedHeight = windowheight
-            calculatedWidth = windowheight * width / height
+            computedWidth = windowheight * width / height
         }
-        return calculatedWidth;
+        return computedWidth;
 
     }, [height, width])
     return (
