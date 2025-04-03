@@ -18,3 +18,5 @@ bun dev
 ## Learn More
 To learn more about CampWiz, take a look at the following resources:
 - [CampWiz Github Repository](https://github.com/nokibsarkar/campwiz)
+## Some  MileStones
+- **03-03-2025** Reduction in production size from 2.5 GB (approximately) to 137 MB (approximately) using `standalone` build. ([cd24d41d5140f4e16217bab13e476d16f2a0bdf1](https://github.com/nokibsarkar/campwiz-frontend/commit/330abc453bf0725228b4fe6fb0c3c93785a0ef67))
