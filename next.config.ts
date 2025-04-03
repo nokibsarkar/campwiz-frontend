@@ -42,6 +42,8 @@ let nextConfig: NextConfig = {
 const WithBundleAnalyzer = BundleAnalyzer({
   enabled: true,
   openAnalyzer: false,
+  analyzerMode: 'static',
+  logLevel: 'info',
 });
 nextConfig = WithBundleAnalyzer(nextConfig);
 export default withSentryConfig(nextConfig, {
@@ -74,4 +76,5 @@ export default withSentryConfig(nextConfig, {
   // https://docs.sentry.io/product/crons/
   // https://vercel.com/docs/cron-jobs
   automaticVercelMonitors: true,
+  telemetry: false,
 });
