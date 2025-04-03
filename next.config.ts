@@ -54,7 +54,7 @@ export default withSentryConfig(nextConfig, {
   project: "campwiz",
 
   // Only print logs for uploading source maps in CI
-  silent: !process.env.CI,
+  silent: process.env.CI !== "true",
 
   // For all available options, see:
   // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
@@ -75,6 +75,6 @@ export default withSentryConfig(nextConfig, {
   // See the following for more information:
   // https://docs.sentry.io/product/crons/
   // https://vercel.com/docs/cron-jobs
-  automaticVercelMonitors: true,
+  automaticVercelMonitors: false,
   telemetry: false,
 });
