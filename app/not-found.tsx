@@ -17,6 +17,7 @@ export default function NotFound() {
                 margin: "auto",
                 position: "relative",
                 marginTop: '20px',
+                marginBottom: '20px',
                 // top: "50%",
                 // left: "50%",
                 // transform: "translate(-50%, -50%)",
