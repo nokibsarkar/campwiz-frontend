@@ -8,11 +8,11 @@ export default function NotFound() {
         <Image
             src={ErrorIcon.src}
             alt="Error"
-            width={100}
-            height={100}
+            width={200}
+            height={200}
             priority
             style={{
-                width: "100px",
+                width: "200px",
                 height: "auto",
                 margin: "auto",
                 position: "relative",
