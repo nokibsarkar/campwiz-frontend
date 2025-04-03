@@ -7,17 +7,17 @@ const GlobalLoadingPage = () => {
         <Image
             src={AnimatedLogo.src}
             alt="Loading..."
-            width={200}
-            height={200}
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            width={300}
+            height={300}
+            className="fixed top-1/2 left-1/2 -translate-1/2"
             priority
             style={{
-                width: "200px",
-                height: "200px",
+                width: "300px",
+                height: "auto",
                 position: "fixed",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
+                // top: "50%",
+                // left: "50%",
+                // transform: "translate(-50%, -50%)",
             }}
         />
     );

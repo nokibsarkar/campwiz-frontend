@@ -1,4 +1,4 @@
-import LoadingSVG from "@/public/loading.svg";
+import LoadingSVG from "@/public/logo-animated.svg";
 import Image from "next/image";
 const LoadingPopup = ({ src = LoadingSVG }: { src?: string, message?: string }) => (
     <div className="loading-popup fixed top-0 left-0 w-full h-full bg-transparent z-50 flex items-center justify-center flex-col backdrop-blur-[2px]">

@@ -16,7 +16,7 @@
     </clipPath>
   </defs>
   <g fill="#990000" fill-opacity="1">
-  <animate xmlns="http://www.w3.org/2000/svg" attributeName="fill-opacity" values="0;1;0" repeatCount="indefinite" dur="3s"/>
+  <animate xmlns="http://www.w3.org/2000/svg" attributeName="fill-opacity" values="0;1;0" repeatCount="indefinite" dur="1s"/>
     <g transform="translate(34.236427, 356.59153)">
       <g>
         <path
@@ -26,7 +26,7 @@
     </g>
   </g>
   <g fill="#990000" fill-opacity="1">
-   <animate xmlns="http://www.w3.org/2000/svg" attributeName="fill-opacity" values="0;1;0" repeatCount="indefinite" dur="4s"/>
+   <animate xmlns="http://www.w3.org/2000/svg" attributeName="fill-opacity" values="0;1;0" repeatCount="indefinite" dur="2s"/>
     <g transform="translate(163.371631, 356.59153)">
       <g>
         <path
@@ -36,7 +36,7 @@
     </g>
   </g>
   <g fill="#990000" fill-opacity="1">
-   <animate xmlns="http://www.w3.org/2000/svg" attributeName="fill-opacity" values="0;1;0" repeatCount="indefinite" dur="4.5s"/>
+   <animate xmlns="http://www.w3.org/2000/svg" attributeName="fill-opacity" values="0;1;0" repeatCount="indefinite" dur="2.5s"/>
     
     <g transform="translate(308.621914, 356.59153)">
       <g>
@@ -47,7 +47,7 @@
     </g>
   </g>
   <g fill="#339966" fill-opacity="1">
-   <animate xmlns="http://www.w3.org/2000/svg" attributeName="fill-opacity" values="0;1;0" repeatCount="indefinite" dur="4.5s"/>
+   <animate xmlns="http://www.w3.org/2000/svg" attributeName="fill-opacity" values="0;1;0" repeatCount="indefinite" dur="2.5s"/>
     
     <g transform="translate(488.257018, 356.59153)">
       <g>
@@ -58,7 +58,7 @@
     </g>
   </g>
   <g fill="#006699" fill-opacity="1">
-   <animate xmlns="http://www.w3.org/2000/svg" attributeName="fill-opacity" values="0;1;0" repeatCount="indefinite" dur="4s"/>
+   <animate xmlns="http://www.w3.org/2000/svg" attributeName="fill-opacity" values="0;1;0" repeatCount="indefinite" dur="2s"/>
     
     <g transform="translate(601.709456, 356.59153)">
       <g>
@@ -69,7 +69,7 @@
     </g>
   </g>
   <g fill="#006699" fill-opacity="1">
-   <animate xmlns="http://www.w3.org/2000/svg" attributeName="fill-opacity" values="0;1;0" repeatCount="indefinite" dur="3s"/>
+   <animate xmlns="http://www.w3.org/2000/svg" attributeName="fill-opacity" values="0;1;0" repeatCount="indefinite" dur="1s"/>
     
     <g transform="translate(811.634782, 356.59153)">
       <g>
@@ -80,7 +80,7 @@
     </g>
   </g>
   <g fill="#006699" fill-opacity="1">
-   <animate xmlns="http://www.w3.org/2000/svg" attributeName="fill-opacity" values="0;1;0" repeatCount="indefinite" dur="4s"/>
+   <animate xmlns="http://www.w3.org/2000/svg" attributeName="fill-opacity" values="0;1;0" repeatCount="indefinite" dur="2s"/>
     
     <g transform="translate(866.211042, 356.59153)">
       <g>
@@ -98,12 +98,12 @@
       fill-opacity="1"
       fill-rule="nonzero"
     >
-     <animate xmlns="http://www.w3.org/2000/svg" attributeName="fill-opacity" values="0;1;0" repeatCount="indefinite" dur="4.5s"/>
+     <animate xmlns="http://www.w3.org/2000/svg" attributeName="fill-opacity" values="0;1;0" repeatCount="indefinite" dur="2.5s"/>
     
     </path>
   </g>
   <g fill="#339966" fill-opacity="1">
-   <animate xmlns="http://www.w3.org/2000/svg" attributeName="fill-opacity" values="0;1;0" repeatCount="indefinite" dur="4.5s"/>
+   <animate xmlns="http://www.w3.org/2000/svg" attributeName="fill-opacity" values="0;1;0" repeatCount="indefinite" dur="2.5s"/>
     
     <g transform="translate(488.176546, 458.605678)">
       <g>
@@ -126,7 +126,7 @@
     stroke-opacity="1"
     stroke-miterlimit="4"
   >
-  <animate xmlns="http://www.w3.org/2000/svg" attributeName="stroke-opacity" values="0;1;0" repeatCount="indefinite" dur="3s"/>
+  <animate xmlns="http://www.w3.org/2000/svg" attributeName="stroke-opacity" values="0;1;0" repeatCount="indefinite" dur="1s"/>
     
   </path>
   <path
@@ -140,7 +140,7 @@
     stroke-opacity="1"
     stroke-miterlimit="4"
   >
-   <animate xmlns="http://www.w3.org/2000/svg" attributeName="stroke-opacity" values="0;1;0" repeatCount="indefinite" dur="4s"/>
+   <animate xmlns="http://www.w3.org/2000/svg" attributeName="stroke-opacity" values="0;1;0" repeatCount="indefinite" dur="2s"/>
     
   </path>
 </svg>
