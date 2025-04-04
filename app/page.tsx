@@ -6,11 +6,13 @@ import HeroBanner from '@/components/home/HeroBanner';
 import { LinearProgress, Typography } from '@mui/material';
 // import Footer from '@/components/home/Footer';
 import fetchSession from '@/server/session';
+import Header from '@/components/home/Header';
 const AssignedCampaigns = React.lazy(() => import('@/components/campaign/AssignCampaigns'));
 const Dashboard = async () => {
   const session = await fetchSession();
   return (
     <>
+      <Header />
       <HeroBanner session={session} />
       {session !== null && <React.Suspense fallback={<LinearProgress sx={{ m: 2 }} />}>
         <AssignedCampaigns limit={5} />

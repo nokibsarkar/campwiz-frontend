@@ -8,6 +8,7 @@ import DateRangeIcon from '@mui/icons-material/DateRange'
 import RuleIcon from '@mui/icons-material/Rule';
 import EditButton from "./EditButton";
 import Description from "@/components/round/Description";
+import Header from "@/components/home/Header";
 
 type CampaignViewPageProps = {
     params: Promise<{
@@ -31,38 +32,41 @@ const CampaignViewPage = async ({ params }: CampaignViewPageProps) => {
     }
     const campaign = campaignResponse.data;
     return (
-        <Paper sx={{
-            p: {
-                xs: 1,
-                sm: 2
-            },
-            m: 1,
-        }}>
-            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Typography variant="h2">
-                    {campaign.name}
-                    <Typography variant="subtitle1" color="textDisabled" component='b' sx={{ display: 'inline' }}>({campaign.campaignId})</Typography>
-                </Typography>
-                <div>
-                    {session?.projectId === campaign.projectId && (
-                        <EditButton campaignId={campaign.campaignId} />
-                    )}
+        <>
+            <Header returnTo="/" />
+            <Paper sx={{
+                p: {
+                    xs: 1,
+                    sm: 2
+                },
+                m: 1,
+            }}>
+                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <Typography variant="h2">
+                        {campaign.name}
+                        <Typography variant="subtitle1" color="textDisabled" component='b' sx={{ display: 'inline' }}>({campaign.campaignId})</Typography>
+                    </Typography>
+                    <div>
+                        {session?.projectId === campaign.projectId && (
+                            <EditButton campaignId={campaign.campaignId} />
+                        )}
+                    </div>
                 </div>
-            </div>
-            <br />
-            <Description
-                description={`${new Date(campaign.startDate).toDateString()} - ${new Date(campaign.endDate).toDateString()}`}
-                label="Duration" Icon={DateRangeIcon}
-            />
-            <Description description={campaign.description} label="Description" />
-            <Description description={campaign.rules} label="Rules" Icon={RuleIcon} />
-            <CoordinatorList coordinators={campaign.coordinators} />
-            <br />
-            <RoundTimeline rounds={campaign.rounds} campaign={campaign} session={session}
-                isCoordinator={campaign.coordinators?.includes(session?.username || '') === true}
-            />
+                <br />
+                <Description
+                    description={`${new Date(campaign.startDate).toDateString()} - ${new Date(campaign.endDate).toDateString()}`}
+                    label="Duration" Icon={DateRangeIcon}
+                />
+                <Description description={campaign.description} label="Description" />
+                <Description description={campaign.rules} label="Rules" Icon={RuleIcon} />
+                <CoordinatorList coordinators={campaign.coordinators} />
+                <br />
+                <RoundTimeline rounds={campaign.rounds} campaign={campaign} session={session}
+                    isCoordinator={campaign.coordinators?.includes(session?.username || '') === true}
+                />
 
-        </Paper>
+            </Paper>
+        </>
     );
 };
 const CoordinatorList = ({ coordinators }: { coordinators: WikimediaUsername[] | null }) => {

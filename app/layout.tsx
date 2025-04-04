@@ -5,7 +5,6 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from '@/theme';
 import { Paper } from "@mui/material";
 import { Roboto, } from 'next/font/google';
-import Header from "@/components/home/Header";
 
 
 const roboto = Roboto({
@@ -27,7 +26,7 @@ export const metadata: Metadata = {
       url: "https://github.com/nokibsarkar",
     },
     {
-      name: "Mst. Rukaiya Islam Tanni",
+      name: "Mst. Rukaiya Islam Tonni",
       url: "https://github.com/Tonni28",
     },
     {
@@ -49,7 +48,6 @@ export default async function RootLayout({
       >
         <ThemeProvider theme={theme}>
           <Paper component='body' className={`h-full w-full p-0 m-0 overflow-auto ${roboto.className}`} sx={{ m: 0, p: 0, height: '100%', width: '100%', position: 'absolute' }} elevation={0}>
-            <Header />
             {children}
           </Paper>
         </ThemeProvider>
