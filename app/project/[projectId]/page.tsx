@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import { ArrowForward, Add } from "@mui/icons-material";
 import Link from "next/link";
-import Logo from "@/components/Logo";
 import fetchAPIFromBackendSingleWithErrorHandling, { fetchAPIFromBackendListWithErrorHandling } from "@/server";
 import { Project } from "@/types/project";
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -66,7 +65,6 @@ const Dashboard = async ({ params }: DashboardProps) => {
 				alignItems: "center",
 			}}
 		>
-			<Logo />
 			<Container
 				sx={{
 					my: 1,
