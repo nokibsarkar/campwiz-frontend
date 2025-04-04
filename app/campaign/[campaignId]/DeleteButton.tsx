@@ -36,7 +36,7 @@ const DeleteButton = ({ roundId, refresh }: DeleteButtonProps) => {
             variant="outlined"
             color={'error'}
             onClick={() => setShowDialog(true)}
-            sx={{ m: 1, px: 3 }}
+            sx={{ m: 1, px: 3, borderRadius: 7 }}
             loading={loading}
             disabled={showDialog}
         >

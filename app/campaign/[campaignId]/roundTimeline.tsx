@@ -97,7 +97,7 @@ function RoundTimeline({ rounds, campaign, session, isCoordinator }: RoundTimeli
 
             </React.Suspense>
             {rounds.map((round, i) => (
-                <div key={i}>
+                <div key={i} id={"roundTimeline" + i}>
                     <div style={{ textAlign: 'left' }}>
                         <RoundStatusIcon status={round.status} /> <Status status={round.status} />
                         <Typography variant="h6" sx={{ display: 'inline' }}>
@@ -108,9 +108,19 @@ function RoundTimeline({ rounds, campaign, session, isCoordinator }: RoundTimeli
                         </Typography>
                     </div>
                     <Box key={i} sx={{
-                        pl: 2,
-                        pr: 2,
-                        borderLeft: 2,
+
+                        borderLeft: {
+                            xs: 0,
+                            sm: 1
+                        },
+                        pl: {
+                            xs: 0,
+                            sm: 2
+                        },
+                        pr: {
+                            xs: 0,
+                            sm: 2
+                        },
                         my: 2,
                         borderLeftColor: `${getStatusColor(round.status)}.main`
                     }}>

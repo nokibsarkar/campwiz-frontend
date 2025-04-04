@@ -46,7 +46,7 @@ const RoundDetails = ({ round: c }: { round: Round }) => {
             border: 1,
             borderColor: 'primary.main',
             borderRadius: 6,
-        }}>
+        }} >
             <Box sx={{
                 display: 'flex',
                 flexDirection: { xs: 'column', sm: 'row-reverse' },

@@ -9,7 +9,11 @@ const EditButton = ({ campaignId }: { campaignId: string }) => {
     return (
         isSmall ? null : (
             <Link href={`/campaign/${campaignId}/edit`}>
-                <Button variant="outlined" color="primary" startIcon={<EditIcon />}>Edit</Button>
+                <Button variant="outlined" color="primary" startIcon={<EditIcon />}
+                    sx={{
+                        borderRadius: 3,
+                    }}
+                >Edit</Button>
             </Link>
         )
     )

@@ -30,7 +30,7 @@ const AddAsJuryButton = ({ roundId, refresh }: { roundId: string, refresh: () =>
             disabled={adding}
             loading={adding}
             onClick={submit}
-            sx={{ m: 1, px: 3 }}
+            sx={{ m: 1, px: 3, borderRadius: 3, }}
         >
             Add myself as jury
         </Button>

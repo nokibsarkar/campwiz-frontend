@@ -6,8 +6,6 @@ import { Chip, Paper, Typography } from "@mui/material";
 import RoundTimeline from "./roundTimeline";
 import DateRangeIcon from '@mui/icons-material/DateRange'
 import RuleIcon from '@mui/icons-material/Rule';
-// import DeleteIcon from '@mui/icons-material/Delete';
-import Logo from "@/components/Logo";
 import EditButton from "./EditButton";
 import Description from "@/components/round/Description";
 
@@ -33,8 +31,13 @@ const CampaignViewPage = async ({ params }: CampaignViewPageProps) => {
     }
     const campaign = campaignResponse.data;
     return (
-        <Paper sx={{ p: 2, m: 2 }}>
-            <Logo />
+        <Paper sx={{
+            p: {
+                xs: 1,
+                sm: 2
+            },
+            m: 1,
+        }}>
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Typography variant="h2">
                     {campaign.name}
