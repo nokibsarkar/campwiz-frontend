@@ -45,7 +45,7 @@ const ChangeStatusButton = ({ roundId, onClick, status, label, color, descriptio
             variant="contained"
             color={color}
             onClick={() => setShowDialog(true)}
-            sx={{ m: 1, px: 3 }}
+            sx={{ m: 1, px: 3, borderRadius: 7 }}
             loading={loading}
             disabled={showDialog}
         >

@@ -24,7 +24,7 @@ const CreateRoundButton = ({ onClick }: { onClick: () => void }) => (
         variant="contained"
         color="primary"
         onClick={onClick}
-        sx={{ m: 1, px: 3 }}
+        sx={{ m: 1, px: 3, borderRadius: 3 }}
     >
         Create Round
     </Button>
@@ -56,7 +56,7 @@ const LatestRoundActions = ({ latestRound, setAction, isJury, judgableLink, refr
                     startIcon={<JudgeIcon />}
                     variant="contained"
                     color="primary"
-                    sx={{ m: 1, px: 3 }}
+                    sx={{ m: 1, px: 3, borderRadius: 3 }}
                 >
                     Evaluation Area
                 </Button>
