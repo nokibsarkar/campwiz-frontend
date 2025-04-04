@@ -7,8 +7,10 @@ import logout from "./logout";
 // import IconButton from '@mui/material/IconButton';
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+// import { useTranslation } from "@/i18n/client";
 
 export const DhashboardButton = ({ projectId, canAccessOtherProject }: { projectId: string | null, canAccessOtherProject: boolean }) => {
+    // const { t } = useTranslation('bn')
     const isSmall = useMediaQuery('(max-width:600px)');
     const url = canAccessOtherProject ? `/project/` : `/project/${projectId}`;
     const sx = {

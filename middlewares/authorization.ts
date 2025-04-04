@@ -1,7 +1,9 @@
 import fetchSession from "@/server/session";
 import { NextRequest, NextResponse } from "next/server";
+import LanguageDetectorMiddleware from "./languageDetector";
 
 const AuthorizationMiddleWare = async (req: NextRequest) => {
+    await LanguageDetectorMiddleware(req);
     if (req.nextUrl.pathname.match(/\/$/))
         return NextResponse.next()
     if (!req.nextUrl.pathname.startsWith('/user/login')) {
