@@ -8,6 +8,7 @@ import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import logout from "./logout";
 // import IconButton from '@mui/material/IconButton';
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 export const LoginButton = () => {
     const isSmall = useMediaQuery('(max-width:600px)');
     const sx = {
@@ -101,8 +102,9 @@ export const DocumentationButton = () => {
         </Link>
     )
 }
-export const LogoutButtton = () => {
+export const LogoutButtton = ({ hiddenIn, refresh = false }: { hiddenIn?: string[], refresh?: boolean }) => {
     const isSmall = useMediaQuery('(max-width:600px)');
+    const pathName = usePathname()
     const sx = {
         borderRadius: 30,
         m: 1,
@@ -110,10 +112,16 @@ export const LogoutButtton = () => {
     const [loggingOut, setLoggingOut] = useState(false);
     const perFormLogout = async () => {
         setLoggingOut(true);
-        await logout();
+        await logout(refresh);
         setLoggingOut(false);
-        if (typeof window !== 'undefined') {
-            setTimeout(window.location.reload.bind(window.location), 1000);
+        console.log('Logged out', refresh);
+    }
+    if (hiddenIn) {
+        for (const path of hiddenIn) {
+            const r = new RegExp(path)
+            if (r.test(pathName)) {
+                return null
+            }
         }
     }
     return (

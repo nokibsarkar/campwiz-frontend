@@ -3,7 +3,7 @@ import fetchAPIFromBackendSingleWithErrorHandling from "@/server"
 type RedirectResponse = {
     redirect: string
 }
-const logout = async () => {
+const logout = async (refresh: boolean = false) => {
     const res = await fetchAPIFromBackendSingleWithErrorHandling<RedirectResponse>("/user/logout", {
         method: 'POST',
         headers: {
@@ -19,7 +19,10 @@ const logout = async () => {
         return;
     }
     if (typeof window !== 'undefined') {
-        if (res.data.redirect)
+        if (refresh) {
+            window.location.reload();
+        }
+        else if (res.data.redirect)
             window.location.href = res.data.redirect;
     }
 

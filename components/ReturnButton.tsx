@@ -33,21 +33,20 @@ const ReturnButton = ({ disabled, sx, hiddenIn, alwaysBig = false, to }: ReturnB
     return (
         !isSmall || alwaysBig ? (
             <Button
-                disabled={disabled}
-                sx={{ m: 1, cursor: 'pointer', display: 'inline-block', ...(sx || {}), zIndex: 20 }}
                 onClick={onClick}
                 variant="text"
                 color="primary"
                 startIcon={<LeftArrowIcon />}
-                className="absolute left-4 z-20 m-1"
+                sx={sx}
+                disabled={disabled}
             >
-                Return
+                {!isSmall && 'Return'}
             </Button>
         ) : (
             <IconButtton
                 disabled={disabled}
                 sx={{ m: 0.5, cursor: 'pointer', display: 'inline-block', ...(sx || {}), zIndex: 20 }}
-                onClick={(() => typeof window !== 'undefined' && window.history.back())}
+                onClick={onClick}
                 color="primary"
                 className="absolute left-4 z-20 m-1"
             >

@@ -5,7 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from '@/theme';
 import { Paper } from "@mui/material";
 import { Roboto, } from 'next/font/google';
-import ReturnButton from "@/components/ReturnButton";
+import Header from "@/components/home/Header";
 
 
 const roboto = Roboto({
@@ -49,7 +49,7 @@ export default async function RootLayout({
       >
         <ThemeProvider theme={theme}>
           <Paper component='body' className={`h-full w-full p-0 m-0 overflow-auto ${roboto.className}`} sx={{ m: 0, p: 0, height: '100%', width: '100%', position: 'absolute' }} elevation={0}>
-            <ReturnButton hiddenIn={['^\/$', '^\/user\/login$', '^\/round\/[^\/]+\/submission\/evaluate$']} />
+            <Header />
             {children}
           </Paper>
         </ThemeProvider>

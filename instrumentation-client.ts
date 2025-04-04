@@ -7,6 +7,7 @@ const sentryIntegrations = [
   Sentry.replayIntegration(),
 ];
 Sentry.init({
+  enabled: process.env.NEXT_PUBLIC_SENTRY_DSN !== undefined && process.env.NODE_ENV.startsWith("dev"),
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
   integrations: sentryIntegrations,
   // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import AddIcon from '@mui/icons-material/Add';
 import { Button } from "@mui/material";
-import Logo from "@/components/Logo";
 import SinglProjectChip from "@/components/project/SingleProjectChip";
 import { Suspense } from "react";
 import fetchSession from "@/server/session";
@@ -56,7 +55,6 @@ const ProjectDashboard = async () => {
     }
     const otherProjects = projects.filter(project => project.projectId !== projectId) || [];
     return <div>
-        <Logo />
         <div className="flex flex-row justify-between p-5">
             <h1 className="text-2xl font-bold">Project Dashboard</h1>
             <NewProjectButton />

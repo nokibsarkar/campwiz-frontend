@@ -1,4 +1,4 @@
-import Logo from "@/components/Logo"
+
 import { Typography } from "@mui/material"
 import { Session } from "@/types/user/session";
 import { DocumentationButton, LoginButton, LogoutButtton, DhashboardButton } from "./Buttons";
@@ -14,7 +14,6 @@ const HeroBanner = ({ session }: HeroBannerProps) => {
     const showLogout = session !== null;
     return (
         <div className='text-center pb-4 mb-4 h-max'>
-            <Logo />
             <Typography
                 variant="h4"
                 fontWeight="bold"
@@ -31,7 +30,7 @@ const HeroBanner = ({ session }: HeroBannerProps) => {
             </Typography>
             <div className="flex justify-center mt-4">
                 {showLoginButton && <LoginButton />}
-                {showLogout && <LogoutButtton />}
+                {showLogout && <LogoutButtton refresh />}
                 {showProjectDashboardLink && <DhashboardButton projectId={accessibleProjectId} canAccessOtherProject={canAccessOtherProject} />}
                 <DocumentationButton />
 
