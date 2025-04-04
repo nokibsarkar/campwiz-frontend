@@ -40,7 +40,10 @@ const InfoTriggerButton = ({ submission }: { submission: Submission }) => {
         setShowInfo(!showInfo);
     }
     return (
-        showInfo ? <Suspense fallback={<LinearProgress />}>
+        <Suspense fallback={<LinearProgress />}>
+            <IconButton onClick={handleClick} className="absolute top-2 right-2" disabled={showInfo}>
+                <InfoIcon />
+            </IconButton>
             <Dialog
                 open={showInfo}
                 onClose={handleClick}
@@ -62,9 +65,7 @@ const InfoTriggerButton = ({ submission }: { submission: Submission }) => {
                     </Button>
                 </DialogActions>
             </Dialog>
-        </Suspense> : <IconButton onClick={handleClick} className="absolute top-2 right-2">
-            <InfoIcon />
-        </IconButton>
+        </Suspense>
     )
 }
 const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEvaluations, next: initialNext, limit = 1, campaignId, isPublicJury }: { roundId: string, initailEvaluations: Evaluation[], next?: string, limit: number, campaignId: string, isPublicJury: boolean }) => {
