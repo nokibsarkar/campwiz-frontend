@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import fetchSession from "@/server/session";
 import fetchAPIFromBackendSingleWithErrorHandling, { fetchAPIFromBackendListWithErrorHandling } from "@/server";
 import { Project } from "@/types/project";
+import Header from "@/components/home/Header";
 const NewProjectButton = () => (
     <Link href="/project/new">
         <Button
@@ -42,6 +43,8 @@ const ProjectDashboard = async () => {
     }
     const projects = ProjectResponse.data;
     const { projectId } = session;
+    const canAccessOtherProject = (session.permission & session.permissionMap.PermissionOtherProjectAccess) === session.permissionMap.PermissionOtherProjectAccess;
+
     let myProject = projects.find(project => project.projectId === projectId);
     if (!myProject && projectId !== null) {
         const myProjectResponse = await fetchAPIFromBackendSingleWithErrorHandling<Project>(`/project/${projectId}?includeRoles=true`);
@@ -54,12 +57,14 @@ const ProjectDashboard = async () => {
         myProject = myProjectResponse.data;
     }
     const otherProjects = projects.filter(project => project.projectId !== projectId) || [];
-    return <div>
-        <div className="flex flex-row justify-between p-5">
-            <h1 className="text-2xl font-bold">Project Dashboard</h1>
-            <NewProjectButton />
-        </div>
-        {myProject && <div className="
+    return <>
+        <Header returnTo="/" />
+        <div>
+            <div className="flex flex-row justify-between p-5">
+                <h1 className="text-2xl font-bold">Project Dashboard</h1>
+                {canAccessOtherProject && <NewProjectButton />}
+            </div>
+            {myProject && <div className="
             flex flex-row flex-wrap
             gap-4
             p-5
@@ -67,15 +72,15 @@ const ProjectDashboard = async () => {
             rounded-lg
             shadow-lg
         ">
-            <h2 className="text-xl font-bold">My Project</h2>
-            <Suspense fallback={<div>Loading...</div>}>
-                <SinglProjectChip
-                    project={myProject}
-                />
-            </Suspense>
-        </div>
-        }
-        {otherProjects.length > 0 && <div className="
+                <h2 className="text-xl font-bold">My Project</h2>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <SinglProjectChip
+                        project={myProject}
+                    />
+                </Suspense>
+            </div>
+            }
+            {otherProjects.length > 0 && <div className="
             flex flex-row flex-wrap
             gap-4
             p-5
@@ -83,16 +88,17 @@ const ProjectDashboard = async () => {
             rounded-lg
             shadow-lg
         ">
-            <h2 className="text-xl font-bold block">Other Projects</h2>
-            {otherProjects.map(project => (
-                <SinglProjectChip
-                    key={project.projectId}
-                    project={project}
-                />
-            ))}
-            {/* </div> */}
+                <h2 className="text-xl font-bold block">Other Projects</h2>
+                {otherProjects.map(project => (
+                    <SinglProjectChip
+                        key={project.projectId}
+                        project={project}
+                    />
+                ))}
+                {/* </div> */}
+            </div>
+            }
         </div>
-        }
-    </div>
+    </>
 }
 export default ProjectDashboard;

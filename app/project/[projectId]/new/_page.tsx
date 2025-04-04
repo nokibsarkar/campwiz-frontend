@@ -1,5 +1,5 @@
 "use client";
-import { Button, CircularProgress, Paper, Typography } from "@mui/material"
+import { Button, CircularProgress, Typography } from "@mui/material"
 import createCampaign from "@/app/project/[projectId]/new/action"
 import { lazy, useReducer, useState } from "react";
 import { campaignReducer, initialCampaignCreate } from "@/types/campaign/create";
@@ -21,24 +21,25 @@ const CreateCampaign_ = ({ projectLeads }: { projectLeads: string[] }) => {
     });
     return (
         <div style={{
-            position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex',
+            // position: 'absolute', 
+            display: 'flex',
+            width: '100%', height: '100%',
             justifyContent: 'center', alignItems: 'center',
             backgroundImage: `url(${LoginBackground.src})`,
+            backgroundRepeat: 'repeat-y',
             backgroundSize: 'cover',
         }}>
-            <div style={{
-                position: 'relative', width: '100%', height: '100%', display: 'flex',
-                backgroundColor: 'rgba(255,255,255,0.4)',
-                justifyContent: 'center', alignItems: 'center'
-            }}>
+            <div
+                style={{
+                    // position: 'absolute', 
+                    width: '100%', display: 'flex', height: '100%',
+                    backgroundColor: 'rgba(255,255,255,0.4)',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}>
                 {createdCampaign ? <CampaignCreationSuccess {...createdCampaign} /> :
-                    <Paper sx={{
-                        padding: 2, px: 3, width: '100%', maxWidth: 800, position: 'absolute',
-                        top: '50%', left: '50%',
-                        transform: 'translate(-50%,-50%)',
-                        borderRadius: 6,
-                        backgroundColor: 'rgba(255,255,255,0.8)',
-                    }}>
+                    <div className="p-2 px-3 rounded-2xl w-full max-w-4xl relative h-max bg-[rgba(255,255,255,0.8)] m-auto">
+
                         <Logo />
                         <Typography variant="h3" sx={{ mb: 4, textAlign: 'center', fontSize: { xs: 24, sm: 48 } }}>
                             Create Campaign
@@ -60,7 +61,7 @@ const CreateCampaign_ = ({ projectLeads }: { projectLeads: string[] }) => {
                                 Create Campaign
                             </Button>
                         </div>
-                    </Paper>}
+                    </div>}
             </div>
         </div>
     )

@@ -25,7 +25,9 @@ const UpdateCampaign = async ({ params }: { params: Promise<{ campaignId: string
         coordinators: campaign.coordinators || []
     }
     return (
-        <EditCampaign initialCampaign={initialCampaign} />
+        <>
+            <EditCampaign initialCampaign={initialCampaign} />
+        </>
     )
 }
 export default UpdateCampaign

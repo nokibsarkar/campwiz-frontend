@@ -1,11 +1,38 @@
 
-import { Typography } from "@mui/material"
+import { Button, Typography } from "@mui/material"
 import { Session } from "@/types/user/session";
-import { DocumentationButton, LoginButton, LogoutButtton, DhashboardButton } from "./Buttons";
+import ContactSupportIcon from '@mui/icons-material/ContactSupport';
+import { LogoutButtton, DhashboardButton } from "./Buttons";
+import Link from "next/link";
+import LoginButton from "./LoginButton";
 type HeroBannerProps = {
     session: Session | null
 }
-
+export const DocumentationButton = () => {
+    const sx = {
+        borderColor: "#006699", // Blue border color
+        color: "#006699", // Blue text color
+        borderRadius: 30,
+        m: 1,
+        transition: "0.3s",
+        "&:hover": {
+            bgcolor: "#006699", // Blue background on hover
+            color: "#fff", // White text on hover
+            transform: "scale(1.05)",
+        },
+    }
+    return (
+        <Link href='https://github.com/nokibsarkar/campwiz'>
+            <Button
+                variant="outlined"
+                startIcon={<ContactSupportIcon />}
+                sx={sx}
+            >
+                Doc
+            </Button>
+        </Link>
+    )
+}
 const HeroBanner = ({ session }: HeroBannerProps) => {
     const canAccessOtherProject = session !== null && (session.permission & session.permissionMap.PermissionOtherProjectAccess) === session.permissionMap.PermissionOtherProjectAccess;
     const accessibleProjectId = session?.projectId || null;
