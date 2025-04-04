@@ -12,6 +12,8 @@ import { Button, Dialog, DialogActions, Typography, useMediaQuery } from "@mui/m
 import CloseIcon from "@mui/icons-material/Close"
 import IconButton from "@mui/material/IconButton"
 import InfoIcon from "@mui/icons-material/Info"
+import LoadingImage from '@/public/logo-animated.svg';
+import Image from "next/image"
 const VideoApp = lazy(() => import("@/app/submission/[submissionId]/_preview/videoplayer"));
 const AudioPlayer = lazy(() => import("@/app/submission/[submissionId]/_preview/audioPlayer"));
 const BinaryVotingInterface = lazy(() => import("./BinaryVotingInterface copy"));
@@ -71,14 +73,20 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
     const [currentCursor, setCurrentCursor] = React.useState(0);
     const [isLoading, setIsLoading] = React.useState(false);
     const currentEvaluation = evaluations?.[currentCursor];
+    const [imageLoaded, setImageLoaded] = useState(true);
     const [error, setError] = useState<string | null>(null);
     // It would determine whether any more evaluations are available or not.
     const [hasNextEvaluation, setHasNextEvauation] = useState<boolean>(evaluations?.length > currentCursor);
     const nextEvaluation = hasNextEvaluation ? evaluations[currentCursor + 1] : null;
     const [saving, setSaving] = useState(false);
+    const nextImageWrapper = (dx: number = 1) => {
+        setImageLoaded(false);
+        setCurrentCursor((cursor) => cursor + dx);
+    }
     const isSmall = useMediaQuery('(max-width: 600px)');
     const submit = async (score: number) => {
         try {
+            if (!imageLoaded) return;
             if (saving) return;
             if (!currentEvaluation) return;
             if (!currentEvaluation.submission) return;
@@ -96,7 +104,7 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
             if ('detail' in response) {
                 return { error: response.detail }
             }
-            setCurrentCursor((cursor) => cursor + 1);
+            nextImageWrapper();
         } catch (error) {
             return { error: (error as Error).message }
         } finally {
@@ -131,7 +139,6 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
             setHasNextEvauation(response.next !== undefined && response.next !== next && response.next !== "");
             setIsLoading(false);
         });
-        setIsLoading(false);
     }, [currentCursor, evaluations, evaluations.length, hasNextEvaluation, isPublicJury, limit, next, roundId]);
     useEffect(() => {
         if (!nextEvaluation)
@@ -180,7 +187,7 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
 
     return (
         <div className="flex h-full w-full sm:flex-row flex-col">
-            <div className="relative w-full sm:w-2/3 h-11/12">
+            <div className="relative w-full sm:w-2/3 h-11/12 flex flex-col">
                 <div className="relative max-h-1/12 flex flex-row justify-between items-center">
                     <ReturnButton to={`/campaign/${campaignId}`} />
                     {isSmall && <Typography variant="subtitle1" className="text-center font-bold">
@@ -190,13 +197,20 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
                     {isSmall && <InfoTriggerButton submission={submission} />}
                 </div>
                 {
-
-                    // eslint-disable-next-line @next/next/no-img-element
-                    submission.mediatype === MediaType.IMAGE && <img
+                    submission.mediatype === MediaType.IMAGE && <Image
                         src={submission.thumburl || '/red-hill.svg'}
                         alt={submission.title}
-                        className="mx-auto block object-contain max-h-5/6"
-                    // fill
+                        className="m-auto block object-contain max-h-5/6 self-center sm:self-auto"
+                        onLoadStart={() => {
+                            console.log("Loading image preview");
+                        }}
+                        loading="lazy"
+                        placeholder="blur"
+                        blurDataURL={LoadingImage.src}
+                        onLoad={() => setImageLoaded(true)}
+                        width={submission.thumbwidth || 700}
+                        height={submission.thumbheight}
+                        unoptimized
                     />
                 }
                 {submission.mediatype === MediaType.VIDEO &&
@@ -219,11 +233,11 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
                     {error && <p className="text-center text-lg text-red-600 font-bold">{error}</p>}
                     {currentEvaluation.type === EvaluationType.BINARY &&
                         <BinaryVotingInterface
-                            goNext={() => setCurrentCursor((cursor) => cursor + 1)}
-                            goPrevious={() => setCurrentCursor((cursor) => cursor - 1)}
+                            goNext={() => nextImageWrapper(1)}
+                            goPrevious={() => nextImageWrapper(-1)}
                             submitScore={submit}
                             evaluation={currentEvaluation}
-                            saving={saving || isLoading}
+                            saving={saving || isLoading || !imageLoaded}
                             noPrevious={currentCursor === 0}
                         />
                     }
@@ -231,8 +245,8 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
                         currentEvaluation.type === EvaluationType.SCORE &&
                         <RatingVotingInterface
                             evaluation={currentEvaluation}
-                            goNext={() => setCurrentCursor((cursor) => cursor + 1)}
-                            goPrevious={() => setCurrentCursor((cursor) => cursor - 1)}
+                            goNext={() => nextImageWrapper(1)}
+                            goPrevious={() => nextImageWrapper(-1)}
                             submitScore={submit} saving={saving || isLoading}
                             noPrevious={currentCursor === 0}
                         />
