@@ -10,7 +10,6 @@ import logout from "./logout";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 export const LoginButton = () => {
-    const isSmall = useMediaQuery('(max-width:600px)');
     const sx = {
         bgcolor: "#006699", // Blue background color
         color: "#fff", // White text color
@@ -25,18 +24,13 @@ export const LoginButton = () => {
     }
     return (
         <Link href="/user/login">
-            {isSmall ? <IconButton
-                sx={sx}
-            >
-                <LockOpenIcon />
-            </IconButton> : <Button
+            <Button
                 variant="contained"
                 startIcon={<LockOpenIcon />}
                 sx={sx}
             >
-                {isSmall ? null : 'Login'}
+                Login
             </Button>
-            }
         </Link>
     )
 }
@@ -72,7 +66,6 @@ export const DhashboardButton = ({ projectId, canAccessOtherProject }: { project
     )
 }
 export const DocumentationButton = () => {
-    const isSmall = useMediaQuery('(max-width:600px)');
     const sx = {
         borderColor: "#006699", // Blue border color
         color: "#006699", // Blue text color
@@ -87,18 +80,13 @@ export const DocumentationButton = () => {
     }
     return (
         <Link href='https://github.com/nokibsarkar/campwiz'>
-            {isSmall ? <IconButton
-                sx={sx}
-            >
-                <ContactSupportIcon />
-            </IconButton> : <Button
+            <Button
                 variant="outlined"
                 startIcon={<ContactSupportIcon />}
                 sx={sx}
             >
-                {isSmall ? null : 'Documentation'}
+                Doc
             </Button>
-            }
         </Link>
     )
 }
