@@ -186,8 +186,8 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
     if (!submission) return null;
 
     return (
-        <div className="flex h-full w-full sm:flex-row flex-col">
-            <div className="relative w-full sm:w-2/3 h-11/12 flex flex-col">
+        <div className="flex h-[600px] sm:h-full w-full sm:flex-row flex-col">
+            <div className="relative w-full sm:w-2/3 h-5/6 flex flex-col">
                 <div className="relative max-h-1/12 flex flex-row justify-between items-center">
                     <ReturnButton to={`/campaign/${campaignId}`} />
                     {isSmall && <Typography variant="subtitle1" className="text-center font-bold">
