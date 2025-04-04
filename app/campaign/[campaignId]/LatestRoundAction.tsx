@@ -56,7 +56,7 @@ const LatestRoundActions = ({ latestRound, setAction, isJury, judgableLink, refr
                     startIcon={<JudgeIcon />}
                     variant="contained"
                     color="primary"
-                    sx={{ m: 1, px: 3, borderRadius: 7 }}
+                    sx={{ m: 1, px: 3, borderRadius: 3 }}
                 >
                     Evaluation Area
                 </Button>
