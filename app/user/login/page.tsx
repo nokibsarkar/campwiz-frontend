@@ -19,6 +19,7 @@ const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
     const next = searchParams.get('next');
     const baseURI = typeof window !== 'undefined' ? location.origin : '';
     const [clicked, setClicked] = useState(false);
+    const [error, setError] = useState<Error | null>(null);
     return (
         <Paper sx={{
             padding: 2,
@@ -51,9 +52,15 @@ const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
             <Typography variant="h5" sx={{ mb: 2 }}>
                 Let&apos;s Get Started
             </Typography>
+            {error && <Typography variant="body1" color="error" sx={{ mb: 1 }}>{error.message}</Typography>}
             <Button
                 onClick={() => {
-                    loginInitiateActionClient(baseURI, next)
+                    setError(null);
+                    loginInitiateActionClient(baseURI, next).catch((e) => {
+                        console.error(e);
+                        setClicked(false);
+                        setError(e);
+                    });
                     setClicked(true)
                 }}
                 variant="contained"
