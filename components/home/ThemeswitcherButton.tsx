@@ -16,14 +16,14 @@ const TH = () => {
     return (
         <IconButton
             color="primary"
-            size="large"
+            size="small"
             onClick={handleClick}
             sx={{
                 backgroundColor: mode === 'dark' ? '#fff' : '#000',
                 color: mode === 'dark' ? '#000' : '#fff',
-
             }}
             disableFocusRipple
+            disableRipple
         >
             {mode === 'dark' ? <LightIcon /> : <DarkIcon />}
         </IconButton>

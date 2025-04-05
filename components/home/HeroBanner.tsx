@@ -22,7 +22,7 @@ export const DocumentationButton = () => {
         },
     }
     return (
-        <Link href='https://github.com/nokibsarkar/campwiz'>
+        <Link href='https://github.com/nokibsarkar/campwiz/blob/main/README.md'>
             <Button
                 variant="outlined"
                 startIcon={<ContactSupportIcon />}
