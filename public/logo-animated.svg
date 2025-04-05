@@ -110,7 +110,6 @@
         <path
           d="M 43.1875 -162.015625 L 43.1875 0 L 11.609375 0 L 11.609375 -162.015625 Z M 43.1875 -162.015625 "
         >
-        
         </path>
       </g>
     </g>
@@ -143,4 +142,12 @@
    <animate xmlns="http://www.w3.org/2000/svg" attributeName="stroke-opacity" values="0;1;0" repeatCount="indefinite" dur="2s"/>
     
   </path>
+  <style>
+  @media (prefers-color-scheme: dark) {
+    path {
+        fill: white;
+        stroke: white;
+    }
+    }
+    </style>
 </svg>

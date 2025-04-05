@@ -24,10 +24,10 @@ const AssignedCampaigns = ({ limit }: AssignedCampaignProps) => {
     }}>
         <Typography variant="h4" sx={{
             textAlign: 'center', m: 3,
-            backgroundImage: 'linear-gradient(to right, red 20%,  blue 80%)',
-            color: 'transparent',
+            // backgroundImage: 'linear-gradient(to right, red 20%,  blue 80%)',
+            // color: 'transparent',
             backgroundClip: 'text'
-        }}>
+        }} color="error">
             Your Campaigns
         </Typography>
         <Box sx={{

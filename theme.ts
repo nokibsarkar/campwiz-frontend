@@ -32,22 +32,23 @@ const theme = createTheme({
     dark: true,
     light: true,
   },
-  // palette: {
-  //   mode: 'light',
-  //   //   error: {
-  //   //     main: '#9b0606',
-  //   //   },
-  //   //   success: {
-  //   //     main: '#339966',
-  //   //   },
-  //   //   primary: {
-  //   //     main: '#006699'
-  //   //   },
-  //   //   dalgona: {
-  //   //     main: '#d9aa59',
-  //   //   }
-  // },
-  // cssVariables: true,
+  palette: {
+    error: {
+      main: '#9b0606',
+    },
+    success: {
+      main: '#339966',
+    },
+    primary: {
+      main: '#006699'
+    },
+    dalgona: {
+      main: '#d9aa59',
+    }
+  },
+  cssVariables: {
+    colorSchemeSelector: 'class'
+  }
 });
 
 export default theme;

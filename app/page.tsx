@@ -22,10 +22,9 @@ const Dashboard = async () => {
       <div className="" style={{}}>
         <Typography variant="h4" sx={{
           textAlign: 'center', m: 3,
-          backgroundImage: 'linear-gradient(to right, red 20%,  blue 80%)',
-          color: 'transparent',
+          // backgroundImage: 'linear-gradient(to right, red 20%,  blue 80%)',
           backgroundClip: 'text'
-        }}>
+        }} color='error'>
           Public Running Campaigns
         </Typography>
         <PublicRunningCampaigns limit={10} />

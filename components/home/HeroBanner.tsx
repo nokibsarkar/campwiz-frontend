@@ -47,7 +47,7 @@ const HeroBanner = ({ session }: HeroBannerProps) => {
                 sx={{
                     fontFamily: "Lora, serif",
                     m: 1,
-                    color: "#006699", // Blue color for the text
+                    color: 'primary.main',
                 }}
             >
                 Welcome {session?.username} to Campwiz NXT
