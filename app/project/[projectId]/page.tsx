@@ -21,7 +21,6 @@ import projectAccessDeniedReason from "../projectAccessDeniedReason";
 
 
 
-const campaignNameColor = "#000000"; // Black color for Campaign Name
 type DashboardProps = {
 	params: Promise<
 		{ projectId: string }
@@ -53,7 +52,7 @@ const Dashboard = async ({ params }: DashboardProps) => {
 	const campaigns = campaignListResponse.data;
 	return (<>
 		<Header returnTo="/project" />
-		<div style={{ display: "flex", backgroundColor: "white", minHeight: "100vh" }}>
+		<div style={{ display: "flex", minHeight: "100vh", backgroundColor: 'transparent' }}>
 			<Box
 				component="main"
 				sx={{
@@ -68,7 +67,7 @@ const Dashboard = async ({ params }: DashboardProps) => {
 					sx={{
 						my: 1,
 						textAlign: "center",
-						bgcolor: "#006699",
+						bgcolor: "primary.paper",
 						p: 2,
 						borderRadius: 3,
 						boxShadow: 3,
@@ -91,7 +90,6 @@ const Dashboard = async ({ params }: DashboardProps) => {
 						fontWeight="bold"
 						sx={{
 							fontFamily: "Lora, serif",
-							color: "#fff",
 						}}
 					>
 						Welcome to {project.name}
@@ -102,16 +100,9 @@ const Dashboard = async ({ params }: DashboardProps) => {
 								variant="outlined"
 								sx={{
 									mt: 1,
-									borderColor: "white",
-									color: "#006699",
-									bgcolor: "white",
 									borderRadius: 30,
 									transition: "0.3s",
-									"&:hover": {
-										bgcolor: "#006699",
-										color: "#fff",
-										transform: "scale(1.05)",
-									},
+
 								}}
 								endIcon={<SettingsIcon />}
 							>
@@ -123,8 +114,6 @@ const Dashboard = async ({ params }: DashboardProps) => {
 					{projectLeads.map((lead) => (
 						<Chip label={lead} sx={{
 							mt: 2,
-							borderColor: "white",
-							bgcolor: "white",
 							borderRadius: 30,
 							transition: "0.3s",
 						}} key={lead} />
@@ -136,14 +125,14 @@ const Dashboard = async ({ params }: DashboardProps) => {
 					<Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
 						<Typography
 							variant="h5"
-							sx={{ fontWeight: "bold", fontFamily: "Lora, serif", color: "#006699" }}
+							sx={{ fontWeight: "bold", fontFamily: "Lora, serif", }}
 						>
 							Active Campaigns
 						</Typography>
 						<Link href={`/project/${projectId}/new`}>
 							<Button
 								variant="contained"
-								sx={{ bgcolor: "#006699", color: "#fff", borderRadius: 30 }}
+								sx={{ borderRadius: 30 }}
 								startIcon={<Add />}
 							>
 								Create Campaign
@@ -155,7 +144,7 @@ const Dashboard = async ({ params }: DashboardProps) => {
 							campaigns.length === 0 &&
 							<Typography
 								variant="h5"
-								sx={{ fontWeight: "bold", fontFamily: "Lora, serif", color: "#006699" }}
+								sx={{ fontWeight: "bold", fontFamily: "Lora, serif", }}
 							>
 								No Active Campaigns
 							</Typography>
@@ -174,7 +163,7 @@ const Dashboard = async ({ params }: DashboardProps) => {
 										<Typography
 											variant="h6"
 											fontWeight="bold"
-											sx={{ fontFamily: "Lora, serif", color: campaignNameColor }}
+											sx={{ fontFamily: "Lora, serif" }}
 										>
 											{campaign.name}
 										</Typography>
@@ -187,13 +176,9 @@ const Dashboard = async ({ params }: DashboardProps) => {
 												variant="outlined"
 												sx={{
 													mt: 1,
-													borderColor: "#006699",
-													color: "#006699",
 													borderRadius: 30,
 													transition: "0.3s",
 													"&:hover": {
-														bgcolor: "#006699",
-														color: "#fff",
 														transform: "scale(1.05)",
 													},
 												}}
