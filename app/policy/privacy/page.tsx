@@ -16,6 +16,7 @@ const PrivacyPolicy = () => (
                 <ul className="list-disc list-inside mb-4 text-gray-700 dark:text-gray-300">
                     <li><strong>Wikimedia Username</strong></li>
                     <li><strong>Date of Registration</strong> on Wikimedia projects</li>
+                    <li><strong>Public IP Address</strong> for using our tool</li>
                 </ul>
                 <p className="text-gray-700 dark:text-gray-300">
                     This information is essential for CampWiz NXT to function properly, including managing campaigns, verifying user eligibility, and maintaining fairness.
@@ -70,7 +71,7 @@ const PrivacyPolicy = () => (
             <section className="mb-8">
                 <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-200">Data Sharing and Retention</h2>
                 <ul className="list-disc list-inside mb-4 text-gray-700 dark:text-gray-300">
-                    <li>We <strong>do not sell, share, or disclose</strong> your data to any third parties.</li>
+                    <li>We <strong>do not sell, share, or disclose</strong> your account data to any third parties not mentioned in this policy. But we do provide submission results to the appropriate rightholders to use in any way they want with best of our intentions to be< a href="https://en.wikipedia.org/w/index.php?title=Wikipedia:Assume_good_faith&oldid=1278089355">good faith.</a></li>
                     <li>Data is only used internally for campaign and jury processes.</li>
                     <li>We retain data only for as long as it’s needed to support the functionality of CampWiz NXT.</li>
                 </ul>
