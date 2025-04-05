@@ -68,7 +68,7 @@ const ProjectDashboard = async () => {
             flex flex-row flex-wrap
             gap-4
             p-5
-            bg-gray-100
+            bg-transparent
             rounded-lg
             shadow-lg
         ">
@@ -84,7 +84,7 @@ const ProjectDashboard = async () => {
             flex flex-row flex-wrap
             gap-4
             p-5
-            bg-gray-100
+            bg-transparent
             rounded-lg
             shadow-lg
         ">

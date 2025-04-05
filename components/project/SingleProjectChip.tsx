@@ -39,7 +39,7 @@ const SinglProjectChip = ({ project }: SinglProjectChipProps) => {
                     xl: 'calc(28% - 4px)',
                 },
                 mx: 2,
-                backgroundColor: 'rgba(255,255,255,0.9)',
+                // backgroundColor: 'rgba(255,255,255,0.9)',
             }}>
             <CardMedia
                 component="img"

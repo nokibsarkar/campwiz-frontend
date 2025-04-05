@@ -3,7 +3,7 @@ import "./globals.css";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '@/theme';
-import { Paper } from "@mui/material";
+import { CssBaseline, Paper } from "@mui/material";
 import { Roboto, } from 'next/font/google';
 
 
@@ -46,7 +46,8 @@ export default async function RootLayout({
       <AppRouterCacheProvider
         options={{ key: 'css' }}
       >
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme} defaultMode="system">
+          <CssBaseline />
           <Paper component='body' className={`h-full w-full p-0 m-0 overflow-auto ${roboto.className}`} sx={{ m: 0, p: 0, height: '100%', width: '100%', position: 'absolute' }} elevation={0}>
             {children}
           </Paper>

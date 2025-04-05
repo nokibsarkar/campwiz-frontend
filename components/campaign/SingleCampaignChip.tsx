@@ -38,7 +38,6 @@ const SingleCampaignChip = ({ campaign }: SingleCampaignChipProps) => {
                 xl: 'calc(28% - 4px)',
             },
             mx: 2,
-            backgroundColor: 'rgba(255,255,255,0.9)',
         }}>
             <CardHeader
                 title={<Typography variant="h5" color='primary'>{campaign.name}</Typography>}

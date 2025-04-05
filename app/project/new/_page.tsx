@@ -28,7 +28,7 @@ const CreateProject = () => {
             top: '50%', left: '50%',
             transform: 'translate(-50%,-50%)',
             borderRadius: 6,
-            backgroundColor: 'rgba(255,255,255,0.8)',
+            // backgroundColor: 'rgba(255,255,255,0.8)',
         }}>
             <Logo />
             <Typography variant="h3" sx={{ mb: 4, textAlign: 'center', fontSize: { xs: 24, sm: 48 } }}>

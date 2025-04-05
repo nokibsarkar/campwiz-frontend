@@ -28,21 +28,26 @@ const theme = createTheme({
   typography: {
     fontFamily: `var(--font-roboto)`,
   },
-  palette: {
-    error: {
-      main: '#9b0606',
-    },
-    success: {
-      main: '#339966',
-    },
-    primary: {
-      main: '#006699'
-    },
-    dalgona: {
-      main: '#d9aa59',
-    }
+  colorSchemes: {
+    dark: true,
+    light: true,
   },
-  cssVariables: true,
+  // palette: {
+  //   mode: 'light',
+  //   //   error: {
+  //   //     main: '#9b0606',
+  //   //   },
+  //   //   success: {
+  //   //     main: '#339966',
+  //   //   },
+  //   //   primary: {
+  //   //     main: '#006699'
+  //   //   },
+  //   //   dalgona: {
+  //   //     main: '#d9aa59',
+  //   //   }
+  // },
+  // cssVariables: true,
 });
 
 export default theme;

@@ -5,7 +5,7 @@ import { Campaign } from "@/types"
 import useSWR from "swr"
 import SingleCampaignChip from "./SingleCampaignChip"
 import Skeleton from "@mui/material/Skeleton"
-import PerCampaignBackground from "@/public/campaign.png"
+import PerCampaignBackground from "@/public/campaign5.svg"
 
 type PublicRunningCampaignProps = {
     limit: number
