@@ -14,7 +14,7 @@ const PrivacyPolicy = () => (
                 <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-200">Information We Collect</h2>
                 <p className="mb-4 text-gray-700 dark:text-gray-300">We only collect the following publicly available information:</p>
                 <ul className="list-disc list-inside mb-4 text-gray-700 dark:text-gray-300">
-                    <li><strong>Wikimedia Username</strong></li>
+                    <li><strong>Public Wikimedia Username</strong></li>
                     <li><strong>Date of Registration</strong> on Wikimedia projects</li>
                     <li><strong>Public IP Address</strong> for using our tool</li>
                 </ul>
@@ -27,8 +27,8 @@ const PrivacyPolicy = () => (
                 <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-200">Use of Cookies</h2>
                 <p className="mb-4 text-gray-700 dark:text-gray-300">We use cookies solely for:</p>
                 <ul className="list-disc list-inside mb-4 text-gray-700 dark:text-gray-300">
-                    <li><strong>Authentication</strong> – to verify your identity during sessions</li>
-                    <li><strong>Authorization</strong> – to determine access levels and features based on your role</li>
+                    <li><strong>Authentication</strong> – to verify your identity during sessions (Using OAuth2.0)</li>
+                    <li><strong>Authorization</strong> – to determine access levels and features based on your role (Using JWT Token)</li>
                 </ul>
                 <p className="text-gray-700 dark:text-gray-300">
                     We do <strong>not</strong> use cookies for tracking, advertising, or analytics.
