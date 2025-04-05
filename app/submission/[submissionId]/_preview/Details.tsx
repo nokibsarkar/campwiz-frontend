@@ -1,6 +1,7 @@
 import { MediaType } from "@/types/round"
 import { Submission } from "@/types/submission"
 import { Table, TableBody, TableCell, TableRow, Typography } from "@mui/material"
+import Link from "next/link"
 import React from "react"
 
 type DetailsProps = {
@@ -47,9 +48,12 @@ const AudioDetails = ({ submission }: DetailsProps) => {
     </>
 }
 const VisualDetails = ({ submission }: DetailsProps) => {
+    const sizeInMB = (submission.size / 1024 / 1024).toFixed(2);
+    const sizeInKB = (submission.size / 1024).toFixed(2);
+    // const sizeInGB = (submission.size / 1024 / 1024 / 1024).toFixed(2);
+    const size = submission.size > 1024 * 1024 ? `${sizeInMB} MB` : `${sizeInKB} KB`;
     return <>
-        <KeyValue name="Width" value={submission.width} />
-        <KeyValue name="Height" value={submission.height} />
+        <KeyValue name="Dimensions" value={`${submission.width} × ${submission.height} (${size})`} />
     </>
 }
 const MediaDetails = ({ submission }: DetailsProps) => {
@@ -58,17 +62,23 @@ const MediaDetails = ({ submission }: DetailsProps) => {
         <AudioDetails submission={submission} />
     </>
 }
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+});
 const SubmissionDetails = ({ submission }: DetailsProps) => {
     const truncatedDescription = submission.description?.length > 300 ? submission.description?.slice(0, 300) + '...' : submission.description;
     return (
-        <div className="p-2">
-            <Typography variant="h6" sx={{ textAlign: 'center' }}>{submission.title}</Typography>
+        <div className="p-2 sm:-mt-24">
+            <Link href={`https://commons.wikimedia.org/wiki/${submission.title}`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                <Typography variant="h6" sx={{ textAlign: 'center' }} color='primary'>{submission.title}</Typography>
+            </Link>
             <Table>
                 <TableBody>
                     <KeyValue name="Author" value={submission.author} />
                     <KeyValue name="Description" value={truncatedDescription} />
-                    {/* <KeyValue name="Submitted At (on this system)" value={new Date(submission.submittedAt).toString()} />
-                    <KeyValue name="Created At (on wikimedia server)" value={new Date(submission.createdAtServer).toString()} /> */}
+                    <KeyValue name="Upload Date" value={dateFormatter.format(new Date(submission.createdAtServer))} />
                     <MediaDetails submission={submission} />
                 </TableBody>
             </Table>

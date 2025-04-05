@@ -10,12 +10,12 @@ type HeaderProps = {
 const Header = ({ returnTo }: HeaderProps) => {
     return (
         <header className="flex items-center justify-between w-full h-auto px-4 text-center">
-            <ReturnButton hiddenIn={['^\/$', '^\/user\/login$', '^\/round\/[^\/]+\/submission\/evaluate$']} to={returnTo} />
+            <ReturnButton hiddenIn={['^\/$', '^\/user\/login$']} to={returnTo} />
             <Link href='/' style={{ margin: 'auto', display: 'inline-block' }}>
-                <Image src={LogoSvg} alt="Logo of CampWiz" height={80} style={{ margin: 'auto' }} />
+                <Image src={LogoSvg} alt="Logo of CampWiz" height={75} style={{ margin: 'auto' }} />
             </Link>
             <ThemeSwitherButton />
-            <LogoutButtton hiddenIn={['^\/$', '^\/user\/login$', '^\/round\/[^\/]+\/submission\/evaluate$']} />
+            <LogoutButtton hiddenIn={['^\/$', '^\/user\/login$']} />
         </header>
     )
 }

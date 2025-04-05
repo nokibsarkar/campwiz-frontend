@@ -38,7 +38,7 @@ const CreateCampaign_ = ({ projectLeads }: { projectLeads: string[] }) => {
                     alignItems: 'center',
                 }}>
                 {createdCampaign ? <CampaignCreationSuccess {...createdCampaign} /> :
-                    <div className="p-2 px-3 rounded-2xl w-full max-w-4xl relative h-max bg-[rgba(255,255,255,0.8)] m-auto">
+                    <div className="p-2 px-3 rounded-2xl w-full max-w-4xl relative h-max bg-[rgba(255,255,255,0.8)] dark:bg-[#1f1f1f] m-auto">
 
                         <Logo />
                         <Typography variant="h3" sx={{ mb: 4, textAlign: 'center', fontSize: { xs: 24, sm: 48 } }}>

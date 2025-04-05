@@ -65,7 +65,7 @@ const CategoryInput = ({ alreadyIncludedCategories, onSave, saving = false }: Ca
                                 <DeleteIcon />
                             </IconButton>
                         }
-                        sx={{ border: 1, borderColor: 'grey.300', borderRadius: 5, margin: 1, '&:hover': { backgroundColor: 'grey.100' }, backgroundColor: '#00669926' }
+                        sx={{ border: 1, borderColor: 'grey.300', borderRadius: 5, margin: 1, backgroundColor: '#00669926' }
                         }
                     >
                         <ListItemText

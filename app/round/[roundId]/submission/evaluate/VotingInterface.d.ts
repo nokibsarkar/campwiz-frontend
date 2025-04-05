@@ -8,4 +8,6 @@ export type VotingInterfaceProps = {
     saving: boolean;
     noPrevious?: boolean;
     noNext?: boolean;
+    evaluationCount: number
+    assignmnetCount: number
 }

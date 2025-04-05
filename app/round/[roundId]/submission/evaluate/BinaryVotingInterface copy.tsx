@@ -8,26 +8,36 @@ import OKoutlinedICON from '@/public/ok-outlined.svg';
 import CrossOutlinedICON from '@/public/cross-outlined.svg';
 import Image from "next/image";
 import type { VotingInterfaceProps } from './VotingInterface';
+import { Typography } from '@mui/material';
 const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, saving, evaluation, noPrevious = false, noNext = false }: VotingInterfaceProps) => {
     const [currentScore, setCurrentScore] = React.useState<number | null>(evaluation.score)
     useEffect(() => {
         setCurrentScore(evaluation.score)
     }, [evaluation]);
     return (
-        <div className="flex justify-around items-start">
-            <IconButton color="primary" size="large" onClick={goPrevious} disabled={saving || noPrevious} loading={saving}>
-                <SkipPreviousIcon fontSize='large' />
-            </IconButton>
-            <IconButton color="primary" size="large" onClick={() => { setCurrentScore(0); submitScore(0); }} disabled={saving} loading={saving}>
-                <Image src={currentScore === 0 ? CrossIcon.src : CrossOutlinedICON.src} alt="no" width={30} height={30} />
-            </IconButton>
-            <IconButton color="primary" size="large" onClick={() => { setCurrentScore(100); submitScore(100); }} disabled={saving} loading={saving}>
-                <Image src={currentScore === 100 ? OkIcon.src : OKoutlinedICON.src} alt="yes" width={30} height={30} />
-            </IconButton>
-            <IconButton color="primary" size="large" onClick={goNext} disabled={saving || noNext} loading={saving}>
-                <SkipNextIcon fontSize='large' />
-            </IconButton>
-        </div>
+        <>
+            <Typography variant="h4" sx={{ fontFamily: 'Lora, serif', color: 'primary.main', textAlign: 'left', m: 1, display: 'block', width: '100%', fontSize: { xs: 24, }, fontWeight: 'bold' }}>
+                Vote
+            </Typography>
+            <div className="flex justify-around items-start ">
+
+                <IconButton color="primary" size="large" onClick={goPrevious} disabled={saving || noPrevious} loading={saving} sx={{ fontSize: 5 }} title='Previous'>
+                    <SkipPreviousIcon fontSize='large' sx={{ fontSize: 50 }} />
+                </IconButton>
+                <IconButton color="primary" size="large" onClick={() => { setCurrentScore(0); submitScore(0); }} disabled={saving} loading={saving} sx={{ fontSize: 5 }} title='No'>
+                    <Image src={currentScore === 0 ? CrossIcon.src : CrossOutlinedICON.src} alt="no" width={50} height={50} />
+                </IconButton>
+                <IconButton color="primary" size="large" onClick={() => { setCurrentScore(100); submitScore(100); }} disabled={saving} loading={saving} sx={{ fontSize: 5 }} title='Yes'>
+                    <Image src={currentScore === 100 ? OkIcon.src : OKoutlinedICON.src} alt="yes" width={50} height={50} />
+                </IconButton>
+                <IconButton color="primary" size="large" onClick={goNext} disabled={saving || noNext} loading={saving} sx={{ fontSize: 5 }} title='Skip'>
+                    <SkipNextIcon fontSize='large' sx={{ fontSize: 50 }} />
+                </IconButton>
+            </div>
+            <Typography variant="subtitle1" sx={{ fontFamily: 'Lora, serif', textAlign: 'right', m: 1, display: 'block', width: '100%', px: 2 }}>
+                12 out of 100 completed
+            </Typography>
+        </>
     )
 }
 export default BinaryVotingInterface
