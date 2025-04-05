@@ -28,8 +28,14 @@ const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
             height: '100%',
             position: 'fixed',
             right: 0,
-
-            backgroundColor: isMobile ? 'rgba(255,255,255, 0.95)' : 'rgba(255,255,255, 0.9)',
+            backgroundColor: (theme) => {
+                const mode = theme.palette.mode;
+                if (mode === 'dark') {
+                    return isMobile ? 'rgba(0,0,0, 0.95)' : 'rgba(0,0,0, 0.9)';
+                } else if (mode === 'light') {
+                    return isMobile ? 'rgba(255,255,255, 0.95)' : 'rgba(255,255,255, 0.9)';
+                }
+            },
             width: {
                 xs: '100%',
                 sm: '70%',
