@@ -34,6 +34,8 @@ const Page = async ({ params }: { params: Promise<{ roundId: string }> }) => {
             next={evaluations.next}
             campaignId={round.campaignId}
             limit={1}
+            evaluationCount={0}
+            assignmentCount={0}
         />}
         {round.type === EvaluationType.RANKING && <RankingVotingInterface
             roundId={round.roundId}
