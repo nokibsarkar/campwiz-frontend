@@ -15,7 +15,7 @@ const TermsOfService = () => (
             <section className="mb-8">
                 <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-200">1. Eligibility</h2>
                 <p className="text-gray-700 dark:text-gray-300">
-                    You must have a valid Wikimedia account to use CampWiz NXT. The username and date of registration must be publicly visible.
+                    You must have an active Wikimedia account to use CampWiz NXT. The username and date of registration must be publicly visible.
                 </p>
             </section>
 
@@ -34,7 +34,7 @@ const TermsOfService = () => (
             <section className="mb-8">
                 <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-200">3. User Data</h2>
                 <p className="text-gray-700 dark:text-gray-300 mb-4">
-                    We only collect publicly available Wikimedia usernames and registration dates. Your data is used solely for campaign and jury process functionalities. Refer to our <a href="/privacy" className="text-blue-500 hover:underline">Privacy Policy</a> for more information.
+                    We only collect publicly available Wikimedia usernames and registration dates. Your data is used solely for campaign and jury process functionalities. Refer to our <a href="/policy/privacy" className="text-blue-500 hover:underline">Privacy Policy</a> for more information.
                 </p>
             </section>
 
