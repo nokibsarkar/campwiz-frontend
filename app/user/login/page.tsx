@@ -88,10 +88,8 @@ const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
 }
 const LoginPage = ({ }) => {
     const isMobile = useMediaQuery('(max-width:600px)');
-
     return (<Paper sx={{
         backgroundImage: `url(${LoginBackground.src})`,
-
         backgroundSize: {
             xs: '100% auto',
             sm: '60% auto',

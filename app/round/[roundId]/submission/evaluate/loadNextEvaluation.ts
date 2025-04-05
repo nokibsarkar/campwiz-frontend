@@ -1,5 +1,5 @@
 import { fetchAPIFromBackendListWithErrorHandling } from "@/server";
-import { Evaluation } from "@/types/submission";
+import { Evaluation, EvaluationListResponseWithCurrentStats } from "@/types/submission";
 type EvaluationFilter = {
     roundId: string
     includeSkipped?: boolean
@@ -24,6 +24,14 @@ const loadNextEvaluation = async ({ roundId, includeSkipped, limit, next, prev, 
     if (includeSubmissions)
         qs.append('includeSubmission', includeSubmissions.toString());
     const url = (isPublic ? `/round/${roundId}/next/public` : `/evaluation/`) + `?${qs.toString()}`;
-    return await fetchAPIFromBackendListWithErrorHandling<Evaluation>(url);
+    const response = await fetchAPIFromBackendListWithErrorHandling<Evaluation>(url);
+    if (!response) {
+        return null;
+    }
+    if ('detail' in response) {
+        return response;
+    }
+    const r = response as EvaluationListResponseWithCurrentStats;
+    return r
 }
 export default loadNextEvaluation;

@@ -1,4 +1,4 @@
-import { IDType } from "../_";
+import { IDType, ResponseList } from "../_";
 import { EvaluationType, MediaType } from "../round";
 
 export interface Submission {
@@ -42,4 +42,8 @@ export interface Evaluation {
     evaluatedAt: string
     skipExpirationAt: string
     distributionTaskId: string
+};
+export type EvaluationListResponseWithCurrentStats = ResponseList<Evaluation> & {
+    totalEvaluatedCount: number
+    totalAssignmentCount: number
 };

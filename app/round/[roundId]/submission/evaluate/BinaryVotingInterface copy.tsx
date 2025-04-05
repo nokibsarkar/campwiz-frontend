@@ -9,16 +9,16 @@ import CrossOutlinedICON from '@/public/cross-outlined.svg';
 import Image from "next/image";
 import type { VotingInterfaceProps } from './VotingInterface';
 import { Typography } from '@mui/material';
-const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, saving, evaluation, noPrevious = false, noNext = false }: VotingInterfaceProps) => {
+const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, saving, evaluation, noPrevious = false, noNext = false, assignmnetCount, evaluationCount }: VotingInterfaceProps) => {
     const [currentScore, setCurrentScore] = React.useState<number | null>(evaluation.score)
     useEffect(() => {
         setCurrentScore(evaluation.score)
     }, [evaluation]);
     return (
         <>
-            <Typography variant="h4" sx={{ fontFamily: 'Lora, serif', color: 'primary.main', textAlign: 'left', m: 1, display: 'block', width: '100%', fontSize: { xs: 24, }, fontWeight: 'bold' }}>
+            {/* <Typography variant="h4" sx={{ fontFamily: 'Lora, serif', color: 'primary.main', textAlign: 'left', m: 1, display: 'block', width: '100%', fontSize: { xs: 24, }, fontWeight: 'bold' }}>
                 Vote
-            </Typography>
+            </Typography> */}
             <div className="flex justify-around items-start ">
 
                 <IconButton color="primary" size="large" onClick={goPrevious} disabled={saving || noPrevious} loading={saving} sx={{ fontSize: 5 }} title='Previous'>
@@ -35,7 +35,7 @@ const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, saving, evalua
                 </IconButton>
             </div>
             <Typography variant="subtitle1" sx={{ fontFamily: 'Lora, serif', textAlign: 'right', m: 1, display: 'block', width: '100%', px: 2 }}>
-                12 out of 100 completed
+                {evaluationCount} out of {assignmnetCount} completed
             </Typography>
         </>
     )

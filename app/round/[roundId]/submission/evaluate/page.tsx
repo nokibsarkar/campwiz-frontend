@@ -19,28 +19,29 @@ const Page = async ({ params }: { params: Promise<{ roundId: string }> }) => {
     }
     const round = roundResponse.data;
     const limit = round.type === EvaluationType.RANKING ? RankingBatchSize : 5;
-    const evaluations = await loadNextEvaluation({ roundId: round.roundId, limit: limit, includeSubmissions: true, isPublic: round.isPublicJury });
-    if (!evaluations) {
+    const evaluationResponse = await loadNextEvaluation({ roundId: round.roundId, limit: limit, includeSubmissions: true, isPublic: round.isPublicJury });
+    if (!evaluationResponse) {
         return null;
     }
-    if ('detail' in evaluations) {
-        return <p>Error : {evaluations.detail}</p>
+    if ('detail' in evaluationResponse) {
+        return <p>Error : {evaluationResponse.detail}</p>
     }
+    console.log('evaluationResponse', evaluationResponse)
     return <Suspense fallback={<LinearProgress />}>
         {[EvaluationType.BINARY, EvaluationType.SCORE].includes(round.type) && <ScoreOrBinaryVotingInterface
             isPublicJury={round.isPublicJury}
             roundId={round.roundId}
-            initailEvaluations={evaluations.data}
-            next={evaluations.next}
+            initailEvaluations={evaluationResponse.data}
+            next={evaluationResponse.next}
             campaignId={round.campaignId}
             limit={1}
-            evaluationCount={0}
-            assignmentCount={0}
+            evaluationCount={evaluationResponse.totalEvaluatedCount}
+            assignmentCount={evaluationResponse.totalAssignmentCount}
         />}
         {round.type === EvaluationType.RANKING && <RankingVotingInterface
             roundId={round.roundId}
-            initailEvaluations={evaluations.data}
-            next={evaluations.next}
+            initailEvaluations={evaluationResponse.data}
+            next={evaluationResponse.next}
             campaignId={round.campaignId}
             limit={RankingBatchSize}
             isPublicJury={round.isPublicJury}

@@ -1,6 +1,6 @@
 "use client"
 import loadNextEvaluation from "./loadNextEvaluation"
-import { Evaluation, Submission } from "@/types/submission"
+import { Evaluation, EvaluationListResponseWithCurrentStats, Submission } from "@/types/submission"
 import LinearProgress from "@mui/material/LinearProgress"
 import SubmissionDetails from "@/app/submission/[submissionId]/_preview/Details"
 import React, { lazy, Suspense, useEffect, useState } from "react"
@@ -108,6 +108,9 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
             if ('detail' in response) {
                 return { error: response.detail }
             }
+            const r = response as EvaluationListResponseWithCurrentStats;
+            setAssignmentCount(r.totalAssignmentCount);
+            setEvaluationCount(r.totalEvaluatedCount);
             nextImageWrapper();
         } catch (error) {
             return { error: (error as Error).message }
@@ -137,12 +140,13 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
                 setError(response.detail);
                 return;
             }
-            const addedEvaluations = response.data;
-            setAssignmentCount((assignmentCount) => assignmentCount + 1);
-            setEvaluationCount((evaluationCount) => evaluationCount + addedEvaluations.length);
+            const r = response as EvaluationListResponseWithCurrentStats;
+            const addedEvaluations = r.data;
+            setAssignmentCount(r.totalAssignmentCount);
+            setEvaluationCount(r.totalEvaluatedCount);
             setEvaluations((evaluations) => [...evaluations, ...addedEvaluations]);
-            setNext(response.next);
-            setHasNextEvauation(response.next !== undefined && response.next !== next && response.next !== "");
+            setNext(r.next);
+            setHasNextEvauation(r.next !== undefined && r.next !== next && r.next !== "");
             setIsLoading(false);
         });
     }, [currentCursor, evaluations, evaluations.length, hasNextEvaluation, isPublicJury, limit, next, roundId]);
@@ -209,9 +213,6 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
                             src={submission.thumburl || '/red-hill.svg'}
                             alt={submission.title}
                             className="m-auto block object-contain max-h-5/6 self-center sm:self-auto"
-                            onLoadStart={() => {
-                                console.log("Loading image preview");
-                            }}
                             loading="lazy"
                             placeholder="blur"
                             blurDataURL={LoadingImage.src}
