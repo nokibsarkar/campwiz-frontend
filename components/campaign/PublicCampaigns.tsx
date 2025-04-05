@@ -22,6 +22,7 @@ const PublicRunningCampaigns = ({ limit }: PublicRunningCampaignProps) => {
     return publicCampaignResponse.data.length > 0 ? <div style={{
         display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap',
         backgroundImage: `url(${PerCampaignBackground.src})`,
+        backgroundSize: 'contain',
     }} className="justify-self-auto px-2">
         {publicCampaignResponse.data.map(v => <SingleCampaignChip campaign={v} key={v.campaignId} />)}
     </div>

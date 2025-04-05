@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '@/theme';
@@ -31,6 +32,7 @@ export const metadata: Metadata = {
     },
     {
       name: "Tiven Gonsalves",
+      url: "https://github.com/Tiven2240",
 
     }
   ]
@@ -42,13 +44,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
+    <html suppressHydrationWarning>
       <AppRouterCacheProvider
         options={{ key: 'css' }}
       >
         <ThemeProvider theme={theme} defaultMode="light">
           <CssBaseline />
           <Paper component='body' className={`h-full w-full p-0 m-0 overflow-auto ${roboto.className}`} sx={{ m: 0, p: 0, height: '100%', width: '100%', position: 'absolute' }} elevation={0}>
+            <InitColorSchemeScript attribute="class" />
             {children}
           </Paper>
         </ThemeProvider>
