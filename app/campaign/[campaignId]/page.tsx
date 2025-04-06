@@ -42,7 +42,9 @@ const CampaignViewPage = async ({ params }: CampaignViewPageProps) => {
                 m: 1,
             }}>
                 <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Typography variant="h2">
+                    <Typography variant="h2" sx={{
+                        overflowWrap: 'anywhere',
+                    }}>
                         {campaign.name}
                         <Typography variant="subtitle1" color="textDisabled" component='b' sx={{ display: 'inline' }}>({campaign.campaignId})</Typography>
                     </Typography>
@@ -65,7 +67,7 @@ const CampaignViewPage = async ({ params }: CampaignViewPageProps) => {
                     isCoordinator={campaign.coordinators?.includes(session?.username || '') === true}
                 />
 
-            </Paper>
+            </Paper >
         </>
     );
 };

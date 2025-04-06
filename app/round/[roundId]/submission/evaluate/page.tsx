@@ -26,7 +26,6 @@ const Page = async ({ params }: { params: Promise<{ roundId: string }> }) => {
     if ('detail' in evaluationResponse) {
         return <p>Error : {evaluationResponse.detail}</p>
     }
-    console.log('evaluationResponse', evaluationResponse)
     return <Suspense fallback={<LinearProgress />}>
         {[EvaluationType.BINARY, EvaluationType.SCORE].includes(round.type) && <ScoreOrBinaryVotingInterface
             isPublicJury={round.isPublicJury}
