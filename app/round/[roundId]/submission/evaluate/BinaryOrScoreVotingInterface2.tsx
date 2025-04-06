@@ -90,10 +90,11 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
     const isSmall = useMediaQuery('(max-width: 600px)');
     const submit = async (score: number) => {
         try {
-            if (!imageLoaded) return;
             if (saving) return;
             if (!currentEvaluation) return;
             if (!currentEvaluation.submission) return;
+
+            if (!imageLoaded) return;
             setSaving(true);
             const response = await submitVote(
                 roundId,
@@ -224,12 +225,12 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
                     }
                     {submission.mediatype === MediaType.VIDEO &&
                         <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
-                            <VideoApp poster={submission.thumburl} src={submission.url} height={submission.height} width={submission.width} />
+                            <VideoApp poster={submission.thumburl} src={submission.url} height={submission.height} width={submission.width} onPosterLoaded={() => setImageLoaded(true)} />
                         </Suspense>
                     }
                     {submission.mediatype === MediaType.AUDIO &&
                         <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
-                            <AudioPlayer src={submission.url} title={submission.title} author={submission.author} />
+                            <AudioPlayer src={submission.url} title={submission.title} author={submission.author} onPosterLoaded={() => setImageLoaded(true)} />
                         </Suspense>
                     }
 

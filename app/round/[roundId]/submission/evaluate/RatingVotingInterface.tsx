@@ -15,28 +15,31 @@ const RatingVotingInterface = ({ goNext, goPrevious, submitScore, saving, evalua
     }, [evaluation]);
     return (
         <>
-            <div className="flex justify-around items-start">
-                <IconButton color="primary" size="large" onClick={goPrevious} disabled={saving || noPrevious} title='Previous'>
-                    <SkipPreviousIcon fontSize='large' />
-                </IconButton>
-                {
-                    [20, 40, 60, 80, 100].map((i) => (
-                        <IconButton
-                            color="dalgona" size="large" key={i}
-                            onClick={() => { setCurrentScore(i); submitScore(i) }}
-                            onMouseOver={() => !saving && setCurrentScore(i)}
-                            onMouseOut={() => !saving && setCurrentScore(evaluation.score)}
-                            disabled={saving}
-                        >
-                            {i <= (currentScore || 0) ? <StarIcon fontSize='large' /> : <OutlinedStart fontSize='large' />}
-                        </IconButton>
-                    )
-                    )
-                }
-
-                <IconButton color="primary" size="large" onClick={goNext} disabled={saving || noNext} title='Skip'>
-                    <SkipNextIcon fontSize='large' />
-                </IconButton>
+            <div className="flex flex-col justify-center">
+                <div className="flex justify-around items-start">
+                    {
+                        [20, 40, 60, 80, 100].map((i) => (
+                            <IconButton
+                                color="dalgona" size="large" key={i}
+                                onClick={() => { setCurrentScore(i); submitScore(i) }}
+                                onMouseOver={() => !saving && setCurrentScore(i)}
+                                onMouseOut={() => !saving && setCurrentScore(evaluation.score)}
+                                disabled={saving}
+                            >
+                                {i <= (currentScore || 0) ? <StarIcon fontSize='large' /> : <OutlinedStart fontSize='large' />}
+                            </IconButton>
+                        )
+                        )
+                    }
+                </div>
+                <div className='flex justify-around items-start'>
+                    <IconButton color="primary" size="large" onClick={goPrevious} disabled={saving || noPrevious} title='Previous'>
+                        <SkipPreviousIcon fontSize='large' />
+                    </IconButton>
+                    <IconButton color="primary" size="large" onClick={goNext} disabled={saving || noNext} title='Skip'>
+                        <SkipNextIcon fontSize='large' />
+                    </IconButton>
+                </div>
             </div>
             <Typography variant="subtitle1" sx={{ fontFamily: 'Lora, serif', textAlign: 'right', m: 1, display: 'block', width: '100%', px: 2 }}>
                 {evaluationCount} out of {assignmnetCount} completed

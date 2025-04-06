@@ -22,13 +22,14 @@ type AudioAppProps = {
     src: string;
     title: string;
     author: string;
+    onPosterLoaded?: () => void
 }
 let windowWidth = 400;
 if (typeof window !== "undefined") {
     // Client-side-only code
     windowWidth = window.innerWidth;
 }
-export const AudioApp = ({ src }: AudioAppProps) => {
+export const AudioApp = ({ src, onPosterLoaded }: AudioAppProps) => {
     const audioRef = createRef<H5AudioPlayer>();
     const [audio, setAudio] = React.useState<HTMLAudioElement | null>(null);
     useEffect(() => {
@@ -44,6 +45,7 @@ export const AudioApp = ({ src }: AudioAppProps) => {
         width={windowWidth}
         audioEle={audio}
         meterWidth={10}
+
 
         capColor={'green'}
         capHeight={2}
@@ -61,6 +63,7 @@ export const AudioApp = ({ src }: AudioAppProps) => {
             crossOrigin='anonymous'
             showJumpControls={false}
             showSkipControls={false}
+            onLoadedData={onPosterLoaded}
         />
     </>);
 }

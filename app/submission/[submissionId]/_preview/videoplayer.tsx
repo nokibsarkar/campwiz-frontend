@@ -7,9 +7,10 @@ type VideoAppProps = {
     poster: string;
     height: number;
     width: number
+    onPosterLoaded?: (e: React.SyntheticEvent<HTMLImageElement, Event>) => void
 }
 
-const VideoApp = ({ src, poster, height, width }: VideoAppProps) => {
+const VideoApp = ({ src, poster, height, width, onPosterLoaded }: VideoAppProps) => {
     "use client"
     // const parentRef = useRef<HTMLDivElement>(null)
     const calculatedWidth = useMemo(() => {
@@ -50,6 +51,7 @@ const VideoApp = ({ src, poster, height, width }: VideoAppProps) => {
                     fill
                     // placeholder="blur"
                     alt="Some peeps doing something awesome"
+                    onLoad={onPosterLoaded}
                 />
             </VideoPlayer>
         </div>
