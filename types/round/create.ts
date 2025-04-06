@@ -3,7 +3,9 @@ import { EvaluationType, MediaType, RoundCreate } from "."
 
 export const initialRoundCreate: RoundCreate = {
     allowedMediaTypes: [
-        MediaType.IMAGE
+        MediaType.IMAGE,
+        MediaType.AUDIO,
+        MediaType.VIDEO,
     ],
     type: EvaluationType.BINARY,
     startDate: dayjs().toISOString(),
