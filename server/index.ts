@@ -64,6 +64,7 @@ export const fetchFromBackend = async (path: string, options?: RequestInit): Pro
 
         }
     }
+    console.log('Response Headers:', res.headers)
     return res
 }
 export const getRawAPIPath = async function (path: string): Promise<string> {
