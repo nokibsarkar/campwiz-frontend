@@ -12,12 +12,13 @@ type ChangeStatusButtonProps = {
     description: string
     onClick?: (round: Round) => void
     roundId: string
-    refresh: () => void
+    refresh?: () => void
+    statusText?: string
 }
-const ChangeStatusButton = ({ roundId, onClick, status, label, color, description, icon, refresh }: ChangeStatusButtonProps) => {
+const ChangeStatusButton = ({ roundId, onClick, status, label, color, description, icon, refresh, statusText }: ChangeStatusButtonProps) => {
     const [showDialog, setShowDialog] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
-    const finalize = async () => {
+    const doThing = async () => {
         try {
             setLoading(true)
             const res = await updateroundStatus(roundId, status)
@@ -29,9 +30,12 @@ const ChangeStatusButton = ({ roundId, onClick, status, label, color, descriptio
                 throw new Error(res.detail)
             }
             setShowDialog(false)
-            refresh()
+
             if (onClick) {
                 onClick(res.data)
+            }
+            if (refresh) {
+                refresh()
             }
         } catch (e) {
             console.error(e)
@@ -55,13 +59,13 @@ const ChangeStatusButton = ({ roundId, onClick, status, label, color, descriptio
             {showDialog && <Dialog open={showDialog} onClose={() => setShowDialog(false)}>
                 <DialogTitle>{label}</DialogTitle>
                 <DialogContent>
-                    <Typography>Are you sure you want to mark this round as {status}?</Typography>
+                    <Typography>Are you sure you want to mark this round as {statusText || status}?</Typography>
                     <Typography>{description}</Typography>
                     {loading && <LinearProgress />}
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={() => setShowDialog(false)} variant="outlined" color="error" disabled={loading}>No</Button>
-                    <Button onClick={finalize} variant="contained" color="success" disabled={loading} loading={loading}>Yes</Button>
+                    <Button onClick={doThing} variant="contained" color="success" disabled={loading} loading={loading}>Yes</Button>
                 </DialogActions>
             </Dialog>}
         </React.Suspense>

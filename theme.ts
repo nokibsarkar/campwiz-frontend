@@ -36,9 +36,6 @@ const theme = createTheme({
     error: {
       main: '#9b0606',
     },
-    success: {
-      main: '#339966',
-    },
     primary: {
       main: '#006699'
     },

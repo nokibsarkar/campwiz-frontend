@@ -17,6 +17,7 @@ import ExportToCSVButton from './ExportButton';
 import ChangeStatusButton from './ChangeStatusButton';
 import DeleteButton from './DeleteButton';
 import AddAsJuryButton from './AddAsJury';
+import { updateroundStatus } from './updateStatus';
 
 const CreateRoundButton = ({ onClick }: { onClick: () => void }) => (
     <Button
@@ -41,7 +42,39 @@ const EditRoundButton = ({ onClick }: { onClick: () => void }) => (
     </Button>
 )
 
-
+const MarkAsCompleteButton = ({ latestRound, setAction, refresh }: { latestRound: Round | null, setAction: (action: SelectedRoundActionStatus) => void, refresh: () => void }) => {
+    if (!latestRound)
+        return null
+    if (latestRound.status === RoundStatus.COMPLETED)
+        return null
+    if (latestRound.status === RoundStatus.PAUSED) // Return the mark as complete button directly
+        return <ChangeStatusButton
+            roundId={latestRound.roundId}
+            color="success" description=""
+            icon={<DoubleTickIcon />}
+            label="Mark as complete"
+            status={RoundStatus.COMPLETED}
+            statusText="Completed"
+            onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
+            refresh={refresh}
+        />
+    // otherwise, first pause the round, then mark as complete
+    const markAsComplete = async (round: Round) => {
+        setAction(SelectedRoundActionStatus.finalizing)
+        await updateroundStatus(round.roundId, RoundStatus.COMPLETED)
+        setAction(SelectedRoundActionStatus.finalizing)
+        refresh()
+    }
+    return <ChangeStatusButton
+        roundId={latestRound.roundId}
+        color="success" description=""
+        icon={<DoubleTickIcon />}
+        label="Mark as complete"
+        status={RoundStatus.PAUSED}
+        statusText="paused then Completed"
+        onClick={markAsComplete}
+    />
+}
 
 
 const LatestRoundActions = ({ latestRound, setAction, isJury, judgableLink, refresh, isCoordinator }: { latestRound: Round | null, campaign: Campaign, action: SelectedRoundActionStatus, setAction: (action: SelectedRoundActionStatus) => void, isJury: boolean, judgableLink: string, refresh: () => void, isCoordinator: boolean }) => {
@@ -69,6 +102,11 @@ const LatestRoundActions = ({ latestRound, setAction, isJury, judgableLink, refr
         if (!latestRound) {
             buttons.push(<CreateRoundButton onClick={() => setAction(SelectedRoundActionStatus.creating)} />)
         } else {
+            // Add mark as complete irrespective of the status being other than completed
+            // status can be paused or active
+            if (latestRound.status !== RoundStatus.COMPLETED && latestRound.totalSubmissions === latestRound.totalEvaluatedSubmissions) {
+                buttons.push(<MarkAsCompleteButton latestRound={latestRound} setAction={setAction} refresh={refresh} />);
+            }
             if (latestRound.status === RoundStatus.COMPLETED) {
                 buttons.push(<ExportToCSVButton roundId={latestRound.roundId} />);
                 buttons.push(<CreateRoundButton onClick={() => setAction(SelectedRoundActionStatus.creating)} />);
@@ -102,15 +140,7 @@ const LatestRoundActions = ({ latestRound, setAction, isJury, judgableLink, refr
                     );
                 }
                 buttons.push(<EditRoundButton onClick={() => setAction(SelectedRoundActionStatus.editing)} />);
-                buttons.push(<ChangeStatusButton
-                    roundId={latestRound.roundId}
-                    color="success" description=""
-                    icon={<DoubleTickIcon />}
-                    label="Mark as complete"
-                    status={RoundStatus.COMPLETED}
-                    onClick={() => setAction(SelectedRoundActionStatus.finalizing)}
-                    refresh={refresh}
-                />);
+
                 buttons.push(<ChangeStatusButton
                     roundId={latestRound.roundId}
                     color="error"
