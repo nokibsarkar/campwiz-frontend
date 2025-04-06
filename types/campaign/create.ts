@@ -12,8 +12,10 @@ export interface CampaignCreate {
     startDate: string
     isPublic: boolean
     status: RoundStatus
+    projectId: string
 }
 export const initialCampaignCreate: CampaignCreate = {
+    projectId: "",
     coordinators: [],
     description: "",
     endDate: (new Date()).toISOString(),

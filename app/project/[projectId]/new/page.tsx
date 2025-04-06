@@ -24,7 +24,7 @@ const CreateCampaign = async ({ params }: { params: Promise<{ projectId: string 
     const projectLeads = project.projectLeads || [];
     return (
         <>
-            <CreateCampaign_ projectLeads={projectLeads} />
+            <CreateCampaign_ projectLeads={projectLeads} projectId={projectId} />
         </>
     )
 }

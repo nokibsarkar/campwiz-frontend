@@ -13,9 +13,9 @@ import LoginBackground from "@/public/snowy-hill.svg";
 import Logo from "@/components/Logo";
 const CampaignCreationSuccess = lazy(() => import('@/app/project/[projectId]/new/success'));
 
-const CreateCampaign_ = ({ projectLeads }: { projectLeads: string[] }) => {
+const CreateCampaign_ = ({ projectLeads, projectId }: { projectLeads: string[], projectId: string }) => {
     const [error, setError] = useState<Error | null>(null);
-    const [campaign, campaignDispatch] = useReducer(campaignReducer, { ...initialCampaignCreate, coordinators: projectLeads });
+    const [campaign, campaignDispatch] = useReducer(campaignReducer, { ...initialCampaignCreate, coordinators: projectLeads, projectId });
     const { data: createdCampaign = null, trigger, isMutating: loading } = useSWRMutation<Campaign | undefined>('/api/campaign', createCampaign.bind(null, campaign), {
         onError: setError,
     });
@@ -38,7 +38,7 @@ const CreateCampaign_ = ({ projectLeads }: { projectLeads: string[] }) => {
                     alignItems: 'center',
                 }}>
                 {createdCampaign ? <CampaignCreationSuccess {...createdCampaign} /> :
-                    <div className="p-2 px-3 rounded-2xl w-full max-w-4xl relative h-max bg-[rgba(255,255,255,0.8)] dark:bg-[#1f1f1f] m-auto">
+                    <div className="p-2 px-3 rounded-2xl w-full max-w-4xl relative h-max bg-[rgba(248,246,246,0.8)] dark:bg-[#2c2c2c] m-auto">
 
                         <Logo />
                         <Typography variant="h3" sx={{ mb: 4, textAlign: 'center', fontSize: { xs: 24, sm: 48 } }}>
