@@ -260,7 +260,7 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
                                 evaluation={currentEvaluation}
                                 goNext={() => nextImageWrapper(1)}
                                 goPrevious={() => nextImageWrapper(-1)}
-                                submitScore={submit} saving={saving || isLoading}
+                                submitScore={submit} saving={saving || isLoading || !imageLoaded}
                                 noPrevious={currentCursor === 0}
                                 assignmnetCount={assignmentCount}
                                 evaluationCount={evaluationCount}
