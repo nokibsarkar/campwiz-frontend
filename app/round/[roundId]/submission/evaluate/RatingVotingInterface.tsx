@@ -15,9 +15,9 @@ import TickIcon from '@mui/icons-material/Check';
 import Link from 'next/link';
 
 const RatingVotingInterface = ({ goNext, goPrevious, saving, evaluation, assignmnetCount, evaluationCount, noNext, noPrevious, submitScore }: VotingInterfaceProps) => {
-    const [currentScore, setCurrentScore] = React.useState<number>(evaluation.score || 0)
+    const [currentScore, setCurrentScore] = React.useState<number>(evaluation.score / 20 || 0)
     useEffect(() => {
-        setCurrentScore(evaluation.score)
+        setCurrentScore(evaluation.score / 20)
     }, [evaluation]);
     return (
         <>
@@ -58,7 +58,7 @@ const RatingVotingInterface = ({ goNext, goPrevious, saving, evaluation, assignm
                     <Button color="primary" size="large" onClick={goNext} disabled={saving || noNext} title='Save' endIcon={<SkipNextIcon fontSize='large' />} variant='outlined' sx={{ borderRadius: 2, px: 2, my: 'auto' }}>
                         Skip
                     </Button>
-                    <IconButton color="success" size="large" onClick={() => submitScore(currentScore)} disabled={saving || noNext} title='Save' >
+                    <IconButton color="success" size="large" onClick={() => submitScore(currentScore * 20)} disabled={saving || noNext} title='Save' >
                         <TickIcon fontSize='large' />
                     </IconButton>
                 </div>

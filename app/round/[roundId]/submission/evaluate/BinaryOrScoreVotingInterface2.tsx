@@ -34,7 +34,6 @@ const prefetchSubmissionPreview = async (url: string) => {
 }
 
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const InfoTriggerButton = ({ submission }: { submission: Submission }) => {
     const [showInfo, setShowInfo] = useState(false);
     const handleClick = () => {
