@@ -3,27 +3,61 @@ import React, { useEffect } from 'react'
 import IconButton from '@mui/material/IconButton';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import StarIcon from '@mui/icons-material/Star';
-import OutlinedStart from '@mui/icons-material/StarOutline';
+// import StarIcon from '@mui/icons-material/Star';
+// import OutlinedStart from '@mui/icons-material/StarOutline';
+import Rating from '@mui/material/Rating';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import type { VotingInterfaceProps } from './VotingInterface';
 import { Typography } from '@mui/material';
+import Button from '@mui/material/Button';
+import TickIcon from '@mui/icons-material/Check';
+import Link from 'next/link';
 
-const RatingVotingInterface = ({ goNext, goPrevious, submitScore, saving, evaluation, assignmnetCount, evaluationCount, noNext, noPrevious }: VotingInterfaceProps) => {
-    const [currentScore, setCurrentScore] = React.useState<number | null>(evaluation.score)
+const RatingVotingInterface = ({ goNext, goPrevious, saving, evaluation, assignmnetCount, evaluationCount, noNext, noPrevious }: VotingInterfaceProps) => {
+    const [currentScore, setCurrentScore] = React.useState<number>(evaluation.score || 0)
     useEffect(() => {
         setCurrentScore(evaluation.score)
     }, [evaluation]);
     return (
         <>
             <div className="flex flex-col justify-center">
-                <div className="flex justify-around items-start">
+
+                <Rating
+                    name="size-large"
+                    defaultValue={currentScore}
+                    sx={{
+                        '& .MuiRating-iconFilled': {
+                            color: '#ff6d75',
+                            fontSize: '2em',
+                            mx: 1
+                        },
+                        '& .MuiRating-iconHover': {
+                            color: '#ff3d47',
+                            fontSize: '2em',
+                            mx: 1
+                        },
+                        '& .MuiRating-iconEmpty': {
+                            fontSize: '2em',
+                            mx: 1
+                        },
+                        my: 1
+                    }}
+                    max={5}
+                    icon={<FavoriteIcon fontSize="inherit" />}
+                    emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+                    onChange={(event, newValue) => {
+                        setCurrentScore(newValue || 0);
+                    }}
+                />
+                {/* <div className="flex justify-around items-start">
                     {
                         [20, 40, 60, 80, 100].map((i) => (
                             <IconButton
                                 color="dalgona" size="large" key={i}
                                 onClick={() => { setCurrentScore(i); submitScore(i) }}
-                                onMouseOver={() => !saving && setCurrentScore(i)}
-                                onMouseOut={() => !saving && setCurrentScore(evaluation.score)}
+                                onMouseOver={() => { console.log("Hovering over"); if (!saving) setCurrentScore(i) }}
+                                onMouseOut={() => { console.log("Leaving out"); if (!saving) setCurrentScore(evaluation.score) }}
                                 disabled={saving}
                             >
                                 {i <= (currentScore || 0) ? <StarIcon fontSize='large' /> : <OutlinedStart fontSize='large' />}
@@ -31,18 +65,27 @@ const RatingVotingInterface = ({ goNext, goPrevious, submitScore, saving, evalua
                         )
                         )
                     }
-                </div>
+                </div> */}
                 <div className='flex justify-around items-start'>
                     <IconButton color="primary" size="large" onClick={goPrevious} disabled={saving || noPrevious} title='Previous'>
                         <SkipPreviousIcon fontSize='large' />
                     </IconButton>
-                    <IconButton color="primary" size="large" onClick={goNext} disabled={saving || noNext} title='Skip'>
-                        <SkipNextIcon fontSize='large' />
+
+                    <Button color="primary" size="large" onClick={goNext} disabled={saving || noNext} title='Save' endIcon={<SkipNextIcon fontSize='large' />} variant='outlined' sx={{ borderRadius: 2, px: 2, my: 'auto' }}>
+                        Skip
+                    </Button>
+
+                    <IconButton color="success" size="large" onClick={goNext} disabled={saving || noNext} title='Save' >
+                        <TickIcon fontSize='large' />
                     </IconButton>
                 </div>
             </div>
             <Typography variant="subtitle1" sx={{ fontFamily: 'Lora, serif', textAlign: 'right', m: 1, display: 'block', width: '100%', px: 2 }}>
                 {evaluationCount} out of {assignmnetCount} completed
+                <br />
+                <Link href={`/round/${evaluation.roundId}/submission/${evaluation.submissionId}`} target='_blank' className='text-blue-500 hover:underline'>
+                    Modify Votes
+                </Link>
             </Typography>
         </>
     )
