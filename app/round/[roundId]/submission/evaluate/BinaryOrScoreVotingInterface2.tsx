@@ -9,7 +9,7 @@ import { EvaluationType, MediaType } from "@/types/round"
 import AllSet from "./AllSet"
 import { Button, Dialog, DialogActions, useMediaQuery } from "@mui/material"
 import CloseIcon from "@mui/icons-material/Close"
-import IconButton from "@mui/material/IconButton"
+// import IconButton from "@mui/material/IconButton"
 import InfoIcon from "@mui/icons-material/Info"
 import LoadingImage from '@/public/logo-animated.svg';
 import Image from "next/image"
@@ -42,9 +42,9 @@ const InfoTriggerButton = ({ submission }: { submission: Submission }) => {
     }
     return (
         <Suspense fallback={<LinearProgress />}>
-            <IconButton onClick={handleClick} className="absolute top-2 right-2" disabled={showInfo}>
-                <InfoIcon />
-            </IconButton>
+            <Button onClick={handleClick} className="" disabled={showInfo} variant="text" color="primary" size="small" startIcon={<InfoIcon />} >
+                File Information
+            </Button>
             <Dialog
                 open={showInfo}
                 onClose={handleClick}
@@ -200,14 +200,11 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
             <div className="flex h-[600px] sm:h-full w-full sm:flex-row flex-col">
 
                 <div className="relative w-full sm:w-2/3 h-5/6 flex flex-col">
-                    <div className="relative max-h-1/12 flex flex-row justify-between items-center">
-                        {/* <ReturnButton to={`/campaign/${campaignId}`} />
-                    {isSmall && <Typography variant="subtitle1" className="text-center font-bold">
-                        {submission.title}
-                    </Typography>
-                    }
-                    {isSmall && <InfoTriggerButton submission={submission} />} */}
+                    {isSmall && <div className="relative max-h-1/12 flex flex-col items-start">
+                        <h1 className=" text-lg font-bold text-center overflow-ellipsis">{submission.title}</h1>
+                        <InfoTriggerButton submission={submission} />
                     </div>
+                    }
                     {
                         submission.mediatype === MediaType.IMAGE && <Image
                             src={submission.thumburl || '/red-hill.svg'}
