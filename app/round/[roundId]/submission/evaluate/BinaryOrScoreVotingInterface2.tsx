@@ -93,7 +93,6 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
             if (saving) return;
             if (!currentEvaluation) return;
             if (!currentEvaluation.submission) return;
-
             if (!imageLoaded) return;
             setSaving(true);
             const response = await submitVote(
