@@ -14,6 +14,7 @@ import InfoIcon from "@mui/icons-material/Info"
 import LoadingImage from '@/public/logo-animated.svg';
 import Image from "next/image"
 import Header from "@/components/home/Header"
+import theme from "@/theme"
 const VideoApp = lazy(() => import("@/app/submission/[submissionId]/_preview/videoplayer"));
 const AudioPlayer = lazy(() => import("@/app/submission/[submissionId]/_preview/audioPlayer"));
 const BinaryVotingInterface = lazy(() => import("./BinaryVotingInterface copy"));
@@ -41,7 +42,11 @@ const InfoTriggerButton = ({ submission }: { submission: Submission }) => {
     }
     return (
         <Suspense fallback={<LinearProgress />}>
-            <Button onClick={handleClick} className="" disabled={showInfo} variant="text" color="primary" size="small" startIcon={<InfoIcon />} >
+
+            <Button onClick={handleClick} className="" disabled={showInfo} variant="text" color="primary" size="small" startIcon={<InfoIcon />} sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+            }}>
                 File Information
             </Button>
             <Dialog
@@ -86,7 +91,8 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
         setImageLoaded(false);
         setCurrentCursor((cursor) => cursor + dx);
     }
-    const isSmall = useMediaQuery('(max-width: 600px)');
+    const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
+    console.log('isSmall', theme.breakpoints.down('sm'));
     const submit = async (score: number) => {
         try {
             if (saving) return;
@@ -196,11 +202,15 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
     return (
         <>
             <Header returnTo={`/campaign/${campaignId}`} />
-            <div className="flex h-[600px] sm:h-full w-full sm:flex-row flex-col">
+            <div className="flex sm:h-full w-full sm:flex-row flex-col" style={{
+                height: 'calc(95% - 75px)',
+            }}>
 
-                <div className="relative w-full sm:w-2/3 h-5/6 flex flex-col">
+                <div className="relative w-full sm:w-2/3 h-3/4 flex flex-col">
                     {isSmall && <div className="relative max-h-1/12 flex flex-col items-center">
-                        <h1 className=" text-lg font-bold text-center overflow-ellipsis">{submission.title}</h1>
+                        <h1 className="font-bold text-center overflow-hidden">
+                            {submission.title}{submission.title} {submission.title}
+                        </h1>
                         <InfoTriggerButton submission={submission} />
                     </div>
                     }
@@ -213,7 +223,7 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
                             placeholder="blur"
                             blurDataURL={LoadingImage.src}
                             onLoad={() => setImageLoaded(true)}
-                            width={submission.thumbwidth || 700}
+                            width={submission.thumbwidth || 640}
                             height={submission.thumbheight}
                             unoptimized
                         />
@@ -230,7 +240,7 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
                     }
 
                 </div>
-                <div className="relative h-1/12 sm:h-11/12 w-full sm:w-1/3 flex flex-col justify-center items-center ">
+                <div className="relative h-1/6 sm:h-11/12 w-full sm:w-1/3 flex flex-col justify-center items-center my-auto">
                     <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
                         {!isSmall && <SubmissionDetails
                             submission={submission}

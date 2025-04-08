@@ -28,16 +28,25 @@ const RatingVotingInterface = ({ goNext, goPrevious, saving, evaluation, assignm
                     sx={{
                         '& .MuiRating-iconFilled': {
                             color: '#ff6d75',
-                            fontSize: '2em',
+                            fontSize: {
+                                xs: '1.5em',
+                                sm: '2em'
+                            },
                             mx: 1
                         },
                         '& .MuiRating-iconHover': {
                             color: '#ff3d47',
-                            fontSize: '2em',
+                            fontSize: {
+                                xs: '1.5em',
+                                sm: '2em'
+                            },
                             mx: 1
                         },
                         '& .MuiRating-iconEmpty': {
-                            fontSize: '2em',
+                            fontSize: {
+                                xs: '1.5em',
+                                sm: '2em'
+                            },
                             mx: 1
                         },
                         my: 1

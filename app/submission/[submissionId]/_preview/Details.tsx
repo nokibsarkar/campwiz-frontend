@@ -70,7 +70,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
 const SubmissionDetails = ({ submission }: DetailsProps) => {
     const truncatedDescription = submission.description?.length > 300 ? submission.description?.slice(0, 300) + '...' : submission.description;
     return (
-        <div className="p-2 sm:-mt-24">
+        <div className="p-2">
             <Link href={`https://commons.wikimedia.org/wiki/${submission.title}`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                 <Typography variant="h6" sx={{ textAlign: 'center' }} color='primary'>{submission.title}</Typography>
             </Link>

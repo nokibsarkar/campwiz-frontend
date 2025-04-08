@@ -13,7 +13,7 @@ type ReturnButtonProps = {
 }
 const ReturnButton = ({ disabled, sx, hiddenIn, alwaysBig = false, to }: ReturnButtonProps) => {
     const pathName = usePathname()
-    const isSmall = useMediaQuery('(max-width:600px)');
+    const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
     if (hiddenIn) {
         for (const path of hiddenIn) {
             const r = new RegExp(path)

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const EditButton = ({ campaignId }: { campaignId: string }) => {
 
-    const isSmall = useMediaQuery('(max-width:600px)');
+    const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
     return (
         isSmall ? null : (
             <Link href={`/campaign/${campaignId}/edit`}>

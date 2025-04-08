@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 
 export const DhashboardButton = ({ projectId, canAccessOtherProject }: { projectId: string | null, canAccessOtherProject: boolean }) => {
     // const { t } = useTranslation('bn')
-    const isSmall = useMediaQuery('(max-width:600px)');
+    const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
     const url = canAccessOtherProject ? `/project/` : `/project/${projectId}`;
     const sx = {
         bgcolor: "#006699", // Blue background color
@@ -43,7 +43,7 @@ export const DhashboardButton = ({ projectId, canAccessOtherProject }: { project
 }
 
 export const LogoutButtton = ({ hiddenIn, refresh = false }: { hiddenIn?: string[], refresh?: boolean }) => {
-    const isSmall = useMediaQuery('(max-width:600px)');
+    const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
     const pathName = usePathname()
     const sx = {
         borderRadius: 30,
