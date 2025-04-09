@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 import TickIcon from '@mui/icons-material/Check';
 import Link from 'next/link';
 
-const RatingVotingInterface = ({ goNext, goPrevious, saving, evaluation, assignmnetCount, evaluationCount, noNext, noPrevious, submitScore }: VotingInterfaceProps) => {
+const RatingVotingInterface = ({ goNext, goPrevious, saving, evaluation, assignmnetCount, evaluationCount, noNext, noPrevious, submitScore, showProgress = true }: VotingInterfaceProps) => {
     const [currentScore, setCurrentScore] = React.useState<number>(evaluation.score / 20 || 0)
     useEffect(() => {
         setCurrentScore(evaluation.score / 20)
@@ -67,18 +67,20 @@ const RatingVotingInterface = ({ goNext, goPrevious, saving, evaluation, assignm
                     <Button color="primary" size="large" onClick={goNext} disabled={saving || noNext} title='Save' endIcon={<SkipNextIcon fontSize='large' />} variant='outlined' sx={{ borderRadius: 2, px: 2, my: 'auto' }}>
                         Skip
                     </Button>
-                    <IconButton color="success" size="large" onClick={() => submitScore(currentScore * 20)} disabled={saving || noNext} title='Save' >
+                    <IconButton color="success" size="large" onClick={() => submitScore(currentScore * 20)} disabled={saving} title='Save' >
                         <TickIcon fontSize='large' />
                     </IconButton>
                 </div>
             </div>
-            <Typography variant="subtitle1" sx={{ fontFamily: 'Lora, serif', textAlign: 'right', m: 1, display: 'block', width: '100%', px: 2 }}>
-                {evaluationCount} out of {assignmnetCount} completed
-                <br />
-                <Link href={`/round/${evaluation.roundId}/submission/evaluated`} className='text-blue-500 hover:underline'>
-                    Modify Votes
-                </Link>
-            </Typography>
+            {showProgress &&
+                <Typography variant="subtitle1" sx={{ fontFamily: 'Lora, serif', textAlign: 'right', m: 1, display: 'block', width: '100%', px: 2 }}>
+                    {evaluationCount} out of {assignmnetCount} completed
+                    <br />
+                    <Link href={`/round/${evaluation.roundId}/submission/evaluated`} className='text-blue-500 hover:underline'>
+                        Modify Votes
+                    </Link>
+                </Typography>
+            }
         </>
     )
 }

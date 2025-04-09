@@ -71,6 +71,9 @@ type ScoreOrBinaryVotingInterfaceProps = {
     saving: boolean
     error: string | null
     returnTo: string
+    hasNext: boolean
+    showProgress?: boolean
+    noHeader?: boolean
 }
 
 const ScoreOrBinaryVotingInterface = ({
@@ -83,14 +86,15 @@ const ScoreOrBinaryVotingInterface = ({
     currentCursor,
     error,
     submit,
-    saving, returnTo
+    saving, returnTo, hasNext = true,
+    showProgress = true, noHeader = false,
 }: ScoreOrBinaryVotingInterfaceProps) => {
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
     const [imageLoaded, setImageLoaded] = useState(false);
 
     return (
         <>
-            <Header returnTo={returnTo} />
+            {!noHeader && <Header returnTo={returnTo} />}
             <div className="flex sm:h-full w-full sm:flex-row flex-col" style={{
                 height: 'calc(95% - 75px)',
             }}>
@@ -144,8 +148,10 @@ const ScoreOrBinaryVotingInterface = ({
                                 evaluation={currentEvaluation}
                                 saving={saving || isLoading || !imageLoaded}
                                 noPrevious={currentCursor === 0}
+                                noNext={!hasNext}
                                 evaluationCount={evaluationCount}
                                 assignmnetCount={assignmentCount}
+                                showProgress={showProgress}
 
                             />
                         }
@@ -159,6 +165,8 @@ const ScoreOrBinaryVotingInterface = ({
                                 noPrevious={currentCursor === 0}
                                 assignmnetCount={assignmentCount}
                                 evaluationCount={evaluationCount}
+                                noNext={!hasNext}
+                                showProgress={showProgress}
                             />
                         }
 

@@ -3,6 +3,7 @@ import fetchAPIFromBackendSingleWithErrorHandling from "@/server";
 import { Round } from "@/types/round";
 import { Evaluation } from "@/types/submission";
 import KichuEkta from "./_page";
+import Header from "@/components/home/Header";
 
 const ModifyEvaluationPage = async ({
     params,
@@ -38,7 +39,10 @@ const ModifyEvaluationPage = async ({
         return <p>Error : Submission not found</p>;
     }
     return (
-        <KichuEkta evaluation={evaluation} round={round} submission={evaluation.submission} />
+        <>
+            <Header returnTo={`/round/${round.roundId}/submission/evaluated/${evaluation.evaluationId}`} />
+            <KichuEkta evaluation={evaluation} round={round} submission={evaluation.submission} />
+        </>
     );
 }
 export default ModifyEvaluationPage;

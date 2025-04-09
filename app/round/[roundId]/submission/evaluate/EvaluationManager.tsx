@@ -166,6 +166,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
             saving={saving}
             error={error}
             returnTo={`/campaign/${campaignId}`}
+            hasNext={true}
         />
     )
 }
