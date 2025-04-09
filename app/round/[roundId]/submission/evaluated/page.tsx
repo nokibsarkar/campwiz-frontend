@@ -1,11 +1,11 @@
 
 import fetchAPIFromBackendSingleWithErrorHandling from "@/server";
-import loadNextEvaluation from "./loadNextEvaluation";
+import loadNextEvaluation from "@/app/round/[roundId]/submission/evaluate/loadNextEvaluation";
 import { EvaluationType, Round } from "@/types/round";
 import { lazy, Suspense } from "react";
 import LinearProgress from "@mui/material/LinearProgress";
-const ScoreOrBinaryVotingInterface = lazy(() => import("./BinaryOrScoreVotingInterface2"));
-const RankingVotingInterface = lazy(() => import("./RankingVotingInterface"));
+const ScoreOrBinaryVotingInterface = lazy(() => import("@/app/round/[roundId]/submission/evaluate/BinaryOrScoreVotingInterface2"));
+const RankingVotingInterface = lazy(() => import("@/app/round/[roundId]/submission/evaluate/RankingVotingInterface"));
 const RankingBatchSize = 20;
 
 const Page = async ({ params }: { params: Promise<{ roundId: string }> }) => {
@@ -19,7 +19,7 @@ const Page = async ({ params }: { params: Promise<{ roundId: string }> }) => {
     }
     const round = roundResponse.data;
     const limit = round.type === EvaluationType.RANKING ? RankingBatchSize : 5;
-    const evaluationResponse = await loadNextEvaluation({ roundId: round.roundId, limit: limit, includeSubmissions: true, isPublic: round.isPublicJury, includeEvaluated: false });
+    const evaluationResponse = await loadNextEvaluation({ roundId: round.roundId, limit: limit, includeSubmissions: true, isPublic: round.isPublicJury, includeEvaluated: true });
     if (!evaluationResponse) {
         return null;
     }
