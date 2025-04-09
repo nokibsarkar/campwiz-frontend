@@ -2,10 +2,11 @@
 import fetchAPIFromBackendSingleWithErrorHandling from "@/server";
 import loadNextEvaluation from "@/app/round/[roundId]/submission/evaluate/loadNextEvaluation";
 import { EvaluationType, Round } from "@/types/round";
-import { lazy, Suspense } from "react";
+import { Suspense } from "react";
 import LinearProgress from "@mui/material/LinearProgress";
-const ScoreOrBinaryVotingInterface = lazy(() => import("@/app/round/[roundId]/submission/evaluate/BinaryOrScoreVotingInterface2"));
-const RankingVotingInterface = lazy(() => import("@/app/round/[roundId]/submission/evaluate/RankingVotingInterface"));
+
+import Header from "@/components/home/Header";
+import ActualPage from "./_page";
 const RankingBatchSize = 20;
 
 const Page = async ({ params }: { params: Promise<{ roundId: string }> }) => {
@@ -18,7 +19,7 @@ const Page = async ({ params }: { params: Promise<{ roundId: string }> }) => {
         return <p>Error : {roundResponse.detail}</p>
     }
     const round = roundResponse.data;
-    const limit = round.type === EvaluationType.RANKING ? RankingBatchSize : 5;
+    const limit = round.type === EvaluationType.RANKING ? RankingBatchSize : 20;
     const evaluationResponse = await loadNextEvaluation({ roundId: round.roundId, limit: limit, includeSubmissions: true, isPublic: round.isPublicJury, includeEvaluated: true });
     if (!evaluationResponse) {
         return null;
@@ -27,24 +28,8 @@ const Page = async ({ params }: { params: Promise<{ roundId: string }> }) => {
         return <p>Error : {evaluationResponse.detail}</p>
     }
     return <Suspense fallback={<LinearProgress />}>
-        {[EvaluationType.BINARY, EvaluationType.SCORE].includes(round.type) && <ScoreOrBinaryVotingInterface
-            isPublicJury={round.isPublicJury}
-            roundId={round.roundId}
-            initailEvaluations={evaluationResponse.data}
-            next={evaluationResponse.next}
-            campaignId={round.campaignId}
-            limit={1}
-            evaluationCount={evaluationResponse.totalEvaluatedCount}
-            assignmentCount={evaluationResponse.totalAssignmentCount}
-        />}
-        {round.type === EvaluationType.RANKING && <RankingVotingInterface
-            roundId={round.roundId}
-            initailEvaluations={evaluationResponse.data}
-            next={evaluationResponse.next}
-            campaignId={round.campaignId}
-            limit={RankingBatchSize}
-            isPublicJury={round.isPublicJury}
-        />}
+        <Header returnTo={`/campaign/${round.campaignId}`} />
+        <ActualPage initialEvaluations={evaluationResponse.data} next={evaluationResponse.next} round={round} />
     </Suspense>
 }
 export default Page
