@@ -7,6 +7,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import EditIcon from '@mui/icons-material/Edit';
 import Link from "next/link";
+import LogoIcon from '@/public/logo.svg';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Evaluation, Submission } from "@/types/submission";
@@ -140,10 +141,13 @@ const ActualPage = ({ initialEvaluations, next: initialNext, round }: EvaluatedP
                         </TableCell>
                         <TableCell>
                             <Image
-                                src={evaluation.submission?.thumburl || ''}
-                                alt="preview"
+                                src={evaluation.submission.thumburl || ''}
+                                alt={evaluation.submission.title}
                                 width={100}
                                 height={100}
+                                unoptimized
+                                blurDataURL={LogoIcon.src}
+                                placeholder="blur"
                             />
                         </TableCell>
                         <TableCell>
