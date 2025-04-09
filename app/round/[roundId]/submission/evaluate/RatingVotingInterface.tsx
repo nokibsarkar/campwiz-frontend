@@ -75,7 +75,7 @@ const RatingVotingInterface = ({ goNext, goPrevious, saving, evaluation, assignm
             <Typography variant="subtitle1" sx={{ fontFamily: 'Lora, serif', textAlign: 'right', m: 1, display: 'block', width: '100%', px: 2 }}>
                 {evaluationCount} out of {assignmnetCount} completed
                 <br />
-                <Link href={`/round/${evaluation.roundId}/submission/evaluated`} target='_blank' className='text-blue-500 hover:underline'>
+                <Link href={`/round/${evaluation.roundId}/submission/evaluated`} className='text-blue-500 hover:underline'>
                     Modify Votes
                 </Link>
             </Typography>
