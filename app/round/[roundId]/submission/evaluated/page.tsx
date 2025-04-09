@@ -29,7 +29,12 @@ const Page = async ({ params }: { params: Promise<{ roundId: string }> }) => {
     }
     return <Suspense fallback={<LinearProgress />}>
         <Header returnTo={`/campaign/${round.campaignId}`} />
-        <ActualPage initialEvaluations={evaluationResponse.data} next={evaluationResponse.next} round={round} />
+        {([EvaluationType.BINARY, EvaluationType.SCORE].includes(round.type)) ?
+            <ActualPage initialEvaluations={evaluationResponse.data} next={evaluationResponse.next} round={round} />
+            : <p className="text-center text-red-500">
+                Sorry, OnlyYes/No and Rating evaluation types are supported for modification.
+            </p>
+        }
     </Suspense>
 }
 export default Page

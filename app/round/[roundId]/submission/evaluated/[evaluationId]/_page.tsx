@@ -1,5 +1,5 @@
 "use client"
-import { EvaluationType, Round } from "@/types/round"
+import { Round } from "@/types/round"
 import ScoreOrBinaryVotingInterface from "../../evaluate/BinaryOrScoreVotingInterface"
 import { Evaluation, EvaluationListResponseWithCurrentStats, Submission } from "@/types/submission"
 import { useState } from "react"
@@ -78,12 +78,7 @@ const KichuEkta = ({ round, evaluation, submission }: KichuEktaProps) => {
             setShowResponse(true);
         }
     }
-    if (![EvaluationType.BINARY, EvaluationType.SCORE].includes(round.type)) {
-        return <p>
-            Sorry, Only Yes/No and Score voting is available for now.
 
-        </p>
-    }
     return !saving && showResponse ? (
         <SavingSuccess returnTo={`/round/${round.roundId}/submission/evaluated`} close={() => { setShowResponse(false); setShowProgress(false); setImageLoaded(true); }} />
     ) : (
