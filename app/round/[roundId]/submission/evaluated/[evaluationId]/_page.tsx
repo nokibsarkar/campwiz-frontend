@@ -86,6 +86,8 @@ const KichuEkta = ({ round, evaluation, submission }: KichuEktaProps) => {
             assignmentCount={assignmentCount}
             campaignId={round.campaignId}
             currentCursor={0}
+            imageLoaded={imageLoaded}
+            setImageLoaded={setImageLoaded}
             currentEvaluation={evaluation}
             isPublicJury={round.isPublicJury}
             error={error}

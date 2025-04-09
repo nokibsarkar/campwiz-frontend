@@ -1,5 +1,5 @@
 "use client"
-import loadNextEvaluation from "./loadNextEvaluation"
+import loadNextEvaluation from "../loadNextEvaluation"
 import { Evaluation, EvaluationListResponseWithCurrentStats } from "@/types/submission"
 import React, { useEffect, useState } from "react"
 import submitVote from "./submitVote"
@@ -42,6 +42,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
         setCurrentCursor((cursor) => cursor + dx);
     }
     const submit = async (score: number) => {
+        console.log('imageLoaded', imageLoaded);
         try {
             if (saving) return;
             if (!currentEvaluation) return;
@@ -56,12 +57,10 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
                 ]
             );
             if (!response) {
-                setError("Something went wrong");
-                return;
+                throw new Error("Something went wrong");
             }
             if ('detail' in response) {
-                setError(response.detail);
-                return
+                throw new Error(response.detail);
             }
             const r = response as EvaluationListResponseWithCurrentStats;
             setAssignmentCount(r.totalAssignmentCount);
@@ -69,7 +68,6 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
             nextImageWrapper();
         } catch (error) {
             setError((error as Error).message);
-            return
         } finally {
             setSaving(false);
         }
@@ -156,6 +154,8 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
             submission={submission}
             currentEvaluation={currentEvaluation}
             nextImageWrapper={nextImageWrapper}
+            imageLoaded={imageLoaded}
+            setImageLoaded={setImageLoaded}
             evaluationCount={evaluationCount}
             assignmentCount={assignmentCount}
             isPublicJury={isPublicJury}

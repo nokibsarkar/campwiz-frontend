@@ -7,7 +7,7 @@ import "./index.css"
 import ViewIcon from "@mui/icons-material/Visibility";
 import { Evaluation, Submission } from "@/types/submission";
 import Image from "next/image";
-import loadNextEvaluation from "./loadNextEvaluation";
+import loadNextEvaluation from "../loadNextEvaluation";
 import submitVote from "./submitVote";
 import AllSet from "./AllSet";
 import Header from "@/components/home/Header";

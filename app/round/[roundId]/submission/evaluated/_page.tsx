@@ -13,7 +13,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Evaluation, Submission } from "@/types/submission";
 import { EvaluationType, Round } from "@/types/round";
 import { useState } from "react";
-import loadNextEvaluation from "../evaluate/loadNextEvaluation";
+import loadNextEvaluation from "../loadNextEvaluation";
 import InformationIcon from '@mui/icons-material/Info';
 import SubmissionDetails from "@/app/submission/[submissionId]/_preview/Details";
 import CloseIcon from '@mui/icons-material/Close';

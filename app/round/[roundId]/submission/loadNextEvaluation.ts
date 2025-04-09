@@ -27,7 +27,6 @@ const loadNextEvaluation = async ({ roundId, includeSkipped, limit, next, prev, 
         qs.append('includeSubmission', includeSubmissions.toString());
     if (isPublic)
         qs.append('isPublic', isPublic.toString());
-    console.log('L', includeEvaluated)
     if (typeof includeEvaluated !== 'undefined')
         qs.append('includeEvaluated', includeEvaluated.toString());
     console.log('loadNextEvaluation', qs.toString());

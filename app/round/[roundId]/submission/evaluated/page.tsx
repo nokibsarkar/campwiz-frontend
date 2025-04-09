@@ -1,6 +1,6 @@
 
 import fetchAPIFromBackendSingleWithErrorHandling from "@/server";
-import loadNextEvaluation from "@/app/round/[roundId]/submission/evaluate/loadNextEvaluation";
+import loadNextEvaluation from "@/app/round/[roundId]/submission/loadNextEvaluation";
 import { EvaluationType, Round } from "@/types/round";
 import { Suspense } from "react";
 import LinearProgress from "@mui/material/LinearProgress";

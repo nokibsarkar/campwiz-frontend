@@ -74,6 +74,8 @@ type ScoreOrBinaryVotingInterfaceProps = {
     hasNext: boolean
     showProgress?: boolean
     noHeader?: boolean
+    setImageLoaded: (loaded: boolean) => void
+    imageLoaded: boolean
 }
 
 const ScoreOrBinaryVotingInterface = ({
@@ -88,9 +90,9 @@ const ScoreOrBinaryVotingInterface = ({
     submit,
     saving, returnTo, hasNext = true,
     showProgress = true, noHeader = false,
+    setImageLoaded, imageLoaded,
 }: ScoreOrBinaryVotingInterfaceProps) => {
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
-    const [imageLoaded, setImageLoaded] = useState(false);
 
     return (
         <>
