@@ -16,25 +16,38 @@ const Page = async ({ params }: { params: Promise<{ roundId: string }> }) => {
         return null;
     }
     if ('detail' in roundResponse) {
-        return <p>Error : {roundResponse.detail}</p>
+        return <>
+            <Header />
+            <p className="text-center text-red-500">
+                {roundResponse.detail}
+            </p>
+        </>;
     }
     const round = roundResponse.data;
+    if (![EvaluationType.BINARY, EvaluationType.SCORE].includes(round.type))
+        return <>
+            <Header returnTo={`/campaign/${round.campaignId}`} />
+            <p className="text-center text-red-500">
+                Sorry, Only Yes/No and Rating evaluation types are supported for modification.
+            </p>
+        </>;
+
     const limit = round.type === EvaluationType.RANKING ? RankingBatchSize : 20;
     const evaluationResponse = await loadNextEvaluation({ roundId: round.roundId, limit: limit, includeSubmissions: true, isPublic: round.isPublicJury, includeEvaluated: true });
     if (!evaluationResponse) {
         return null;
     }
     if ('detail' in evaluationResponse) {
-        return <p>Error : {evaluationResponse.detail}</p>
+        return <>
+            <Header returnTo={`/campaign/${round.campaignId}`} />
+            <p className="text-center text-red-500">
+                {evaluationResponse.detail}
+            </p>
+        </>;
     }
     return <Suspense fallback={<LinearProgress />}>
         <Header returnTo={`/campaign/${round.campaignId}`} />
-        {([EvaluationType.BINARY, EvaluationType.SCORE].includes(round.type)) ?
-            <ActualPage initialEvaluations={evaluationResponse.data} next={evaluationResponse.next} round={round} />
-            : <p className="text-center text-red-500">
-                Sorry, OnlyYes/No and Rating evaluation types are supported for modification.
-            </p>
-        }
+        <ActualPage initialEvaluations={evaluationResponse.data} next={evaluationResponse.next} round={round} />
     </Suspense>
 }
 export default Page
