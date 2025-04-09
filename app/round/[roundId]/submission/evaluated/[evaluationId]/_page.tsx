@@ -45,7 +45,6 @@ const KichuEkta = ({ round, evaluation, submission }: KichuEktaProps) => {
     const [showResponse, setShowResponse] = useState(false);
 
     const submit = async (score: number) => {
-        console.log('submit', score);
         try {
             if (saving) return;
             if (!imageLoaded) return;
