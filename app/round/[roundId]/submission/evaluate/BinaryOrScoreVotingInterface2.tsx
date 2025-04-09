@@ -208,8 +208,9 @@ const ScoreOrBinaryVotingInterface = ({ roundId, initailEvaluations: initialEval
 
                 <div className="relative w-full sm:w-2/3 h-3/4 flex flex-col">
                     {isSmall && <div className="relative max-h-1/12 flex flex-col items-center">
-                        <h1 className="font-bold text-center overflow-hidden">
-                            {submission.title}
+                        <h1 className="font-bold text-center text-ellipsis overflow-x-auto">
+                            {(submission.title).substring(0, 70)}
+                            {submission.title.length > 70 ? '...' : ''}
                         </h1>
                         <InfoTriggerButton submission={submission} />
                     </div>
