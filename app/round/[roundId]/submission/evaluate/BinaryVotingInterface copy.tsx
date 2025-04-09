@@ -9,7 +9,8 @@ import CrossOutlinedICON from '@/public/cross-outlined.svg';
 import Image from "next/image";
 import type { VotingInterfaceProps } from './VotingInterface';
 import { Typography } from '@mui/material';
-const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, saving, evaluation, noPrevious = false, noNext = false, assignmnetCount, evaluationCount }: VotingInterfaceProps) => {
+import Link from 'next/link';
+const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, saving, evaluation, noPrevious = false, noNext = false, assignmnetCount, evaluationCount, showProgress }: VotingInterfaceProps) => {
     const [currentScore, setCurrentScore] = React.useState<number | null>(evaluation.score)
     useEffect(() => {
         setCurrentScore(evaluation.score)
@@ -34,9 +35,15 @@ const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, saving, evalua
                     <SkipNextIcon fontSize='large' sx={{ fontSize: 50 }} />
                 </IconButton>
             </div>
-            <Typography variant="subtitle1" sx={{ fontFamily: 'Lora, serif', textAlign: 'right', m: 1, display: 'block', width: '100%', px: 2 }}>
-                {evaluationCount} out of {assignmnetCount} completed
-            </Typography>
+            {showProgress &&
+                <Typography variant="subtitle1" sx={{ fontFamily: 'Lora, serif', textAlign: 'right', m: 1, display: 'block', width: '100%', px: 2 }}>
+                    {evaluationCount} out of {assignmnetCount} completed
+                    <br />
+                    <Link href={`/round/${evaluation.roundId}/submission/evaluated`} className='text-blue-500 hover:underline'>
+                        Modify Votes
+                    </Link>
+                </Typography>
+            }
         </>
     )
 }
