@@ -1,7 +1,6 @@
 "use client"
 import Image from "next/image";
-import { Button, IconButton, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import { Button, Dialog, DialogActions, IconButton, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import CrossIcon from '@/public/cross.svg';
 import OkIcon from '@/public/ok.svg';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -10,10 +9,13 @@ import EditIcon from '@mui/icons-material/Edit';
 import Link from "next/link";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Evaluation } from "@/types/submission";
+import { Evaluation, Submission } from "@/types/submission";
 import { EvaluationType, Round } from "@/types/round";
 import { useState } from "react";
 import loadNextEvaluation from "../evaluate/loadNextEvaluation";
+import InformationIcon from '@mui/icons-material/Info';
+import SubmissionDetails from "@/app/submission/[submissionId]/_preview/Details";
+import CloseIcon from '@mui/icons-material/Close';
 
 // const ScoreOrBinaryVotingInterface = lazy(() => import("@/app/round/[roundId]/submission/evaluate/BinaryOrScoreVotingInterface2"));
 // const RankingVotingInterface = lazy(() => import("@/app/round/[roundId]/submission/evaluate/RankingVotingInterface"));
@@ -26,8 +28,11 @@ const ActualPage = ({ initialEvaluations, next: initialNext, round }: EvaluatedP
     const [evaluations, setEvaluations] = useState<Evaluation[]>(initialEvaluations);
     const [previousToken, setPreviousToken] = useState<string | null>(null);
     const [next, setNext] = useState<string | null>(initialNext || null);
+    const [loading, setLoading] = useState(false);
+    const [selectedSubmission, setSelectedSubmission] = useState<Submission | null>(null);
     const loadWithToken = async ({ nextToken, previousToken }: { nextToken?: string | null, previousToken?: string | null }) => {
         let evs: Evaluation[] = []
+        setLoading(true);
         if (previousToken) {
             if (previousToken === initialNext) {
                 evs = initialEvaluations;
@@ -40,7 +45,7 @@ const ActualPage = ({ initialEvaluations, next: initialNext, round }: EvaluatedP
                         return;
                     }
                     evs = response.data;
-                    setPreviousToken(response.prev || null);
+                    setPreviousToken(nextToken || null);
                     setNext(response.next || null);
                 }
             }
@@ -51,13 +56,36 @@ const ActualPage = ({ initialEvaluations, next: initialNext, round }: EvaluatedP
                     return;
                 }
                 evs = response.data;
-                setPreviousToken(response.prev || null);
+                setPreviousToken(nextToken || null);
                 setNext(response.next || null);
             }
         }
         setEvaluations(evs);
+        setLoading(false);
     }
     return <div>
+        {selectedSubmission && <Dialog
+            open={selectedSubmission !== null}
+            onClose={() => setSelectedSubmission(null)}
+            fullWidth
+            maxWidth="lg"
+            className="overflow-hidden"
+        >
+            <SubmissionDetails
+                submission={selectedSubmission}
+            />
+            <DialogActions>
+                <Button
+                    variant="outlined"
+                    color="error"
+                    onClick={() => setSelectedSubmission(null)}
+                    startIcon={<CloseIcon />}
+                >
+                    Close
+                </Button>
+            </DialogActions>
+        </Dialog>
+        }
         <div className="flex justify-around m-4 flex-row">
             <Button
                 variant="contained"
@@ -66,8 +94,9 @@ const ActualPage = ({ initialEvaluations, next: initialNext, round }: EvaluatedP
                     if (previousToken)
                         loadWithToken({ previousToken });
                 }}
-                disabled={!previousToken}
+                disabled={!previousToken || loading}
                 startIcon={<ArrowBackIcon />}
+                loading={loading}
             >
                 Previous
             </Button>
@@ -79,7 +108,8 @@ const ActualPage = ({ initialEvaluations, next: initialNext, round }: EvaluatedP
                     loadWithToken({ nextToken: next });
                 }}
                 endIcon={<ArrowForwardIcon />}
-                disabled={!next}
+                disabled={!next || loading}
+                loading={loading}
             >
                 Next
             </Button>
@@ -104,7 +134,7 @@ const ActualPage = ({ initialEvaluations, next: initialNext, round }: EvaluatedP
             </TableHead>
             <TableBody>
                 {evaluations.map((evaluation) => {
-                    return <TableRow key={evaluation.evaluationId}>
+                    return evaluation.submission && <TableRow key={evaluation.evaluationId}>
                         <TableCell>
                             {evaluation.submission?.title}
                         </TableCell>
@@ -120,11 +150,11 @@ const ActualPage = ({ initialEvaluations, next: initialNext, round }: EvaluatedP
                             <Score evType={evaluation.type} score={evaluation.score} />
                         </TableCell>
                         <TableCell>
+                            <IconButton onClick={() => setSelectedSubmission(evaluation.submission)}>
+                                <InformationIcon />
+                            </IconButton>
                             <IconButton>
-                                <Link href={`/submission/${evaluation.submissionId}/`}>
-                                    <VisibilityIcon />
-                                </Link>
-                                <Link href={`/submission/${evaluation.submissionId}/edit/`}>
+                                <Link href={`/round/${evaluation.roundId}/submission/evaluated/${evaluation.evaluationId}`}>
                                     <EditIcon />
                                 </Link>
                             </IconButton>
