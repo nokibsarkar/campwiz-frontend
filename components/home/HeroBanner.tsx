@@ -22,7 +22,7 @@ export const DocumentationButton = () => {
         },
     }
     return (
-        <Link href='https://github.com/nokibsarkar/campwiz/blob/main/README.md'>
+        <Link href='https://commons.wikimedia.org/wiki/Commons:Campwiz_NXT'>
             <Button
                 variant="outlined"
                 startIcon={<ContactSupportIcon />}
