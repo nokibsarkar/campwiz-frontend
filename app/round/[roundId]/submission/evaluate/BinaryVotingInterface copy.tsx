@@ -7,6 +7,7 @@ import OkIcon from '@/public/ok.svg';
 import OKoutlinedICON from '@/public/ok-outlined.svg';
 import CrossOutlinedICON from '@/public/cross-outlined.svg';
 import Image from "next/image";
+import Button from '@mui/material/Button'
 import type { VotingInterfaceProps } from './VotingInterface';
 import { Typography } from '@mui/material';
 import Link from 'next/link';
@@ -20,7 +21,7 @@ const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, saving, evalua
             {/* <Typography variant="h4" sx={{ fontFamily: 'Lora, serif', color: 'primary.main', textAlign: 'left', m: 1, display: 'block', width: '100%', fontSize: { xs: 24, }, fontWeight: 'bold' }}>
                 Vote
             </Typography> */}
-            <div className="flex justify-around items-start ">
+            <div className="flex justify-around items-center ">
 
                 <IconButton color="primary" size="large" onClick={goPrevious} disabled={saving || noPrevious} loading={saving} sx={{ fontSize: 5 }} title='Previous'>
                     <SkipPreviousIcon fontSize='large' sx={{ fontSize: 50 }} />
@@ -31,9 +32,15 @@ const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, saving, evalua
                 <IconButton color="primary" size="large" onClick={() => { setCurrentScore(100); submitScore(100); }} disabled={saving} loading={saving} sx={{ fontSize: 5 }} title='Yes'>
                     <Image src={currentScore === 100 ? OkIcon.src : OKoutlinedICON.src} alt="yes" width={50} height={50} />
                 </IconButton>
-                <IconButton color="primary" size="large" onClick={goNext} disabled={saving || noNext} loading={saving} sx={{ fontSize: 5 }} title='Skip'>
-                    <SkipNextIcon fontSize='large' sx={{ fontSize: 50 }} />
-                </IconButton>
+                <Button
+                    color="primary"
+                    size="large"
+                    variant='outlined'
+                    onClick={goNext} disabled={saving || noNext}
+                    loading={saving} sx={{ fontSize: 20, px: 2, mx: 1, borderRadius: 4 }}
+                    title='Skip' endIcon={null}>
+                    Skip <SkipNextIcon fontSize='large' sx={{ fontSize: 40 }} />
+                </Button>
             </div>
             {showProgress &&
                 <Typography variant="subtitle1" sx={{ fontFamily: 'Lora, serif', textAlign: 'right', m: 1, display: 'block', width: '100%', px: 2 }}>
