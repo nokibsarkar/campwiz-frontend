@@ -48,6 +48,8 @@ const useStyles = {
         }
     }
 }
+const handleStartDrag = () => document.body.style.overflow = 'hidden';
+const handleStopDrag = () => document.body.style.overflow = 'auto';
 
 const RankingVotingInterface = ({ initailEvaluations, limit, roundId, isPublicJury, campaignId }: { roundId: string, initailEvaluations: Evaluation[], next?: string, limit: number, campaignId: string, isPublicJury: boolean }) => {
     const classes = useStyles;
@@ -142,7 +144,10 @@ const RankingVotingInterface = ({ initailEvaluations, limit, roundId, isPublicJu
                                     // boxShadow: "0px 6px 6px -3px rgba(0, 0, 0, 0.2)",
                                     borderRadius: "20%",
 
-                                }} className="w-20 h-20 sm:w-24 sm:h-24">
+                                }} className="w-20 h-20 sm:w-24 sm:h-24"
+                                    onDragStart={handleStartDrag}
+                                    onDragEnd={handleStopDrag}
+                                >
                                     <Fab
                                         color="primary"
                                         size="small"
