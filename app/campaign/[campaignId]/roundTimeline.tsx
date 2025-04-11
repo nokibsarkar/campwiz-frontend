@@ -20,9 +20,10 @@ type RoundTimelineProps = {
     campaign: Campaign
     session: Session | null
     isCoordinator: boolean
+    isArchived: boolean
 }
 
-function RoundTimeline({ rounds, campaign, session, isCoordinator }: RoundTimelineProps) {
+function RoundTimeline({ rounds, campaign, session, isCoordinator, isArchived }: RoundTimelineProps) {
     rounds = rounds?.toSorted(
         (a, b) => b.roundId.localeCompare(a.roundId)
     ) ?? []
@@ -36,14 +37,14 @@ function RoundTimeline({ rounds, campaign, session, isCoordinator }: RoundTimeli
     const [selectedRoundAction, setSelectedRoundAction] = React.useState<SelectedRoundActionStatus>(SelectedRoundActionStatus.none);
     return (
         <Box sx={{ ml: 1 }} component="div">
-            <LatestRoundActions
+            {!isArchived && <LatestRoundActions
                 latestRound={currentRound} campaign={campaign}
                 action={selectedRoundAction} setAction={setSelectedRoundAction}
                 isJury={isUserEligibleToVote}
                 judgableLink={`/round/${currentRound?.roundId}/submission/evaluate`}
                 refresh={refresh}
                 isCoordinator={isCoordinator}
-            />
+            />}
             <React.Suspense fallback={<LinearProgress />}>
                 {selectedRoundAction === SelectedRoundActionStatus.creating && <RoundCreate campaignId={campaign.campaignId} onAfterCreationSuccess={(round) => {
                     setCurrentRound(round);

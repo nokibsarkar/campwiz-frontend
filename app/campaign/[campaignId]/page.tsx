@@ -75,6 +75,7 @@ const CampaignViewPage = async ({ params }: CampaignViewPageProps) => {
                 <br />
                 <RoundTimeline rounds={campaign.rounds} campaign={campaign} session={session}
                     isCoordinator={campaign.coordinators?.includes(session?.username || '') === true}
+                    isArchived={isArchived}
                 />
 
             </Paper >
