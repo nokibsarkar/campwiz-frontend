@@ -35,7 +35,9 @@ const ArchiveUnArchiveButton = ({ campaignId, isArchived, campaignName }: { camp
                 console.error(response.detail);
                 return;
             }
-            setTimeout(window.location.reload, 1000);
+            if (typeof window !== 'undefined') {
+                setTimeout(() => window.location.reload(), 1000);
+            }
             setOpenArchivePrompt(false);
             setError(null);
         } catch (e) {
