@@ -45,8 +45,9 @@ const EditRoundButton = ({ onClick }: { onClick: () => void }) => (
 const MarkAsCompleteButton = ({ latestRound, setAction, refresh }: { latestRound: Round | null, setAction: (action: SelectedRoundActionStatus) => void, refresh: () => void }) => {
     if (!latestRound)
         return null
-    if (latestRound.status === RoundStatus.COMPLETED)
+    if (![RoundStatus.ACTIVE, RoundStatus.PAUSED].includes(latestRound.status))
         return null
+
     if (latestRound.status === RoundStatus.PAUSED) // Return the mark as complete button directly
         return <ChangeStatusButton
             roundId={latestRound.roundId}
