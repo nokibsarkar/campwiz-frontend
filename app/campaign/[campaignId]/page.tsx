@@ -9,6 +9,7 @@ import RuleIcon from '@mui/icons-material/Rule';
 import EditButton from "./EditButton";
 import Description from "@/components/round/Description";
 import Header from "@/components/home/Header";
+import ArchiveUnArchiveButton from "./ArchiveUnArchiveButton";
 
 type CampaignViewPageProps = {
     params: Promise<{
@@ -31,6 +32,9 @@ const CampaignViewPage = async ({ params }: CampaignViewPageProps) => {
         return <p>Error : {campaignResponse.detail}</p>
     }
     const campaign = campaignResponse.data;
+    const isArchived = campaign.archivedAt !== null;
+    const canUpdate = session?.projectId === campaign.projectId
+    const canArchive = session?.projectId === campaign.projectId;
     return (
         <>
             <Header returnTo="/" />
@@ -49,9 +53,15 @@ const CampaignViewPage = async ({ params }: CampaignViewPageProps) => {
                         <Typography variant="subtitle1" color="textDisabled" component='b' sx={{ display: 'inline' }}>({campaign.campaignId})</Typography>
                     </Typography>
                     <div>
-                        {session?.projectId === campaign.projectId && (
+                        {canArchive && <ArchiveUnArchiveButton
+                            campaignId={campaign.campaignId}
+                            isArchived={isArchived}
+                            campaignName={campaign.name}
+                        />}
+                        {!isArchived && canUpdate && (
                             <EditButton campaignId={campaign.campaignId} />
                         )}
+
                     </div>
                 </div>
                 <br />

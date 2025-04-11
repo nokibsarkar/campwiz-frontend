@@ -30,4 +30,8 @@ export interface Campaign {
     startDate: string
     isPublic: boolean
     status: RoundStatus
+    archivedAt: null | {
+        time: string
+        valid: boolean
+    }
 }
