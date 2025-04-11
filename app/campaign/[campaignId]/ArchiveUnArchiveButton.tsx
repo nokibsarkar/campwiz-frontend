@@ -35,6 +35,9 @@ const ArchiveUnArchiveButton = ({ campaignId, isArchived, campaignName }: { camp
                 console.error(response.detail);
                 return;
             }
+            setTimeout(window.location.reload, 1000);
+            setOpenArchivePrompt(false);
+            setError(null);
         } catch (e) {
             console.error(e);
             setError('An error occurred while archiving/unarchiving the campaign.');
