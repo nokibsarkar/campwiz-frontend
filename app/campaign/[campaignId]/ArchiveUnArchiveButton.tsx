@@ -11,6 +11,7 @@ import UnarchiveIcon from "@mui/icons-material/Unarchive";
 
 
 const ArchiveUnArchiveButton = ({ campaignId, isArchived, campaignName }: { campaignId: string, isArchived: boolean, campaignName: string }) => {
+    "use client"
     const [openArchivePrompt, setOpenArchivePrompt] = React.useState(false);
     const [saving, setSaving] = React.useState(false);
     const [error, setError] = React.useState<string | null>(null);
