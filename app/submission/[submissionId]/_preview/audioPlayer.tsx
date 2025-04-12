@@ -79,7 +79,6 @@ function AudioPlayer({ src, title, author, onPosterLoaded }: AudioAppProps) {
         if (!audio) {
             return;
         }
-
         setAudio(audio);
         const onLoadCallback = () => {
             console.log('Audio loaded');
@@ -88,10 +87,18 @@ function AudioPlayer({ src, title, author, onPosterLoaded }: AudioAppProps) {
             }
         }
         audio.onloadeddata = onLoadCallback;
+        audio.onpause = () => {
+            setPlaying(false);
+        }
         return () => {
             audio.onloadeddata = null; // Cleanup the event listener
         }
     }, [audioRef, onPosterLoaded]);
+    useEffect(() => {
+        if (mAudio) {
+            setPlaying(false);
+        }
+    }, [mAudio, src]);
     return (
         <Card sx={{ display: 'flex' }}>
             <audio ref={audioRef} src={src} crossOrigin="anonymous"
