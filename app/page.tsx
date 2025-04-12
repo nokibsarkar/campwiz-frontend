@@ -1,4 +1,3 @@
-"use server"
 import * as React from 'react';
 import PublicRunningCampaigns from '@/components/campaign/PublicCampaigns';
 import HeroBanner from '@/components/home/HeroBanner';
@@ -7,7 +6,7 @@ import { LinearProgress, Typography } from '@mui/material';
 // import Footer from '@/components/home/Footer';
 import fetchSession from '@/server/session';
 import Header from '@/components/home/Header';
-const AssignedCampaigns = React.lazy(() => import('@/components/campaign/AssignCampaigns'));
+import AssignedCampaigns from '@/components/campaign/AssignCampaigns';
 const Dashboard = async () => {
   const session = await fetchSession();
   return (
