@@ -72,7 +72,7 @@ const SubmissionDetails = ({ submission }: DetailsProps) => {
     const truncatedTitle = submission.title?.length > 50 ? submission.title?.slice(0, 50) + '...' : submission.title;
     return (
         <div className="p-2">
-            <Link href={`https://commons.wikimedia.org/wiki/${submission.title}`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+            <Link href={`https://commons.wikimedia.org/wiki/File:${submission.title}`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                 <Typography variant="h6" sx={{
                     textAlign: 'center', textOverflow: 'clip', textWrap: 'pretty', wordWrap: 'break-word',
                     whiteSpace: 'normal',
