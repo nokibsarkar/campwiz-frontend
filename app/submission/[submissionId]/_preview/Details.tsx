@@ -69,10 +69,16 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
 });
 const SubmissionDetails = ({ submission }: DetailsProps) => {
     const truncatedDescription = submission.description?.length > 300 ? submission.description?.slice(0, 300) + '...' : submission.description;
+    const truncatedTitle = submission.title?.length > 50 ? submission.title?.slice(0, 50) + '...' : submission.title;
     return (
         <div className="p-2">
             <Link href={`https://commons.wikimedia.org/wiki/${submission.title}`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                <Typography variant="h6" sx={{ textAlign: 'center' }} color='primary'>{submission.title}</Typography>
+                <Typography variant="h6" sx={{
+                    textAlign: 'center', textOverflow: 'clip', textWrap: 'pretty', wordWrap: 'break-word',
+                    whiteSpace: 'normal',
+                    overflowWrap: 'break-word',
+                    maxWidth: '100%',
+                }} color='primary'>{truncatedTitle.replaceAll("_", " ")}</Typography>
             </Link>
             <Table>
                 <TableBody>
