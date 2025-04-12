@@ -8,5 +8,6 @@ export enum RoundStatus {
     PAUSED = 'PAUSED',
     SCHEDULED = 'SCHEDULED',
     ACTIVE = 'ACTIVE',
-    COMPLETED = 'COMPLETED'
+    COMPLETED = 'COMPLETED',
+    ARCHIVED = 'ARCHIVED',
 }

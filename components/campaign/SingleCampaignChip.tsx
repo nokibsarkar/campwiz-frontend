@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import Link from "next/link"
 import RightArrowIcon from '@mui/icons-material/KeyboardArrowRight';
 import Status from "@/components/round/Status";
+import { RoundStatus } from "@/types/round/status";
 // import Image from "next/image";
 
 type SingleCampaignChipProps = {
@@ -56,7 +57,7 @@ const SingleCampaignChip = ({ campaign }: SingleCampaignChipProps) => {
                 </Typography>
             </CardContent>
             <CardActions sx={{ justifyContent: 'space-between' }}>
-                <Status status={campaign.status || "Running"} />
+                <Status status={campaign.archivedAt === null ? RoundStatus.ACTIVE : RoundStatus.ARCHIVED} />
                 <Link href={`/campaign/${campaign.campaignId}`} style={{}}>
                     <Button color="primary" endIcon={<RightArrowIcon />} variant="outlined" sx={{ borderRadius: 8, px: 2 }}>
                         Go to Campaign
