@@ -49,7 +49,7 @@ const Dashboard = async ({ params }: DashboardProps) => {
 	if ('detail' in campaignListResponse) {
 		return <div>{campaignListResponse.detail}</div>
 	}
-	const campaigns = campaignListResponse.data;
+	const campaigns = campaignListResponse.data.toSorted((a, b) => b.campaignId.localeCompare(a.campaignId));
 	return (<>
 		<Header returnTo="/project" />
 		<div style={{ display: "flex", minHeight: "100vh", backgroundColor: 'transparent' }}>
