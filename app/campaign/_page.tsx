@@ -9,14 +9,15 @@ import { RoundStatus } from "@/types/round/status";
 type CampaignListProps = {
     initialCampaigns: Campaign[]
 }
+
 const CampaignList = ({ }: CampaignListProps) => {
     // const router = useRouter();
     // const pathname = usePathname();
     const searchParams = useSearchParams();
-    const [isClosed, setIsClosed] = useState(searchParams.get('isClosed') == 'true');
-    const [isHidden, setIsHidden] = useState(searchParams.get('isHidden') == 'true');
+    const [isClosed, setIsClosed] = useState<boolean | undefined>(searchParams.get('isClosed') == 'true');
+    const [isHidden, setIsHidden] = useState<boolean | undefined>(searchParams.get('isHidden') == 'true');
     const [sortOrder, setSortOrder] = useState(searchParams.get('sortOrder') || 'desc');
-    const [limit, setLimit] = useState(searchParams.get('limit') ? parseInt(searchParams.get('limit') || '20') : 20);
+    const [limit, setLimit] = useState(searchParams.get('limit') ? parseInt(searchParams.get('limit') || '0') : 20);
     return <Paper sx={{ my: 1, p: 1, textAlign: 'center' }} elevation={0}>
         <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', mb: 1 }}>
             <TextField
@@ -47,21 +48,23 @@ const CampaignList = ({ }: CampaignListProps) => {
             </TextField>
             <TextField
                 label="Status"
-                value={isClosed ? RoundStatus.ARCHIVED : RoundStatus.ACTIVE}
-                onChange={(e) => setIsClosed(e.target.value == RoundStatus.ARCHIVED)}
+                value={isClosed === undefined ? 'All' : isClosed ? RoundStatus.ARCHIVED : RoundStatus.ACTIVE}
+                onChange={(e) => setIsClosed(e.target.value == 'All' ? undefined : e.target.value == RoundStatus.ARCHIVED)}
                 variant="outlined"
                 select
             >
+                <MenuItem value="All">All</MenuItem>
                 <MenuItem value={RoundStatus.ACTIVE}>Active</MenuItem>
                 <MenuItem value={RoundStatus.ARCHIVED}>Archived</MenuItem>
             </TextField>
             <TextField
                 label="Visibility"
-                value={isHidden ? 'private' : 'public'}
-                onChange={(e) => setIsHidden(e.target.value == 'private')}
+                value={isHidden === undefined ? 'All' : isHidden ? 'private' : 'public'}
+                onChange={(e) => setIsHidden(e.target.value == 'All' ? undefined : e.target.value == 'private')}
                 variant="outlined"
                 select
             >
+                <MenuItem value="All">All</MenuItem>
                 <MenuItem value="private">Private</MenuItem>
                 <MenuItem value="public">Public</MenuItem>
             </TextField>

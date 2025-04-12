@@ -18,6 +18,7 @@ import { Campaign } from "@/types";
 import Image from "next/image";
 import Header from "@/components/home/Header";
 import projectAccessDeniedReason from "../projectAccessDeniedReason";
+import ArchiveIcon from "@mui/icons-material/Archive";
 
 
 
@@ -129,6 +130,16 @@ const Dashboard = async ({ params }: DashboardProps) => {
 						>
 							Active Campaigns
 						</Typography>
+						<Link href={`/campaign/?isClosed=true&projectId=${projectId}`}>
+							<Button
+								variant="outlined"
+								sx={{ borderRadius: 30 }}
+								startIcon={<ArchiveIcon />}
+								color="secondary"
+							>
+								Archived Campaigns
+							</Button>
+						</Link>
 						<Link href={`/project/${projectId}/new`}>
 							<Button
 								variant="contained"
