@@ -93,7 +93,6 @@ const ScoreOrBinaryVotingInterface = ({
     setImageLoaded, imageLoaded,
 }: ScoreOrBinaryVotingInterfaceProps) => {
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
-
     return (
         <>
             {!noHeader && <Header returnTo={returnTo} />}
@@ -131,7 +130,8 @@ const ScoreOrBinaryVotingInterface = ({
                     }
                     {submission.mediatype === MediaType.AUDIO &&
                         <Suspense fallback={<LinearProgress sx={{ width: '100%' }} />}>
-                            <AudioPlayer src={submission.url} title={submission.title} author={submission.author} onPosterLoaded={() => setImageLoaded(true)} />
+                            <AudioPlayer
+                                src={submission.url} title={submission.title} author={submission.author} onPosterLoaded={() => setImageLoaded(true)} />
                         </Suspense>
                     }
 

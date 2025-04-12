@@ -1,7 +1,7 @@
 "use client";
 import React, { createRef, useEffect } from 'react';
-import type H5AudioPlayer from 'react-h5-audio-player';
-import AudioPlayerRaw from 'react-h5-audio-player';
+// import type H5AudioPlayer from 'react-h5-audio-player';
+// import AudioPlayerRaw from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 // import 'react-h5-audio-player/lib/styles.less' Use LESS
 // import 'react-h5-audio-player/src/styles.scss' Use SASS
@@ -29,47 +29,47 @@ if (typeof window !== "undefined") {
     // Client-side-only code
     windowWidth = window.innerWidth;
 }
-export const AudioApp = ({ src, onPosterLoaded }: AudioAppProps) => {
-    const audioRef = createRef<H5AudioPlayer>();
-    const [audio, setAudio] = React.useState<HTMLAudioElement | null>(null);
-    useEffect(() => {
-        const audio = audioRef.current?.audio.current;
-        if (!audio) {
-            return;
-        }
-        setAudio(audio);
-    }, [audioRef, src]);
-    return (<> {audio && <AudioSpectrum
-        id="audio-canvas4"
-        height={200}
-        width={windowWidth}
-        audioEle={audio}
-        meterWidth={10}
+// export const AudioApp = ({ src, onPosterLoaded }: AudioAppProps) => {
+//     const audioRef = createRef<H5AudioPlayer>();
+//     const [audio, setAudio] = React.useState<HTMLAudioElement | null>(null);
+//     useEffect(() => {
+//         const audio = audioRef.current?.audio.current;
+//         if (!audio) {
+//             return;
+//         }
+//         setAudio(audio);
+//     }, [audioRef, src]);
+//     return (<> {audio && <AudioSpectrum
+//         id="audio-canvas4"
+//         height={200}
+//         width={windowWidth}
+//         audioEle={audio}
+//         meterWidth={10}
 
 
-        capColor={'green'}
-        capHeight={2}
-        meterCount={128}
-        meterColor={[
-            { stop: 0, color: '#0f0' },
-            { stop: 0.5, color: '#0CD7FD' },
-            { stop: 1, color: 'red' }
-        ]}
-        gap={4}
-    />}
-        <AudioPlayerRaw
-            src={src}
-            ref={audioRef}
-            crossOrigin='anonymous'
-            showJumpControls={false}
-            showSkipControls={false}
-            onLoadedData={onPosterLoaded}
-        />
-    </>);
-}
+//         capColor={'green'}
+//         capHeight={2}
+//         meterCount={128}
+//         meterColor={[
+//             { stop: 0, color: '#0f0' },
+//             { stop: 0.5, color: '#0CD7FD' },
+//             { stop: 1, color: 'red' }
+//         ]}
+//         gap={4}
+//     />}
+//         <AudioPlayerRaw
+//             src={src}
+//             ref={audioRef}
+//             crossOrigin='anonymous'
+//             showJumpControls={false}
+//             showSkipControls={false}
+//             onLoadedData={onPosterLoaded}
+//         />
+//     </>);
+// }
 
 
-function AudioPlayer({ src, title, author }: AudioAppProps) {
+function AudioPlayer({ src, title, author, onPosterLoaded }: AudioAppProps) {
     const theme = useTheme();
     const audioRef = createRef<HTMLAudioElement>();
     const [mAudio, setAudio] = React.useState<HTMLAudioElement | null>(null);
@@ -80,13 +80,25 @@ function AudioPlayer({ src, title, author }: AudioAppProps) {
             return;
         }
         setAudio(audio);
-        // audio.addEventListener('play', () => {
-        //     setPlaying(true);
-        // });
-        // audio.addEventListener('pause', () => {
-        //     setPlaying(false);
-        // });
-    }, [audioRef]);
+        const onLoadCallback = () => {
+            console.log('Audio loaded');
+            if (onPosterLoaded) {
+                onPosterLoaded();
+            }
+        }
+        audio.onloadeddata = onLoadCallback;
+        audio.onpause = () => {
+            setPlaying(false);
+        }
+        return () => {
+            audio.onloadeddata = null; // Cleanup the event listener
+        }
+    }, [audioRef, onPosterLoaded]);
+    useEffect(() => {
+        if (mAudio) {
+            setPlaying(false);
+        }
+    }, [mAudio, src]);
     return (
         <Card sx={{ display: 'flex' }}>
             <audio ref={audioRef} src={src} crossOrigin="anonymous"
@@ -132,7 +144,6 @@ function AudioPlayer({ src, title, author }: AudioAppProps) {
                 width={windowWidth}
                 audioEle={mAudio}
                 meterWidth={10}
-
                 capColor={'#5DADE2'}
                 capHeight={1}
                 meterCount={128}
