@@ -14,8 +14,8 @@ const CampaignList = ({ }: CampaignListProps) => {
     // const router = useRouter();
     // const pathname = usePathname();
     const searchParams = useSearchParams();
-    const [isClosed, setIsClosed] = useState<boolean | undefined>(searchParams.get('isClosed') == 'true');
-    const [isHidden, setIsHidden] = useState<boolean | undefined>(searchParams.get('isHidden') == 'true');
+    const [isClosed, setIsClosed] = useState<boolean | undefined>(searchParams.get('isClosed') === null ? undefined : searchParams.get('isClosed') == 'true');
+    const [isHidden, setIsHidden] = useState<boolean | undefined>(searchParams.get('isHidden') === null ? undefined : searchParams.get('isHidden') == 'true');
     const [sortOrder, setSortOrder] = useState(searchParams.get('sortOrder') || 'desc');
     const [limit, setLimit] = useState(searchParams.get('limit') ? parseInt(searchParams.get('limit') || '0') : 20);
     return <Paper sx={{ my: 1, p: 1, textAlign: 'center' }} elevation={0}>
