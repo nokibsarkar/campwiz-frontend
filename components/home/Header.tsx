@@ -12,7 +12,7 @@ const Header = ({ returnTo }: HeaderProps) => {
         <header className="flex items-center justify-between w-full h-auto px-4 text-center">
             <ReturnButton hiddenIn={['^\/$', '^\/user\/login$']} to={returnTo} />
             <Link href='/' style={{ margin: 'auto', display: 'inline-block' }}>
-                <Image src={LogoSvg} alt="Logo of CampWiz" height={75} style={{ margin: 'auto' }} />
+                <Image src={LogoSvg} alt="Logo of CampWiz" height={75} style={{ margin: 'auto' }} priority />
             </Link>
             <ThemeSwitherButton />
             <LogoutButtton hiddenIn={['^\/$', '^\/user\/login$']} />
