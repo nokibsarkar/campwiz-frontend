@@ -28,7 +28,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
     const [next, setNext] = React.useState<string | undefined>(initialNext);
     const [currentCursor, setCurrentCursor] = React.useState(0);
     const [isLoading, setIsLoading] = React.useState(false);
-    const [currentEvaluation, setCurrentEvaluation] = useState<Evaluation | null>(null);
+    const [currentEvaluation, setCurrentEvaluation] = useState<Evaluation | null>(evaluations?.[0] ?? null);
     const [imageLoaded, setImageLoaded] = useState(true);
     const [error, setError] = useState<string | null>(null);
     // It would determine whether any more evaluations are available or not.
@@ -37,13 +37,66 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
     const [assignmentCount, setAssignmentCount] = useState(initialAssignmentCount);
     const [evaluationCount, setEvaluationCount] = useState(initialEvaluationCount);
     const [saving, setSaving] = useState(false);
+    const [descriptionFetching, setDescriptionFetching] = useState(false);
     const [fetchedDescription, setFetchedDescription] = useState<string | null>(null);
     useEffect(() => {
         if (!evaluations)
             return setCurrentEvaluation(null);
+        if (descriptionFetching) return;
+
         const cur = evaluations[currentCursor];
-        if (cur && cur.submission && !cur.submission.description) {
+        if (cur && cur.submission && !cur.submission.description && !descriptionFetching) {
             console.log('Fetching Description');
+            const qs = new URLSearchParams({
+                "action": "query",
+                "format": "json",
+                "prop": "imageinfo",
+                "titles": `File:${cur.submission.title}`,
+                "formatversion": "2",
+                "iiprop": "extmetadata|url",
+                "iiurlwidth": "640",
+                "iiurlheight": "640",
+                "iimetadataversion": "latest",
+                "iiextmetadatafilter": "ImageDescription",
+                "origin": "*",
+            }).toString();
+            const url = "https://commons.wikimedia.org/w/api.php?" + qs;
+            setDescriptionFetching(true);
+            fetch(url)
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.query && data.query.pages && data.query.pages.length > 0) {
+                        const page = data.query.pages[0];
+                        if (page.imageinfo && page.imageinfo.length > 0) {
+                            const imageInfo = page.imageinfo[0];
+                            if (imageInfo.extmetadata && imageInfo.extmetadata.ImageDescription) {
+                                const tempElement = document.createElement('div');
+                                tempElement.innerHTML = imageInfo.extmetadata.ImageDescription.value;
+                                const description = tempElement.innerText;
+                                tempElement.remove();
+                                console.log('Fetched Description:', description);
+                                setFetchedDescription(description);
+                                setCurrentEvaluation((prev) => {
+                                    if (!prev) return null;
+                                    if (!prev.submission) return null;
+                                    return {
+                                        ...prev,
+                                        submission: {
+                                            ...prev.submission,
+                                            description: imageInfo.extmetadata.ImageDescription.value
+                                        }
+                                    }
+                                }
+                                )
+                            }
+                        }
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching description:", error);
+                }).finally(() => {
+                    setDescriptionFetching(false);
+                })
         }
         setCurrentEvaluation(cur);
     }, [evaluations, currentCursor]);
@@ -157,7 +210,6 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
         return <AllSet roundId={roundId} campaignId={campaignId} />
     const { submission } = currentEvaluation;
     if (!submission) return null;
-
     return (
         <ScoreOrBinaryVotingInterface
             campaignId={campaignId}
