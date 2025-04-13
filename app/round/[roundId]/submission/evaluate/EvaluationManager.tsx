@@ -28,7 +28,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
     const [next, setNext] = React.useState<string | undefined>(initialNext);
     const [currentCursor, setCurrentCursor] = React.useState(0);
     const [isLoading, setIsLoading] = React.useState(false);
-    const currentEvaluation = evaluations?.[currentCursor];
+    const [currentEvaluation, setCurrentEvaluation] = useState<Evaluation | null>(null);
     const [imageLoaded, setImageLoaded] = useState(true);
     const [error, setError] = useState<string | null>(null);
     // It would determine whether any more evaluations are available or not.
@@ -37,6 +37,16 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
     const [assignmentCount, setAssignmentCount] = useState(initialAssignmentCount);
     const [evaluationCount, setEvaluationCount] = useState(initialEvaluationCount);
     const [saving, setSaving] = useState(false);
+    const [fetchedDescription, setFetchedDescription] = useState<string | null>(null);
+    useEffect(() => {
+        if (!evaluations)
+            return setCurrentEvaluation(null);
+        const cur = evaluations[currentCursor];
+        if (cur && cur.submission && !cur.submission.description) {
+            console.log('Fetching Description');
+        }
+        setCurrentEvaluation(cur);
+    }, [evaluations, currentCursor]);
     const nextImageWrapper = (dx: number = 1) => {
         setImageLoaded(false);
         setCurrentCursor((cursor) => cursor + dx);
@@ -53,7 +63,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
                 roundId,
                 isPublicJury,
                 [
-                    { evaluationId: currentEvaluation.evaluationId, score, comment: null, submissionId: currentEvaluation.submission.submissionId }
+                    { evaluationId: currentEvaluation.evaluationId, score, comment: null, submissionId: currentEvaluation.submission.submissionId, description: fetchedDescription, }
                 ]
             );
             if (!response) {
