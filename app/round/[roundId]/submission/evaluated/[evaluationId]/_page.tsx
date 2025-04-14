@@ -51,7 +51,7 @@ const KichuEkta = ({ round, evaluation, submission }: KichuEktaProps) => {
             setSaving(true);
             const response = await submitVote(
                 round.roundId,
-                round.isPublicJury,
+                false,
                 [
                     { evaluationId: evaluation.evaluationId, score, comment: null, submissionId: evaluation.submissionId }
                 ]
@@ -69,12 +69,12 @@ const KichuEkta = ({ round, evaluation, submission }: KichuEktaProps) => {
             setEvaluationCount(r.totalEvaluatedCount);
             setShowProgress(true);
             setImageLoaded(true);
+            setShowResponse(true);
         } catch (error) {
             setError((error as Error).message);
             return
         } finally {
             setSaving(false);
-            setShowResponse(true);
         }
     }
 

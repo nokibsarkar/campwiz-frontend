@@ -33,7 +33,7 @@ const Page = async ({ params }: { params: Promise<{ roundId: string }> }) => {
         </>;
 
     const limit = round.type === EvaluationType.RANKING ? RankingBatchSize : 20;
-    const evaluationResponse = await loadNextEvaluation({ roundId: round.roundId, limit: limit, includeSubmissions: true, isPublic: round.isPublicJury, includeEvaluated: true });
+    const evaluationResponse = await loadNextEvaluation({ roundId: round.roundId, limit: limit, includeSubmissions: true, isPublic: false, includeEvaluated: true, includeNonEvaluated: false });
     if (!evaluationResponse) {
         return null;
     }

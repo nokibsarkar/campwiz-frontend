@@ -91,6 +91,7 @@ const ScoreOrBinaryVotingInterface = ({
     saving, returnTo, hasNext = true,
     showProgress = true, noHeader = false,
     setImageLoaded, imageLoaded,
+
 }: ScoreOrBinaryVotingInterfaceProps) => {
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
     return (
