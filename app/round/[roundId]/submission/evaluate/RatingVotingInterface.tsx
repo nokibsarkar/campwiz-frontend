@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 import TickIcon from '@mui/icons-material/Check';
 import Link from 'next/link';
 
-const RatingVotingInterface = ({ goNext, goPrevious, saving, evaluation, assignmnetCount, evaluationCount, noNext, noPrevious, submitScore, showProgress = true }: VotingInterfaceProps) => {
+const RatingVotingInterface = ({ goNext, goPrevious, saving, evaluation, assignmnetCount, evaluationCount, noNext, noPrevious, submitScore, showProgress = true, onSkip }: VotingInterfaceProps) => {
     const [currentScore, setCurrentScore] = React.useState<number>(evaluation.score / 20 || 0)
     useEffect(() => {
         setCurrentScore(evaluation.score / 20)
@@ -64,7 +64,7 @@ const RatingVotingInterface = ({ goNext, goPrevious, saving, evaluation, assignm
                         <SkipPreviousIcon fontSize='large' />
                     </IconButton>
 
-                    <Button color="primary" size="large" onClick={goNext} disabled={saving || noNext} title='Save' endIcon={<SkipNextIcon fontSize='large' />} variant='outlined' sx={{ borderRadius: 2, px: 2, my: 'auto' }}>
+                    <Button color="primary" size="large" onClick={() => { if (onSkip) onSkip(); goNext(); }} disabled={saving || noNext} title='Save' endIcon={<SkipNextIcon fontSize='large' />} variant='outlined' sx={{ borderRadius: 2, px: 2, my: 'auto' }}>
                         Skip
                     </Button>
                     <IconButton color="success" size="large" onClick={() => submitScore(currentScore * 20)} disabled={saving} title='Save' >
