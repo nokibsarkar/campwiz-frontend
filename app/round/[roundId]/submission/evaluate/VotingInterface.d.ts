@@ -11,4 +11,5 @@ export type VotingInterfaceProps = {
     evaluationCount: number
     assignmnetCount: number
     showProgress?: boolean
+    onSkip?: () => void
 }

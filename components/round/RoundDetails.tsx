@@ -21,7 +21,7 @@ const roundTypeIcon = (type: EvaluationType) => {
         case EvaluationType.RANKING:
             return <Description description='Ranking' label="Type" Icon={MilitaryTechIcon} />
         case EvaluationType.SCORE:
-            return <Description description='Ranting' label="Type" Icon={StarsIcon} />
+            return <Description description='Rating' label="Type" Icon={StarsIcon} />
         default:
             return <Description description='Unknown, contact us' label="Type" Icon={QuestionMarkIcon} />
     }

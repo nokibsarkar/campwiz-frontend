@@ -14,7 +14,7 @@ type KichuEktaProps = {
     evaluation: Evaluation
     submission: Submission
 }
-const SavingSuccess = ({ returnTo, close }: { returnTo: string, close: () => void }) => {
+const SavingSuccess = ({ returnTo, close }: { returnTo: string, close: () => void, skipCount: number }) => {
     return <div className="flex flex-col items-center justify-center h-screen">
         <TickIcon className="text-green-500" fontSize="large" />
         <div className="text-lg mt-4">Your vote has been saved successfully.</div>
@@ -43,7 +43,7 @@ const KichuEkta = ({ round, evaluation, submission }: KichuEktaProps) => {
     const [evaluationCount, setEvaluationCount] = useState(0);
     const [showProgress, setShowProgress] = useState(false);
     const [showResponse, setShowResponse] = useState(false);
-
+    const [skipCount, setSkipCount] = useState(0);
     const submit = async (score: number) => {
         try {
             if (saving) return;
@@ -51,7 +51,7 @@ const KichuEkta = ({ round, evaluation, submission }: KichuEktaProps) => {
             setSaving(true);
             const response = await submitVote(
                 round.roundId,
-                round.isPublicJury,
+                false,
                 [
                     { evaluationId: evaluation.evaluationId, score, comment: null, submissionId: evaluation.submissionId }
                 ]
@@ -69,17 +69,17 @@ const KichuEkta = ({ round, evaluation, submission }: KichuEktaProps) => {
             setEvaluationCount(r.totalEvaluatedCount);
             setShowProgress(true);
             setImageLoaded(true);
+            setShowResponse(true);
         } catch (error) {
             setError((error as Error).message);
             return
         } finally {
             setSaving(false);
-            setShowResponse(true);
         }
     }
 
     return !saving && showResponse ? (
-        <SavingSuccess returnTo={`/round/${round.roundId}/submission/evaluated`} close={() => { setShowResponse(false); setShowProgress(false); setImageLoaded(true); }} />
+        <SavingSuccess returnTo={`/round/${round.roundId}/submission/evaluated`} close={() => { setShowResponse(false); setShowProgress(false); setImageLoaded(true); }} skipCount={skipCount} />
     ) : (
         <ScoreOrBinaryVotingInterface
             assignmentCount={assignmentCount}
@@ -101,6 +101,7 @@ const KichuEkta = ({ round, evaluation, submission }: KichuEktaProps) => {
             hasNext={false}
             showProgress={showProgress}
             noHeader
+            onSkip={() => setSkipCount((skipCount) => skipCount + 1)}
         />
     )
 }

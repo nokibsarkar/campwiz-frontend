@@ -3,6 +3,7 @@ import { Button, Checkbox, Divider, FormControlLabel, FormGroup, LinearProgress,
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc';
 import { lazy, Suspense, useState, type ActionDispatch } from "react";
 import AudioIcon from "@mui/icons-material/AudioFile";
 import VideoIcon from "@mui/icons-material/VideoLibrary";
@@ -12,6 +13,7 @@ import UserInput from "../user/UserInput";
 import Diversity3Icon from '@mui/icons-material/Diversity3';
 import Collapse from '@mui/material/Collapse';
 import SettingsIcon from '@mui/icons-material/Settings';
+dayjs.extend(utc);
 const ArticleRestrictions = lazy(() => import('./RestrictionsArticle'));
 const ImageRestrictions = lazy(() => import('./RestrictionsImage'));
 const VideoRestrictions = lazy(() => import('./RestrictionsVideo'));
@@ -98,6 +100,7 @@ const RoundEditForm = ({ dispatch, loading, disabled = false, hideAdvanced = fal
                 sx={{ m: 1, width: { xs: '100%', sm: '48%' } }}
                 label="Deadline"
                 disabled={loading || disabled}
+                timezone="UTC"
             />
             <TextField
                 label="Guidelines"

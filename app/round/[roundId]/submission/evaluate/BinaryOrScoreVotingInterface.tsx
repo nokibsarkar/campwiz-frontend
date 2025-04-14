@@ -13,7 +13,7 @@ import Image from "next/image"
 import Header from "@/components/home/Header"
 const VideoApp = lazy(() => import("@/app/submission/[submissionId]/_preview/videoplayer"));
 const AudioPlayer = lazy(() => import("@/app/submission/[submissionId]/_preview/audioPlayer"));
-const BinaryVotingInterface = lazy(() => import("./BinaryVotingInterface copy"));
+const BinaryVotingInterface = lazy(() => import("./BinaryVotingInterface"));
 const RatingVotingInterface = lazy(() => import("./RatingVotingInterface"));
 
 
@@ -76,6 +76,7 @@ type ScoreOrBinaryVotingInterfaceProps = {
     noHeader?: boolean
     setImageLoaded: (loaded: boolean) => void
     imageLoaded: boolean
+    onSkip: () => void
 }
 
 const ScoreOrBinaryVotingInterface = ({
@@ -91,6 +92,8 @@ const ScoreOrBinaryVotingInterface = ({
     saving, returnTo, hasNext = true,
     showProgress = true, noHeader = false,
     setImageLoaded, imageLoaded,
+    onSkip
+
 }: ScoreOrBinaryVotingInterfaceProps) => {
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
     return (
@@ -154,7 +157,7 @@ const ScoreOrBinaryVotingInterface = ({
                                 evaluationCount={evaluationCount}
                                 assignmnetCount={assignmentCount}
                                 showProgress={showProgress}
-
+                                onSkip={onSkip}
                             />
                         }
                         {
@@ -169,6 +172,7 @@ const ScoreOrBinaryVotingInterface = ({
                                 evaluationCount={evaluationCount}
                                 noNext={!hasNext}
                                 showProgress={showProgress}
+                                onSkip={onSkip}
                             />
                         }
 

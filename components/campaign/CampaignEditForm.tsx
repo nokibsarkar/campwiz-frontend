@@ -2,11 +2,14 @@ import { initialCampaignCreate, type CampaignCreate } from "@/types/campaign/cre
 import { Autocomplete, FormControlLabel, TextField, Typography, } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import utc from 'dayjs/plugin/utc';
 import dayjs from "dayjs";
 import { ActionDispatch } from "react";
 import UserInput from "../user/UserInput";
 import CheckBox from '@mui/material/Checkbox';
+dayjs.extend(utc);
 const CampaignEditForm = ({ dispatch, loading, disabled = false, disableOnPrivate = false, ...campaign }: CampaignCreate & { dispatch: ActionDispatch<[Partial<CampaignCreate>]>, loading: boolean, disabled?: boolean, disableOnPrivate?: boolean }) => {
+    console.log(campaign.startDate, campaign.endDate)
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <TextField
@@ -27,6 +30,7 @@ const CampaignEditForm = ({ dispatch, loading, disabled = false, disableOnPrivat
                     value={campaign.language}
                     onChange={(e, value) => dispatch({ language: value as string })}
                     disabled={loading || disabled}
+
                 />
                 <DatePicker
                     onChange={(date) => dispatch({ startDate: date?.toISOString() })}
@@ -34,6 +38,7 @@ const CampaignEditForm = ({ dispatch, loading, disabled = false, disableOnPrivat
                     sx={{ width: { xs: '100%', sm: '27%' }, mb: 1 }}
                     label="Campaign Start Date"
                     disabled={loading || disabled}
+                    timezone="UTC"
 
                 />
                 <DatePicker
@@ -42,6 +47,7 @@ const CampaignEditForm = ({ dispatch, loading, disabled = false, disableOnPrivat
                     sx={{ width: { xs: '100%', sm: '27%' }, mb: 1 }}
                     label="Campaign End Date"
                     disabled={loading || disabled}
+                    timezone="UTC"
                 />
             </div>
 

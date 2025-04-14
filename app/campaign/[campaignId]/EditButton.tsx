@@ -1,21 +1,18 @@
 "use client";
-import { Button, useMediaQuery } from "@mui/material"
 import EditIcon from '@mui/icons-material/Edit';
-import Link from "next/link";
+import NokiberButton from "@/components/NokiberButton";
 
-const EditButton = ({ campaignId }: { campaignId: string }) => {
 
-    const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
-    return (
-        isSmall ? null : (
-            <Link href={`/campaign/${campaignId}/edit`}>
-                <Button variant="outlined" color="primary" startIcon={<EditIcon />}
-                    sx={{
-                        borderRadius: 3,
-                    }}
-                >Edit</Button>
-            </Link>
-        )
-    )
-}
+const EditButton = ({ campaignId }: { campaignId: string }) => (
+    <NokiberButton
+        label="Edit"
+        link={`/campaign/${campaignId}/edit`}
+        startIcon={<EditIcon />}
+        variant="outlined"
+        color="primary"
+        sx={{
+            borderRadius: 3,
+        }}
+    />
+)
 export default EditButton;

@@ -34,13 +34,21 @@ const ActualPage = ({ initialEvaluations, next: initialNext, round }: EvaluatedP
     const loadWithToken = async ({ nextToken, previousToken }: { nextToken?: string | null, previousToken?: string | null }) => {
         let evs: Evaluation[] = []
         setLoading(true);
+        const params = {
+            isPublic: false, //round.isPublicJury,
+            roundId: round.roundId,
+            limit: 20,
+            includeSubmissions: true,
+            includeEvaluated: true,
+            includeNonEvaluated: false
+        }
         if (previousToken) {
             if (previousToken === initialNext) {
                 evs = initialEvaluations;
                 setPreviousToken(null);
                 setNext(initialNext);
             } else {
-                const response = await loadNextEvaluation({ isPublic: round.isPublicJury, roundId: round.roundId, limit: 20, prev: previousToken, includeSubmissions: true, includeEvaluated: true });
+                const response = await loadNextEvaluation({ ...params, prev: previousToken });
                 if (response) {
                     if ('detail' in response) {
                         return;
@@ -51,7 +59,7 @@ const ActualPage = ({ initialEvaluations, next: initialNext, round }: EvaluatedP
                 }
             }
         } else if (nextToken) {
-            const response = await loadNextEvaluation({ isPublic: round.isPublicJury, roundId: round.roundId, limit: 20, next: nextToken, includeSubmissions: true, includeEvaluated: true });
+            const response = await loadNextEvaluation({ ...params, next: nextToken });
             if (response) {
                 if ('detail' in response) {
                     return;

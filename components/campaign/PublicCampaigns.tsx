@@ -22,7 +22,7 @@ const PublicRunningCampaigns = ({ limit }: PublicRunningCampaignProps) => {
         return null;
     if ('detail' in publicCampaignResponse)
         return <p>Error : {error}</p>
-    const campaigns = publicCampaignResponse.data.toSorted((a, b) => a.campaignId.localeCompare(b.campaignId));
+    const campaigns = publicCampaignResponse.data
     return campaigns.length > 0 ? <div style={{
         display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap',
         backgroundImage: `url(${PerCampaignBackground.src})`,
