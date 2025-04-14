@@ -1,12 +1,12 @@
 import { Suspense, useState } from "react"
-import startImportTask from "./action"
+import startImportTask from "./startImportTask"
 import StatusThingy from "./importingFromRoundStatusThingy"
 import LottieWrapper from "@/components/LottieWrapper"
-import { Round, SubmissionResultSummary } from "@/types/round"
+import { Round } from "@/types/round"
 import useSWR from "swr"
-import { fetchAPIFromBackendListWithErrorHandling } from "@/server"
 import { Button, LinearProgress, MenuItem, TextField } from "@mui/material"
 import { Task } from "@/app/task"
+import fetchRoundResults from "./fetchRoundSummary"
 
 type ImportFromRoundWidgetProps = {
     currentRound: Round
@@ -18,24 +18,10 @@ const ImportFromRoundWidget = ({ currentRound, importing, setImporting, distribu
     const [taskID, setTaskID] = useState('')
     const [score, setScore] = useState<string>('')
     // const [mediaType, setMediaType] = useState<string>('')
-    const { data: summaryResponse, isLoading, } = useSWR(`/round/${currentRound.dependsOnRoundId}/results/summary`, async (url: string) => {
-        const resp = await fetchAPIFromBackendListWithErrorHandling<SubmissionResultSummary>(url)
-        if ('data' in resp) {
-            const { data: summary } = resp
-            // make all the scores cumulative
-            let cumulative = 0
-            for (let i = 0; i < summary.length; i++) {
-                cumulative += summary[i].submissionCount
-                summary[i].submissionCount = cumulative
-            }
-            resp.data = summary
-        }
-        return resp
-    }, {
+    const { data: summaryResponse, isLoading, } = useSWR(`/round/${currentRound.dependsOnRoundId}/results/summary`, fetchRoundResults, {
         revalidateOnFocus: true,
         revalidateOnReconnect: true,
         revalidateOnMount: true,
-
     })
     const startImporting = async (scores: string, fromId?: string) => {
         try {
@@ -76,9 +62,9 @@ const ImportFromRoundWidget = ({ currentRound, importing, setImporting, distribu
                     sx={{ my: 1 }}
                     variant="outlined"
                     onChange={(e) => setScore(e.target.value)}
-                    helperText={score !== '' && `Importing submissions with score above ${score}% (${summaryScore.find((submission) => submission.averageScore >= parseInt(score))?.submissionCount || 0} media)`}
+                    helperText={score !== '' && `Importing submissions with score above ${score}% (${summaryScore.find((submission) => submission.averageScore >= parseInt(score))?.cumulative || 0} media)`}
                 >
-                    {summaryScore.map((submission, i) => <MenuItem key={i} value={submission.averageScore}>{submission.averageScore}% - {submission.submissionCount} Files</MenuItem>)}
+                    {summaryScore.map((submission, i) => <MenuItem key={i} value={submission.averageScore}>{submission.averageScore}% - {submission.cumulative} Files</MenuItem>)}
                 </TextField>
             }
             <Button

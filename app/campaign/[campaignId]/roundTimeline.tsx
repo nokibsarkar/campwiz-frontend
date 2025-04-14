@@ -35,7 +35,6 @@ function RoundTimeline({ rounds, campaign, session, isCoordinator, isArchived }:
     const [currentRound, setCurrentRound] = React.useState<Round | null>(rounds.length > 0 ? rounds[0] : null);
     const isUserEligibleToVote = currentRound !== null && currentRound.jury !== null && session !== null && Object.values(currentRound.jury).includes(session.username);
     const [selectedRoundAction, setSelectedRoundAction] = React.useState<SelectedRoundActionStatus>(SelectedRoundActionStatus.none);
-    console.log("selectedRoundAction", selectedRoundAction);
     return (
         <Box sx={{ ml: 1 }} component="div">
             {!isArchived && <LatestRoundActions
