@@ -33,7 +33,8 @@ const CampaignViewPage = async ({ params }: CampaignViewPageProps) => {
     }
     const campaign = campaignResponse.data;
     const isArchived = campaign.archivedAt !== null;
-    const canUpdate = session?.projectId === campaign.projectId
+    const canAccessOtherProject = session && (session.permission & session.permissionMap.PermissionOtherProjectAccess) === session.permissionMap.PermissionOtherProjectAccess;
+    const canUpdate = canAccessOtherProject || session?.projectId === campaign.projectId
     const canArchive = session?.projectId === campaign.projectId;
     return (
         <>
