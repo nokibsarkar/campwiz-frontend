@@ -103,11 +103,11 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [evaluations, currentCursor]);
     const nextImageWrapper = (dx: number = 1) => {
+        console.log('Next Image Wrapper', currentCursor, evaluations?.length);
         setImageLoaded(false);
         setCurrentCursor((cursor) => cursor + dx);
     }
     const submit = async (score: number) => {
-        console.log('imageLoaded', imageLoaded);
         try {
             if (saving) return;
             if (!currentEvaluation) return;
@@ -130,6 +130,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
             const r = response as EvaluationListResponseWithCurrentStats;
             setAssignmentCount(r.totalAssignmentCount);
             setEvaluationCount(r.totalEvaluatedCount);
+            console.log('Submitted')
             nextImageWrapper();
         } catch (error) {
             setError((error as Error).message);
@@ -233,7 +234,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
             hasNext={true}
             onSkip={() => {
                 setSkipCount((prev) => prev + 1);
-                nextImageWrapper(1);
+                // nextImageWrapper(1);
             }}
         />
     )
