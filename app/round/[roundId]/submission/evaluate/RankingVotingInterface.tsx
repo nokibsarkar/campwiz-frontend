@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SortableList, { SortableItem } from "react-easy-sort";
 import { Badge, Button, Dialog, DialogActions, DialogContent, Fab } from "@mui/material";
 import { arrayMoveImmutable } from "array-move";
@@ -51,58 +51,57 @@ const useStyles = {
 const handleStartDrag = () => document.body.style.overflow = 'hidden';
 const handleStopDrag = () => document.body.style.overflow = 'auto';
 
-const RankingVotingInterface = ({ initailEvaluations, limit, roundId, isPublicJury, campaignId }: { roundId: string, initailEvaluations: Evaluation[], next?: string, limit: number, campaignId: string, isPublicJury: boolean }) => {
+const RankingVotingInterface = ({ initailEvaluations, limit, roundId, isPublicJury, campaignId, next: initialNext }: { roundId: string, initailEvaluations: Evaluation[], next?: string, limit: number, campaignId: string, isPublicJury: boolean, }) => {
     const classes = useStyles;
     const [evaluations, setEvaluations] = useState<Evaluation[]>(initailEvaluations);
-    const [next, setNext] = useState<string | undefined>("");
+    const [next, setNext] = useState<string | undefined>(initialNext);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [hasNextEvaluation, setHasNextEvauation] = useState<boolean>(evaluations.length > 0);
     const [currentSelectedForPreview, setCurrentSelectedForPreview] = useState<Submission | null>(null);
-    useEffect(() => {
-        if (!next || !roundId || !limit || !hasNextEvaluation || !evaluations || !evaluations.length) {
-            return;
-        }
-        setIsLoading(true);
-        loadNextEvaluation({ roundId, limit, next, includeSubmissions: true, isPublic: isPublicJury }).then(async (response) => {
-            if (!response) {
-                return;
-            }
-            if ('detail' in response) {
-                setError(response.detail);
-                return;
-            }
-            const addedEvaluations = response.data;
-            setEvaluations((evaluations) => [...evaluations, ...addedEvaluations]);
-            setNext(response.next);
-            setHasNextEvauation(response.next !== undefined && response.next !== next && response.next !== "");
-            setIsLoading(false);
-        });
-        setIsLoading(false);
-    }, [limit, next, hasNextEvaluation, evaluations, roundId, isPublicJury]);
     const onSortEnd = (oldIndex: number, newIndex: number) => {
         console.log(oldIndex, newIndex);
         setEvaluations((array) => arrayMoveImmutable(array, oldIndex, newIndex));
     };
     const saveRanking = async () => {
-        const perPositionPoint = 100 / limit;
-        const newEvaluations = evaluations.map((evaluation, index) => {
-            return {
-                evaluationId: evaluation.evaluationId,
-                score: perPositionPoint * (evaluations.length - index),
-                comment: null,
-                submissionId: evaluation.submissionId
+        setIsLoading(true);
+        try {
+            const perPositionPoint = 100 / limit;
+            const newEvaluations = evaluations.map((evaluation, index) => {
+                return {
+                    evaluationId: evaluation.evaluationId,
+                    score: perPositionPoint * (evaluations.length - index),
+                    comment: null,
+                    submissionId: evaluation.submissionId
+                }
+            });
+
+            const resp = await submitVote(roundId, isPublicJury, newEvaluations);
+            if (!resp) {
+                return;
             }
-        });
-        const resp = submitVote(roundId, isPublicJury, newEvaluations);
-        if (!resp) {
-            return;
-        }
-        if ('detail' in resp) {
-            console.error(resp.detail);
-        } else {
-            console.log('Submited');
-            setEvaluations([]);
+            if ('detail' in resp) {
+                console.error(resp.detail);
+            } else {
+                const response = await loadNextEvaluation({ roundId, limit, next, includeSubmissions: true, isPublic: isPublicJury })
+                if (!response) {
+                    return;
+                }
+                if ('detail' in response) {
+                    setError(response.detail);
+                    return;
+                }
+                const addedEvaluations = response.data;
+                if (response.next === undefined || response.next === next || response.next === "") {
+                    setNext(undefined);
+                    setEvaluations([]);
+                } else {
+                    setEvaluations(addedEvaluations);
+                    setNext(response.next);
+                }
+                // setHasNextEvauation(response.next !== undefined && response.next !== next && response.next !== "");
+            }
+        } finally {
+            setIsLoading(false);
         }
     };
     if (error) {
@@ -117,6 +116,7 @@ const RankingVotingInterface = ({ initailEvaluations, limit, roundId, isPublicJu
             <Header />
             <div>
                 <SortableList
+                    allowDrag={!isLoading}
                     onSortEnd={onSortEnd}
                     style={{
                         display: "flex",
