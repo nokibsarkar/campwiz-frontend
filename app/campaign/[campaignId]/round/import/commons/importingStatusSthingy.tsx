@@ -11,7 +11,6 @@ const StatusThingy = ({ taskId, onSuccess }: StatusThingyProps) => {
     const [status, setStatus] = useState('pending');
     const [successCount, setSuccessCount] = useState(0);
     const [failedCount, setFailedCount] = useState(0);
-    const [failedIds, setFailedIds] = useState<{ [key: string]: string }>({});
     useEffect(() => {
         if (!taskId) return
         const eventSource = new EventSource(`/task/${taskId}`);
@@ -25,12 +24,12 @@ const StatusThingy = ({ taskId, onSuccess }: StatusThingyProps) => {
             setFailedCount(data.failedCount);
             if (data.status == 'error') {
                 eventSource.close();
-                setFailedIds(data.failedIds);
+                // setFailedIds(data.failedIds);
             }
             if (data.status == 'success') {
                 console.log('Task completed', data);
                 eventSource.close();
-                setFailedIds(data.failedIds);
+                // setFailedIds(data.failedIds);
                 onSuccess(data);
             }
         });
@@ -49,13 +48,10 @@ const StatusThingy = ({ taskId, onSuccess }: StatusThingyProps) => {
         {status == 'pending' && <LottieWrapper src="/lottie/importing.lottie" />}
         {status == 'success' && <LottieWrapper src="/lottie/success.lottie" />}
         {status == 'error' && <LottieWrapper src="/lottie/error.lottie" />}
-        <Chip label={`Success: ${successCount}`} color="success" />
-        <Chip label={`Failed: ${failedCount}`} color="error" />
-        {!!failedIds && <ul>
-            {Object.entries(failedIds || {}).map(([key, value]) => (
-                <li key={key}>{key}: {value}</li>
-            ))}
-        </ul>}
+        <div className="flex flex-row items-center justify-around">
+            <Chip label={`Success: ${successCount}`} color="success" />
+            <Chip label={`Failed: ${failedCount}`} color="error" />
+        </div>
     </>
     )
 }
