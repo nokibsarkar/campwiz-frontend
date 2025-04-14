@@ -8,6 +8,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import UnarchiveIcon from "@mui/icons-material/Unarchive";
+import NokiberButton from "@/components/NokiberButton";
 
 
 const ArchiveUnArchiveButton = ({ campaignId, isArchived, campaignName }: { campaignId: string, isArchived: boolean, campaignName: string }) => {
@@ -61,16 +62,29 @@ const ArchiveUnArchiveButton = ({ campaignId, isArchived, campaignName }: { camp
                 <Button onClick={() => setOpenArchivePrompt(false)} color="success" disabled={saving} sx={{ m: 1, borderRadius: 1, px: 2 }} size="large" variant="contained">
                     Cancel
                 </Button>
-                <Button onClick={handle} color="primary" disabled={saving} loading={saving} sx={{ m: 1, borderRadius: 4, px: 2 }} size="large" variant="outlined"
-                    startIcon={isArchived ? <UnarchiveIcon /> : <ArchiveIcon />} >
-                    {isArchived ? 'Unarchive' : 'Archive'}
-                </Button>
+                <NokiberButton onClick={handle}
+                    color="primary"
+                    disabled={saving}
+                    loading={saving}
+                    sx={{ m: 1, borderRadius: 4, px: 2 }}
+                    size="large"
+                    variant="outlined"
+                    startIcon={isArchived ? <UnarchiveIcon /> : <ArchiveIcon />}
+                    smallIcon={isArchived ? <UnarchiveIcon /> : <ArchiveIcon />}
+                    label={isArchived ? 'Unarchive' : 'Archive'}
+                />
             </DialogActions>
         </Dialog> :
-            <Button variant="outlined" color={isArchived ? 'success' : 'error'} onClick={() => setOpenArchivePrompt(true)} disabled={saving} sx={{ m: 1, borderRadius: 1, px: 2 }} loading={saving} size="large"
-                startIcon={isArchived ? <UnarchiveIcon /> : <ArchiveIcon />} >
-                {isArchived ? 'Unarchive' : 'Archive'}
-            </Button>
+            <NokiberButton
+                variant="outlined" color={isArchived ? 'success' : 'error'}
+                onClick={() => setOpenArchivePrompt(true)}
+                disabled={saving} sx={{ m: 1, borderRadius: 1, px: 2 }}
+                loading={saving}
+                smallIcon={isArchived ? <UnarchiveIcon /> : <ArchiveIcon />}
+                startIcon={isArchived ? <UnarchiveIcon /> : <ArchiveIcon />}
+                label={isArchived ? 'Unarchive' : 'Archive'}
+            />
+
     )
 }
 export default ArchiveUnArchiveButton
