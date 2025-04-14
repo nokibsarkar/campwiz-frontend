@@ -1,7 +1,7 @@
 "use client";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material"
 import createRound from "@/app/campaign/[campaignId]/round/new/action"
-import React, { lazy, useCallback, useReducer, useState } from "react";
+import React, { lazy, useCallback, useMemo, useReducer, useState } from "react";
 import { roundCreateReducer, initialRoundCreate } from "@/types/round/create";
 import { Round } from "@/types/round";
 import LoadingPopup from "@/components/LoadingPopup";
@@ -12,6 +12,8 @@ import DistributionStatusThingy from "./round/distribute/distributingStatusSthin
 import ImportFromCommonsDialog from "./round/import/commons/_page";
 import startDistributionTask from "./round/distribute/startDistributionTask";
 import ImportFromRoundDialog from "./round/import/round/_page";
+import { Task } from "@/app/task";
+import { ImportSuccess } from "./round/import/commons/importWidget";
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -33,6 +35,7 @@ const CreateRound = ({ campaignId, onClose }: { campaignId: string, onAfterCreat
     const [error, setError] = useState<string | null>(null);
     const [stage, setStage] = useState<Stage>(Stage.CREATE);
     const [taskId, setTaskId] = useState<string>('');
+    const [latestTask, setLatestTask] = useState<Task | null>(null);
 
     const [createdRound, setCreatedRound] = useState<Round | null>(null);
     const createRoundClient = useCallback(async () => {
@@ -78,13 +81,14 @@ const CreateRound = ({ campaignId, onClose }: { campaignId: string, onAfterCreat
             setLoading(false);
         }
     }, [round]);
-    const distribute = async () => {
+    const distribute = useCallback(async (t: Task) => {
+        setLatestTask(t);
         if (!createdRound) {
             throw new Error('Round not created yet');
         }
         if (createdRound.isPublicJury) {
-            setStage(Stage.SUCCESS)
-            return
+            setStage(Stage.SUCCESS);
+            return;
         }
         setStage(Stage.DISTRIBUTE);
         const distributionTask = await startDistributionTask(createdRound.roundId, round.jury);
@@ -92,11 +96,26 @@ const CreateRound = ({ campaignId, onClose }: { campaignId: string, onAfterCreat
             throw new Error(distributionTask.detail);
         }
         setTaskId(distributionTask.data.taskId);
-    }
-    return (createdRound && stage === Stage.IMPORT) ?
-        (createdRound.dependsOnRoundId ? <ImportFromRoundDialog round={createdRound} afterImport={distribute} onClose={onClose} /> :
-            <ImportFromCommonsDialog round={createdRound} onClose={onClose} afterImport={distribute} />
-        ) : (<Dialog open={true}
+    }, [createdRound, round.jury]);
+    const afterCreatedRound = useMemo(() => {
+        if (!createdRound) {
+            return null;
+        }
+        if (stage === Stage.IMPORT) {
+            if (createdRound.dependsOnRoundId) {
+                return <ImportFromRoundDialog round={createdRound} distribute={distribute} onClose={onClose} />;
+            } else {
+                return <ImportFromCommonsDialog round={createdRound} onClose={onClose} distribute={distribute} />;
+            }
+        }
+        if (stage === Stage.SUCCESS) {
+            if (latestTask)
+                return <ImportSuccess onClose={onClose} round={createdRound} task={latestTask} />;
+        }
+        return null
+    }, [createdRound, distribute, latestTask, onClose, stage])
+    return (createdRound && afterCreatedRound) ? afterCreatedRound
+        : (<Dialog open={true}
             sx={{
                 width: {
                     xs: '100%',
