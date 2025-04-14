@@ -1,5 +1,5 @@
 "use client"
-import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, Table, TableBody, TableCell, TableFooter, TableHead, TableRow } from "@mui/material";
+import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import fetchRoundResults from "@/app/campaign/[campaignId]/round/import/round/fetchRoundSummary";
 import useSWR from "swr";
 import { ResponseList } from "@/types";
