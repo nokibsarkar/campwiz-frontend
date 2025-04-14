@@ -39,6 +39,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
     const [saving, setSaving] = useState(false);
     const [descriptionFetching, setDescriptionFetching] = useState(false);
     const [fetchedDescription, setFetchedDescription] = useState<string | null>(null);
+    const [skipCount, setSkipCount] = useState(0);
     useEffect(() => {
         if (!evaluations)
             return setCurrentEvaluation(null);
@@ -150,7 +151,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
             return;
         }
         setIsLoading(true);
-        loadNextEvaluation({ roundId, limit, next, includeSubmissions: true, isPublic: isPublicJury }).then(async (response) => {
+        loadNextEvaluation({ roundId, limit, next, includeSubmissions: true, isPublic: isPublicJury, includeEvaluated: false, includeNonEvaluated: true }).then(async (response) => {
             if (!response) {
                 return;
             }
@@ -208,7 +209,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
     }, [currentCursor, nextEvaluation]);
 
     if (!currentEvaluation)
-        return <AllSet roundId={roundId} campaignId={campaignId} />
+        return <AllSet roundId={roundId} campaignId={campaignId} skipCount={skipCount} />
     const { submission } = currentEvaluation;
     if (!submission) return null;
     return (
@@ -230,6 +231,10 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
             error={error}
             returnTo={`/campaign/${campaignId}`}
             hasNext={true}
+            onSkip={() => {
+                setSkipCount((prev) => prev + 1);
+                nextImageWrapper(1);
+            }}
         />
     )
 }
