@@ -45,9 +45,6 @@ const RoundSummaryDialog = ({ round: c, onClose }: { round: Round, onClose: () =
                                 </TableRow>
                             ))}
                         </TableBody>
-                        <TableFooter>
-
-                        </TableFooter>
                     </Table>
             )}
         </DialogContent>
