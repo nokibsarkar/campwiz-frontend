@@ -7,6 +7,7 @@ import fetchSession from "@/server/session";
 import fetchAPIFromBackendSingleWithErrorHandling, { fetchAPIFromBackendListWithErrorHandling } from "@/server";
 import { Project } from "@/types/project";
 import Header from "@/components/home/Header";
+import Footer from "@/components/home/Footer";
 const NewProjectButton = () => (
     <Link href="/project/new">
         <Button
@@ -99,6 +100,7 @@ const ProjectDashboard = async () => {
             </div>
             }
         </div>
+        <Footer />
     </>
 }
 export default ProjectDashboard;

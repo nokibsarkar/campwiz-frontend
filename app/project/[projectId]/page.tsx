@@ -19,6 +19,7 @@ import Image from "next/image";
 import Header from "@/components/home/Header";
 import projectAccessDeniedReason from "../projectAccessDeniedReason";
 import ArchiveIcon from "@mui/icons-material/Archive";
+import Footer from "@/components/home/Footer";
 
 
 
@@ -206,6 +207,7 @@ const Dashboard = async ({ params }: DashboardProps) => {
 				</Container>
 			</Box>
 		</div>
+		<Footer />
 	</>
 	);
 };

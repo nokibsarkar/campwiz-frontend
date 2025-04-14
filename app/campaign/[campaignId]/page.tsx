@@ -10,6 +10,7 @@ import EditButton from "./EditButton";
 import Description from "@/components/round/Description";
 import Header from "@/components/home/Header";
 import ArchiveUnArchiveButton from "./ArchiveUnArchiveButton";
+import Footer from "@/components/home/Footer";
 
 type CampaignViewPageProps = {
     params: Promise<{
@@ -78,8 +79,8 @@ const CampaignViewPage = async ({ params }: CampaignViewPageProps) => {
                     isCoordinator={campaign.coordinators?.includes(session?.username || '') === true}
                     isArchived={isArchived}
                 />
-
             </Paper >
+            <Footer />
         </>
     );
 };
