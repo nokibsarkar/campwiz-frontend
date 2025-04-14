@@ -78,7 +78,7 @@ const RoundDetails = ({ round: c }: { round: Round }) => {
                     <Quorum quorum={c.quorum} />
                 </div>
             </Box>
-            <JuryList juryList={juryList} />
+            <JuryList juryList={juryList} isPublicJury={c.isPublicJury} />
         </Box>
     )
 }

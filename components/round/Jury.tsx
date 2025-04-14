@@ -2,6 +2,7 @@ import { RoleWithUsername } from "@/types/role";
 import GavelIcon from '@mui/icons-material/Gavel';
 import { Box, Typography } from "@mui/material";
 import AccountIcon from '@mui/icons-material/AccountCircle';
+import LeaderBoardButton from "./LeaderBoardButton";
 const Jury = ({ jury }: { jury: RoleWithUsername }) => {
     const progress = jury.totalAssigned > 0 ? Math.floor(jury.totalEvaluated / jury.totalAssigned * 100) : 0;
     return (
@@ -33,21 +34,24 @@ const Jury = ({ jury }: { jury: RoleWithUsername }) => {
         </ Box>
     );
 }
-const JuryList = ({ juryList }: { juryList: RoleWithUsername[] }) => {
-    return (
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'left', position: 'relative', width: '100%' }}>
-            <GavelIcon sx={{ display: 'inline-block', mr: 1, }} fontSize="large" />
-            <div style={{ width: '100%' }}>
-                <Typography variant="h6" sx={{ mb: 0 }} component='div'>
-                    Jury
-                </Typography>
-                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'left', flexWrap: 'wrap', width: '100%' }}>
-                    {juryList.map((jury, i) => (
-                        <Jury key={i} jury={jury} />
-                    ))}
+const JuryList = ({ juryList, isPublicJury }: { juryList: RoleWithUsername[], isPublicJury: boolean }) => {
+    if (!isPublicJury)
+        return (
+            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'left', position: 'relative', width: '100%' }}>
+                <GavelIcon sx={{ display: 'inline-block', mr: 1, }} fontSize="large" />
+                <div style={{ width: '100%' }}>
+                    <Typography variant="h6" sx={{ mb: 0 }} component='div'>
+                        Jury
+                    </Typography>
+                    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'left', flexWrap: 'wrap', width: '100%' }}>
+                        {juryList.map((jury, i) => (
+                            <Jury key={i} jury={jury} />
+                        ))}
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    else
+        return <LeaderBoardButton juryList={juryList} />
 }
 export default JuryList
