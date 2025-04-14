@@ -39,6 +39,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
     const [saving, setSaving] = useState(false);
     const [descriptionFetching, setDescriptionFetching] = useState(false);
     const [fetchedDescription, setFetchedDescription] = useState<string | null>(null);
+    const [skipCount, setSkipCount] = useState(0);
     useEffect(() => {
         if (!evaluations)
             return setCurrentEvaluation(null);
@@ -102,11 +103,11 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [evaluations, currentCursor]);
     const nextImageWrapper = (dx: number = 1) => {
+        console.log('Next Image Wrapper', currentCursor, evaluations?.length);
         setImageLoaded(false);
         setCurrentCursor((cursor) => cursor + dx);
     }
     const submit = async (score: number) => {
-        console.log('imageLoaded', imageLoaded);
         try {
             if (saving) return;
             if (!currentEvaluation) return;
@@ -129,6 +130,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
             const r = response as EvaluationListResponseWithCurrentStats;
             setAssignmentCount(r.totalAssignmentCount);
             setEvaluationCount(r.totalEvaluatedCount);
+            console.log('Submitted')
             nextImageWrapper();
         } catch (error) {
             setError((error as Error).message);
@@ -150,7 +152,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
             return;
         }
         setIsLoading(true);
-        loadNextEvaluation({ roundId, limit, next, includeSubmissions: true, isPublic: isPublicJury }).then(async (response) => {
+        loadNextEvaluation({ roundId, limit, next, includeSubmissions: true, isPublic: isPublicJury, includeEvaluated: false, includeNonEvaluated: true }).then(async (response) => {
             if (!response) {
                 return;
             }
@@ -208,7 +210,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
     }, [currentCursor, nextEvaluation]);
 
     if (!currentEvaluation)
-        return <AllSet roundId={roundId} campaignId={campaignId} />
+        return <AllSet roundId={roundId} campaignId={campaignId} skipCount={skipCount} />
     const { submission } = currentEvaluation;
     if (!submission) return null;
     return (
@@ -230,6 +232,10 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
             error={error}
             returnTo={`/campaign/${campaignId}`}
             hasNext={true}
+            onSkip={() => {
+                setSkipCount((prev) => prev + 1);
+                // nextImageWrapper(1);
+            }}
         />
     )
 }

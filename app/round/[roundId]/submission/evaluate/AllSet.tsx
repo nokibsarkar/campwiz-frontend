@@ -3,8 +3,9 @@ import { Button } from "@mui/material"
 import Link from "next/link"
 import EditIcon from '@mui/icons-material/Edit';
 import ArrowBackward from '@mui/icons-material/ArrowBack';
+import SHowSkippedButton from "./ShowSkippedButton";
 
-const AllSet = ({ campaignId, roundId }: { roundId: string, campaignId: string }) => {
+const AllSet = ({ campaignId, roundId, skipCount }: { roundId: string, campaignId: string, skipCount: number }) => {
     return (
         <div className="flex flex-col items-center justify-center h-full w-full">
             <Logo />
@@ -22,6 +23,9 @@ const AllSet = ({ campaignId, roundId }: { roundId: string, campaignId: string }
                             Modify your votes
                         </Button>
                     </Link>
+                    {skipCount > 0 &&
+                        <SHowSkippedButton skipCount={skipCount} roundId={roundId} campaignId={campaignId} />
+                    }
                 </div>
             </div>
         </div>

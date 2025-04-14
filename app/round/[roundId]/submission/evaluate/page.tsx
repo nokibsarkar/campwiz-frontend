@@ -4,7 +4,7 @@ import loadNextEvaluation from "../loadNextEvaluation";
 import { EvaluationType, Round } from "@/types/round";
 import { lazy, Suspense } from "react";
 import LinearProgress from "@mui/material/LinearProgress";
-const ScoreOrBinaryVotingInterface = lazy(() => import("./EvaluationManager"));
+const EvaluationManager = lazy(() => import("./EvaluationManager"));
 const RankingVotingInterface = lazy(() => import("./RankingVotingInterface"));
 const RankingBatchSize = 20;
 
@@ -27,7 +27,7 @@ const Page = async ({ params }: { params: Promise<{ roundId: string }> }) => {
         return <p>Error : {evaluationResponse.detail}</p>
     }
     return <Suspense fallback={<LinearProgress />}>
-        {[EvaluationType.BINARY, EvaluationType.SCORE].includes(round.type) && <ScoreOrBinaryVotingInterface
+        {[EvaluationType.BINARY, EvaluationType.SCORE].includes(round.type) && <EvaluationManager
             isPublicJury={round.isPublicJury}
             roundId={round.roundId}
             initailEvaluations={evaluationResponse.data}

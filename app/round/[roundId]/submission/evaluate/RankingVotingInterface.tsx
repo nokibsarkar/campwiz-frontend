@@ -109,7 +109,7 @@ const RankingVotingInterface = ({ initailEvaluations, limit, roundId, isPublicJu
         return <p>Error : {error}</p>
     }
     if (evaluations.length === 0) {
-        return <AllSet campaignId={campaignId} roundId={roundId} />
+        return <AllSet campaignId={campaignId} roundId={roundId} skipCount={0} />
     }
 
     return (
