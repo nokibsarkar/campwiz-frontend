@@ -99,6 +99,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
                 })
         }
         setCurrentEvaluation(cur);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [evaluations, currentCursor]);
     const nextImageWrapper = (dx: number = 1) => {
         setImageLoaded(false);
