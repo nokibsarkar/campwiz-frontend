@@ -7,6 +7,7 @@ import { LinearProgress, Typography } from '@mui/material';
 import fetchSession from '@/server/session';
 import Header from '@/components/home/Header';
 import AssignedCampaigns from '@/components/campaign/AssignCampaigns';
+import Footer from '@/components/home/Footer';
 const Dashboard = async () => {
   const session = await fetchSession();
   return (
@@ -28,7 +29,7 @@ const Dashboard = async () => {
         </Typography>
         <PublicRunningCampaigns limit={10} />
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

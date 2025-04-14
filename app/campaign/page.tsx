@@ -3,6 +3,7 @@ import Header from "@/components/home/Header";
 import { fetchAPIFromBackendListWithErrorHandling } from "@/server";
 import { Campaign } from "@/types";
 import CampaignList from "./_page";
+import Footer from "@/components/home/Footer";
 
 const CampaignListPage = async () => {
     const qs = new URLSearchParams();
@@ -17,6 +18,7 @@ const CampaignListPage = async () => {
         <>
             <Header returnTo="/" />
             <CampaignList initialCampaigns={campaignListResponse.data} />
+            <Footer />
         </>
     );
 }
