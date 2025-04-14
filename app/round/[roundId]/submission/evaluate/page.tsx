@@ -6,7 +6,7 @@ import { lazy, Suspense } from "react";
 import LinearProgress from "@mui/material/LinearProgress";
 const EvaluationManager = lazy(() => import("./EvaluationManager"));
 const RankingVotingInterface = lazy(() => import("./RankingVotingInterface"));
-const RankingBatchSize = 5;
+const RankingBatchSize = 20;
 
 const Page = async ({ params }: { params: Promise<{ roundId: string }> }) => {
     const { roundId } = await params;
