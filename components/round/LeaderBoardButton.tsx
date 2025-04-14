@@ -14,71 +14,71 @@ const Trophy = [
 ]
 const LeaderBoardButton = ({ juryList }: { juryList: RoleWithUsername[] }) => {
     const [showLeaderBoard, setShowLeaderBoard] = useState(false);
+    return <>
+        <Button
+            variant="outlined"
+            color="primary"
+            startIcon={<LeaderboardIcon />}
+            disabled={juryList.length == 0 || showLeaderBoard}
+            onClick={() => {
+                setShowLeaderBoard(true);
+            }}
+            sx={{
+                borderRadius: 3,
+            }}
+        >
+            LeaderBoard
+        </Button>
+        {showLeaderBoard && (
+            <Dialog open={showLeaderBoard} onClose={() => setShowLeaderBoard(false)} fullWidth maxWidth="lg">
+                <DialogTitle>
+                    LeaderBoard
+                </DialogTitle>
+                <DialogContent>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Rank</TableCell>
+                                <TableCell>Username</TableCell>
+                                <TableCell>Total Evaluations</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {
+                                juryList.map((jury, index) => (
+                                    <TableRow key={jury.roleId} sx={{
+                                        backgroundImage: index == 0 ? `url(${SparkleIcon.src})` : "none",
+                                        backgroundPositionX: 'left',
+                                        backgroundRepeat: 'no-repeat',
+                                    }}>
+                                        <TableCell
 
-    return showLeaderBoard ? (
+                                        >{index + 1}
+                                            {index < Trophy.length && Trophy[index]}
+                                        </TableCell>
+                                        <TableCell>{jury.username}</TableCell>
+                                        <TableCell>{jury.totalEvaluated}</TableCell>
+                                    </TableRow>
+                                ))
+                            }
+                        </TableBody>
+                    </Table>
+                </DialogContent>
+                <DialogActions>
+                    <Button
+                        variant="outlined"
+                        color="error"
+                        onClick={() => {
+                            setShowLeaderBoard(false);
+                        }}
+                        startIcon={<CloseIcon />}
 
-        <Dialog open={showLeaderBoard} onClose={() => setShowLeaderBoard(false)} fullWidth maxWidth="lg">
-            <DialogTitle>
-                LeaderBoard
-            </DialogTitle>
-            <DialogContent>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Rank</TableCell>
-                            <TableCell>Username</TableCell>
-                            <TableCell>Total Evaluations</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {
-                            juryList.map((jury, index) => (
-                                <TableRow key={jury.roleId} sx={{
-                                    backgroundImage: index == 0 ? `url(${SparkleIcon.src})` : "none",
-                                    backgroundPositionX: 'left',
-                                    backgroundRepeat: 'no-repeat',
-                                }}>
-                                    <TableCell
-
-                                    >{index + 1}
-                                        {index < Trophy.length && Trophy[index]}
-                                    </TableCell>
-                                    <TableCell>{jury.username}</TableCell>
-                                    <TableCell>{jury.totalEvaluated}</TableCell>
-                                </TableRow>
-                            ))
-                        }
-                    </TableBody>
-                </Table>
-            </DialogContent>
-            <DialogActions>
-                <Button
-                    variant="outlined"
-                    color="error"
-                    onClick={() => {
-                        setShowLeaderBoard(false);
-                    }}
-                    startIcon={<CloseIcon />}
-
-                >
-                    Close
-                </Button>
-            </DialogActions>
-        </Dialog>
-
-
-    ) : <Button
-        variant="outlined"
-        color="primary"
-        startIcon={<LeaderboardIcon />}
-        onClick={() => {
-            setShowLeaderBoard(true);
-        }}
-        sx={{
-            borderRadius: 3,
-        }}
-    >
-        LeaderBoard
-    </Button>
+                    >
+                        Close
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        )}
+    </>
 }
 export default LeaderBoardButton
