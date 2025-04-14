@@ -145,7 +145,7 @@ const ActualPage = ({ initialEvaluations, next: initialNext, round }: EvaluatedP
                 {evaluations.map((evaluation) => {
                     return evaluation.submission && <TableRow key={evaluation.evaluationId}>
                         <TableCell>
-                            {evaluation.submission.title}
+                            {evaluation.submission.title.replaceAll('_', ' ')}
                         </TableCell>
                         <TableCell>
                             <Image
