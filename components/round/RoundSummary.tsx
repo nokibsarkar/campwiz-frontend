@@ -1,5 +1,5 @@
 "use client"
-import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, Table, TableBody, TableCell, TableFooter, TableHead, TableRow } from "@mui/material";
 import fetchRoundResults from "@/app/campaign/[campaignId]/round/import/round/fetchRoundSummary";
 import useSWR from "swr";
 import { ResponseList } from "@/types";
@@ -26,9 +26,14 @@ const RoundSummaryDialog = ({ round: c, onClose }: { round: Round, onClose: () =
             {summaryResponse && !isLoading && !error && (
                 ('details' in summaryResponse) ? <p className="text-red-500">Error: {summaryResponse.details as string}</p> :
                     <Table>
+                        <caption>
+                            * If there is two &apos;0&lsquo; (zero ) is mentioned on the Average Score column, the last zero means Unevaluated Submissions
+                        </caption>
                         <TableHead>
                             <TableRow>
-                                <TableCell>Average Score</TableCell>
+                                <TableCell>Average Score
+                                    <b className="font-bold">*</b>
+                                </TableCell>
                                 <TableCell>Submission Count</TableCell>
                             </TableRow>
                         </TableHead>
@@ -40,6 +45,9 @@ const RoundSummaryDialog = ({ round: c, onClose }: { round: Round, onClose: () =
                                 </TableRow>
                             ))}
                         </TableBody>
+                        <TableFooter>
+
+                        </TableFooter>
                     </Table>
             )}
         </DialogContent>
