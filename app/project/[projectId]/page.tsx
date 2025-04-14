@@ -20,6 +20,7 @@ import Header from "@/components/home/Header";
 import projectAccessDeniedReason from "../projectAccessDeniedReason";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import Footer from "@/components/home/Footer";
+import NokiberButton from "@/components/NokiberButton";
 
 
 
@@ -131,25 +132,21 @@ const Dashboard = async ({ params }: DashboardProps) => {
 						>
 							Active Campaigns
 						</Typography>
-						<Link href={`/campaign/?isClosed=true&projectId=${projectId}`}>
-							<Button
-								variant="outlined"
-								sx={{ borderRadius: 30 }}
-								startIcon={<ArchiveIcon />}
-								color="secondary"
-							>
-								Archived Campaigns
-							</Button>
-						</Link>
-						<Link href={`/project/${projectId}/new`}>
-							<Button
-								variant="contained"
-								sx={{ borderRadius: 30 }}
-								startIcon={<Add />}
-							>
-								Create Campaign
-							</Button>
-						</Link>
+						<NokiberButton
+							variant="outlined"
+							sx={{ borderRadius: 30 }}
+							startIcon={<ArchiveIcon />}
+							color="secondary"
+							link={`/campaign/?isClosed=true&projectId=${projectId}`}
+							label="Archived Campaigns"
+						/>
+						<NokiberButton
+							variant="contained"
+							sx={{ borderRadius: 30 }}
+							startIcon={<Add />}
+							label="Create Campaign"
+							link={`/project/${projectId}/new`}
+						/>
 					</Box>
 					<Grid container spacing={3}>
 						{
