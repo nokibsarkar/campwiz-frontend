@@ -4,7 +4,7 @@ import { useState } from "react"
 import ImportWidget from "./importWidget"
 import { ImportDialogProps } from "../ImportDialogProps"
 
-const ImportFromCommonsDialog = ({ round, onClose, afterImport }: ImportDialogProps) => {
+const ImportFromCommonsDialog = ({ round, onClose, distribute: afterImport }: ImportDialogProps) => {
     const [importing, setImporting] = useState(false);
     return (
         <Dialog open={true} onClose={onClose}>

@@ -6,14 +6,15 @@ import { Round, SubmissionResultSummary } from "@/types/round"
 import useSWR from "swr"
 import { fetchAPIFromBackendListWithErrorHandling } from "@/server"
 import { Button, LinearProgress, MenuItem, TextField } from "@mui/material"
+import { Task } from "@/app/task"
 
 type ImportFromRoundWidgetProps = {
     currentRound: Round
     importing: boolean
     setImporting: (loading: boolean) => void
-    afterImport: () => void
+    distribute: (t: Task) => void
 }
-const ImportFromRoundWidget = ({ currentRound, importing, setImporting, afterImport }: ImportFromRoundWidgetProps) => {
+const ImportFromRoundWidget = ({ currentRound, importing, setImporting, distribute: afterImport }: ImportFromRoundWidgetProps) => {
     const [taskID, setTaskID] = useState('')
     const [score, setScore] = useState<string>('')
     // const [mediaType, setMediaType] = useState<string>('')
