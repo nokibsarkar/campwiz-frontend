@@ -96,12 +96,15 @@ const ScoreOrBinaryVotingInterface = ({
 
 }: ScoreOrBinaryVotingInterfaceProps) => {
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
+
     return (
         <>
             {!noHeader && <Header returnTo={returnTo} />}
             <div className="flex sm:h-full w-full sm:flex-row flex-col" style={{
                 height: 'calc(95% - 75px)',
-            }}>
+            }}
+
+            >
 
                 <div className="relative w-full sm:w-2/3 h-3/4 flex flex-col">
                     {isSmall && <div className="relative max-h-1/12 flex flex-col items-center">

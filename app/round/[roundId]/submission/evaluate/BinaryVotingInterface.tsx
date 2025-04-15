@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { createRef, useEffect } from 'react'
 import IconButton from '@mui/material/IconButton';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
@@ -16,20 +16,40 @@ const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, onSkip, saving
     useEffect(() => {
         setCurrentScore(evaluation.score)
     }, [evaluation]);
+    const skipButton = createRef<HTMLButtonElement>();
+    const LikeButton = createRef<HTMLButtonElement>();
+    const DislikeButton = createRef<HTMLButtonElement>();
+    const previousButton = createRef<HTMLButtonElement>();
     return (
         <>
             {/* <Typography variant="h4" sx={{ fontFamily: 'Lora, serif', color: 'primary.main', textAlign: 'left', m: 1, display: 'block', width: '100%', fontSize: { xs: 24, }, fontWeight: 'bold' }}>
                 Vote
             </Typography> */}
-            <div className="flex justify-around items-center ">
+            <div className="flex justify-around items-center " onKeyUp={(e) => {
+                if (e.key === 'ArrowUp') {
+                    LikeButton.current?.click()
+                } else if (e.key === 'ArrowDown') {
+                    DislikeButton.current?.click()
+                } else if (e.key === 'ArrowLeft') {
+                    previousButton.current?.click()
+                } else if (e.key === 'ArrowRight') {
+                    skipButton.current?.click()
+                }
+            }}
+                tabIndex={0}
+            >
 
-                <IconButton color="primary" size="large" onClick={goPrevious} disabled={saving || noPrevious} loading={saving} sx={{ fontSize: 5 }} title='Previous'>
+                <IconButton color="primary" size="large" onClick={goPrevious} disabled={saving || noPrevious} loading={saving} sx={{ fontSize: 5 }} title='Previous'
+
+                    ref={previousButton}>
                     <SkipPreviousIcon fontSize='large' sx={{ fontSize: 50 }} />
                 </IconButton>
-                <IconButton color="primary" size="large" onClick={() => { setCurrentScore(0); submitScore(0); }} disabled={saving} loading={saving} sx={{ fontSize: 5 }} title='No'>
+                <IconButton color="primary" size="large" onClick={() => { setCurrentScore(0); submitScore(0); }} disabled={saving} loading={saving} sx={{ fontSize: 5 }} title='No'
+                    ref={DislikeButton}>
                     <Image src={currentScore === 0 ? CrossIcon.src : CrossOutlinedICON.src} alt="no" width={50} height={50} />
                 </IconButton>
-                <IconButton color="primary" size="large" onClick={() => { setCurrentScore(100); submitScore(100); }} disabled={saving} loading={saving} sx={{ fontSize: 5 }} title='Yes'>
+                <IconButton color="primary" size="large" onClick={() => { setCurrentScore(100); submitScore(100); }} disabled={saving} loading={saving} sx={{ fontSize: 5 }} title='Yes'
+                    ref={LikeButton}>
                     <Image src={currentScore === 100 ? OkIcon.src : OKoutlinedICON.src} alt="yes" width={50} height={50} />
                 </IconButton>
                 <Button
@@ -43,6 +63,7 @@ const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, onSkip, saving
                         goNext()
 
                     }} disabled={saving || noNext}
+                    ref={skipButton}
                     loading={saving} sx={{ fontSize: 20, px: 2, mx: 1, borderRadius: 4 }}
                     title='Skip' endIcon={null}>
                     Skip <SkipNextIcon fontSize='large' sx={{ fontSize: 40 }} />
