@@ -196,14 +196,14 @@ const RankingVotingInterface = ({ initailEvaluations, limit, roundId, isPublicJu
                     onClose={() => setCurrentSelectedForPreview(null)}
                     sx={{ textAlign: 'center' }}
                 >
-                    <DialogContent sx={{ height: 400, width: 400 }}>
+                    <DialogContent>
                         <Image
                             src={currentSelectedForPreview.thumburl}
                             alt={currentSelectedForPreview.title}
-                            // width={currentSelectedForPreview.thumbwidth || 400}
-                            // height={currentSelectedForPreview.thumbheight}
+                            width={currentSelectedForPreview.thumbwidth || 640}
+                            height={currentSelectedForPreview.thumbheight}
                             unoptimized
-                            fill
+                        // fill
                         />
                     </DialogContent>
                     <DialogActions>
