@@ -45,7 +45,7 @@ const LeaderBoardButton = ({ juryList }: { juryList: RoleWithUsername[] }) => {
                         </TableHead>
                         <TableBody>
                             {
-                                juryList.map((jury, index) => (
+                                juryList.toSorted((a, b) => b.totalEvaluated - a.totalEvaluated).map((jury, index) => (
                                     <TableRow key={jury.roleId} sx={{
                                         backgroundImage: index == 0 ? `url(${SparkleIcon.src})` : "none",
                                         backgroundPositionX: 'left',
