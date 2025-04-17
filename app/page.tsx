@@ -6,10 +6,11 @@ import { LinearProgress, Typography } from '@mui/material';
 import fetchSession from '@/server/session';
 import Header from '@/components/home/Header';
 import Footer from '@/components/home/Footer';
+import { Session } from '@/types/user/session';
 
 // Client component for conditional rendering of AssignedCampaigns
 const UserCampaignsSection = React.lazy(() => import('@/components/campaign/AssignCampaigns').then(mod => ({
-  default: ({ session }: { session: any }) => session ? <mod.default limit={5} /> : null
+  default: ({ session }: { session: Session | null }) => session ? <mod.default limit={5} /> : null
 })));
 
 const Dashboard = async () => {
