@@ -13,8 +13,6 @@ const DistributionStatusThingy = ({ taskId, onSuccess }: StatusThingyProps) => {
     useEffect(() => {
         if (!taskId) return
         const eventSource = new EventSource(`/task/${taskId}`);
-        console.log('Connecting to SSE server.', eventSource);
-
         // Handle incoming messages
         eventSource.addEventListener('task', (event) => {
             const data = JSON.parse(event.data);

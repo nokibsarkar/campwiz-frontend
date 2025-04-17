@@ -26,7 +26,7 @@ type RoundTimelineProps = {
 function RoundTimeline({ rounds, campaign, session, isCoordinator, isArchived }: RoundTimelineProps) {
     rounds = rounds?.toSorted(
         (a, b) => b.roundId.localeCompare(a.roundId)
-    ) ?? []
+    ) ?? [];
     const refresh = () => {
         if (typeof window !== 'undefined') {
             window.location.reload();
@@ -109,7 +109,6 @@ function RoundTimeline({ rounds, campaign, session, isCoordinator, isArchived }:
                         </Typography>
                     </div>
                     <Box key={i} sx={{
-
                         borderLeft: {
                             xs: 0,
                             sm: 1
