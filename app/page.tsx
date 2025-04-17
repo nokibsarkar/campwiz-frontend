@@ -3,21 +3,24 @@ import PublicRunningCampaigns from '@/components/campaign/PublicCampaigns';
 import HeroBanner from '@/components/home/HeroBanner';
 
 import { LinearProgress, Typography } from '@mui/material';
-// import Footer from '@/components/home/Footer';
 import fetchSession from '@/server/session';
 import Header from '@/components/home/Header';
-import AssignedCampaigns from '@/components/campaign/AssignCampaigns';
 import Footer from '@/components/home/Footer';
+
+// Client component for conditional rendering of AssignedCampaigns
+const UserCampaignsSection = React.lazy(() => import('@/components/campaign/AssignCampaigns').then(mod => ({
+  default: ({ session }: { session: any }) => session ? <mod.default limit={5} /> : null
+})));
+
 const Dashboard = async () => {
   const session = await fetchSession();
   return (
     <>
       <Header />
       <HeroBanner session={session} />
-      {session !== null && <React.Suspense fallback={<LinearProgress sx={{ m: 2 }} />}>
-        <AssignedCampaigns limit={5} />
+      <React.Suspense fallback={<LinearProgress sx={{ m: 2 }} />}>
+        <UserCampaignsSection session={session} />
       </React.Suspense>
-      }
 
       <div className="" style={{}}>
         <Typography variant="h4" sx={{
