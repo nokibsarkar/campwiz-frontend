@@ -67,7 +67,7 @@ const PrivacyPolicy = () => (
                         Sentry&trade; <strong>does not</strong> receive your IP address or any personally identifiable information. We’ve configured Sentry to avoid tracking or storing data that could compromise your privacy.
                     </p>
                     <p className="text-gray-700 dark:text-gray-300">
-                        For more information, please refer to Sentry&trade;&apos;s Privacy Policy: <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://sentry.io/privacy/</a>.
+                        For more information, please refer to Sentry&trade;&apos;s Privacy Policy: <a href="https://sentry.io/trust/privacy/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">https://sentry.io/privacy/</a>.
                     </p>
                 </section>
 
