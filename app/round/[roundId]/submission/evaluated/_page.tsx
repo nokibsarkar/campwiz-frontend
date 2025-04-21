@@ -18,8 +18,6 @@ import InformationIcon from '@mui/icons-material/Info';
 import SubmissionDetails from "@/app/submission/[submissionId]/_preview/Details";
 import CloseIcon from '@mui/icons-material/Close';
 
-// const ScoreOrBinaryVotingInterface = lazy(() => import("@/app/round/[roundId]/submission/evaluate/BinaryOrScoreVotingInterface2"));
-// const RankingVotingInterface = lazy(() => import("@/app/round/[roundId]/submission/evaluate/RankingVotingInterface"));
 type EvaluatedPageProps = {
     initialEvaluations: Evaluation[]
     next?: string
