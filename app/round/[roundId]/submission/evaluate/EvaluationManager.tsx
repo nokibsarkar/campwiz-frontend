@@ -152,7 +152,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
             return;
         }
         setIsLoading(true);
-        loadNextEvaluation({ roundId, limit, next, includeSubmissions: true, isPublic: isPublicJury, includeEvaluated: false, includeNonEvaluated: true }).then(async (response) => {
+        loadNextEvaluation({ roundId, limit, next, includeSubmissions: true, isPublic: isPublicJury, includeEvaluated: false, includeNonEvaluated: true, randomize: true }).then(async (response) => {
             if (!response) {
                 return;
             }

@@ -10,8 +10,9 @@ type EvaluationFilter = {
     isPublic: boolean
     includeEvaluated?: boolean
     includeNonEvaluated?: boolean
+    randomize?: boolean
 }
-const loadNextEvaluation = async ({ roundId, includeSkipped, limit, next, prev, includeSubmissions, isPublic, includeEvaluated, includeNonEvaluated }: EvaluationFilter) => {
+const loadNextEvaluation = async ({ roundId, includeSkipped, limit, next, prev, includeSubmissions, isPublic, includeEvaluated, includeNonEvaluated, randomize }: EvaluationFilter) => {
     const qs = new URLSearchParams({
         roundId: roundId
     });
@@ -31,6 +32,8 @@ const loadNextEvaluation = async ({ roundId, includeSkipped, limit, next, prev, 
         qs.append('includeEvaluated', includeEvaluated.toString());
     if (typeof includeNonEvaluated !== 'undefined')
         qs.append('includeNonEvaluated', includeNonEvaluated.toString());
+    if (typeof randomize !== 'undefined')
+        qs.append('randomize', String(randomize))
     console.log('loadNextEvaluation', qs.toString());
     const url = (isPublic ? `/round/${roundId}/next/public` : `/evaluation/`) + `?${qs.toString()}`;
     const response = await fetchAPIFromBackendListWithErrorHandling<Evaluation>(url);
