@@ -5,7 +5,7 @@ const PrivacyPolicy = () => (
         <div className="bg-gray-100 dark:bg-gray-900 min-h-screen py-8">
             <div className="container mx-auto px-4">
                 <h1 className="text-3xl font-bold mb-4 text-center text-gray-900 dark:text-gray-200">Privacy Policy</h1>
-                <p className="text-center text-gray-600 dark:text-gray-400 mb-8"><strong>Effective Date:</strong> April 4, 2025</p>
+                <p className="text-center text-gray-600 dark:text-gray-400 mb-8"><strong>Effective Date:</strong> April 15, 2025</p>
 
                 <section className="mb-8">
                     <p className="mb-4 text-gray-700 dark:text-gray-300">
