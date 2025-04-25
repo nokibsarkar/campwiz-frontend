@@ -13,63 +13,21 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Evaluation, Submission } from "@/types/submission";
 import { EvaluationType, Round } from "@/types/round";
 import { useState } from "react";
-import loadNextEvaluation from "../loadNextEvaluation";
 import InformationIcon from '@mui/icons-material/Info';
 import SubmissionDetails from "@/app/submission/[submissionId]/_preview/Details";
 import CloseIcon from '@mui/icons-material/Close';
+import { usePathname } from "next/navigation";
 
 type EvaluatedPageProps = {
     initialEvaluations: Evaluation[]
     next?: string
     round: Round
+    prev?: string | null
 }
-const ActualPage = ({ initialEvaluations, next: initialNext, round }: EvaluatedPageProps) => {
-    const [evaluations, setEvaluations] = useState<Evaluation[]>(initialEvaluations);
-    const [previousToken, setPreviousToken] = useState<string | null>(null);
-    const [next, setNext] = useState<string | null>(initialNext || null);
-    const [loading, setLoading] = useState(false);
+const ActualPage = ({ initialEvaluations: evaluations, next, round, prev: previousToken }: EvaluatedPageProps) => {
+    "use client"
     const [selectedSubmission, setSelectedSubmission] = useState<Submission | null>(null);
-    const loadWithToken = async ({ nextToken, previousToken }: { nextToken?: string | null, previousToken?: string | null }) => {
-        let evs: Evaluation[] = []
-        setLoading(true);
-        const params = {
-            isPublic: false, //round.isPublicJury,
-            roundId: round.roundId,
-            limit: 20,
-            includeSubmissions: true,
-            includeEvaluated: true,
-            includeNonEvaluated: false
-        }
-        if (previousToken) {
-            if (previousToken === initialNext) {
-                evs = initialEvaluations;
-                setPreviousToken(null);
-                setNext(initialNext);
-            } else {
-                const response = await loadNextEvaluation({ ...params, prev: previousToken });
-                if (response) {
-                    if ('detail' in response) {
-                        return;
-                    }
-                    evs = response.data;
-                    setPreviousToken(nextToken || null);
-                    setNext(response.next || null);
-                }
-            }
-        } else if (nextToken) {
-            const response = await loadNextEvaluation({ ...params, next: nextToken });
-            if (response) {
-                if ('detail' in response) {
-                    return;
-                }
-                evs = response.data;
-                setPreviousToken(nextToken || null);
-                setNext(response.next || null);
-            }
-        }
-        setEvaluations(evs);
-        setLoading(false);
-    }
+    const returnTo = usePathname();
     return <div>
         {selectedSubmission && <Dialog
             open={selectedSubmission !== null}
@@ -94,32 +52,24 @@ const ActualPage = ({ initialEvaluations, next: initialNext, round }: EvaluatedP
         </Dialog>
         }
         <div className="flex justify-around m-4 flex-row">
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                    if (previousToken)
-                        loadWithToken({ previousToken });
-                }}
-                disabled={!previousToken || loading}
-                startIcon={<ArrowBackIcon />}
-                loading={loading}
-            >
-                Previous
-            </Button>
-
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                    loadWithToken({ nextToken: next });
-                }}
-                endIcon={<ArrowForwardIcon />}
-                disabled={!next || loading}
-                loading={loading}
-            >
-                Next
-            </Button>
+            <Link href={`/round/${round.roundId}/submission/evaluated/page/${previousToken}/prev`} style={{ visibility: previousToken ? 'visible' : 'hidden' }}>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    startIcon={<ArrowBackIcon />}
+                >
+                    Previous
+                </Button>
+            </Link>
+            <Link href={`/round/${round.roundId}/submission/evaluated/page/${next}`} style={{ visibility: next ? 'visible' : 'hidden' }}>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    endIcon={<ArrowForwardIcon />}
+                >
+                    Next
+                </Button>
+            </Link>
 
         </div>
         <Table>
@@ -164,7 +114,7 @@ const ActualPage = ({ initialEvaluations, next: initialNext, round }: EvaluatedP
                                 <InformationIcon />
                             </IconButton>
                             <IconButton>
-                                <Link href={`/round/${evaluation.roundId}/submission/evaluated/${evaluation.evaluationId}`}>
+                                <Link href={`/round/${evaluation.roundId}/submission/evaluated/${evaluation.evaluationId}?back=${returnTo}`}>
                                     <EditIcon />
                                 </Link>
                             </IconButton>
