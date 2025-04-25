@@ -9,12 +9,14 @@ import Link from "next/link"
 import { Button } from "@mui/material"
 import EditIcon from '@mui/icons-material/Edit';
 import ArrowBackward from '@mui/icons-material/ArrowBack';
+import { useSearchParams } from "next/navigation"
 type KichuEktaProps = {
     round: Round
     evaluation: Evaluation
     submission: Submission
 }
 const SavingSuccess = ({ returnTo, close }: { returnTo: string, close: () => void, skipCount: number }) => {
+    "use client"
     return <div className="flex flex-col items-center justify-center h-screen">
         <TickIcon className="text-green-500" fontSize="large" />
         <div className="text-lg mt-4">Your vote has been saved successfully.</div>
@@ -36,6 +38,9 @@ const SavingSuccess = ({ returnTo, close }: { returnTo: string, close: () => voi
     </div>
 }
 const KichuEkta = ({ round, evaluation, submission }: KichuEktaProps) => {
+    "use client"
+    const searchParams = useSearchParams()
+    const returnTo = searchParams.get('back') || `/round/${round.roundId}/submission/evaluated`
     const [imageLoaded, setImageLoaded] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [saving, setSaving] = useState(false);
@@ -79,7 +84,7 @@ const KichuEkta = ({ round, evaluation, submission }: KichuEktaProps) => {
     }
 
     return !saving && showResponse ? (
-        <SavingSuccess returnTo={`/round/${round.roundId}/submission/evaluated`} close={() => { setShowResponse(false); setShowProgress(false); setImageLoaded(true); }} skipCount={skipCount} />
+        <SavingSuccess returnTo={returnTo} close={() => { setShowResponse(false); setShowProgress(false); setImageLoaded(true); }} skipCount={skipCount} />
     ) : (
         <ScoreOrBinaryVotingInterface
             assignmentCount={assignmentCount}
@@ -97,7 +102,7 @@ const KichuEkta = ({ round, evaluation, submission }: KichuEktaProps) => {
             setCurrentCursor={() => { }}
             submission={submission}
             submit={submit}
-            returnTo={`/round/${round.roundId}/submission/evaluated`}
+            returnTo={returnTo}
             hasNext={false}
             showProgress={showProgress}
             noHeader
