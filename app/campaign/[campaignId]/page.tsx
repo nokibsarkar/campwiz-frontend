@@ -48,7 +48,7 @@ const CampaignViewPage = async ({ params }: CampaignViewPageProps) => {
                 m: 1,
             }}>
                 <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Typography variant="h2" sx={{
+                    <Typography variant="h4" sx={{
                         overflowWrap: 'anywhere',
                     }}>
                         {campaign.name}
