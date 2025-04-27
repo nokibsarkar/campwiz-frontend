@@ -1,5 +1,4 @@
 import fetchSession from "@/server/session";
-import { setUser } from "@sentry/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 // import LanguageDetectorMiddleware from "./languageDetector";
 
@@ -14,15 +13,7 @@ const AuthorizationMiddleWare = async (req: NextRequest) => {
             url.searchParams.set('next', req.nextUrl.pathname)
             return NextResponse.redirect(url)
         }
-        setUser({
-            id: session.id,
-            username: session.username,
-            data: {
-                permission: session.permission,
-                projectId: session.projectId,
-                registeredAt: session.registeredAt,
-            },
-        })
+
     }
     return NextResponse.next()
 }
