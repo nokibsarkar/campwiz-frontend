@@ -9,7 +9,7 @@ await(async function () {
     const lastRound = rounds[0]
     const { jury, roles } = lastRound
     var p = ''
-    for (const v of roles) {
+    for (const v of roles.toSorted((a, b) => b.totalEvaluated - a.totalEvaluated)) {
         const { userId, totalEvaluated, totalAssigned } = v
         const username = jury[userId]
         p += `${username} - ${(100 * totalEvaluated / totalAssigned).toFixed(1)}% completed\n${totalEvaluated} out ${totalAssigned}, ${totalAssigned - totalEvaluated} remaining\n\n`
