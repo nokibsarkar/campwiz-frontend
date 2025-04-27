@@ -6,6 +6,7 @@ import * as Sentry from "@sentry/nextjs";
 const sentryIntegrations = [
   Sentry.replayIntegration(),
 ];
+console.log("Base URL: ", process.env.NEXT_BASE_URL);
 console.log("Sentry DSN: ", process.env.NEXT_PUBLIC_SENTRY_DSN);
 console.log("Sentry NODE_ENV: ", process.env.NODE_ENV);
 console.log("Sentry enabled: ", process.env.NEXT_PUBLIC_SENTRY_DSN !== undefined && !process.env.NODE_ENV.startsWith("dev"));
