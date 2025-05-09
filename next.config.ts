@@ -16,15 +16,18 @@ let nextConfig: NextConfig = {
     // Important: return the modified config
     return config
   },
+  turbopack: {
+    rules: {
+      '*.lottie': ['@noxfed/lottie-webpack-loader'],
+      // '*.svg': ['@svgr/webpack']
+    }
+  },
+
   experimental: {
     webpackMemoryOptimizations: true,
     webpackBuildWorker: true,
-    turbo: {
-      rules: {
-        '*.lottie': ['@noxfed/lottie-webpack-loader'],
-        // '*.svg': ['@svgr/webpack']
-      }
-    }
+    clientTraceMetadata: ['webpackChunkName'],
+
   },
   images: {
     remotePatterns: [

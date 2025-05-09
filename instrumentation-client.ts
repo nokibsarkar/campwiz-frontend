@@ -23,3 +23,4 @@ Sentry.init({
   sendDefaultPii: false,
   environment: process.env.NODE_ENV,
 });
+export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
