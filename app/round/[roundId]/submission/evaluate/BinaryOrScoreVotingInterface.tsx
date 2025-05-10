@@ -126,6 +126,10 @@ const ScoreOrBinaryVotingInterface = ({
                             width={submission.thumbwidth || 640}
                             height={submission.thumbheight}
                             unoptimized
+                            onError={(e) => {
+                                console.log('Error loading image', e);
+                                setImageLoaded(true)
+                            }}
                         />
                     }
                     {submission.mediatype === MediaType.VIDEO &&
