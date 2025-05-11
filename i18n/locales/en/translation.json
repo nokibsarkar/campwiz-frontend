@@ -8,9 +8,35 @@
         "logout": "Logout",
         "dashboard": "Dashboard",
         "doc": "Doc",
-        "login": "Login"
+        "login": "Login",
+        "guest": ""
+    },
+    "settings": {
+        "title": "Settings",
+        "language": "Language",
+        "darkMode": "Dark Mode",
+        "lightMode": "Light Mode",
+        "save": "Save",
+        "cancel": "Cancel",
+        "theme": "Theme"
     },
     "error": {
         "noAssignedCampaigns": "No assigned campaigns"
+    },
+    "close": "Close",
+    "languages": {
+        "en": "English",
+        "bn": "Bengali (বাংলা)",
+        "ar": "Arabic (العربية)",
+        "hi": "Hindi (हिन्दी)",
+        "es": "Spanish (Español)",
+        "fr": "French (Français)",
+        "de": "German (Deutsch)",
+        "it": "Italian (Italiano)",
+        "ja": "Japanese (日本語)",
+        "ko": "Korean (한국어)",
+        "pt": "Portuguese (Português)",
+        "ru": "Russian (Русский)",
+        "zh": "Chinese (中文)"
     }
 }

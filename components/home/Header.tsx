@@ -3,8 +3,8 @@ import Image from "next/image"
 import LogoSvg from '@/public/logo.svg'
 import ReturnButton from "../ReturnButton"
 import { LogoutButtton } from "./Buttons"
-import ThemeSwitherButton from "./ThemeswitcherButton"
 import Link from "next/link"
+import SettingButton from "../user/SettingButton"
 type HeaderProps = {
     returnTo?: string
 }
@@ -15,8 +15,10 @@ const Header = ({ returnTo }: HeaderProps) => {
             <Link href='/' style={{ margin: 'auto', display: 'inline-block' }}>
                 <Image src={LogoSvg} alt="Logo of CampWiz" height={75} style={{ margin: 'auto' }} priority />
             </Link>
-            <ThemeSwitherButton />
+
+            <SettingButton />
             <LogoutButtton hiddenIn={['^\/$', '^\/user\/login$']} />
+
         </header>
     )
 }

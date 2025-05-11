@@ -2,12 +2,41 @@
     "title": "CampWiz NXT",
     "home": {
         "welcome": "স্বাগতম {{name}}",
-        "subtitle": "Taking jury experience to another level",
+        "subtitle": "পর্যালোচনার অভিজ্ঞতাকে নতুন স্তরে নিয়ে যাই",
         "publicRunningCampaigns": "উন্মুক্ত চলমান প্রতিযোগিতা",
         "yourCampaigns": "আপনার প্রতিযোগিতা",
         "logout": "প্রস্থান",
         "dashboard": "ড্যাশবোর্ড",
         "doc": "নথি",
-        "login": "প্রবেশ"
+        "login": "প্রবেশ",
+        "guest": ""
+    },
+    "settings": {
+        "title": "সেটিংস",
+        "language": "ভাষা",
+        "darkMode": "Dark Mode",
+        "lightMode": "Light Mode",
+        "save": "Save",
+        "cancel": "বাতিল",
+        "theme": "থিম"
+    },
+    "error": {
+        "noAssignedCampaigns": "No assigned campaigns"
+    },
+    "close": "বন্ধ করুন",
+    "languages": {
+        "en": "ইংরেজি (English)",
+        "bn": "বাংলা",
+        "ar": "আরবি (العربية)",
+        "hi": "হিন্দি (हिन्दी)",
+        "es": "স্প্যানিশ (Español)",
+        "fr": "ফরাসি (Français)",
+        "de": "জার্মান (Deutsch)",
+        "it": "ইতালীয় (Italiano)",
+        "ja": "জাপানি (日本語)",
+        "ko": "কোরিয়ান (한국어)",
+        "pt": "পোর্তুগিজ (Português)",
+        "ru": "রাশিয়ান (Русский)",
+        "zh": "চীনা (中文)"
     }
 }
