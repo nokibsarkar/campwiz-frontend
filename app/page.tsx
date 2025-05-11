@@ -7,6 +7,7 @@ import fetchSession from '@/server/session';
 import Header from '@/components/home/Header';
 import Footer from '@/components/home/Footer';
 import { Session } from '@/types/user/session';
+import { uTranslation } from '@/i18n';
 
 // Client component for conditional rendering of AssignedCampaigns
 const UserCampaignsSection = React.lazy(() => import('@/components/campaign/AssignCampaigns').then(mod => ({
@@ -15,6 +16,7 @@ const UserCampaignsSection = React.lazy(() => import('@/components/campaign/Assi
 
 const Dashboard = async () => {
   const session = await fetchSession();
+  const { t } = await uTranslation()
   return (
     <>
       <Header />
@@ -29,7 +31,7 @@ const Dashboard = async () => {
           // backgroundImage: 'linear-gradient(to right, red 20%,  blue 80%)',
           backgroundClip: 'text'
         }} color='error'>
-          Public Running Campaigns
+          {t('home.publicRunningCampaigns')}
         </Typography>
         <PublicRunningCampaigns limit={10} />
       </div>

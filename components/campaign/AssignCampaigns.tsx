@@ -7,6 +7,7 @@ import SingleCampaignChip from "./SingleCampaignChip"
 import { Box, Skeleton, Typography } from "@mui/material"
 import PerCampaignBackground from "@/public/campaign5.svg"
 import LoadMoreCampaignChip from "./LoadMoreCampaign"
+import { useTranslation } from "@/i18n/client"
 
 type AssignedCampaignProps = {
     limit: number
@@ -14,6 +15,7 @@ type AssignedCampaignProps = {
 const AssignedCampaigns = ({ limit }: AssignedCampaignProps) => {
     const qs = new URLSearchParams({ limit: String(limit), isClosed: 'false', isHidden: 'true', sortOrder: 'desc' }).toString()
     const showAllQs = new URLSearchParams({ limit: String(20), isClosed: 'false', isHidden: 'true' }).toString()
+    const { t } = useTranslation()
     const { data: publicCampaignResponse, error, isLoading } = useSWR('/campaign/?' + qs.toString(), fetchAPIFromBackendSingleWithErrorHandling<Campaign[]>);
     if (isLoading) return <Skeleton variant="rectangular" width='100%' height={200} />
     if (error) return <p>Error : {error.message}</p>
@@ -29,7 +31,7 @@ const AssignedCampaigns = ({ limit }: AssignedCampaignProps) => {
             // color: 'transparent',
             backgroundClip: 'text'
         }} color="error">
-            Your Campaigns
+            {t('home.yourCampaigns')}
         </Typography>
         <Box sx={{
             display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap', px: 2,
@@ -42,7 +44,7 @@ const AssignedCampaigns = ({ limit }: AssignedCampaignProps) => {
                 ))}
                 <LoadMoreCampaignChip link={"/campaign?" + showAllQs.toString()} />
             </> : <div>
-                <p>No Campaigns Assigned</p>
+                <p>{t('errors.noAssignedCampaigns')}</p>
             </div>}
         </Box>
     </div>

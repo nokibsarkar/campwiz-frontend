@@ -1,4 +1,16 @@
 {
-    "title": "Hi there!",
-    "publicRunningCampaigns": "Public Running Campaigns"
+    "title": "CampWiz NXT",
+    "home": {
+        "welcome": "Welcome {{name}}",
+        "subtitle": "Taking jury experience to another level",
+        "publicRunningCampaigns": "Public Running Campaigns",
+        "yourCampaigns": "Your Campaigns",
+        "logout": "Logout",
+        "dashboard": "Dashboard",
+        "doc": "Doc",
+        "login": "Login"
+    },
+    "error": {
+        "noAssignedCampaigns": "No assigned campaigns"
+    }
 }

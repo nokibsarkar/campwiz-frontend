@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 import LogoSvg from '@/public/logo.svg'
 import ReturnButton from "../ReturnButton"

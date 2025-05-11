@@ -1,8 +1,10 @@
-
+"use server"
+import { uTranslation } from '@/i18n';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import Button from '@mui/material/Button';
 import Link from 'next/link';
-const LoginButton = () => {
+const LoginButton = async () => {
+    const { t } = await uTranslation()
     const sx = {
         bgcolor: "#006699", // Blue background color
         color: "#fff", // White text color
@@ -22,7 +24,7 @@ const LoginButton = () => {
                 startIcon={<LockOpenIcon />}
                 sx={sx}
             >
-                Login
+                {t('home.login')}
             </Button>
         </Link>
     )

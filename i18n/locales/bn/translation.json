@@ -1,4 +1,13 @@
 {
-    "title": "বিক্রেতা",
-    "publicRunningCampaigns": "পরিচালিত"
+    "title": "CampWiz NXT",
+    "home": {
+        "welcome": "স্বাগতম {{name}}",
+        "subtitle": "Taking jury experience to another level",
+        "publicRunningCampaigns": "উন্মুক্ত চলমান প্রতিযোগিতা",
+        "yourCampaigns": "আপনার প্রতিযোগিতা",
+        "logout": "প্রস্থান",
+        "dashboard": "ড্যাশবোর্ড",
+        "doc": "নথি",
+        "login": "প্রবেশ"
+    }
 }

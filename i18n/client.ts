@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import i18next, { FlatNamespace, KeyPrefix } from 'i18next'
 import { initReactI18next, useTranslation as useTranslationOrg, UseTranslationOptions, UseTranslationResponse, FallbackNs } from 'react-i18next'
-import { getCookie, setCookie } from 'cookies-next'
+import { getCookie, setCookie } from 'cookies-next/client'
 import resourcesToBackend from 'i18next-resources-to-backend'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import getOptions, { languages, cookieName } from './settings'
@@ -25,7 +25,7 @@ i18next
     })
 
 export function useTranslation<Ns extends FlatNamespace, KPrefix extends KeyPrefix<FallbackNs<Ns>> = undefined>(
-    lng: string,
+    lng?: string,
     ns?: Ns,
     options?: UseTranslationOptions<KPrefix>,
 ): UseTranslationResponse<FallbackNs<Ns>, KPrefix> {
@@ -49,6 +49,7 @@ export function useTranslation<Ns extends FlatNamespace, KPrefix extends KeyPref
         }, [lng, i18n])
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
+            if (!lng) return
             if (i18nextCookie === lng) return
             setCookie(cookieName, lng, { path: '/' })
         }, [lng, i18nextCookie])

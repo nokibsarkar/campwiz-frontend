@@ -7,10 +7,11 @@ import logout from "./logout";
 // import IconButton from '@mui/material/IconButton';
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { useTranslation } from "@/i18n/client";
 // import { useTranslation } from "@/i18n/client";
 
 export const DhashboardButton = ({ projectId, canAccessOtherProject }: { projectId: string | null, canAccessOtherProject: boolean }) => {
-    // const { t } = useTranslation('bn')
+    const { t } = useTranslation()
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
     const url = canAccessOtherProject ? `/project/` : `/project/${projectId}`;
     const sx = {
@@ -35,7 +36,7 @@ export const DhashboardButton = ({ projectId, canAccessOtherProject }: { project
                 startIcon={<DashboardIcon />}
                 sx={sx}
             >
-                {isSmall ? null : 'Dashboard'}
+                {isSmall ? null : t('home.dashboard')}
             </Button>
             }
         </Link>
@@ -43,6 +44,7 @@ export const DhashboardButton = ({ projectId, canAccessOtherProject }: { project
 }
 
 export const LogoutButtton = ({ hiddenIn, refresh = false }: { hiddenIn?: string[], refresh?: boolean }) => {
+    const { t } = useTranslation()
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
     const pathName = usePathname()
     const sx = {
@@ -82,7 +84,7 @@ export const LogoutButtton = ({ hiddenIn, refresh = false }: { hiddenIn?: string
             color="error"
             sx={sx}
         >
-            {!isSmall && 'Logout'}
+            {!isSmall && t('home.logout')}
         </Button>
 
     )

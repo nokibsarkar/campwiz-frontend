@@ -1,3 +1,4 @@
+
 import { cookieName, fallbackLng, languages } from "@/i18n/settings"
 import type { Language } from "@/types/i18n"
 import acceptLanguage from 'accept-language'
@@ -15,7 +16,6 @@ const LanguageDetectorMiddleware = async (req: NextRequest) => {
     if (!languages.includes(lng))
         lng = fallbackLng
     const cookieStore = await cookies();
-    console.log("Detected language", lng)
     cookieStore.set(cookieName, lng, { path: '/', httpOnly: false, sameSite: 'strict' })
 }
 export default LanguageDetectorMiddleware;

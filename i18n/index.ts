@@ -1,8 +1,10 @@
+"use server"
 import { createInstance } from 'i18next'
 import resourcesToBackend from 'i18next-resources-to-backend'
 import { initReactI18next } from 'react-i18next/initReactI18next'
-import getOptions, { defaultNS } from './settings'
+import getOptions, { cookieName, defaultNS } from './settings'
 import type { Language, TranslationNamespace, UseTranslationOptions } from '@/types/i18n'
+import { cookies } from 'next/headers'
 
 const initI18next = async (lng?: Language, ns?: TranslationNamespace) => {
     const i18nInstance = createInstance()
@@ -13,9 +15,11 @@ const initI18next = async (lng?: Language, ns?: TranslationNamespace) => {
     return i18nInstance
 }
 
-export async function useTranslation(lng?: Language, ns?: TranslationNamespace, options?: UseTranslationOptions) {
+export async function uTranslation(lng?: Language, ns?: TranslationNamespace, options?: UseTranslationOptions) {
+    const cookieStore = await cookies()
+    const i18nextCookie = cookieStore.get(cookieName)?.value
     ns = ns || defaultNS
-    const i18nextInstance = await initI18next(lng, ns)
+    const i18nextInstance = await initI18next(lng || i18nextCookie as Language, ns)
     return {
         t: i18nextInstance.getFixedT(i18nextInstance.language, Array.isArray(ns) ? ns[0] : ns, options?.keyPrefix),
         i18n: i18nextInstance
