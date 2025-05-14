@@ -47,7 +47,6 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
           NEXT_PUBLIC_SENTRY_DSN: ${{ vars.NEXT_PUBLIC_SENTRY_DSN }}
         run: |
-
           yarn build
       - name: Package Build
         run: |
@@ -64,7 +63,9 @@ jobs:
       - name: Send Build to Server
         run: |
           rsync -Pav --no-perms --omit-dir-times -e "ssh -i id_rsa" .next/standalone/ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH }}" --exclude='.next/standalone/cache' --exclude='.next/cache'
+
       - name: Restart Campwiz
+        if: ${{ vars.ENVIRONMENT }} !== 'toolforge'
         run: |
           ssh -i id_rsa "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "cd ${{ secrets.SSH_REMOTE_PATH }} && pm2 restart ecosystem.config.js --update-env"
       - name: Delete SSH Key
