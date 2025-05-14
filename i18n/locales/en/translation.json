@@ -25,6 +25,9 @@
         "loginWithWikimedia": "Login with Wikimedia",
         "afterLoginRedirect": " After this process, you will be redirected back to the following page:"
     },
+    "campaign": {
+        "createCampaign": "Create Campaign",
+    },
     "footer": {
         "campwizNxtTeam": "Campwiz NXT Team",
         "manual": "Manual",

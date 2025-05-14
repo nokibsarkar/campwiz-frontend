@@ -11,6 +11,7 @@ import LoadingPopup from "@/components/LoadingPopup";
 import AddIcon from '@mui/icons-material/Add';
 import LoginBackground from "@/public/snowy-hill.svg";
 import Logo from "@/components/Logo";
+import { useTranslation } from "@/i18n/client";
 const CampaignCreationSuccess = lazy(() => import('@/app/project/[projectId]/new/success'));
 
 const CreateCampaign_ = ({ projectLeads, projectId }: { projectLeads: string[], projectId: string }) => {
@@ -19,6 +20,7 @@ const CreateCampaign_ = ({ projectLeads, projectId }: { projectLeads: string[], 
     const { data: createdCampaign = null, trigger, isMutating: loading } = useSWRMutation<Campaign | undefined>('/api/campaign', createCampaign.bind(null, campaign), {
         onError: setError,
     });
+    const { t } = useTranslation()
     return (
         <div style={{
             // position: 'absolute', 
@@ -39,14 +41,13 @@ const CreateCampaign_ = ({ projectLeads, projectId }: { projectLeads: string[], 
                 }}>
                 {createdCampaign ? <CampaignCreationSuccess {...createdCampaign} /> :
                     <div className="p-2 px-3 rounded-2xl w-full max-w-4xl relative h-max bg-[rgba(248,246,246,0.8)] dark:bg-[#2c2c2c] m-auto">
-
                         <Logo />
                         <Typography variant="h3" sx={{ mb: 4, textAlign: 'center', fontSize: { xs: 24, sm: 48 } }}>
-                            Create Campaign
+                            {t('campaign.createCampaign')}
                         </Typography>
                         {loading && <LoadingPopup src="/lottie/creating.lottie" />}
                         <CampaignEditForm {...campaign} loading={loading} dispatch={campaignDispatch} />
-                        {error && <Typography variant="body1" color="error" sx={{ mb: 1 }}>{error.message}</Typography>}
+                        {error && <Typography variant="body1" color="error" sx={{ mb: 1 }}>{t(error.message)}</Typography>}
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
                             <ReturnButton disabled={loading} sx={{ m: 0, borderRadius: 10, px: 2 }} />
                             <Button
@@ -58,7 +59,7 @@ const CreateCampaign_ = ({ projectLeads, projectId }: { projectLeads: string[], 
                                 startIcon={<AddIcon />}
                             >
                                 <CircularProgress size={24} color="inherit" sx={{ display: loading ? 'inline-block' : 'none', mr: 1 }} />
-                                Create Campaign
+                                {t('campaign.createCampaign')}
                             </Button>
                         </div>
                     </div>}
