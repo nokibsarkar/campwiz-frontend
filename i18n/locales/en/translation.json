@@ -20,6 +20,11 @@
         "cancel": "Cancel",
         "theme": "Theme"
     },
+    "login": {
+        "title": "Let's get started",
+        "loginWithWikimedia": "Login with Wikimedia",
+        "afterLoginRedirect": " After this process, you will be redirected back to the following page:"
+    },
     "error": {
         "noAssignedCampaigns": "No assigned campaigns"
     },

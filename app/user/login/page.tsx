@@ -13,6 +13,7 @@ import LottieWrapper from "@/components/LottieWrapper";
 import Image from "next/image";
 import { useState } from "react";
 import WikipediaIcon from "@/components/WikipediaIcon";
+import { useTranslation } from "@/i18n/client";
 
 const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
     const searchParams = useSearchParams()
@@ -20,6 +21,7 @@ const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
     const baseURI = typeof window !== 'undefined' ? location.origin : '';
     const [clicked, setClicked] = useState(false);
     const [error, setError] = useState<Error | null>(null);
+    const { t } = useTranslation()
     return (
         <Paper sx={{
             padding: 2,
@@ -50,9 +52,9 @@ const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
             <Image src='/logo.svg' alt="Logo" width={100} height={100} style={{ margin: 'auto' }} />
             <LottieWrapper src='/lottie/login-required.lottie' loop={true} />
             <Typography variant="h5" sx={{ mb: 2 }}>
-                Let&apos;s Get Started
+                {t('login.title')}
             </Typography>
-            {error && <Typography variant="body1" color="error" sx={{ mb: 1 }}>{error.message}</Typography>}
+            {error && <Typography variant="body1" color="error" sx={{ mb: 1 }}>{t(error.message)}</Typography>}
             <Button
                 onClick={() => {
                     setError(null);
@@ -76,15 +78,14 @@ const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
                 startIcon={<WikipediaIcon />}
                 endIcon={!clicked && <ArrowForward />}
             >
-                Login with Wikimedia
-
+                {t('login.loginWithWikimedia')}
                 {clicked && <CircularProgress size={24} sx={{ ml: 1 }} />}
             </Button>
             <Typography variant="body1" sx={{ mt: 2 }}>
                 By clicking the button above, you agree to the <Link style={{ color: 'blue' }} href="/policy/terms">Terms of Service</Link> and <Link style={{ color: 'blue' }} href="/policy/privacy">Privacy Policy</Link>.
             </Typography>
             {next && <><Typography variant="body2" sx={{ mt: 2 }}>
-                After this process, you will be redirected back to the following page:
+                {t('login.afterLoginRedirect')}
             </Typography>
                 <Typography variant="body2" sx={{ mt: 2 }}>
                     {next}
