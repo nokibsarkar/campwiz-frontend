@@ -82,7 +82,8 @@ jobs:
           ssh -i id_rsa "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" <<EOF
           become campwiz
           toolforge webservice restart
-          quit
+          exit
+          exit
           EOF
 
       - name: Delete SSH Key
