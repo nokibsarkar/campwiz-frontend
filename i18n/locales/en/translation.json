@@ -25,6 +25,13 @@
         "loginWithWikimedia": "Login with Wikimedia",
         "afterLoginRedirect": " After this process, you will be redirected back to the following page:"
     },
+    "footer": {
+        "campwizNxtTeam": "Campwiz NXT Team",
+        "manual": "Manual",
+        "terms": "Terms",
+        "privacy": "Privacy",
+        "reportBug": "Report a bug"
+    },
     "error": {
         "noAssignedCampaigns": "No assigned campaigns"
     },
