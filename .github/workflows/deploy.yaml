@@ -71,7 +71,7 @@ jobs:
           rsync -Pav --no-perms --omit-dir-times -e "ssh -i id_rsa" .next/standalone/ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH }}" --exclude='.next/standalone/cache' --exclude='.next/cache'
 
       - name: Restart Campwiz
-        if: ${{ vars.ENVIRONMENT }} != 'toolforge'
+        if: vars.ENVIRONMENT !== 'toolforge'
         run: |
           echo ${{ vars.ENVIRONMENT }}
           ssh -i id_rsa "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "cd ${{ secrets.SSH_REMOTE_PATH }} && pm2 restart ecosystem.config.js --update-env"
