@@ -75,6 +75,16 @@ jobs:
         run: |
           echo ${{ vars.ENVIRONMENT }}
           ssh -i id_rsa "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "cd ${{ secrets.SSH_REMOTE_PATH }} && pm2 restart ecosystem.config.js --update-env"
+      - name: Restart Campwiz
+        if: vars.ENVIRONMENT == 'toolforge'
+        run: |
+          echo ${{ vars.ENVIRONMENT }}
+          ssh -i id_rsa "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" <<EOF
+          become campwiz
+          toolforge webservice restart
+          quit
+          EOF
+
       - name: Delete SSH Key
         run: |
           rm id_rsa
