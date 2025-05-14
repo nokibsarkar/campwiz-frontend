@@ -7,8 +7,14 @@ on:
       - main
 jobs:
   build:
+    strategy:
+      matrix:
+        environment:
+          - Test
+          - Toolforge
     runs-on: ubuntu-latest
-    environment: Test
+    environment: ${{ matrix.environment }}
+
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js
