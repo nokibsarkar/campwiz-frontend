@@ -1,3 +1,4 @@
+"use client"
 import { Campaign } from "@/types"
 import { Button, Card, CardActions, CardContent, CardHeader, Typography } from "@mui/material"
 import { styled } from '@mui/material/styles';
@@ -5,6 +6,7 @@ import Link from "next/link"
 import RightArrowIcon from '@mui/icons-material/KeyboardArrowRight';
 import Status from "@/components/round/Status";
 import { RoundStatus } from "@/types/round/status";
+import { useTranslation } from "react-i18next";
 // import Image from "next/image";
 
 type SingleCampaignChipProps = {
@@ -22,6 +24,7 @@ const StyledCard = styled(Card)`
   `}
 `;
 const SingleCampaignChip = ({ campaign }: SingleCampaignChipProps) => {
+    const { t } = useTranslation()
     return (
         <StyledCard sx={{
             cursor: 'pointer',
@@ -60,7 +63,7 @@ const SingleCampaignChip = ({ campaign }: SingleCampaignChipProps) => {
                 <Status status={campaign.archivedAt === null ? RoundStatus.ACTIVE : RoundStatus.ARCHIVED} />
                 <Link href={`/campaign/${campaign.campaignId}`} style={{}}>
                     <Button color="primary" endIcon={<RightArrowIcon />} variant="outlined" sx={{ borderRadius: 8, px: 2 }}>
-                        Go to Campaign
+                        {t('campaign.goToCampaign')}
                     </Button>
 
                 </Link>

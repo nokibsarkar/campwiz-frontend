@@ -29,7 +29,8 @@
         "afterLoginRedirect": "এই প্রক্রিয়ার পরে আপনাকে নিম্নলিখিত পৃষ্ঠায় পুনঃনির্দেশিত করা হবে:"
     },
     "campaign": {
-        "createCampaign": "প্রতিযোগিতা তৈরি করুন"
+        "createCampaign": "প্রতিযোগিতা তৈরি করুন",
+        "showAllCampaigns": "সব প্রতিযোগিতা দেখুন"
     },
     "footer": {
         "campwizNxtTeam": "Campwiz NXT দল",

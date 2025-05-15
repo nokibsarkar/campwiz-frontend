@@ -42,7 +42,7 @@ const AssignedCampaigns = ({ limit }: AssignedCampaignProps) => {
                 {(publicCampaignResponse.data || []).map((v, i) => (
                     <SingleCampaignChip campaign={v} key={i} />
                 ))}
-                <LoadMoreCampaignChip link={"/campaign?" + showAllQs.toString()} />
+                <LoadMoreCampaignChip link={"/campaign?" + showAllQs.toString()} labelText={t('campaign.showAllCampaigns')} />
             </> : <div>
                 <p>{t('errors.noAssignedCampaigns')}</p>
             </div>}

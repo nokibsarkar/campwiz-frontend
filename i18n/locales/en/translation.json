@@ -26,7 +26,9 @@
         "afterLoginRedirect": " After this process, you will be redirected back to the following page:"
     },
     "campaign": {
-        "createCampaign": "Create Campaign"
+        "createCampaign": "Create Campaign",
+        "goToCampaign": "Go to Campaign",
+        "showAllCampaigns": "Show All Campaigns"
     },
     "footer": {
         "campwizNxtTeam": "Campwiz NXT Team",
