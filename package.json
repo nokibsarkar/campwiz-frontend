@@ -1,6 +1,9 @@
 {
   "name": "campwiz-frontend",
   "version": "1.0.0",
+  "engines": {
+    "node": "22.8.0"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
