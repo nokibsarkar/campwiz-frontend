@@ -14,6 +14,7 @@ import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import StarsIcon from '@mui/icons-material/Stars';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import RoundSummary from "./RoundSummary";
+import type { TFunction } from "i18next";
 const roundTypeIcon = (type: EvaluationType) => {
     switch (type) {
         case EvaluationType.BINARY:
@@ -27,7 +28,7 @@ const roundTypeIcon = (type: EvaluationType) => {
     }
 }
 
-const RoundDetails = ({ round: c, t }: { round: Round, t: (key: string, a?: unknown) => string, }) => {
+const RoundDetails = ({ round: c, t }: { round: Round, t: TFunction<string, undefined> }) => {
     const [juryList,] = useMemo(() => {
         if (!c.jury || !c.roles) {
             return [[], 0, 0]

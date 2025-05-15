@@ -126,7 +126,7 @@ function RoundTimeline({ rounds, campaign, session, isCoordinator, isArchived }:
                         my: 2,
                         borderLeftColor: `${getStatusColor(round.status)}.main`
                     }}>
-                        <RoundDetails round={round} />
+                        <RoundDetails round={round} t={t} />
                     </Box>
                 </div>
             ))}
