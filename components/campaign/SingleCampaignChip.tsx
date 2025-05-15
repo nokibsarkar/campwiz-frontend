@@ -60,7 +60,7 @@ const SingleCampaignChip = ({ campaign }: SingleCampaignChipProps) => {
                 </Typography>
             </CardContent>
             <CardActions sx={{ justifyContent: 'space-between' }}>
-                <Status status={campaign.archivedAt === null ? RoundStatus.ACTIVE : RoundStatus.ARCHIVED} />
+                <Status status={campaign.archivedAt === null ? RoundStatus.ACTIVE : RoundStatus.ARCHIVED} t={t} />
                 <Link href={`/campaign/${campaign.campaignId}`} style={{}}>
                     <Button color="primary" endIcon={<RightArrowIcon />} variant="outlined" sx={{ borderRadius: 8, px: 2 }}>
                         {t('campaign.goToCampaign')}

@@ -30,6 +30,17 @@
         "goToCampaign": "Go to Campaign",
         "showAllCampaigns": "Show All Campaigns"
     },
+    "round": {
+        "status": {
+            "ACTIVE": "Active",
+            "PAUSED": "Paused",
+            "COMPLETED": "Completed",
+            "ARCHIVED": "Archived"
+        },
+        "submissions": "Submissions",
+        "assignments": "Assignments",
+        "evaluatedOutOf": "{{evaluated}} evaluated out of {{total}}"
+    },
     "footer": {
         "campwizNxtTeam": "Campwiz NXT Team",
         "manual": "Manual",

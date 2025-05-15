@@ -27,7 +27,7 @@ const roundTypeIcon = (type: EvaluationType) => {
     }
 }
 
-const RoundDetails = ({ round: c }: { round: Round }) => {
+const RoundDetails = ({ round: c, t }: { round: Round, t: (key: string, a?: unknown) => string, }) => {
     const [juryList,] = useMemo(() => {
         if (!c.jury || !c.roles) {
             return [[], 0, 0]
@@ -70,8 +70,14 @@ const RoundDetails = ({ round: c }: { round: Round }) => {
                     <Deadline deadline={c.endDate} />
                     {roundTypeIcon(c.type)}
                     <Description description={c.description} />
-                    <Description description={`${c.totalEvaluatedSubmissions} evaluated out of ${c.totalSubmissions}`} label='Submissions' Icon={HistoryEduIcon} />
-                    {!c.isPublicJury && <Description description={`${c.totalEvaluatedAssignments} evaluated out of ${c.totalAssignments}`} label='Assignments' Icon={HistoryEduIcon} />}
+                    <Description description={t('round.evaluatedOutOf', {
+                        total: c.totalSubmissions,
+                        evaluated: c.totalEvaluatedSubmissions,
+                    })} label={t('round.submissions')} Icon={HistoryEduIcon} />
+                    {!c.isPublicJury && <Description description={t('round.evaluatedOutOf', {
+                        total: c.totalEvaluatedAssignments,
+                        evaluated: c.totalAssignments
+                    })} label={t('round.assignments')} Icon={HistoryEduIcon} />}
                     <Quorum quorum={c.quorum} />
                 </div>
             </Box>

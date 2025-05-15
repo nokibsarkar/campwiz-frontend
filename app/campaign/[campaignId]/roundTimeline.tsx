@@ -13,6 +13,7 @@ import { LinearProgress } from "@mui/material";
 import SelectedRoundActionStatus from "./SelectedActionStatus";
 import ImportFromCommonsDialog from "./round/import/commons/_page";
 import DistributionDialog from "./round/distribute/DistributionWidget";
+import { useTranslation } from "@/i18n/client";
 const RoundCreate = React.lazy(() => import("./RoundCreate"));
 const RoundEdit = React.lazy(() => import("./RoundEdit"));
 type RoundTimelineProps = {
@@ -32,6 +33,7 @@ function RoundTimeline({ rounds, campaign, session, isCoordinator, isArchived }:
             window.location.reload();
         }
     }
+    const { t } = useTranslation();
     const [currentRound, setCurrentRound] = React.useState<Round | null>(rounds.length > 0 ? rounds[0] : null);
     const isUserEligibleToVote = currentRound !== null && currentRound.jury !== null && session !== null && Object.values(currentRound.jury).includes(session.username);
     const [selectedRoundAction, setSelectedRoundAction] = React.useState<SelectedRoundActionStatus>(SelectedRoundActionStatus.none);
@@ -100,7 +102,7 @@ function RoundTimeline({ rounds, campaign, session, isCoordinator, isArchived }:
             {rounds.map((round, i) => (
                 <div key={i} id={"roundTimeline" + i}>
                     <div style={{ textAlign: 'left' }}>
-                        <RoundStatusIcon status={round.status} /> <Status status={round.status} />
+                        <RoundStatusIcon status={round.status} /> <Status status={round.status} t={t} />
                         <Typography variant="h6" sx={{ display: 'inline' }}>
                             {round.name}
                         </Typography>

@@ -32,6 +32,17 @@
         "createCampaign": "প্রতিযোগিতা তৈরি করুন",
         "showAllCampaigns": "সব প্রতিযোগিতা দেখুন"
     },
+    "round": {
+        "status": {
+            "ACTIVE": "চলমান",
+            "PAUSED": "স্থগিত",
+            "COMPLETED": "সম্পন্ন",
+            "ARCHIVED": "সংগ্রহশালায় জমা"
+        },
+        "submissions": "জমা",
+        "assignments": "এসাইনমেন্ট",
+        "evaluatedOutOf": "{{total}}টির মধ্যে {{evaluated}}টি মূল্যায়িত"
+    },
     "footer": {
         "campwizNxtTeam": "Campwiz NXT দল",
         "manual": "ব্যবহার নির্দেশিকা",

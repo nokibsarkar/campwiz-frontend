@@ -7,8 +7,9 @@ import CircleIcon from '@mui/icons-material/FiberManualRecord';
 // import StartIcon from '@mui/icons-material/PlayArrow';
 import DoubleTickIcon from '@mui/icons-material/DoneAll';
 import NoticeIcon from '@mui/icons-material/NotificationImportant';
-const Status = ({ status }: { status: RoundStatus }) => {
-    return <Chip label={status} color={getStatusColor(status)} variant="outlined" sx={{ marginRight: 1, p: 1 }} />
+const Status = ({ status, t }: { status: RoundStatus, t?: (key: string) => string }) => {
+    const label = t ? t(`round.status.${status}`) : status;
+    return <Chip label={label} color={getStatusColor(status)} variant="outlined" sx={{ marginRight: 1, p: 1 }} />
 }
 export const getStatusColor = (status: RoundStatus) => {
     switch (status) {
