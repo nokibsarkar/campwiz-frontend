@@ -104,16 +104,6 @@ jobs:
           FOLDER: ./.next/standalone/ # The directory where your assets are generated
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
           MESSAGE: "Build: ({sha}) {msg}" # The commit message
-      - name: Pushes to another repository
-        if: vars.ENVIRONMENT == 'toolforge'
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
-        with:
-          source-directory: "./.next/standalone/"
-          destination-github-username: nokibsarkar
-          destination-repository-name: campwiz-frontend-build
-          target-branch: main
       - name: Delete SSH Key
         run: |
           rm id_rsa
