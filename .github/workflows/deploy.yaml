@@ -60,6 +60,7 @@ jobs:
           ls -al .next/
           cp public  .next/standalone -r
           cp .next/static .next/standalone/.next -r
+          cp Procfile .next/standalone
 
       - name: Setup Deployment Environment
         run: |
