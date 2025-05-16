@@ -61,6 +61,7 @@ jobs:
         with:
           name: build
           path: ./.next/standalone
+
   deploy-test:
     runs-on: ubuntu-latest
     needs: build
@@ -87,6 +88,7 @@ jobs:
       - name: Delete SSH Key
         run: |
           rm id_rsa
+
   deploy-toolforge:
     runs-on: ubuntu-latest
     needs: build
@@ -104,6 +106,7 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_rsa
           chmod 600 id_rsa
       - name: Prune Git History
+        if: false
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "noreply@github.com"
