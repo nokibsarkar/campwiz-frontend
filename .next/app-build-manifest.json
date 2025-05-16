@@ -155,6 +155,14 @@
       "static/chunks/5367-b2ffba726159d37e.js",
       "static/chunks/app/campaign/page-03d922dfc30108c8.js"
     ],
+    "/policy/privacy/page": [
+      "static/chunks/webpack-efc0d4696dee5df4.js",
+      "static/chunks/52774a7f-27a66f7aafab8c3e.js",
+      "static/chunks/4bd1b696-a6f5f2e732572e34.js",
+      "static/chunks/3595-3e293825942fc904.js",
+      "static/chunks/main-app-b1e15e48db33fcb0.js",
+      "static/chunks/app/policy/privacy/page-06e3c9b46f31dd01.js"
+    ],
     "/page": [
       "static/chunks/webpack-efc0d4696dee5df4.js",
       "static/chunks/52774a7f-27a66f7aafab8c3e.js",
@@ -173,14 +181,6 @@
       "static/chunks/1802-2e90b104a44dbdc5.js",
       "static/chunks/5367-b2ffba726159d37e.js",
       "static/chunks/app/page-036c08a2c3732c7c.js"
-    ],
-    "/policy/privacy/page": [
-      "static/chunks/webpack-efc0d4696dee5df4.js",
-      "static/chunks/52774a7f-27a66f7aafab8c3e.js",
-      "static/chunks/4bd1b696-a6f5f2e732572e34.js",
-      "static/chunks/3595-3e293825942fc904.js",
-      "static/chunks/main-app-b1e15e48db33fcb0.js",
-      "static/chunks/app/policy/privacy/page-06e3c9b46f31dd01.js"
     ],
     "/policy/terms/page": [
       "static/chunks/webpack-efc0d4696dee5df4.js",
@@ -232,6 +232,20 @@
       "static/chunks/5520-0ae620c6e4f61308.js",
       "static/chunks/app/project/[projectId]/new/page-c555d80aabb602db.js"
     ],
+    "/project/[projectId]/page": [
+      "static/chunks/webpack-efc0d4696dee5df4.js",
+      "static/chunks/52774a7f-27a66f7aafab8c3e.js",
+      "static/chunks/4bd1b696-a6f5f2e732572e34.js",
+      "static/chunks/3595-3e293825942fc904.js",
+      "static/chunks/main-app-b1e15e48db33fcb0.js",
+      "static/chunks/6454-c48f552051cffa99.js",
+      "static/chunks/6766-2c6fe4e41b0d1ea3.js",
+      "static/chunks/9978-890a83e75ef0ff44.js",
+      "static/chunks/225-268742404e6ea77e.js",
+      "static/chunks/7638-54ba294058a673ee.js",
+      "static/chunks/3566-340764e63eeb591e.js",
+      "static/chunks/app/project/[projectId]/page-74c34f17a83c28d6.js"
+    ],
     "/project/new/page": [
       "static/chunks/webpack-efc0d4696dee5df4.js",
       "static/chunks/52774a7f-27a66f7aafab8c3e.js",
@@ -250,20 +264,6 @@
       "static/chunks/3669-d6b8bd6e9b732f40.js",
       "static/chunks/2623-4f3bbf18407625bf.js",
       "static/chunks/app/project/new/page-8b0814d81f5e3634.js"
-    ],
-    "/project/[projectId]/page": [
-      "static/chunks/webpack-efc0d4696dee5df4.js",
-      "static/chunks/52774a7f-27a66f7aafab8c3e.js",
-      "static/chunks/4bd1b696-a6f5f2e732572e34.js",
-      "static/chunks/3595-3e293825942fc904.js",
-      "static/chunks/main-app-b1e15e48db33fcb0.js",
-      "static/chunks/6454-c48f552051cffa99.js",
-      "static/chunks/6766-2c6fe4e41b0d1ea3.js",
-      "static/chunks/9978-890a83e75ef0ff44.js",
-      "static/chunks/225-268742404e6ea77e.js",
-      "static/chunks/7638-54ba294058a673ee.js",
-      "static/chunks/3566-340764e63eeb591e.js",
-      "static/chunks/app/project/[projectId]/page-74c34f17a83c28d6.js"
     ],
     "/project/page": [
       "static/chunks/webpack-efc0d4696dee5df4.js",
@@ -380,14 +380,6 @@
       "static/chunks/main-app-b1e15e48db33fcb0.js",
       "static/chunks/app/submission/[submissionId]/evaluation/[evaluationId]/page-999e1ef8268e8d17.js"
     ],
-    "/submission/[submissionId]/evaluation/page": [
-      "static/chunks/webpack-efc0d4696dee5df4.js",
-      "static/chunks/52774a7f-27a66f7aafab8c3e.js",
-      "static/chunks/4bd1b696-a6f5f2e732572e34.js",
-      "static/chunks/3595-3e293825942fc904.js",
-      "static/chunks/main-app-b1e15e48db33fcb0.js",
-      "static/chunks/app/submission/[submissionId]/evaluation/page-59f29e4e88ed20d8.js"
-    ],
     "/submission/page": [
       "static/chunks/webpack-efc0d4696dee5df4.js",
       "static/chunks/52774a7f-27a66f7aafab8c3e.js",
@@ -406,6 +398,14 @@
       "static/chunks/6454-c48f552051cffa99.js",
       "static/chunks/9978-890a83e75ef0ff44.js",
       "static/chunks/app/user/callback/error/page-ef49bd14ec93e1e1.js"
+    ],
+    "/submission/[submissionId]/evaluation/page": [
+      "static/chunks/webpack-efc0d4696dee5df4.js",
+      "static/chunks/52774a7f-27a66f7aafab8c3e.js",
+      "static/chunks/4bd1b696-a6f5f2e732572e34.js",
+      "static/chunks/3595-3e293825942fc904.js",
+      "static/chunks/main-app-b1e15e48db33fcb0.js",
+      "static/chunks/app/submission/[submissionId]/evaluation/page-59f29e4e88ed20d8.js"
     ],
     "/user/login/page": [
       "static/chunks/webpack-efc0d4696dee5df4.js",
