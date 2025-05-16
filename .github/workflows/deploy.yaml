@@ -91,6 +91,7 @@ jobs:
           git config --global user.name "GitHub Action"
           git config --global user.email "noreply@github.com"
           git gc --prune=now
+          ls
           PACKAGE_DIR=./.next/standalone/ node prune-package.js
 
       - name: Push to Distribution branch
