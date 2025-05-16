@@ -124,7 +124,7 @@ jobs:
         run: |
           ssh -i id_rsa "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" <<EOF
           become campwiz
-          toolforge webservice build https://github.com/${{ github.repository }} --ref build
+          toolforge webservice build start https://github.com/${{ github.repository }} --ref build
           toolforge webservice buildservice restart --mount all
           exit
           exit
