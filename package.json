@@ -38,7 +38,7 @@
     "react": "19.1.0",
     "react-audio-spectrum": "^0.1.5",
     "react-datepicker": "^8.1.0",
-    "react-dom": "19.0.0",
+    "react-dom": "19.1.0",
     "react-easy-sort": "^1.6.0",
     "react-h5-audio-player": "^3.10.0-rc.1",
     "react-i18next": "^15.4.1",
