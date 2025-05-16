@@ -14,16 +14,16 @@
   "/project/[projectId]/edit/page": "/project/[projectId]/edit",
   "/project/[projectId]/new/page": "/project/[projectId]/new",
   "/project/new/page": "/project/new",
-  "/project/[projectId]/page": "/project/[projectId]",
   "/project/page": "/project",
   "/round/[roundId]/submission/evaluate/page": "/round/[roundId]/submission/evaluate",
+  "/project/[projectId]/page": "/project/[projectId]",
+  "/round/[roundId]/submission/evaluated/[evaluationId]/page": "/round/[roundId]/submission/evaluated/[evaluationId]",
   "/round/[roundId]/submission/evaluated/page": "/round/[roundId]/submission/evaluated",
   "/round/[roundId]/submission/evaluated/page/[minimumEvaluationId]/page": "/round/[roundId]/submission/evaluated/page/[minimumEvaluationId]",
-  "/round/[roundId]/submission/evaluated/[evaluationId]/page": "/round/[roundId]/submission/evaluated/[evaluationId]",
   "/round/[roundId]/submission/evaluated/page/[minimumEvaluationId]/prev/page": "/round/[roundId]/submission/evaluated/page/[minimumEvaluationId]/prev",
   "/submission/[submissionId]/evaluation/[evaluationId]/page": "/submission/[submissionId]/evaluation/[evaluationId]",
-  "/submission/page": "/submission",
   "/submission/[submissionId]/evaluation/page": "/submission/[submissionId]/evaluation",
-  "/user/callback/error/page": "/user/callback/error",
-  "/user/login/page": "/user/login"
+  "/submission/page": "/submission",
+  "/user/login/page": "/user/login",
+  "/user/callback/error/page": "/user/callback/error"
 }

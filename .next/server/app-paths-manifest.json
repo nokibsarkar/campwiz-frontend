@@ -14,16 +14,16 @@
   "/project/[projectId]/edit/page": "app/project/[projectId]/edit/page.js",
   "/project/[projectId]/new/page": "app/project/[projectId]/new/page.js",
   "/project/new/page": "app/project/new/page.js",
-  "/project/[projectId]/page": "app/project/[projectId]/page.js",
   "/project/page": "app/project/page.js",
   "/round/[roundId]/submission/evaluate/page": "app/round/[roundId]/submission/evaluate/page.js",
+  "/project/[projectId]/page": "app/project/[projectId]/page.js",
+  "/round/[roundId]/submission/evaluated/[evaluationId]/page": "app/round/[roundId]/submission/evaluated/[evaluationId]/page.js",
   "/round/[roundId]/submission/evaluated/page": "app/round/[roundId]/submission/evaluated/page.js",
   "/round/[roundId]/submission/evaluated/page/[minimumEvaluationId]/page": "app/round/[roundId]/submission/evaluated/page/[minimumEvaluationId]/page.js",
-  "/round/[roundId]/submission/evaluated/[evaluationId]/page": "app/round/[roundId]/submission/evaluated/[evaluationId]/page.js",
   "/round/[roundId]/submission/evaluated/page/[minimumEvaluationId]/prev/page": "app/round/[roundId]/submission/evaluated/page/[minimumEvaluationId]/prev/page.js",
   "/submission/[submissionId]/evaluation/[evaluationId]/page": "app/submission/[submissionId]/evaluation/[evaluationId]/page.js",
-  "/submission/page": "app/submission/page.js",
   "/submission/[submissionId]/evaluation/page": "app/submission/[submissionId]/evaluation/page.js",
-  "/user/callback/error/page": "app/user/callback/error/page.js",
-  "/user/login/page": "app/user/login/page.js"
+  "/submission/page": "app/submission/page.js",
+  "/user/login/page": "app/user/login/page.js",
+  "/user/callback/error/page": "app/user/callback/error/page.js"
 }
