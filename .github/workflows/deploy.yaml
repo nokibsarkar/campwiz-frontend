@@ -61,6 +61,12 @@ jobs:
           cp public  .next/standalone -r
           cp .next/static .next/standalone/.next -r
           # rm .next/standalone/.cache -rf
+      - name: Prune Git History
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "noreply@github.com"
+          git gc --prune=now
+
       - name: Push to Distribution branch
         uses: s0/git-publish-subdir-action@develop
         env:
