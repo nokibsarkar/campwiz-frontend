@@ -60,21 +60,7 @@ jobs:
           ls -al .next/
           cp public  .next/standalone -r
           cp .next/static .next/standalone/.next -r
-          # rm .next/standalone/.cache -rf
-      - name: Prune Git History
-        run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "noreply@github.com"
-          git gc --prune=now
 
-      - name: Push to Distribution branch
-        uses: s0/git-publish-subdir-action@develop
-        env:
-          REPO: self
-          BRANCH: build # The branch name where you want to push the assets
-          FOLDER: ./.next/standalone/ # The directory where your assets are generated
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
-          MESSAGE: "Build: ({sha}) {msg}" # The commit message
       - name: Setup Deployment Environment
         run: |
           mkdir -p ~/.ssh
@@ -100,7 +86,21 @@ jobs:
           exit
           exit
           EOF
+      - name: Prune Git History
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "noreply@github.com"
+          git gc --prune=now
+          PACKAGE_DIR=./.next/standalone/ node prune-package.js
 
+      - name: Push to Distribution branch
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: build # The branch name where you want to push the assets
+          FOLDER: ./.next/standalone/ # The directory where your assets are generated
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+          MESSAGE: "Build: ({sha}) {msg}" # The commit message
       - name: Delete SSH Key
         run: |
           rm id_rsa
