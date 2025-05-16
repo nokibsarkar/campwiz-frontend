@@ -1,20 +1,20 @@
 {
   "/task/[taskId]/route": "/task/[taskId]",
-  "/favicon.ico/route": "/favicon.ico",
   "/robots.txt/route": "/robots.txt",
+  "/favicon.ico/route": "/favicon.ico",
   "/user/callback/route": "/user/callback",
   "/_not-found/page": "/_not-found",
+  "/campaign/[campaignId]/round/page": "/campaign/[campaignId]/round",
   "/campaign/[campaignId]/edit/page": "/campaign/[campaignId]/edit",
   "/campaign/[campaignId]/page": "/campaign/[campaignId]",
-  "/campaign/[campaignId]/round/page": "/campaign/[campaignId]/round",
   "/campaign/page": "/campaign",
   "/page": "/",
   "/policy/privacy/page": "/policy/privacy",
   "/policy/terms/page": "/policy/terms",
   "/project/[projectId]/edit/page": "/project/[projectId]/edit",
   "/project/[projectId]/new/page": "/project/[projectId]/new",
-  "/project/[projectId]/page": "/project/[projectId]",
   "/project/new/page": "/project/new",
+  "/project/[projectId]/page": "/project/[projectId]",
   "/project/page": "/project",
   "/round/[roundId]/submission/evaluate/page": "/round/[roundId]/submission/evaluate",
   "/round/[roundId]/submission/evaluated/[evaluationId]/page": "/round/[roundId]/submission/evaluated/[evaluationId]",
@@ -23,7 +23,7 @@
   "/round/[roundId]/submission/evaluated/page/[minimumEvaluationId]/prev/page": "/round/[roundId]/submission/evaluated/page/[minimumEvaluationId]/prev",
   "/submission/[submissionId]/evaluation/[evaluationId]/page": "/submission/[submissionId]/evaluation/[evaluationId]",
   "/submission/[submissionId]/evaluation/page": "/submission/[submissionId]/evaluation",
+  "/submission/page": "/submission",
   "/user/callback/error/page": "/user/callback/error",
-  "/user/login/page": "/user/login",
-  "/submission/page": "/submission"
+  "/user/login/page": "/user/login"
 }
