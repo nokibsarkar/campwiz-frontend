@@ -1,0 +1,7 @@
+User-Agent: *
+Allow: /
+Disallow: /project/
+Disallow: /round/
+Disallow: /submission/
+
+Sitemap: https://campwiz.wikilovesfolklore.org/sitemap.xml
