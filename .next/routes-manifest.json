@@ -1,0 +1,272 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "dynamicRoutes": [
+    {
+      "page": "/campaign/[campaignId]",
+      "regex": "^/campaign/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPcampaignId": "nxtPcampaignId"
+      },
+      "namedRegex": "^/campaign/(?<nxtPcampaignId>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/campaign/[campaignId]/edit",
+      "regex": "^/campaign/([^/]+?)/edit(?:/)?$",
+      "routeKeys": {
+        "nxtPcampaignId": "nxtPcampaignId"
+      },
+      "namedRegex": "^/campaign/(?<nxtPcampaignId>[^/]+?)/edit(?:/)?$"
+    },
+    {
+      "page": "/campaign/[campaignId]/round",
+      "regex": "^/campaign/([^/]+?)/round(?:/)?$",
+      "routeKeys": {
+        "nxtPcampaignId": "nxtPcampaignId"
+      },
+      "namedRegex": "^/campaign/(?<nxtPcampaignId>[^/]+?)/round(?:/)?$"
+    },
+    {
+      "page": "/project/[projectId]",
+      "regex": "^/project/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPprojectId": "nxtPprojectId"
+      },
+      "namedRegex": "^/project/(?<nxtPprojectId>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/project/[projectId]/edit",
+      "regex": "^/project/([^/]+?)/edit(?:/)?$",
+      "routeKeys": {
+        "nxtPprojectId": "nxtPprojectId"
+      },
+      "namedRegex": "^/project/(?<nxtPprojectId>[^/]+?)/edit(?:/)?$"
+    },
+    {
+      "page": "/project/[projectId]/new",
+      "regex": "^/project/([^/]+?)/new(?:/)?$",
+      "routeKeys": {
+        "nxtPprojectId": "nxtPprojectId"
+      },
+      "namedRegex": "^/project/(?<nxtPprojectId>[^/]+?)/new(?:/)?$"
+    },
+    {
+      "page": "/round/[roundId]/submission/evaluate",
+      "regex": "^/round/([^/]+?)/submission/evaluate(?:/)?$",
+      "routeKeys": {
+        "nxtProundId": "nxtProundId"
+      },
+      "namedRegex": "^/round/(?<nxtProundId>[^/]+?)/submission/evaluate(?:/)?$"
+    },
+    {
+      "page": "/round/[roundId]/submission/evaluated",
+      "regex": "^/round/([^/]+?)/submission/evaluated(?:/)?$",
+      "routeKeys": {
+        "nxtProundId": "nxtProundId"
+      },
+      "namedRegex": "^/round/(?<nxtProundId>[^/]+?)/submission/evaluated(?:/)?$"
+    },
+    {
+      "page": "/round/[roundId]/submission/evaluated/page/[minimumEvaluationId]",
+      "regex": "^/round/([^/]+?)/submission/evaluated/page/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtProundId": "nxtProundId",
+        "nxtPminimumEvaluationId": "nxtPminimumEvaluationId"
+      },
+      "namedRegex": "^/round/(?<nxtProundId>[^/]+?)/submission/evaluated/page/(?<nxtPminimumEvaluationId>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/round/[roundId]/submission/evaluated/page/[minimumEvaluationId]/prev",
+      "regex": "^/round/([^/]+?)/submission/evaluated/page/([^/]+?)/prev(?:/)?$",
+      "routeKeys": {
+        "nxtProundId": "nxtProundId",
+        "nxtPminimumEvaluationId": "nxtPminimumEvaluationId"
+      },
+      "namedRegex": "^/round/(?<nxtProundId>[^/]+?)/submission/evaluated/page/(?<nxtPminimumEvaluationId>[^/]+?)/prev(?:/)?$"
+    },
+    {
+      "page": "/round/[roundId]/submission/evaluated/[evaluationId]",
+      "regex": "^/round/([^/]+?)/submission/evaluated/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtProundId": "nxtProundId",
+        "nxtPevaluationId": "nxtPevaluationId"
+      },
+      "namedRegex": "^/round/(?<nxtProundId>[^/]+?)/submission/evaluated/(?<nxtPevaluationId>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/submission/[submissionId]/evaluation",
+      "regex": "^/submission/([^/]+?)/evaluation(?:/)?$",
+      "routeKeys": {
+        "nxtPsubmissionId": "nxtPsubmissionId"
+      },
+      "namedRegex": "^/submission/(?<nxtPsubmissionId>[^/]+?)/evaluation(?:/)?$"
+    },
+    {
+      "page": "/submission/[submissionId]/evaluation/[evaluationId]",
+      "regex": "^/submission/([^/]+?)/evaluation/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPsubmissionId": "nxtPsubmissionId",
+        "nxtPevaluationId": "nxtPevaluationId"
+      },
+      "namedRegex": "^/submission/(?<nxtPsubmissionId>[^/]+?)/evaluation/(?<nxtPevaluationId>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/task/[taskId]",
+      "regex": "^/task/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPtaskId": "nxtPtaskId"
+      },
+      "namedRegex": "^/task/(?<nxtPtaskId>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/campaign",
+      "regex": "^/campaign(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/campaign(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/policy/privacy",
+      "regex": "^/policy/privacy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/policy/privacy(?:/)?$"
+    },
+    {
+      "page": "/policy/terms",
+      "regex": "^/policy/terms(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/policy/terms(?:/)?$"
+    },
+    {
+      "page": "/project",
+      "regex": "^/project(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/project(?:/)?$"
+    },
+    {
+      "page": "/project/new",
+      "regex": "^/project/new(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/project/new(?:/)?$"
+    },
+    {
+      "page": "/robots.txt",
+      "regex": "^/robots\\.txt(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/robots\\.txt(?:/)?$"
+    },
+    {
+      "page": "/submission",
+      "regex": "^/submission(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/submission(?:/)?$"
+    },
+    {
+      "page": "/user/callback",
+      "regex": "^/user/callback(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/user/callback(?:/)?$"
+    },
+    {
+      "page": "/user/callback/error",
+      "regex": "^/user/callback/error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/user/callback/error(?:/)?$"
+    },
+    {
+      "page": "/user/login",
+      "regex": "^/user/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/user/login(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "RSC",
+    "varyHeader": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch",
+    "prefetchHeader": "Next-Router-Prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "Next-Router-Segment-Prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  },
+  "rewrites": [
+    {
+      "source": "/monitoring(/?)",
+      "has": [
+        {
+          "type": "query",
+          "key": "o",
+          "value": "(?<orgid>\\d*)"
+        },
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?<projectid>\\d*)"
+        },
+        {
+          "type": "query",
+          "key": "r",
+          "value": "(?<region>[a-z]{2})"
+        }
+      ],
+      "destination": "https://o:orgid.ingest.:region.sentry.io/api/:projectid/envelope/?hsts=0",
+      "regex": "^/monitoring(/?)(?:/)?$"
+    },
+    {
+      "source": "/monitoring(/?)",
+      "has": [
+        {
+          "type": "query",
+          "key": "o",
+          "value": "(?<orgid>\\d*)"
+        },
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?<projectid>\\d*)"
+        }
+      ],
+      "destination": "https://o:orgid.ingest.sentry.io/api/:projectid/envelope/?hsts=0",
+      "regex": "^/monitoring(/?)(?:/)?$"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+1:"$Sreact.fragment"
+3:I[87555,[],""]
+4:I[31295,[],""]
+5:I[90894,[],"ClientPageRoot"]
+6:I[49454,["6454","static/chunks/6454-c48f552051cffa99.js","6766","static/chunks/6766-2c6fe4e41b0d1ea3.js","4345","static/chunks/app/not-found-802a70053a5b4b01.js"],"default"]
+9:I[59665,[],"MetadataBoundary"]
+b:I[59665,[],"OutletBoundary"]
+e:I[74911,[],"AsyncMetadataOutlet"]
+10:I[92604,["6766","static/chunks/6766-2c6fe4e41b0d1ea3.js","4209","static/chunks/app/loading-d8e482ee034f4ec5.js"],"default"]
+11:I[59665,[],"ViewportBoundary"]
+13:I[23188,["4219","static/chunks/app/global-error-7c9c7876a73c68e4.js"],"default"]
+:HL["/_next/static/media/47cbc4e2adbc5db9-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/a4efcb5dca0ba9fc.css","style"]
+0:{"P":null,"b":"GngJo56TXLydsGx_thcWU","p":"","c":["","_not-found"],"i":false,"f":[[["",{"children":["/_not-found",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/a4efcb5dca0ba9fc.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],"$L2"]}],{"children":["/_not-found",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L5",null,{"Component":"$6","searchParams":{},"params":{},"promises":["$@7","$@8"]}],["$","$L9",null,{"children":"$La"}],null,["$","$Lb",null,{"children":["$Lc","$Ld",["$","$Le",null,{"promise":"$@f"}]]}]]}],{},null,false]},null,false]},[["$","$L10","l",{}],[],[]],false],["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$1","490NcfLG-BUR3FL_WJzs_",{"children":[["$","$L11",null,{"children":"$L12"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],null]}],false]],"m":"$undefined","G":["$13",[]],"s":false,"S":true}
+14:"$Sreact.suspense"
+15:I[74911,[],"AsyncMetadata"]
+7:{}
+8:{}
+a:["$","$14",null,{"fallback":null,"children":["$","$L15",null,{"promise":"$@16"}]}]
+d:null
+17:I[94116,["6454","static/chunks/6454-c48f552051cffa99.js","3268","static/chunks/3268-9bb137d48142a14e.js","6290","static/chunks/6290-d86b753e046feeb8.js","7177","static/chunks/app/layout-0734c15ffb680c63.js"],"default"]
+18:I[22696,["6454","static/chunks/6454-c48f552051cffa99.js","3268","static/chunks/3268-9bb137d48142a14e.js","6290","static/chunks/6290-d86b753e046feeb8.js","7177","static/chunks/app/layout-0734c15ffb680c63.js"],"default"]
+19:I[15619,["6454","static/chunks/6454-c48f552051cffa99.js","3268","static/chunks/3268-9bb137d48142a14e.js","6290","static/chunks/6290-d86b753e046feeb8.js","7177","static/chunks/app/layout-0734c15ffb680c63.js"],"default"]
+1a:I[3854,["6454","static/chunks/6454-c48f552051cffa99.js","3268","static/chunks/3268-9bb137d48142a14e.js","6290","static/chunks/6290-d86b753e046feeb8.js","7177","static/chunks/app/layout-0734c15ffb680c63.js"],"default"]
+1b:I[81063,["6454","static/chunks/6454-c48f552051cffa99.js","3268","static/chunks/3268-9bb137d48142a14e.js","6290","static/chunks/6290-d86b753e046feeb8.js","7177","static/chunks/app/layout-0734c15ffb680c63.js"],"default"]
+1c:I[96678,["8429","static/chunks/f58c171e-aec4a2afc4b0d5f7.js","6454","static/chunks/6454-c48f552051cffa99.js","8039","static/chunks/app/error-0a66a119fe7bdfba.js"],"default"]
+2:["$","html",null,{"suppressHydrationWarning":true,"children":["$","$L17",null,{"options":{"key":"css"},"children":["$","$L18",null,{"theme":"$19","defaultMode":"light","children":[["$","$L1a",null,{}],["$","$L1b",null,{"component":"body","className":"h-full w-full p-0 m-0 overflow-auto __className_372368","sx":{"m":0,"p":0,"height":"100%","width":"100%","position":"absolute"},"elevation":0,"children":[[["$","script","mui-color-scheme-init",{"suppressHydrationWarning":true,"nonce":"$undefined","dangerouslySetInnerHTML":{"__html":"(function() {\ntry {\n  let colorScheme = '';\n  const mode = localStorage.getItem('mui-mode') || 'system';\n  const dark = localStorage.getItem('mui-color-scheme-dark') || 'dark';\n  const light = localStorage.getItem('mui-color-scheme-light') || 'light';\n  if (mode === 'system') {\n    // handle system mode\n    const mql = window.matchMedia('(prefers-color-scheme: dark)');\n    if (mql.matches) {\n      colorScheme = dark\n    } else {\n      colorScheme = light\n    }\n  }\n  if (mode === 'light') {\n    colorScheme = light;\n  }\n  if (mode === 'dark') {\n    colorScheme = dark;\n  }\n  if (colorScheme) {\n    document.documentElement.classList.remove('%s'.replace('%s', light), '%s'.replace('%s', dark));\n      document.documentElement.classList.add('%s'.replace('%s', colorScheme));document.documentElement.setAttribute('.%s', colorScheme);\n  }\n} catch(e){}})();"}}]],["$","$L3",null,{"parallelRouterKey":"children","error":"$1c","errorStyles":[],"errorScripts":[],"template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","$L6",null,{}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}]]}]}]}]
+12:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+c:null
+16:{"metadata":[["$","title","0",{"children":"CampWiz nxt"}],["$","meta","1",{"name":"description","content":"A powerful tool for organizing campaigns on Wikimedia projects"}],["$","meta","2",{"name":"application-name","content":"CampWiz"}],["$","link","3",{"rel":"author","href":"https://github.com/nokibsarkar"}],["$","meta","4",{"name":"author","content":"Nokib Sarkar"}],["$","link","5",{"rel":"author","href":"https://github.com/Tonni28"}],["$","meta","6",{"name":"author","content":"Mst. Rukaiya Islam Tonni"}],["$","link","7",{"rel":"author","href":"https://github.com/Tiven2240"}],["$","meta","8",{"name":"author","content":"Tiven Gonsalves"}],["$","link","9",{"rel":"icon","href":"/favicon.ico","type":"image/x-icon","sizes":"32x18"}],["$","link","10",{"rel":"icon","href":"/favicon.ico"}]],"error":null,"digest":"$undefined"}
+f:{"metadata":"$16:metadata","error":null,"digest":"$undefined"}
