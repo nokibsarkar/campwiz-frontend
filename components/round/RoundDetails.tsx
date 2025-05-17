@@ -76,8 +76,8 @@ const RoundDetails = ({ round: c, t }: { round: Round, t: TFunction<string, unde
                         evaluated: c.totalEvaluatedSubmissions,
                     })} label={t('round.submissions')} Icon={HistoryEduIcon} />
                     {!c.isPublicJury && <Description description={t('round.evaluatedOutOf', {
-                        total: c.totalEvaluatedAssignments,
-                        evaluated: c.totalAssignments
+                        total: c.totalAssignments,
+                        evaluated: c.totalEvaluatedAssignments
                     })} label={t('round.assignments')} Icon={HistoryEduIcon} />}
                     <Quorum quorum={c.quorum} />
                 </div>
