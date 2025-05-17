@@ -61,6 +61,7 @@ jobs:
         with:
           name: build
           path: ./.next/standalone
+          include-hidden-files: true
 
   deploy-test:
     runs-on: ubuntu-latest
@@ -72,6 +73,7 @@ jobs:
         with:
           name: build
           path: ./.next/standalone
+
       - name: Setup Deployment Environment
         run: |
           mkdir -p ~/.ssh
