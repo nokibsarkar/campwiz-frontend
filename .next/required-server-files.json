@@ -5,7 +5,7 @@
       "_sentryRewriteFramesDistDir": ".next",
       "_sentryRewriteFramesAssetPrefixPath": "",
       "_sentryRewritesTunnelPath": "/monitoring",
-      "_sentryRelease": "e1f12f4752253861c3326b868ef73f0f1758f039"
+      "_sentryRelease": "48bb881126a5d0a9662f440feabb117480f1533e"
     },
     "eslint": {
       "ignoreDuringBuilds": false
