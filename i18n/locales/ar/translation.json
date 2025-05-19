@@ -1,70 +1,70 @@
 {
   "title": "CampWiz NXT",
   "home": {
-    "welcome": "Welcome {{name}}",
-    "subtitle": "Taking jury experience to another level",
-    "publicRunningCampaigns": "Public Running Campaigns",
-    "yourCampaigns": "Your Campaigns",
-    "logout": "Logout",
-    "dashboard": "Dashboard",
-    "doc": "Doc",
-    "login": "Login",
+    "welcome": "مرحبًا {{name}}",
+    "subtitle": "نأخذ تجربة التحكيم إلى مستوى آخر",
+    "publicRunningCampaigns": "المسابقات العامة الجارية",
+    "yourCampaigns": "مسابقاتك",
+    "logout": "تسجيل الخروج",
+    "dashboard": "لوحة التحكم",
+    "doc": "الوثائق",
+    "login": "تسجيل الدخول",
     "guest": ""
   },
   "settings": {
-    "title": "Settings",
-    "language": "Language",
-    "darkMode": "Dark Mode",
-    "lightMode": "Light Mode",
-    "save": "Save",
-    "cancel": "Cancel",
-    "theme": "Theme"
+    "title": "الإعدادات",
+    "language": "اللغة",
+    "darkMode": "الوضع الداكن",
+    "lightMode": "الوضع الفاتح",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "theme": "السمة"
   },
   "login": {
-    "title": "Let's get started",
-    "loginWithWikimedia": "Login with Wikimedia",
-    "afterLoginRedirect": " After this process, you will be redirected back to the following page:"
+    "title": "لنبدأ",
+    "loginWithWikimedia": "تسجيل الدخول باستخدام ويكيميديا",
+    "afterLoginRedirect": " بعد هذه العملية، سيتم توجيهك مرة أخرى إلى الصفحة التالية:"
   },
   "campaign": {
-    "createCampaign": "Create Campaign",
-    "goToCampaign": "Go to Campaign",
-    "showAllCampaigns": "Show All Campaigns"
+    "createCampaign": "إنشاء مسابقة",
+    "goToCampaign": "الذهاب إلى المسابقة",
+    "showAllCampaigns": "عرض جميع المسابقات"
   },
   "round": {
     "status": {
-      "ACTIVE": "Active",
-      "PAUSED": "Paused",
-      "COMPLETED": "Completed",
-      "ARCHIVED": "Archived"
+      "ACTIVE": "نشطة",
+      "PAUSED": "متوقفة مؤقتًا",
+      "COMPLETED": "مكتملة",
+      "ARCHIVED": "مؤرشفة"
     },
-    "submissions": "Submissions",
-    "assignments": "Assignments",
-    "evaluatedOutOf": "{{evaluated}} evaluated out of {{total}}"
+    "submissions": "المشاركات",
+    "assignments": "المهام",
+    "evaluatedOutOf": "{{evaluated}} تم تقييمها من أصل {{total}}"
   },
   "footer": {
-    "campwizNxtTeam": "Campwiz NXT Team",
-    "manual": "Manual",
-    "terms": "Terms",
-    "privacy": "Privacy",
-    "reportBug": "Report a bug"
+    "campwizNxtTeam": "فريق CampWiz NXT",
+    "manual": "الدليل",
+    "terms": "الشروط",
+    "privacy": "الخصوصية",
+    "reportBug": "الإبلاغ عن خلل"
   },
   "error": {
-    "noAssignedCampaigns": "No assigned campaigns"
+    "noAssignedCampaigns": "لا توجد مسابقات مخصصة"
   },
-  "close": "Close",
+  "close": "إغلاق",
   "languages": {
-    "en": "English",
-    "bn": "Bengali (বাংলা)",
-    "ar": "Arabic (العربية)",
-    "hi": "Hindi (हिन्दी)",
-    "es": "Spanish (Español)",
-    "fr": "French (Français)",
-    "de": "German (Deutsch)",
-    "it": "Italian (Italiano)",
-    "ja": "Japanese (日本語)",
-    "ko": "Korean (한국어)",
-    "pt": "Portuguese (Português)",
-    "ru": "Russian (Русский)",
-    "zh": "Chinese (中文)"
+    "en": "الإنجليزية (English)",
+    "bn": "البنغالية (বাংলা)",
+    "ar": "العربية (العربية)",
+    "hi": "الهندية (हिन्दी)",
+    "es": "الإسبانية (Español)",
+    "fr": "الفرنسية (Français)",
+    "de": "الألمانية (Deutsch)",
+    "it": "الإيطالية (Italiano)",
+    "ja": "اليابانية (日本語)",
+    "ko": "الكورية (한국어)",
+    "pt": "البرتغالية (Português)",
+    "ru": "الروسية (Русский)",
+    "zh": "الصينية (中文)"
   }
 }
