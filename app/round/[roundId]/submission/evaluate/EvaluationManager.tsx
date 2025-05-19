@@ -104,9 +104,38 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
     }, [evaluations, currentCursor]);
     useEffect(() => {
         if (nextEvaluation) {
-            console.log(nextEvaluation.submission);
+            if (nextEvaluation.submission && nextEvaluation.submission.url) {
+                if (nextEvaluation.submission.mediatype === MediaType.IMAGE) {
+                    if (nextEvaluation.submission.url.startsWith("http")) {
+                        prefetchSubmissionPreview(nextEvaluation.submission.url).then((response) => {
+                            if (response.error)
+                                return;
+                            if (!response.url)
+                                return;
+                            setEvaluations((evaluations) => {
+                                const updatedEvaluations = evaluations.map((evaluation, index) => {
+                                    if (!evaluation.submission)
+                                        return evaluation;
+                                    if (index === currentCursor + 1)
+                                        return {
+                                            ...evaluation,
+                                            submission: {
+                                                ...evaluation.submission,
+                                                url: response.url,
+                                                submissionId: evaluation.submission.submissionId || '' // Ensure submissionId is always a string
+                                            }
+                                        }
+                                    return evaluation;
+                                })
+                                return updatedEvaluations;
+                            })
+                        }
+                        )
+                    }
+                }
+            }
         }
-    }, [nextEvaluation]);
+    }, [currentCursor, nextEvaluation]);
     const nextImageWrapper = (dx: number = 1) => {
         console.log('Next Image Wrapper', currentCursor, evaluations?.length);
         setImageLoaded(false);
