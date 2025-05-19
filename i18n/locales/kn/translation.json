@@ -1,70 +1,77 @@
 {
-  "title": "CampWiz NXT",
+  "title": "ಕ್ಯಾಂಪ್‌ವಿಜ್ NXT",
   "home": {
-    "welcome": "Welcome {{name}}",
-    "subtitle": "Taking jury experience to another level",
-    "publicRunningCampaigns": "Public Running Campaigns",
-    "yourCampaigns": "Your Campaigns",
-    "logout": "Logout",
-    "dashboard": "Dashboard",
-    "doc": "Doc",
-    "login": "Login",
+    "welcome": "ಸ್ವಾಗತ {{name}}",
+    "subtitle": "ನ್ಯಾಯಾಧಿಕಾರ ಅನುಭವವನ್ನು ಮತ್ತೊಂದು ಮಟ್ಟಕ್ಕೆ ತರುವಿಕೆ",
+    "publicRunningCampaigns": "ಸಾರ್ವಜನಿಕ ನಡೆಯುತ್ತಿರುವ ಸ್ಪರ್ಧೆಗಳು",
+    "yourCampaigns": "ನಿಮ್ಮ ಸ್ಪರ್ಧೆಗಳು",
+    "logout": "ಲಾಗ್ ಔಟ್",
+    "dashboard": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+    "doc": "ದಾಖಲೆ",
+    "login": "ಲಾಗಿನ್",
     "guest": ""
   },
   "settings": {
-    "title": "Settings",
-    "language": "Language",
-    "darkMode": "Dark Mode",
-    "lightMode": "Light Mode",
-    "save": "Save",
-    "cancel": "Cancel",
-    "theme": "Theme"
+    "title": "ಸೆಟ್ಟಿಂಗ್ಗಳು",
+    "language": "ಭಾಷೆ",
+    "darkMode": "ಡಾರ್ಕ್ ಮೋಡ್",
+    "lightMode": "ಲೈಟ್ ಮೋಡ್",
+    "save": "ಉಳಿಸಿ",
+    "cancel": "ರದ್ದುಮಾಡು",
+    "theme": "ಥೀಮ್"
   },
   "login": {
-    "title": "Let's get started",
-    "loginWithWikimedia": "Login with Wikimedia",
-    "afterLoginRedirect": " After this process, you will be redirected back to the following page:"
+    "title": "ಆರಂಭಿಸೋಣ",
+    "loginWithWikimedia": "ವಿಕಿಮೀಡಿಯಾದೊಂದಿಗೆ ಲಾಗಿನ್ ಆಗಿ",
+    "afterLoginRedirect": "ಈ ಪ್ರಕ್ರಿಯೆಯ ನಂತರ, ನೀವು ಕೆಳಗಿನ ಪುಟಕ್ಕೆ ಹಿಂತಿರುಗಿಸಲಾಗುತ್ತದೆ:"
   },
   "campaign": {
-    "createCampaign": "Create Campaign",
-    "goToCampaign": "Go to Campaign",
-    "showAllCampaigns": "Show All Campaigns"
+    "createCampaign": "ಸ್ಪರ್ಧೆ ರಚಿಸಿ",
+    "goToCampaign": "ಸ್ಪರ್ಧೆಗೆ ಹೋಗಿ",
+    "showAllCampaigns": "ಎಲ್ಲಾ ಸ್ಪರ್ಧೆಗಳು ತೋರಿಸಿ"
   },
   "round": {
     "status": {
-      "ACTIVE": "Active",
-      "PAUSED": "Paused",
-      "COMPLETED": "Completed",
-      "ARCHIVED": "Archived"
+      "ACTIVE": "ಸಕ್ರಿಯ",
+      "PAUSED": "ಸ್ಥಗಿತಗೊಂಡಿದೆ",
+      "COMPLETED": "ಸಂಪೂರ್ಣಗೊಂಡಿದೆ",
+      "ARCHIVED": "ಸಂಗ್ರಹಿಸಲಾಗಿದೆ"
     },
-    "submissions": "Submissions",
-    "assignments": "Assignments",
-    "evaluatedOutOf": "{{evaluated}} evaluated out of {{total}}"
+    "submissions": "ಸಲ್ಲಿಕೆಗಳು",
+    "assignments": "ಹೊಂದಿಕೆಗಳು",
+    "evaluatedOutOf": "{{total}} ಮದ್ಯಿಂದ {{evaluated}} ಮೌಲ್ಯಮಾಪನಗೊಂಡಿವೆ"
   },
   "footer": {
-    "campwizNxtTeam": "Campwiz NXT Team",
-    "manual": "Manual",
-    "terms": "Terms",
-    "privacy": "Privacy",
-    "reportBug": "Report a bug"
+    "campwizNxtTeam": "ಕ್ಯಾಂಪ್‌ವಿಜ್ NXT ತಂಡ",
+    "manual": "ಮ್ಯಾನುಯಲ್",
+    "terms": "ನಿಯಮಗಳು",
+    "privacy": "ಗೌಪ್ಯತೆ",
+    "reportBug": "ದೋಷ ವರದಿ ಮಾಡಿ"
   },
   "error": {
-    "noAssignedCampaigns": "No assigned campaigns"
+    "noAssignedCampaigns": "ಹೊಂದಿಕೆಯಾಗದ ಸ್ಪರ್ಧೆಗಳು ಇಲ್ಲ"
   },
-  "close": "Close",
+  "close": "ಮುಚ್ಚಿ",
   "languages": {
-    "en": "English",
-    "bn": "Bengali (বাংলা)",
-    "ar": "Arabic (العربية)",
-    "hi": "Hindi (हिन्दी)",
-    "es": "Spanish (Español)",
-    "fr": "French (Français)",
-    "de": "German (Deutsch)",
-    "it": "Italian (Italiano)",
-    "ja": "Japanese (日本語)",
-    "ko": "Korean (한국어)",
-    "pt": "Portuguese (Português)",
-    "ru": "Russian (Русский)",
-    "zh": "Chinese (中文)"
+    "en": "ಇಂಗ್ಲಿಷ್ (English)",
+    "bn": "ಬಂಗಾಳಿ (বাংলা)",
+    "ar": "ಅರೇಬಿಕ್ (العربية)",
+    "hi": "ಹಿಂದಿ (हिन्दी)",
+    "es": "ಸ್ಪ್ಯಾನಿಷ್ (Español)",
+    "fr": "ಫ್ರೆಂಚ್ (Français)",
+    "de": "ಜರ್ಮನ್ (Deutsch)",
+    "it": "ಇಟಾಲಿಯನ್ (Italiano)",
+    "ja": "ಜಪಾನೀಸ್ (日本語)",
+    "ko": "ಕೊರಿಯನ್ (한국어)",
+    "pt": "ಪೋರ್ಚುಗೀಸ್ (Português)",
+    "ru": "ರಷ್ಯನ್ (Русский)",
+    "zh": "ಚೀನೀಸ್ (中文)",
+    "kn": "Kannada (ಕನ್ನಡ)",
+    "mr": "Marathi (मराठी)",
+    "ta": "Tamil (தமிழ்)",
+    "ml": "Malayalam (മലയാളം)",
+    "ur": "Urdu (اردو)",
+    "gu": "Gujarati (ગુજરાતી)",
+    "pa": "Punjabi (ਪੰਜਾਬੀ)"
   }
 }
