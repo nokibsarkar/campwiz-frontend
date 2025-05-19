@@ -18,7 +18,8 @@
     "lightMode": "ಲೈಟ್ ಮೋಡ್",
     "save": "ಉಳಿಸಿ",
     "cancel": "ರದ್ದುಮಾಡು",
-    "theme": "ಥೀಮ್"
+    "theme": "ಥೀಮ್",
+    "helpTranslation": "Please Help us translate to your language at {{link}}"
   },
   "login": {
     "title": "ಆರಂಭಿಸೋಣ",

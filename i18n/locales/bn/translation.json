@@ -18,7 +18,8 @@
     "lightMode": "Light Mode",
     "save": "সংরক্ষণ",
     "cancel": "বাতিল",
-    "theme": "থিম"
+    "theme": "থিম",
+    "helpTranslation": "Please Help us translate to your language at {{link}}"
   },
   "login": {
     "title": "চলুন শুরু করি",

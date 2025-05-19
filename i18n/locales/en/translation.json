@@ -18,7 +18,8 @@
         "lightMode": "Light Mode",
         "save": "Save",
         "cancel": "Cancel",
-        "theme": "Theme"
+        "theme": "Theme",
+        "helpTranslation": "Please Help us translate to your language at {{link}}"
     },
     "login": {
         "title": "Let's get started",

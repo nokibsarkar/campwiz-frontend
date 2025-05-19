@@ -18,7 +18,8 @@
     "lightMode": "روشن وضع",
     "save": "محفوظ کریں",
     "cancel": "منسوخ کریں",
-    "theme": "تھیم"
+    "theme": "تھیم",
+    "helpTranslation": "Please Help us translate to your language at {{link}}"
   },
   "login": {
     "title": "آئیے شروعات کرتے ہیں",

@@ -18,7 +18,8 @@
     "lightMode": "വെളിച്ചം മോഡ്",
     "save": "സംരക്ഷിക്കുക",
     "cancel": "റദ്ദാക്കുക",
-    "theme": "തീം"
+    "theme": "തീം",
+    "helpTranslation": "Please Help us translate to your language at {{link}}"
   },
   "login": {
     "title": "ആരംഭിക്കാം",

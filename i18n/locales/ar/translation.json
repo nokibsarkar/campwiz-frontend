@@ -18,7 +18,8 @@
     "lightMode": "الوضع الفاتح",
     "save": "حفظ",
     "cancel": "إلغاء",
-    "theme": "السمة"
+    "theme": "السمة",
+    "helpTranslation": "Please Help us translate to your language at {{link}}"
   },
   "login": {
     "title": "لنبدأ",
