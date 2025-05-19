@@ -132,6 +132,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
             setEvaluationCount(r.totalEvaluatedCount);
             console.log('Submitted')
             nextImageWrapper();
+            setError(null);
         } catch (error) {
             setError((error as Error).message);
         } finally {
