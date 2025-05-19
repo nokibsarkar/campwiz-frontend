@@ -18,12 +18,12 @@
   "/project/page": "/project",
   "/round/[roundId]/submission/evaluate/page": "/round/[roundId]/submission/evaluate",
   "/round/[roundId]/submission/evaluated/[evaluationId]/page": "/round/[roundId]/submission/evaluated/[evaluationId]",
+  "/round/[roundId]/submission/evaluated/page": "/round/[roundId]/submission/evaluated",
   "/round/[roundId]/submission/evaluated/page/[minimumEvaluationId]/page": "/round/[roundId]/submission/evaluated/page/[minimumEvaluationId]",
-  "/submission/[submissionId]/evaluation/[evaluationId]/page": "/submission/[submissionId]/evaluation/[evaluationId]",
   "/round/[roundId]/submission/evaluated/page/[minimumEvaluationId]/prev/page": "/round/[roundId]/submission/evaluated/page/[minimumEvaluationId]/prev",
+  "/submission/[submissionId]/evaluation/[evaluationId]/page": "/submission/[submissionId]/evaluation/[evaluationId]",
   "/submission/[submissionId]/evaluation/page": "/submission/[submissionId]/evaluation",
   "/submission/page": "/submission",
   "/user/callback/error/page": "/user/callback/error",
-  "/round/[roundId]/submission/evaluated/page": "/round/[roundId]/submission/evaluated",
   "/user/login/page": "/user/login"
 }
