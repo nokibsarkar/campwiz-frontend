@@ -102,6 +102,11 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
         setCurrentEvaluation(cur);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [evaluations, currentCursor]);
+    useEffect(() => {
+        if (nextEvaluation) {
+            console.log(nextEvaluation.submission);
+        }
+    }, [nextEvaluation]);
     const nextImageWrapper = (dx: number = 1) => {
         console.log('Next Image Wrapper', currentCursor, evaluations?.length);
         setImageLoaded(false);
