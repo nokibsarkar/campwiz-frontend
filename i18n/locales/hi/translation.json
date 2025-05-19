@@ -18,7 +18,8 @@
     "lightMode": "लाइट मोड",
     "save": "सहेजें",
     "cancel": "रद्द करें",
-    "theme": "थीम"
+    "theme": "थीम",
+    "helpTranslation": "Please Help us translate to your language at {{link}}"
   },
   "login": {
     "title": "आइए शुरू करें",

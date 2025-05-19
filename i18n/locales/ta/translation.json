@@ -18,7 +18,8 @@
     "lightMode": "ஒளி முறை",
     "save": "சேமி",
     "cancel": "ரத்துசெய்",
-    "theme": "தீம்"
+    "theme": "தீம்",
+    "helpTranslation": "Please Help us translate to your language at {{link}}"
   },
   "login": {
     "title": "தொடங்குவோம்",

@@ -35,6 +35,7 @@ const SettingsPage = ({ onClose }: { onClose: () => void }) => {
                         setSelectedLanguage(selectedLanguage);
                         setRefreshNeeded(true);
                     }}
+                    helperText={t('settings.helpTranslation', { link: '' })}
                 >
                     {languages.map((lang) => (
                         <MenuItem key={lang} value={lang}>
