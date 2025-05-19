@@ -1,70 +1,70 @@
 {
   "title": "CampWiz NXT",
   "home": {
-    "welcome": "Welcome {{name}}",
-    "subtitle": "Taking jury experience to another level",
-    "publicRunningCampaigns": "Public Running Campaigns",
-    "yourCampaigns": "Your Campaigns",
-    "logout": "Logout",
-    "dashboard": "Dashboard",
-    "doc": "Doc",
-    "login": "Login",
+    "welcome": "स्वागत {{name}}",
+    "subtitle": "ज्युरी अनुभव एक नव्या पातळीवर",
+    "publicRunningCampaigns": "सार्वजनिक चालू स्पर्धा",
+    "yourCampaigns": "तुमच्या स्पर्धा",
+    "logout": "बाहेर पडा",
+    "dashboard": "डॅशबोर्ड",
+    "doc": "दस्तऐवज",
+    "login": "लॉगिन",
     "guest": ""
   },
   "settings": {
-    "title": "Settings",
-    "language": "Language",
-    "darkMode": "Dark Mode",
-    "lightMode": "Light Mode",
-    "save": "Save",
-    "cancel": "Cancel",
-    "theme": "Theme"
+    "title": "सेटिंग्ज",
+    "language": "भाषा",
+    "darkMode": "गडद मोड",
+    "lightMode": "हलका मोड",
+    "save": "जतन करा",
+    "cancel": "रद्द करा",
+    "theme": "थीम"
   },
   "login": {
-    "title": "Let's get started",
-    "loginWithWikimedia": "Login with Wikimedia",
-    "afterLoginRedirect": " After this process, you will be redirected back to the following page:"
+    "title": "चला सुरुवात करूया",
+    "loginWithWikimedia": "Wikimedia सह लॉगिन करा",
+    "afterLoginRedirect": " या प्रक्रियेनंतर, तुम्हाला पुढील पानावर परत नेले जाईल:"
   },
   "campaign": {
-    "createCampaign": "Create Campaign",
-    "goToCampaign": "Go to Campaign",
-    "showAllCampaigns": "Show All Campaigns"
+    "createCampaign": "स्पर्धा तयार करा",
+    "goToCampaign": "स्पर्धेकडे जा",
+    "showAllCampaigns": "सर्व स्पर्धा दाखवा"
   },
   "round": {
     "status": {
-      "ACTIVE": "Active",
-      "PAUSED": "Paused",
-      "COMPLETED": "Completed",
-      "ARCHIVED": "Archived"
+      "ACTIVE": "सक्रिय",
+      "PAUSED": "थांबवले",
+      "COMPLETED": "पूर्ण",
+      "ARCHIVED": "जतन केले"
     },
-    "submissions": "Submissions",
-    "assignments": "Assignments",
-    "evaluatedOutOf": "{{evaluated}} evaluated out of {{total}}"
+    "submissions": "सबमिशन्स",
+    "assignments": "नेमणुका",
+    "evaluatedOutOf": "{{total}} पैकी {{evaluated}} चे मूल्यमापन झाले"
   },
   "footer": {
-    "campwizNxtTeam": "Campwiz NXT Team",
-    "manual": "Manual",
-    "terms": "Terms",
-    "privacy": "Privacy",
-    "reportBug": "Report a bug"
+    "campwizNxtTeam": "CampWiz NXT टीम",
+    "manual": "मार्गदर्शक",
+    "terms": "अटी व शर्ती",
+    "privacy": "गोपनीयता",
+    "reportBug": "बग अहवाल द्या"
   },
   "error": {
-    "noAssignedCampaigns": "No assigned campaigns"
+    "noAssignedCampaigns": "कोणत्याही स्पर्धा नेमण्यात आलेल्या नाहीत"
   },
-  "close": "Close",
+  "close": "बंद करा",
   "languages": {
-    "en": "English",
-    "bn": "Bengali (বাংলা)",
-    "ar": "Arabic (العربية)",
-    "hi": "Hindi (हिन्दी)",
-    "es": "Spanish (Español)",
-    "fr": "French (Français)",
-    "de": "German (Deutsch)",
-    "it": "Italian (Italiano)",
-    "ja": "Japanese (日本語)",
-    "ko": "Korean (한국어)",
-    "pt": "Portuguese (Português)",
-    "ru": "Russian (Русский)",
-    "zh": "Chinese (中文)"
+    "en": "इंग्रजी (English)",
+    "bn": "बंगाली (বাংলা)",
+    "ar": "अरेबिक (العربية)",
+    "hi": "हिंदी (हिन्दी)",
+    "es": "स्पॅनिश (Español)",
+    "fr": "फ्रेंच (Français)",
+    "de": "जर्मन (Deutsch)",
+    "it": "इटालियन (Italiano)",
+    "ja": "जपानी (日本語)",
+    "ko": "कोरियन (한국어)",
+    "pt": "पोर्तुगीज (Português)",
+    "ru": "रशियन (Русский)",
+    "zh": "चिनी (中文)"
   }
 }
