@@ -61,7 +61,7 @@ const ProjectDashboard = async () => {
     return <>
         <Header returnTo="/" />
         <div>
-            <div className="flex flex-row justify-between p-5">
+            <div className="flex flex-row justify-between ">
                 <h1 className="text-2xl font-bold">Project Dashboard</h1>
                 {canAccessOtherProject && <NewProjectButton />}
             </div>
@@ -71,7 +71,7 @@ const ProjectDashboard = async () => {
             p-5
             bg-transparent
             rounded-lg
-            shadow-lg
+            shadow-sm
         ">
                 <h2 className="text-xl font-bold">My Project</h2>
                 <Suspense fallback={<div>Loading...</div>}>
@@ -81,7 +81,9 @@ const ProjectDashboard = async () => {
                 </Suspense>
             </div>
             }
-            {otherProjects.length > 0 && <div className="
+            {otherProjects.length > 0 && <>
+                <h2 className="text-2xl font-bold block p-2 pl-4 text-center">Other Projects</h2>
+                <div className="
             flex flex-row flex-wrap
             gap-4
             p-5
@@ -89,15 +91,16 @@ const ProjectDashboard = async () => {
             rounded-lg
             shadow-lg
         ">
-                <h2 className="text-xl font-bold block">Other Projects</h2>
-                {otherProjects.map(project => (
-                    <SinglProjectChip
-                        key={project.projectId}
-                        project={project}
-                    />
-                ))}
-                {/* </div> */}
-            </div>
+                    {otherProjects.map(project => (
+                        <SinglProjectChip
+                            key={project.projectId}
+                            project={project}
+                        />
+                    ))}
+                    {/* </div> */}
+                </div>
+
+            </>
             }
         </div>
         <Footer />
