@@ -102,12 +102,13 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
         setCurrentEvaluation(cur);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [evaluations, currentCursor]);
+    console.log('Current Evaluation', currentEvaluation);
     useEffect(() => {
         if (nextEvaluation) {
-            if (nextEvaluation.submission && nextEvaluation.submission.url) {
+            if (nextEvaluation.submission && nextEvaluation.submission.thumburl) {
                 if (nextEvaluation.submission.mediatype === MediaType.IMAGE) {
-                    if (nextEvaluation.submission.url.startsWith("http")) {
-                        prefetchSubmissionPreview(nextEvaluation.submission.url).then((response) => {
+                    if (nextEvaluation.submission.thumburl.startsWith("http")) {
+                        prefetchSubmissionPreview(nextEvaluation.submission.thumburl).then((response) => {
                             if (response.error)
                                 return;
                             if (!response.url)
@@ -121,7 +122,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
                                             ...evaluation,
                                             submission: {
                                                 ...evaluation.submission,
-                                                url: response.url,
+                                                thumburl: response.url,
                                                 submissionId: evaluation.submission.submissionId || '' // Ensure submissionId is always a string
                                             }
                                         }
@@ -205,44 +206,44 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
             setIsLoading(false);
         });
     }, [currentCursor, evaluations, evaluations.length, hasNextEvaluation, isPublicJury, limit, next, roundId]);
-    useEffect(() => {
-        if (!nextEvaluation)
-            return;
-        if (!nextEvaluation.submission)
-            return;
-        if (!nextEvaluation.submission.url)
-            return;
-        // Removed console.log to avoid unintended logging in production
-        // only prefetch image previews
-        if (nextEvaluation.submission.mediatype !== MediaType.IMAGE)
-            return;
-        if (nextEvaluation.submission.url.startsWith("http")) {
-            prefetchSubmissionPreview(nextEvaluation.submission.url).then((response) => {
-                if (response.error)
-                    return;
-                if (!response.url)
-                    return;
-                setEvaluations((evaluations) => {
-                    const updatedEvaluations = evaluations.map((evaluation, index) => {
-                        if (!evaluation.submission)
-                            return evaluation;
-                        if (index === currentCursor + 1)
-                            return {
-                                ...evaluation,
-                                submission: {
-                                    ...evaluation.submission,
-                                    url: response.url,
-                                    submissionId: evaluation.submission.submissionId || '' // Ensure submissionId is always a string
-                                }
-                            }
-                        return evaluation;
-                    })
-                    return updatedEvaluations;
-                })
-            }
-            )
-        }
-    }, [currentCursor, nextEvaluation]);
+    // useEffect(() => {
+    //     if (!nextEvaluation)
+    //         return;
+    //     if (!nextEvaluation.submission)
+    //         return;
+    //     if (!nextEvaluation.submission.url)
+    //         return;
+    //     // Removed console.log to avoid unintended logging in production
+    //     // only prefetch image previews
+    //     if (nextEvaluation.submission.mediatype !== MediaType.IMAGE)
+    //         return;
+    //     if (nextEvaluation.submission.url.startsWith("http")) {
+    //         prefetchSubmissionPreview(nextEvaluation.submission.thumburl).then((response) => {
+    //             if (response.error)
+    //                 return;
+    //             if (!response.url)
+    //                 return;
+    //             setEvaluations((evaluations) => {
+    //                 const updatedEvaluations = evaluations.map((evaluation, index) => {
+    //                     if (!evaluation.submission)
+    //                         return evaluation;
+    //                     if (index === currentCursor + 1)
+    //                         return {
+    //                             ...evaluation,
+    //                             submission: {
+    //                                 ...evaluation.submission,
+    //                                 thumburl: response.url,
+    //                                 submissionId: evaluation.submission.submissionId || '' // Ensure submissionId is always a string
+    //                             }
+    //                         }
+    //                     return evaluation;
+    //                 })
+    //                 return updatedEvaluations;
+    //             })
+    //         }
+    //         )
+    //     }
+    // }, [currentCursor, nextEvaluation]);
 
     if (!currentEvaluation)
         return <AllSet roundId={roundId} campaignId={campaignId} skipCount={skipCount} />
