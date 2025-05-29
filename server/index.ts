@@ -46,15 +46,15 @@ export const fetchFromBackend = async (path: string, options?: RequestInit): Pro
     const headerStore = await headers()
     const injectedHeaders: Record<string, string> = {
         'X-Requested-With': 'fetchFromBackend',
+        'User-Agent': headerStore.get('user-agent') || 'From Backend',
+        'Accept': headerStore.get('accept') || 'application/json',
+        'Accept-Language': headerStore.get('accept-language') || 'en-US,en;q=0.9',
+        'Accept-Encoding': headerStore.get('accept-encoding') || 'gzip, deflate, br',
+        'Referer': headerStore.get('referer') || baseURL,
+        'Origin': headerStore.get('origin') || baseURL,
+        'X-CSRF-Token': headerStore.get('x-csrf-token') || '',
     }
-    for (const [key, value] of headerStore.entries()) {
-        if (key.toLowerCase() === 'cookie') {
-            continue // Skip cookies from headers, we will handle them separately
-        } else {
-            injectedHeaders[key] = value
-        }
 
-    }
     if (options === undefined) {
         options = {}
     }
