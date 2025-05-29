@@ -1,7 +1,7 @@
 "use server"
 import { ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { ResponseError, ResponseList, ResponseSingle } from "../types/_";
-import { cookies } from 'next/headers'
+import { cookies, headers } from 'next/headers'
 const baseURL = process.env.NEXT_BASE_URL || ''
 const API_PATH = '/api/v2';
 const parseCookieString = (cookieString: string): ResponseCookie => {
@@ -43,13 +43,38 @@ const parseCookieString = (cookieString: string): ResponseCookie => {
 }
 export const fetchFromBackend = async (path: string, options?: RequestInit): Promise<Response> => {
     const cookieStore = await cookies()
+    const headerStore = await headers()
+    const injectedHeaders: Record<string, string> = {
+        'X-Requested-With': 'fetchFromBackend',
+    }
+    for (const [key, value] of headerStore.entries()) {
+        if (key.toLowerCase() === 'cookie') {
+            continue // Skip cookies from headers, we will handle them separately
+        } else {
+            injectedHeaders[key] = value
+        }
+
+    }
     if (options === undefined) {
         options = {}
     }
     if (options.headers === undefined) {
-        options.headers = new Headers()
+        options.headers = new Headers(injectedHeaders)
     } else {
-        options.headers = new Headers(options.headers)
+        let headersObj: Headers;
+        if (options.headers instanceof Headers) {
+            headersObj = options.headers;
+        } else {
+            headersObj = new Headers(options.headers as Record<string, string>);
+        }
+        for (const [key, value] of headersObj.entries()) {
+            if (key.toLowerCase() === 'cookie') {
+                continue // Skip cookies from headers, we will handle them separately
+            } else {
+                injectedHeaders[key] = value as string
+            }
+        }
+        options.headers = new Headers(injectedHeaders)
     }
     options.headers.append('Cookie', cookieStore.toString())
     if (!options.headers.has('Content-Type')) {
