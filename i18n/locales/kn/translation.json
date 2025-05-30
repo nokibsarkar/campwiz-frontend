@@ -53,6 +53,16 @@
     "noAssignedCampaigns": "ಹೊಂದಿಕೆಯಾಗದ ಸ್ಪರ್ಧೆಗಳು ಇಲ್ಲ"
   },
   "close": "ಮುಚ್ಚಿ",
+  "previous": "Previous",
+  "next": "Next",
+  "evaluation": {
+    "modifytable": {
+      "name": "Name",
+      "score": "Score",
+      "preview": "Preview",
+      "action": "Action"
+    }
+  },
   "languages": {
     "en": "ಇಂಗ್ಲಿಷ್ (English)",
     "bn": "ಬಂಗಾಳಿ (বাংলা)",

@@ -52,7 +52,17 @@
   "error": {
     "noAssignedCampaigns": "The error message that would be shown when the user has campaigns found in which the person is assigned as a jury or co-ordinator. This label would be shown in the home page"
   },
-  "close": "Close",
+  "close": "Label for a generic close button. For example, the user can click on the close to close a modal or a dialog box",
+  "previous": "Label for a generic previous button. For example, the user can click on the previous to go back to the previous page",
+  "next": "Label for a generic next button. For example, the user can click on the next to go to the next page",
+  "evaluation": {
+    "modifytable": {
+      "name": "Label for the name of the submission.",
+      "score": "Label for the score of the submission.",
+      "preview": "Label for a button in the modify table that allows the user to preview the submission. For example, the user can click on the preview to see the submission",
+      "action": "Label for list of Action the user can take on this assignment. For example, the user can click on the preview to see the submission, or click on the edit to change the score of the submission"
+    }
+  },
   "languages": {
     "en": "English (English). Please keep the language name in your language and then add \"(<Original language name in that language alphabet>)\" at the end of the name. For example, if the language is English, it should be \"<Translation of the name English in your language> (English)\"",
     "bn": "Bengali (বাংলা). Please keep the language name in your language and then add \"(<Original language name in that language alphabet>)\" at the end of the name. For example, if the language is Bengali, it should be \"<Translation of the name Bengali in your language> (বাংলা)\"",
