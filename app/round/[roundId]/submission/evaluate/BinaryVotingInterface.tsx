@@ -3,8 +3,6 @@ import IconButton from '@mui/material/IconButton';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import CrossIcon from '@/public/cross.svg';
-// import OkIcon from '@/public/ok.svg';
-// import OKoutlinedICON from '@/public/ok-outlined.svg';
 import CrossOutlinedICON from '@/public/cross-outlined.svg';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
@@ -54,7 +52,7 @@ const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, onSkip, saving
                 </IconButton>
                 <IconButton color="primary" size="large" onClick={() => { setCurrentScore(100); submitScore(100); }} disabled={saving} loading={saving} sx={{ fontSize: 5 }} title='Yes'
                     ref={LikeButton}>
-                    <OkIcon fontSize='large' sx={{ fontSize: 45, color: 'green' }} />
+                    <OkIcon sx={{ fontSize: 45, color: 'green' }} />
                 </IconButton>
                 <Button
                     color="primary"
