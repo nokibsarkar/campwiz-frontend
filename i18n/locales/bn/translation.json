@@ -53,6 +53,16 @@
     "noAssignedCampaigns": "কোনও প্রতিযোগিতা নেই"
   },
   "close": "বন্ধ করুন",
+  "previous": "Previous",
+  "next": "Next",
+  "evaluation": {
+    "modifytable": {
+      "name": "Name",
+      "score": "Score",
+      "preview": "Preview",
+      "action": "Action"
+    }
+  },
   "languages": {
     "en": "ইংরেজি (English)",
     "bn": "বাংলা",

@@ -17,6 +17,7 @@ import InformationIcon from '@mui/icons-material/Info';
 import SubmissionDetails from "@/app/submission/[submissionId]/_preview/Details";
 import CloseIcon from '@mui/icons-material/Close';
 import { usePathname } from "next/navigation";
+import { useTranslation } from "@/i18n/client";
 
 type EvaluatedPageProps = {
     initialEvaluations: Evaluation[]
@@ -28,6 +29,7 @@ const ActualPage = ({ initialEvaluations: evaluations, next, round, prev: previo
     "use client"
     const [selectedSubmission, setSelectedSubmission] = useState<Submission | null>(null);
     const returnTo = usePathname();
+    const { t } = useTranslation()
     return <div>
         {selectedSubmission && <Dialog
             open={selectedSubmission !== null}
@@ -46,7 +48,7 @@ const ActualPage = ({ initialEvaluations: evaluations, next, round, prev: previo
                     onClick={() => setSelectedSubmission(null)}
                     startIcon={<CloseIcon />}
                 >
-                    Close
+                    {t('close')}
                 </Button>
             </DialogActions>
         </Dialog>
@@ -58,7 +60,7 @@ const ActualPage = ({ initialEvaluations: evaluations, next, round, prev: previo
                     color="primary"
                     startIcon={<ArrowBackIcon />}
                 >
-                    Previous
+                    {t('previous')}
                 </Button>
             </Link>
             <Link href={`/round/${round.roundId}/submission/evaluated/page/${next}`} style={{ visibility: next ? 'visible' : 'hidden' }}>
@@ -67,7 +69,7 @@ const ActualPage = ({ initialEvaluations: evaluations, next, round, prev: previo
                     color="primary"
                     endIcon={<ArrowForwardIcon />}
                 >
-                    Next
+                    {t('next')}
                 </Button>
             </Link>
 
@@ -76,16 +78,16 @@ const ActualPage = ({ initialEvaluations: evaluations, next, round, prev: previo
             <TableHead>
                 <TableRow>
                     <TableCell>
-                        Name
+                        {t('evaluation.modifyTable.name')}
                     </TableCell>
                     <TableCell>
-                        Preview
+                        {t('evaluation.modifyTable.preview')}
                     </TableCell>
                     <TableCell>
-                        Score
+                        {t('evaluation.modifyTable.score')}
                     </TableCell>
                     <TableCell>
-                        Action
+                        {t('evaluation.modifyTable.action')}
                     </TableCell>
                 </TableRow>
             </TableHead>

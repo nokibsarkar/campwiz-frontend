@@ -53,6 +53,16 @@
     "noAssignedCampaigns": "لا توجد مسابقات مخصصة"
   },
   "close": "إغلاق",
+  "previous": "Previous",
+  "next": "Next",
+  "evaluation": {
+    "modifytable": {
+      "name": "Name",
+      "score": "Score",
+      "preview": "Preview",
+      "action": "Action"
+    }
+  },
   "languages": {
     "en": "الإنجليزية (English)",
     "bn": "البنغالية (বাংলা)",

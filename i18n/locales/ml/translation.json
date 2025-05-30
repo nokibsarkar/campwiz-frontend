@@ -53,6 +53,16 @@
     "noAssignedCampaigns": "ഏതെങ്കിലും നിയുക്ത മത്സരങ്ങളും ലഭ്യമല്ല"
   },
   "close": "അടയ്ക്കുക",
+  "previous": "Previous",
+  "next": "Next",
+  "evaluation": {
+    "modifytable": {
+      "name": "Name",
+      "score": "Score",
+      "preview": "Preview",
+      "action": "Action"
+    }
+  },
   "languages": {
     "en": "ഇംഗ്ലീഷ് (English)",
     "bn": "ബംഗാളി (বাংলা)",

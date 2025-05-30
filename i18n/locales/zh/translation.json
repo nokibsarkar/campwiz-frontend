@@ -53,6 +53,16 @@
     "noAssignedCampaigns": "No assigned campaigns"
   },
   "close": "Close",
+  "previous": "Previous",
+  "next": "Next",
+  "evaluation": {
+    "modifytable": {
+      "name": "Name",
+      "score": "Score",
+      "preview": "Preview",
+      "action": "Action"
+    }
+  },
   "languages": {
     "en": "English",
     "bn": "Bengali (বাংলা)",

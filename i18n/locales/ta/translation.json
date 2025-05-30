@@ -53,6 +53,16 @@
     "noAssignedCampaigns": "ஒதுக்கப்பட்ட போட்டிகள் எதுவும் இல்லை"
   },
   "close": "மூடு",
+  "previous": "Previous",
+  "next": "Next",
+  "evaluation": {
+    "modifytable": {
+      "name": "Name",
+      "score": "Score",
+      "preview": "Preview",
+      "action": "Action"
+    }
+  },
   "languages": {
     "en": "ஆங்கிலம் (English)",
     "bn": "பெங்காலி (বাংলা)",
