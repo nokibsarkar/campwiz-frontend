@@ -3,9 +3,12 @@ import IconButton from '@mui/material/IconButton';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import CrossIcon from '@/public/cross.svg';
-import OkIcon from '@/public/ok.svg';
-import OKoutlinedICON from '@/public/ok-outlined.svg';
+// import OkIcon from '@/public/ok.svg';
+// import OKoutlinedICON from '@/public/ok-outlined.svg';
 import CrossOutlinedICON from '@/public/cross-outlined.svg';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Image from "next/image";
 import Button from '@mui/material/Button'
 import type { VotingInterfaceProps } from './VotingInterface';
@@ -20,6 +23,7 @@ const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, onSkip, saving
     const LikeButton = createRef<HTMLButtonElement>();
     const DislikeButton = createRef<HTMLButtonElement>();
     const previousButton = createRef<HTMLButtonElement>();
+    const OkIcon = currentScore === 100 ? CheckCircleIcon : CheckCircleOutlineIcon;
     return (
         <>
             {/* <Typography variant="h4" sx={{ fontFamily: 'Lora, serif', color: 'primary.main', textAlign: 'left', m: 1, display: 'block', width: '100%', fontSize: { xs: 24, }, fontWeight: 'bold' }}>
@@ -50,7 +54,7 @@ const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, onSkip, saving
                 </IconButton>
                 <IconButton color="primary" size="large" onClick={() => { setCurrentScore(100); submitScore(100); }} disabled={saving} loading={saving} sx={{ fontSize: 5 }} title='Yes'
                     ref={LikeButton}>
-                    <Image src={currentScore === 100 ? OkIcon.src : OKoutlinedICON.src} alt="yes" width={50} height={50} />
+                    <OkIcon fontSize='large' sx={{ fontSize: 45, color: 'green' }} />
                 </IconButton>
                 <Button
                     color="primary"
