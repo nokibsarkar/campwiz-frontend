@@ -55,9 +55,9 @@
     ]
   },
   "app/round/[roundId]/submission/evaluate/BinaryOrScoreVotingInterface.tsx -> ./BinaryVotingInterface": {
-    "id": 2821,
+    "id": 23614,
     "files": [
-      "static/chunks/2821.542784420e4aa362.js"
+      "static/chunks/3614.d476fbd50656407e.js"
     ]
   },
   "app/round/[roundId]/submission/evaluate/BinaryOrScoreVotingInterface.tsx -> ./RatingVotingInterface": {
