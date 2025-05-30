@@ -84,7 +84,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
                                         ...prev,
                                         submission: {
                                             ...prev.submission,
-                                            description: imageInfo.extmetadata.ImageDescription.value
+                                            description: description
                                         }
                                     }
                                 }
