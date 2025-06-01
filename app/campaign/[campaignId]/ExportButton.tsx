@@ -1,4 +1,4 @@
-import { getRawAPIPath } from "@/server";
+// import { getRawAPIPath } from "@/server";
 import { Button } from "@mui/material";
 import React from "react";
 import DownloadIcon from '@mui/icons-material/Download';
@@ -9,7 +9,7 @@ const ExportToCSVButton = ({ roundId }: { roundId: string }) => {
     const exportToCSV = async () => {
         try {
             setLoading(true)
-            const res = await fetch(await getRawAPIPath(`/round/${roundId}/results/csv`), {
+            const res = await fetch(`/round/${roundId}/results/csv`, {
                 headers: {
                     'Content-Type': 'text/csv',
                     'Accept': 'text/csv',
@@ -22,7 +22,7 @@ const ExportToCSVButton = ({ roundId }: { roundId: string }) => {
             const blob = await res.blob()
             const url = window.URL.createObjectURL(blob)
             const a = document.createElement('a')
-            a.download = `round-${roundId}.csv`
+            a.download = `round - ${roundId}.csv`
             a.href = url
             a.click()
             window.URL.revokeObjectURL(url)
