@@ -46,7 +46,7 @@ const EvaluationManager = ({ roundId, initailEvaluations: initialEvaluations, ne
         if (descriptionFetching) return;
 
         const cur = evaluations[currentCursor];
-        if (cur && cur.submission && !cur.submission.description && !descriptionFetching) {
+        if (cur && cur.submission && (!cur.submission.description || cur.submission.description === "") && !descriptionFetching) {
             console.log('Fetching Description');
             const qs = new URLSearchParams({
                 "action": "query",
