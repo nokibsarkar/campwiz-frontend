@@ -63,6 +63,14 @@
       "namedRegex": "^/project/(?<nxtPprojectId>[^/]+?)/new(?:/)?$"
     },
     {
+      "page": "/round/[roundId]/results/csv",
+      "regex": "^/round/([^/]+?)/results/csv(?:/)?$",
+      "routeKeys": {
+        "nxtProundId": "nxtProundId"
+      },
+      "namedRegex": "^/round/(?<nxtProundId>[^/]+?)/results/csv(?:/)?$"
+    },
+    {
       "page": "/round/[roundId]/submission/evaluate",
       "regex": "^/round/([^/]+?)/submission/evaluate(?:/)?$",
       "routeKeys": {
