@@ -8958,10 +8958,10 @@ react-easy-sort@^1.6.0:
     array-move "^3.0.1"
     tslib "2.0.1"
 
-react-h5-audio-player@^3.10.0-rc.1:
-  version "3.10.0-rc.1"
-  resolved "https://registry.yarnpkg.com/react-h5-audio-player/-/react-h5-audio-player-3.10.0-rc.1.tgz#c718fca980521a7cf633a5484dd559084c43af81"
-  integrity sha512-A/Okq9BoOfqUc1oQxcqZWeL5DMeBAMfb7aA7G64EAle3BM7PVYH9ZyES9PespfT2CgKRpAv855gUoMs0PWGhOQ==
+react-h5-audio-player@^3.10.0:
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/react-h5-audio-player/-/react-h5-audio-player-3.10.0.tgz#50945489d48d8e261ef5703ef55c96627924a5ca"
+  integrity sha512-y1PRCwGy8TfpTQaoV3BTusrmSMDfET5yAiUCzbosAZrF15E3QahzG/SLsuGXDv4QVy/lgwlhThaFNvL5kkS09w==
   dependencies:
     "@babel/runtime" "^7.10.2"
     "@iconify/react" "^5"
