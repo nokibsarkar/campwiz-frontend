@@ -1,13 +1,13 @@
 import * as React from 'react';
 import PublicRunningCampaigns from '@/components/campaign/PublicCampaigns';
 import HeroBanner from '@/components/home/HeroBanner';
-import AssignedCampaigns from '@/components/campaign/AssignCampaigns';
 
 import { LinearProgress, Typography } from '@mui/material';
 import fetchSession from '@/server/session';
 import Header from '@/components/home/Header';
 import Footer from '@/components/home/Footer';
-import { Session } from '@/types/user/session';
+// import { Session } from '@/types/user/session';
+const AssignedCampaigns = React.lazy(() => import('@/components/campaign/AssignCampaigns'));
 import { uTranslation } from '@/i18n';
 
 const Dashboard = async () => {
