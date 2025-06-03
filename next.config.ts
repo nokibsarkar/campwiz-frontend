@@ -80,4 +80,7 @@ export default withSentryConfig(nextConfig, {
   // https://vercel.com/docs/cron-jobs
   automaticVercelMonitors: false,
   telemetry: false,
+  headers: {
+    "Document-Policy": "js-profiling",
+  },
 });

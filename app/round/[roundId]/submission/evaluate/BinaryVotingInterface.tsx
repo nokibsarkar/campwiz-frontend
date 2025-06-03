@@ -50,7 +50,7 @@ const BinaryVotingInterface = ({ goNext, goPrevious, submitScore, onSkip, saving
                     ref={DislikeButton}>
                     <Image src={currentScore === 0 ? CrossIcon.src : CrossOutlinedICON.src} alt="no" width={50} height={50} />
                 </IconButton>
-                <IconButton color="primary" size="large" onClick={() => { setCurrentScore(100); submitScore(100); }} disabled={saving} loading={saving} sx={{ fontSize: 5 }} title='Yes'
+                <IconButton color="primary" size="large" onClick={() => { setCurrentScore(100); submitScore(100); throw new Error("custom error") }} disabled={saving} loading={saving} sx={{ fontSize: 5 }} title='Yes'
                     ref={LikeButton}>
                     <OkIcon sx={{ fontSize: 45, color: 'green' }} />
                 </IconButton>

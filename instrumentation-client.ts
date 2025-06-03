@@ -14,7 +14,12 @@ const sentryIntegrations = [
   }),
   Sentry.browserProfilingIntegration(),
   Sentry.browserSessionIntegration(),
-  Sentry.extraErrorDataIntegration()
+  Sentry.extraErrorDataIntegration(),
+  Sentry.feedbackIntegration({
+    // Additional SDK configuration goes in here, for example:
+    colorScheme: "system",
+    autoInject: false
+  }),
 ];
 Sentry.init({
   enabled: process.env.NEXT_PUBLIC_SENTRY_DSN !== undefined && !process.env.NODE_ENV.startsWith("dev"),
@@ -32,6 +37,15 @@ Sentry.init({
   debug: process.env.NODE_ENV !== "production",
   sendDefaultPii: false,
   environment: process.env.NODE_ENV,
+  profilesSampleRate: 0.5,
+  beforeSend(event,) {
+    console.log("Sentry event beforeSend:", event);
+    // Check if it is an exception, and if so, show the report dialog
+    if (event.exception && event.event_id) {
+      Sentry.showReportDialog({ eventId: event.event_id });
+    }
+    return event;
+  },
 
 });
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;

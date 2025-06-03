@@ -15,6 +15,7 @@ const fetchSession = async () => {
     }
     const session = res.data;
     if (session) {
+        console.log('Setting Sentry user:', session.id, session.username);
         setUser({
             id: session.id,
             username: session.username,
