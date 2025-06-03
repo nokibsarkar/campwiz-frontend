@@ -5,6 +5,7 @@
 import * as Sentry from "@sentry/nextjs";
 const sentryIntegrations = [
   Sentry.replayIntegration(),
+  Sentry.browserTracingIntegration(),
 ];
 Sentry.init({
   enabled: process.env.NEXT_PUBLIC_SENTRY_DSN !== undefined && !process.env.NODE_ENV.startsWith("dev"),
@@ -22,5 +23,6 @@ Sentry.init({
   debug: process.env.NODE_ENV !== "production",
   sendDefaultPii: false,
   environment: process.env.NODE_ENV,
+
 });
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;

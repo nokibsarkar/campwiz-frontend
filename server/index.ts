@@ -2,6 +2,7 @@
 import { ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { ResponseError, ResponseList, ResponseSingle } from "../types/_";
 import { cookies, headers } from 'next/headers'
+import * as Sentry from '@sentry/nextjs';
 const baseURL = process.env.NEXT_BASE_URL || ''
 const API_PATH = '/api/v2';
 const parseCookieString = (cookieString: string): ResponseCookie => {
@@ -53,6 +54,7 @@ export const fetchFromBackend = async (path: string, options?: RequestInit): Pro
         'Referer': headerStore.get('referer') || baseURL,
         'Origin': headerStore.get('origin') || baseURL,
         'X-CSRF-Token': headerStore.get('x-csrf-token') || '',
+        ...Sentry.getTraceData(),
     }
 
     if (options === undefined) {

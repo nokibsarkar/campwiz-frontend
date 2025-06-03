@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import * as Sentry from "@sentry/nextjs";
 import "./globals.css";
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
@@ -14,30 +15,34 @@ const roboto = Roboto({
   display: 'swap',
   variable: '--font-roboto',
 });
-export const metadata: Metadata = {
-  title: "CampWiz nxt",
-  description: "A powerful tool for organizing campaigns on Wikimedia projects",
-  applicationName: "CampWiz",
-  icons: {
-    icon: "/favicon.ico",
-  },
-  authors: [
-    {
-      name: "Nokib Sarkar",
-      url: "https://github.com/nokibsarkar",
+export function generateMetadata(): Metadata {
+  return {
+    title: "CampWiz nxt",
+    description: "A powerful tool for organizing campaigns on Wikimedia projects",
+    applicationName: "CampWiz",
+    icons: {
+      icon: "/favicon.ico",
     },
-    {
-      name: "Mst. Rukaiya Islam Tonni",
-      url: "https://github.com/Tonni28",
+    authors: [
+      {
+        name: "Nokib Sarkar",
+        url: "https://github.com/nokibsarkar",
+      },
+      {
+        name: "Mst. Rukaiya Islam Tonni",
+        url: "https://github.com/Tonni28",
+      },
+      {
+        name: "Tiven Gonsalves",
+        url: "https://github.com/Tiven2240",
+
+      }
+    ],
+    other: {
+      ...Sentry.getTraceData(),
     },
-    {
-      name: "Tiven Gonsalves",
-      url: "https://github.com/Tiven2240",
-
-    }
-  ]
-};
-
+  };
+}
 export default async function RootLayout({
   children
 }: Readonly<{
