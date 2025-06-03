@@ -5,8 +5,12 @@ import ReturnButton from "../ReturnButton"
 import { LogoutButtton } from "./Buttons"
 import Link from "next/link"
 import SettingButton from "../user/SettingButton"
+import * as Sentry from '@sentry/nextjs'
 type HeaderProps = {
     returnTo?: string
+}
+if (typeof window !== 'undefined') {
+    (window as typeof window & { Sentry?: typeof Sentry }).Sentry = Sentry;
 }
 const Header = ({ returnTo }: HeaderProps) => {
     return (

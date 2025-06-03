@@ -18,7 +18,8 @@ const sentryIntegrations = [
   Sentry.feedbackIntegration({
     // Additional SDK configuration goes in here, for example:
     colorScheme: "system",
-    autoInject: false
+    // autoInject: false,
+
   }),
 ];
 console.log("Sentry Enabled? ", process.env.NEXT_PUBLIC_SENTRY_DSN !== undefined && !process.env.NODE_ENV.startsWith("dev"))
