@@ -12,9 +12,9 @@ const sentryIntegrations = [
   Sentry.captureConsoleIntegration({
     levels: ["error"],
   }),
-  Sentry.browserProfilingIntegration(),
-  Sentry.browserSessionIntegration(),
-  Sentry.extraErrorDataIntegration()
+  // Sentry.browserProfilingIntegration(),
+  // Sentry.browserSessionIntegration(),
+  // Sentry.extraErrorDataIntegration()
 ];
 Sentry.init({
   enabled: process.env.NEXT_PUBLIC_SENTRY_DSN !== undefined && !process.env.NODE_ENV.startsWith("dev"),
