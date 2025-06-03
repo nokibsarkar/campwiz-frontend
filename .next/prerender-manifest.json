@@ -1,35 +1,6 @@
 {
   "version": 4,
   "routes": {
-    "/robots.txt": {
-      "initialHeaders": {
-        "cache-control": "public, max-age=0, must-revalidate",
-        "content-type": "text/plain",
-        "x-next-cache-tags": "_N_T_/layout,_N_T_/robots.txt/layout,_N_T_/robots.txt/route,_N_T_/robots.txt"
-      },
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/robots.txt",
-      "dataRoute": null,
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/favicon.ico": {
       "initialHeaders": {
         "cache-control": "public, max-age=0, must-revalidate",
@@ -49,6 +20,35 @@
       ],
       "initialRevalidateSeconds": false,
       "srcRoute": "/favicon.ico",
+      "dataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/robots.txt": {
+      "initialHeaders": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-type": "text/plain",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/robots.txt/layout,_N_T_/robots.txt/route,_N_T_/robots.txt"
+      },
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/robots.txt",
       "dataRoute": null,
       "allowHeader": [
         "host",
@@ -135,8 +135,8 @@
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "9020add18c00f155bdb5036abbf789c4",
-    "previewModeSigningKey": "8d48f1d7c47104c1115cb0f198979a72782676fc2ea4c5f8a5a7765027e73feb",
-    "previewModeEncryptionKey": "d9078306cc1fdbb6a21275c117552f95eaaf7d718e1745240661f14cd2ecf919"
+    "previewModeId": "68dbe75239cfb58b7a3dba428b1ca442",
+    "previewModeSigningKey": "70842cc71e74cb52cee2777f8b6ea25f04cb10435d43741db22a7c800aefa5c9",
+    "previewModeEncryptionKey": "dc464a2a6fb8a60598a7045f77af50a435e99c9b263cdab349f2d930fe789cc0"
   }
 }
