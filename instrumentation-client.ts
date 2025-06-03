@@ -21,6 +21,7 @@ const sentryIntegrations = [
     autoInject: false
   }),
 ];
+console.log("Sentry Enabled? ", process.env.NEXT_PUBLIC_SENTRY_DSN !== undefined && !process.env.NODE_ENV.startsWith("dev"))
 Sentry.init({
   enabled: process.env.NEXT_PUBLIC_SENTRY_DSN !== undefined && !process.env.NODE_ENV.startsWith("dev"),
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
