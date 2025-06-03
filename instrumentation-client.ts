@@ -4,8 +4,17 @@
 
 import * as Sentry from "@sentry/nextjs";
 const sentryIntegrations = [
-  Sentry.replayIntegration(),
+  Sentry.replayIntegration({
+    maskAllText: true,
+    blockAllMedia: true,
+  }),
   Sentry.browserTracingIntegration(),
+  Sentry.captureConsoleIntegration({
+    levels: ["error"],
+  }),
+  Sentry.browserProfilingIntegration(),
+  Sentry.browserSessionIntegration(),
+  Sentry.extraErrorDataIntegration()
 ];
 Sentry.init({
   enabled: process.env.NEXT_PUBLIC_SENTRY_DSN !== undefined && !process.env.NODE_ENV.startsWith("dev"),

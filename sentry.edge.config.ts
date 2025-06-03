@@ -16,6 +16,8 @@ Sentry.init({
   sendDefaultPii: false,
   environment: process.env.NODE_ENV,
   integrations: [
-    Sentry.browserTracingIntegration()
+    Sentry.captureConsoleIntegration({
+      levels: ["error"],
+    }),
   ]
 });
