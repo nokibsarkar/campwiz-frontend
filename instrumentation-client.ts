@@ -48,6 +48,15 @@ Sentry.init({
     }
     return event;
   },
+  tracePropagationTargets: [
+    "localhost",
+    /^\//,
+    /^https:\/\/campwiz-backend\.toolforge\.org$/,
+    /^https:\/\/campwiz\.toolforge\.org$/,
+  ]
 
 });
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
+
+
+
