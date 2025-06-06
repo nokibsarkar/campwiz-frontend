@@ -7,9 +7,9 @@
   "/_not-found/page": "app/_not-found/page.js",
   "/campaign/[campaignId]/edit/page": "app/campaign/[campaignId]/edit/page.js",
   "/campaign/[campaignId]/page": "app/campaign/[campaignId]/page.js",
-  "/page": "app/page.js",
   "/campaign/[campaignId]/round/page": "app/campaign/[campaignId]/round/page.js",
   "/campaign/page": "app/campaign/page.js",
+  "/page": "app/page.js",
   "/policy/terms/page": "app/policy/terms/page.js",
   "/policy/privacy/page": "app/policy/privacy/page.js",
   "/project/[projectId]/edit/page": "app/project/[projectId]/edit/page.js",
@@ -25,6 +25,6 @@
   "/round/[roundId]/submission/evaluated/page/[minimumEvaluationId]/page": "app/round/[roundId]/submission/evaluated/page/[minimumEvaluationId]/page.js",
   "/submission/[submissionId]/evaluation/page": "app/submission/[submissionId]/evaluation/page.js",
   "/submission/page": "app/submission/page.js",
-  "/user/callback/error/page": "app/user/callback/error/page.js",
-  "/user/login/page": "app/user/login/page.js"
+  "/user/login/page": "app/user/login/page.js",
+  "/user/callback/error/page": "app/user/callback/error/page.js"
 }
