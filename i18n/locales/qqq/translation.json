@@ -19,7 +19,7 @@
     "save": "Save",
     "cancel": "Cancel",
     "theme": "Theme",
-    "helpTranslation": "Please Help us translate to your language at {{link}}"
+    "helpTranslation": "A request for users to help translate the application to their language. This label would be shown in the home page. The <0>TranslateWiki</0> is a link to the TranslateWiki website where users can contribute translations. You can change the text between the <0> and </0> tags to whatever you want in order to make it more suitable for your language. For example, you can change it to <0>TranslateWiki</0> or <0>TranslateWiki.org</0> or <0>TranslateWiki.net</0> or <0>TranslateWiki.com</0>. The <0> and </0> tags are used to create a link in the text."
   },
   "login": {
     "title": "A proposal to Login",
