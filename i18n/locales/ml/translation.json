@@ -47,7 +47,8 @@
     "manual": "മാനുവൽ",
     "terms": "വ്യവസ്ഥകൾ",
     "privacy": "സ്വകാര്യതാ നയം",
-    "reportBug": "ബഗ് റിപ്പോർട്ട് ചെയ്യുക"
+    "reportBug": "ബഗ് റിപ്പോർട്ട് ചെയ്യുക",
+    "translate": "Translate"
   },
   "error": {
     "noAssignedCampaigns": "ഏതെങ്കിലും നിയുക്ത മത്സരങ്ങളും ലഭ്യമല്ല"

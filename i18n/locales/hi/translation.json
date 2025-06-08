@@ -47,7 +47,8 @@
     "manual": "मार्गदर्शिका",
     "terms": "नियम व शर्तें",
     "privacy": "गोपनीयता नीति",
-    "reportBug": "बग की रिपोर्ट करें"
+    "reportBug": "बग की रिपोर्ट करें",
+    "translate": "Translate"
   },
   "error": {
     "noAssignedCampaigns": "कोई निर्धारित प्रतियोगिताएँ नहीं हैं"

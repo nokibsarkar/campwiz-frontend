@@ -47,7 +47,8 @@
     "manual": "ಮ್ಯಾನುಯಲ್",
     "terms": "ನಿಯಮಗಳು",
     "privacy": "ಗೌಪ್ಯತೆ",
-    "reportBug": "ದೋಷ ವರದಿ ಮಾಡಿ"
+    "reportBug": "ದೋಷ ವರದಿ ಮಾಡಿ",
+    "translate": "Translate"
   },
   "error": {
     "noAssignedCampaigns": "ಹೊಂದಿಕೆಯಾಗದ ಸ್ಪರ್ಧೆಗಳು ಇಲ್ಲ"

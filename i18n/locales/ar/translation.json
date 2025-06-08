@@ -47,7 +47,8 @@
     "manual": "الدليل",
     "terms": "الشروط",
     "privacy": "الخصوصية",
-    "reportBug": "الإبلاغ عن خلل"
+    "reportBug": "الإبلاغ عن خلل",
+    "translate": "Translate"
   },
   "error": {
     "noAssignedCampaigns": "لا توجد مسابقات مخصصة"

@@ -47,7 +47,8 @@
     "manual": "मार्गदर्शक",
     "terms": "अटी व शर्ती",
     "privacy": "गोपनीयता",
-    "reportBug": "बग अहवाल द्या"
+    "reportBug": "बग अहवाल द्या",
+    "translate": "Translate"
   },
   "error": {
     "noAssignedCampaigns": "कोणत्याही स्पर्धा नेमण्यात आलेल्या नाहीत"

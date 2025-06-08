@@ -47,7 +47,8 @@
     "manual": "Manual",
     "terms": "Terms",
     "privacy": "Privacy",
-    "reportBug": "Report a bug"
+    "reportBug": "Report a bug",
+    "translate": "Translate"
   },
   "error": {
     "noAssignedCampaigns": "No assigned campaigns"

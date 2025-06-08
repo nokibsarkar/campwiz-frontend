@@ -1,5 +1,6 @@
 "use server";
 import { uTranslation } from "@/i18n";
+import { translationLink } from "@/i18n/client";
 import Link from "next/link";
 
 const Footer = async () => {
@@ -11,6 +12,7 @@ const Footer = async () => {
             &nbsp; | &nbsp; <Link href="/policy/terms" className="text-blue-400">{t('footer.terms')}</Link>
             &nbsp; | &nbsp; <Link href="/policy/privacy" className="text-blue-400">{t('footer.privacy')}</Link>
             &nbsp; | &nbsp; <Link href="https://github.com/nokibsarkar/campwiz/issues/new" target="_blank" className="text-blue-400">{t('footer.reportBug')}</Link>
+            &nbsp; | &nbsp; <Link href={translationLink} target="_blank" className="text-blue-400">{t('footer.translate')}</Link>
         </footer>
     );
 }
