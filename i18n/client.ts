@@ -56,3 +56,4 @@ export function useTranslation<Ns extends FlatNamespace, KPrefix extends KeyPref
     }
     return ret
 }
+export const translationLink = 'https://translatewiki.net/wiki/Special:Translate?group=wikimedia-tools-campwiz-frontend&action=translate&filter=!translated&utm_source=CampWizFrontend&utm_campaign=CampWizFrontend&utm_medium=translatewiki&utm_content=CampWizFrontend&utm_term=CampWizFrontend';

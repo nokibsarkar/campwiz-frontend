@@ -1,5 +1,5 @@
 "use client"
-import { useTranslation } from "@/i18n/client";
+import { translationLink, useTranslation } from "@/i18n/client";
 import { cookieName, languages } from "@/i18n/settings";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField, Typography } from "@mui/material";
 import { setCookie } from "cookies-next/client";
@@ -7,7 +7,7 @@ import { useState } from "react";
 import ThemeSwitcherButton from "@/components/home/ThemeswitcherButton";
 import { Trans } from "react-i18next";
 import Link from "next/link";
-const translationLink = 'https://translatewiki.net/wiki/Special:Translate?group=wikimedia-tools-campwiz-frontend&action=translate&filter=!translated&utm_source=CampWizFrontend&utm_campaign=CampWizFrontend&utm_medium=translatewiki&utm_content=CampWizFrontend&utm_term=CampWizFrontend';
+
 const SettingsPage = ({ onClose }: { onClose: () => void }) => {
     const { t, i18n } = useTranslation()
     const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);

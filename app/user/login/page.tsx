@@ -13,7 +13,8 @@ import LottieWrapper from "@/components/LottieWrapper";
 import Image from "next/image";
 import { useState } from "react";
 import WikipediaIcon from "@/components/WikipediaIcon";
-import { useTranslation } from "@/i18n/client";
+import { translationLink, useTranslation } from "@/i18n/client";
+import { Trans } from "react-i18next";
 
 const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
     const searchParams = useSearchParams()
@@ -55,6 +56,19 @@ const LoginComponent = ({ isMobile }: { isMobile: boolean }) => {
                 {t('login.title')}
             </Typography>
             {error && <Typography variant="body1" color="error" sx={{ mb: 1 }}>{t(error.message)}</Typography>}
+            <Typography variant="body1" sx={{ mb: 2 }}>
+                <Trans
+                    i18nKey={'settings.helpTranslation'}
+                    t={t}
+                    components={[<Link
+                        key="1"
+                        href={translationLink}
+                        style={{ textDecoration: 'none', color: 'blue' }}
+                        className="translation-link"
+                        target="_blank"
+                        rel="noopener noreferrer">{t('login.link')}</Link>]}
+                />
+            </Typography>
             <Button
                 onClick={() => {
                     setError(null);
