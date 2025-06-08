@@ -47,7 +47,8 @@
     "manual": "ব্যবহার নির্দেশিকা",
     "terms": "শর্তাবলী",
     "privacy": "গোপনীয়তা",
-    "reportBug": "বাগ রিপোর্ট করুন"
+    "reportBug": "বাগ রিপোর্ট করুন",
+    "translate": "Translate"
   },
   "error": {
     "noAssignedCampaigns": "কোনও প্রতিযোগিতা নেই"

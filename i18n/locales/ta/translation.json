@@ -47,7 +47,8 @@
     "manual": "மானுவல்",
     "terms": "விதிமுறைகள்",
     "privacy": "தனியுரிமை",
-    "reportBug": "பிழையை அறிக்கை செய்யவும்"
+    "reportBug": "பிழையை அறிக்கை செய்யவும்",
+    "translate": "Translate"
   },
   "error": {
     "noAssignedCampaigns": "ஒதுக்கப்பட்ட போட்டிகள் எதுவும் இல்லை"

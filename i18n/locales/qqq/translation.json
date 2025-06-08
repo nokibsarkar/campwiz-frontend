@@ -47,7 +47,8 @@
     "manual": "The page where the user can find instructions on how to use the application. This label would be shown in the home page",
     "terms": "Terms of Service",
     "privacy": "Privacy Policy",
-    "reportBug": "A label for the link to the bug report page. This label would be shown in the home page"
+    "reportBug": "A label for the link to the bug report page. This label would be shown in the home page",
+    "translate": "Translate"
   },
   "error": {
     "noAssignedCampaigns": "The error message that would be shown when the user has campaigns found in which the person is assigned as a jury or co-ordinator. This label would be shown in the home page"
