@@ -5,7 +5,9 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, Te
 import { setCookie } from "cookies-next/client";
 import { useState } from "react";
 import ThemeSwitcherButton from "@/components/home/ThemeswitcherButton";
-
+import { Trans } from "react-i18next";
+import Link from "next/link";
+const translationLink = 'https://translatewiki.net/wiki/Special:Translate?group=wikimedia-tools-campwiz-frontend&action=translate&filter=!translated&utm_source=CampWizFrontend&utm_campaign=CampWizFrontend&utm_medium=translatewiki&utm_content=CampWizFrontend&utm_term=CampWizFrontend';
 const SettingsPage = ({ onClose }: { onClose: () => void }) => {
     const { t, i18n } = useTranslation()
     const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
@@ -35,7 +37,18 @@ const SettingsPage = ({ onClose }: { onClose: () => void }) => {
                         setSelectedLanguage(selectedLanguage);
                         setRefreshNeeded(true);
                     }}
-                    helperText={t('settings.helpTranslation', { link: '' })}
+                    helperText={<Trans
+                        i18nKey={'settings.helpTranslation'}
+                        t={t}
+                        components={[<Link
+                            key="1"
+                            href={translationLink}
+                            style={{ textDecoration: 'none', color: 'blue' }}
+                            className="translation-link"
+                            target="_blank"
+                            rel="noopener noreferrer">{translationLink}</Link>]}
+                    />
+                    }
                 >
                     {languages.map((lang) => (
                         <MenuItem key={lang} value={lang}>

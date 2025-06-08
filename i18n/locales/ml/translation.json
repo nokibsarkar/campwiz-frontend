@@ -19,7 +19,7 @@
     "save": "സംരക്ഷിക്കുക",
     "cancel": "റദ്ദാക്കുക",
     "theme": "തീം",
-    "helpTranslation": "Please Help us translate to your language at {{link}}"
+    "helpTranslation": "Please Help us translate to your language at <0>TranslateWiki</0>"
   },
   "login": {
     "title": "ആരംഭിക്കാം",

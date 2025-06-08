@@ -19,7 +19,7 @@
     "save": "সংরক্ষণ",
     "cancel": "বাতিল",
     "theme": "থিম",
-    "helpTranslation": "Please Help us translate to your language at {{link}}"
+    "helpTranslation": "Please Help us translate to your language at <0>TranslateWiki</0>"
   },
   "login": {
     "title": "চলুন শুরু করি",
