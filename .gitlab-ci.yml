@@ -53,17 +53,18 @@ build:
     - ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
     - echo "$SSH_PRIVATE_KEY" > id_rsa
     - chmod 600 id_rsa
-    - git config --global user.email "gitlab-ci@example.com"
+    - git config --global user.email "gitlab-ci@gitlab.wikimedia.org"
     - git config --global user.name "GitLab CI"
   script:
     # Push to build branch (GitLab equivalent of git-publish-subdir-action)
-    - git checkout -b build || git checkout build
+    - git checkout -b $BRANCH || git checkout $BRANCH
     - rm -rf * .github .gitignore || true
     - cp -r .next/standalone/* .
     - cp -r .next/standalone/.* . 2>/dev/null || true
+    - git remote add gitlab_origin https://oauth2:$ACCESS_TOKEN@gitlab.wikimedia.org/$CI_PROJECT_PATH.git
     - git add .
     - git commit -m "Build from commit $CI_COMMIT_SHA - $CI_COMMIT_MESSAGE" || echo "No changes to commit"
-    - git push origin build --force
+    - git push gitlab_origin $BRANCH --force
     # Restart service on Toolforge
     - |
       ssh -i id_rsa "$SSH_USER@$SSH_HOST" <<EOF
@@ -109,4 +110,5 @@ deploy-dev:
     SSH_USER: "nokibsarkar"
     TOOLNAME: $TOOLNAME
     BRANCH: build
+    ACCESS_TOKEN: $GITLAB_ACCESS_TOKEN
   <<: *deploy_template
