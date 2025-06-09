@@ -61,7 +61,7 @@ build:
     - rm -rf * .github .gitignore || true
     - cp -r .next/standalone/* .
     - cp -r .next/standalone/.* . 2>/dev/null || true
-    - git remote add gitlab_origin https://oauth2:$ACCESS_TOKEN@gitlab.wikimedia.org/$CI_PROJECT_PATH.git
+    - git remote add gitlab_origin https://GITLAB_ACCESS_TOKEN:$ACCESS_TOKEN@gitlab.wikimedia.org/$CI_PROJECT_PATH.git
     - git add .
     - git commit -m "Build from commit $CI_COMMIT_SHA - $CI_COMMIT_MESSAGE" || echo "No changes to commit"
     - git push gitlab_origin $BRANCH --force
