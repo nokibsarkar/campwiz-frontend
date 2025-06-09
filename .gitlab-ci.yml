@@ -8,8 +8,11 @@ stages:
   - build
   - deploy
 
-# Cache configuration
-.cache_template: &cache_template
+build:
+  stage: build
+  image: node:22
+  tags:
+    - memory-optimized
   cache:
     key:
       files:
@@ -18,11 +21,6 @@ stages:
       - node_modules/
       - $YARN_CACHE_FOLDER
       - $NEXT_CACHE_FOLDER
-
-build:
-  stage: build
-  image: node:22
-  <<: *cache_template
   before_script:
     - yarn config set cache-folder $YARN_CACHE_FOLDER
   script:
