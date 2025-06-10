@@ -22,6 +22,8 @@ const sentryIntegrations = [
 
   }),
 ];
+
+console.log('Environment:', process.env.NODE_ENV);
 console.log("Sentry Enabled? ", process.env.NEXT_PUBLIC_SENTRY_DSN !== undefined && !process.env.NODE_ENV.startsWith("dev"))
 Sentry.init({
   enabled: process.env.NEXT_PUBLIC_SENTRY_DSN !== undefined && !process.env.NODE_ENV.startsWith("dev"),
@@ -36,7 +38,7 @@ Sentry.init({
   // Define how likely Replay events are sampled when an error occurs.
   replaysOnErrorSampleRate: 1.0,
   // Setting this option to true will print useful information to the console while you're setting up Sentry.
-  debug: process.env.NODE_ENV !== "production",
+  debug: true,// process.env.NODE_ENV !== "production",
   sendDefaultPii: false,
   environment: process.env.NODE_ENV,
   profilesSampleRate: 0.5,
