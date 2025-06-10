@@ -12,7 +12,7 @@ build:
   stage: build
   image: node:22
   tags:
-    - memory-optimized
+    - wmcs
   cache:
     key:
       files:
