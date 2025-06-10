@@ -61,8 +61,10 @@ build:
     - rm -rf * .github .gitignore || true
     - cp -r .next/standalone/* .
     - cp -r .next/standalone/.* . 2>/dev/null
+    - cd .next/standalone
     - ls -al
     - echo "Pushing to branch $BRANCH"
+    - git init
     - git remote add gitlab_origin https://GITLAB_ACCESS_TOKEN:$ACCESS_TOKEN@$CI_SERVER_HOST/$CI_PROJECT_PATH.git
     - git add .
     - git commit -m "Build from commit $CI_COMMIT_SHA - $CI_COMMIT_MESSAGE" || echo "No changes to commit"
