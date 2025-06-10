@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: ['/project/', '/round/', '/submission/'],
         },
-        sitemap: 'https://campwiz.wikilovesfolklore.org/sitemap.xml',
+        sitemap: 'https://campwiz.toolforge.org/sitemap.xml',
     }
 }
