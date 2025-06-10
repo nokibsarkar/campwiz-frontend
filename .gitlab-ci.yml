@@ -9,6 +9,9 @@ stages:
   - deploy
 
 build:
+  # Build stage for Next.js application
+
+  # This stage installs dependencies, builds the application, and prepares it for deployment.
   stage: build
   image: node:22
   tags:
@@ -21,6 +24,9 @@ build:
       - node_modules/
       - $YARN_CACHE_FOLDER
       - $NEXT_CACHE_FOLDER
+  rules:
+    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+      when: always
   before_script:
     - yarn config set cache-folder $YARN_CACHE_FOLDER
   script:
