@@ -45,9 +45,6 @@ build:
 # Deploy template for Toolforge
 .deploy_template: &deploy_template
   image: alpine:latest
-  variables:
-    SECURE_FILES_DOWNLOAD_PATH: .
-    PRIVATE_KEY_NAME: "id_rsa.toolforge"
   dependencies:
     - build
   before_script:
@@ -114,4 +111,6 @@ deploy-dev:
     TOOLNAME: $TOOLNAME
     BRANCH: build
     ACCESS_TOKEN: $GITLAB_ACCESS_TOKEN
+    SECURE_FILES_DOWNLOAD_PATH: .
+    PRIVATE_KEY_NAME: "id_rsa.toolforge"
   <<: *deploy_template
