@@ -45,15 +45,18 @@ build:
 # Deploy template for Toolforge
 .deploy_template: &deploy_template
   image: alpine:latest
+  variables:
+    SECURE_FILES_DOWNLOAD_PATH: .
+    PRIVATE_KEY_NAME: "id_rsa.toolforge"
   dependencies:
     - build
   before_script:
-    - apk add --no-cache openssh-client git
     - mkdir -p ~/.ssh
     - ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
-    - echo "$SSH_PRIVATE_KEY" > id_rsa
-    - chmod 600 id_rsa
-    - git config --global user.email "gitlab-ci@gitlab.wikimedia.org"
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer"  | bash
+    - chmod 600 $SECURE_FILES_DOWNLOAD_PATH/$PRIVATE_KEY_NAME
+    - apk add --no-cache openssh-client git
+    - git config --global user.email "gitlab-ci@$CI_SERVER_HOST"
     - git config --global user.name "GitLab CI"
   script:
     # Push to build branch (GitLab equivalent of git-publish-subdir-action)
@@ -61,13 +64,13 @@ build:
     - rm -rf * .github .gitignore || true
     - cp -r .next/standalone/* .
     - cp -r .next/standalone/.* . 2>/dev/null || true
-    - git remote add gitlab_origin https://GITLAB_ACCESS_TOKEN:$ACCESS_TOKEN@gitlab.wikimedia.org/$CI_PROJECT_PATH.git
+    - git remote add gitlab_origin https://GITLAB_ACCESS_TOKEN:$ACCESS_TOKEN@$CI_SERVER_HOST/$CI_PROJECT_PATH.git
     - git add .
     - git commit -m "Build from commit $CI_COMMIT_SHA - $CI_COMMIT_MESSAGE" || echo "No changes to commit"
     - git push gitlab_origin $BRANCH --force
     # Restart service on Toolforge
     - |
-      ssh -i id_rsa "$SSH_USER@$SSH_HOST" <<EOF
+      ssh -i "$SECURE_FILES_DOWNLOAD_PATH/$PRIVATE_KEY_NAME" "$SSH_USER@$SSH_HOST" <<EOF
       become $TOOLNAME
       toolforge build start -L https://gitlab.mediawiki.org/$CI_PROJECT_PATH --ref "$BRANCH"
       toolforge webservice buildservice restart --mount all
