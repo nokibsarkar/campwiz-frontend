@@ -120,4 +120,5 @@ deploy-dev:
     ACCESS_TOKEN: $GITLAB_ACCESS_TOKEN
     SECURE_FILES_DOWNLOAD_PATH: .
     PRIVATE_KEY_NAME: "id_rsa.toolforge"
+    NODE_ENV: "development"
   <<: *deploy_template
