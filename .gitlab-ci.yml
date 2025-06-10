@@ -69,7 +69,7 @@ build:
     - |
       ssh -i "~/.ssh/$PRIVATE_KEY_NAME" "$SSH_USER@$SSH_HOST" <<EOF
       become $TOOLNAME
-      toolforge build start -L https://gitlab.mediawiki.org/$CI_PROJECT_PATH --ref "$BRANCH"
+      toolforge build start -L https://$CI_SERVER_HOST/$CI_PROJECT_PATH --ref "$BRANCH"
       toolforge webservice buildservice restart --mount all
       exit
       exit
