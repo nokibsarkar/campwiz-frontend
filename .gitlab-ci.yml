@@ -24,7 +24,7 @@ build:
   before_script:
     - yarn config set cache-folder $YARN_CACHE_FOLDER
   script:
-    - yarn install --frozen-lockfile
+    - yarn install
     - yarn build
     - ls -al .next/
     - cp public .next/standalone -r
