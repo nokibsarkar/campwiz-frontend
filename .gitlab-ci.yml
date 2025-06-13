@@ -10,7 +10,7 @@ stages:
 
 build:
   # Build stage for Next.js application
-  rules: &build_rules
+  rules:
     - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
       when: on_success
     - when: never
@@ -55,7 +55,8 @@ build:
     - build
   needs:
     - build
-  <<: *build_rules
+  rules:
+    - !reference [build, rules]
   script:
     - apk add --no-cache curl openssh-client git bash
     - mkdir -p ~/.ssh
