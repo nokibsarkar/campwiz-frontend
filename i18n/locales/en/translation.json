@@ -36,7 +36,9 @@
             "ACTIVE": "Active",
             "PAUSED": "Paused",
             "COMPLETED": "Completed",
-            "ARCHIVED": "Archived"
+            "ARCHIVED": "Archived",
+            "IMPORTING": "Importing",
+            "DISTRIBUTING": "Distributing"
         },
         "submissions": "Submissions",
         "assignments": "Assignments",

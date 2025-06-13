@@ -36,7 +36,9 @@
       "ACTIVE": "Active",
       "PAUSED": "Status indicating that the campaign or the round is not currrently running, but can be resumed",
       "COMPLETED": "Status indicating that the campaign or the round is completed and no further actions are needed",
-      "ARCHIVED": "Status indicating that the campaign or the round has been archived or sealed and no other actions can be taken"
+      "ARCHIVED": "Status indicating that the campaign or the round has been archived or sealed and no other actions can be taken",
+      "IMPORTING": "Status indicating that submissions (image/audio/video) are being imported into the campaign. This status is used when the campaign is created and the submissions are being imported from various sources like Wikimedia Commons, or other sources. This status is used to indicate that the campaign is not yet ready for evaluation and the submissions are being imported.",
+      "DISTRIBUTING": "Status indicating that the submissions are being distributed to the juries for evaluation. This status is used when the campaign is created and the submissions are being distributed to the juries for evaluation. This status is used to indicate that the campaign is not yet ready for evaluation and the submissions are being distributed."
     },
     "submissions": "The image, video, audio or any other type of file that is submitted by the participants of the campaign. This label would be shown in the home page",
     "assignments": "Each jury would be assigned a number of submissions to evaluate. This label would be shown in the home page",

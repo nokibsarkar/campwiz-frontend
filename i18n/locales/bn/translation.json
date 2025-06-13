@@ -36,7 +36,9 @@
       "ACTIVE": "চলমান",
       "PAUSED": "স্থগিত",
       "COMPLETED": "সম্পন্ন",
-      "ARCHIVED": "সংগ্রহশালায় জমা"
+      "ARCHIVED": "সংগ্রহশালায় জমা",
+      "IMPORTING": "আমদানি হচ্ছে",
+      "DISTRIBUTING": "বণ্টন হচ্ছে"
     },
     "submissions": "জমা",
     "assignments": "এসাইনমেন্ট",
