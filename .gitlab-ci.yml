@@ -130,6 +130,10 @@ deploy-dev:
     SECURE_FILES_DOWNLOAD_PATH: .
     PRIVATE_KEY_NAME: "id_rsa.toolforge"
     NODE_ENV: "development"
+  rules:
+    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+      when: on_success
+    - when: never
   <<: *deploy_template
 deploy-beta:
   stage: deploy
@@ -143,4 +147,8 @@ deploy-beta:
     SECURE_FILES_DOWNLOAD_PATH: .
     PRIVATE_KEY_NAME: "id_rsa.toolforge"
     NODE_ENV: "beta"
+  rules:
+    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+      when: on_success
+    - when: never
   <<: *deploy_template
