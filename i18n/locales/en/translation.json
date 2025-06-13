@@ -8,8 +8,7 @@
         "logout": "Logout",
         "dashboard": "Dashboard",
         "doc": "Doc",
-        "login": "Login",
-        "guest": ""
+        "login": "Login"
     },
     "settings": {
         "title": "Settings",

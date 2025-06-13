@@ -53,7 +53,7 @@ const HeroBanner = async ({ session }: HeroBannerProps) => {
                     color: 'primary.main',
                 }}
             >
-                {t('home.welcome', { name: session?.username || t('home.guest') })}
+                {t('home.welcome', { name: session?.username || '' })}
             </Typography>
             <Typography variant="subtitle1" color="gray" sx={{ fontFamily: "Lora, serif" }}>
                 {t('home.subtitle')}

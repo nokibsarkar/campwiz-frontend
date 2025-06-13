@@ -8,8 +8,7 @@
     "logout": "Logout",
     "dashboard": "The dashboard where only admin or project leads can go to manage campaigns, This would be placed on a button so try to keep it short and one word",
     "doc": "The button for the link of documentation page",
-    "login": "Login",
-    "guest": ""
+    "login": "Login"
   },
   "settings": {
     "title": "Settings",
