@@ -54,6 +54,8 @@ build:
   image: alpine:latest
   dependencies:
     - build
+  needs:
+    - build
   script:
     - apk add --no-cache curl openssh-client git bash
     - mkdir -p ~/.ssh
