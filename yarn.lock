@@ -2068,12 +2068,12 @@
   dependencies:
     "@babel/runtime" "^7.26.0"
 
-"@mui/material-nextjs@^7.1.1":
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/@mui/material-nextjs/-/material-nextjs-7.1.1.tgz#20efac1a4690c17d4a4af8ef65b4457f8db050b2"
-  integrity sha512-6/tjmViYMI7XIqDTqK+n4t5B07YfVDq72emdBy/o8FLHsV7u477Ro0Aago2MQu8FrBQWDvzvvRkynIb02GjDBQ==
+"@mui/material-nextjs@^7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@mui/material-nextjs/-/material-nextjs-7.2.0.tgz#2260a3ae0a19a6a57726841353a1074f2ab9b839"
+  integrity sha512-/W2iKkjeOdaYBu5xNYi/w5HUX2C4HHefSMW7UgCvTKl90yy1puE7kmAgv/gxBghqhEE27cNWdevRrnvVhNRaUA==
   dependencies:
-    "@babel/runtime" "^7.27.1"
+    "@babel/runtime" "^7.27.6"
 
 "@mui/material@^6.4.6":
   version "6.4.12"
