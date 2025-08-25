@@ -35,7 +35,7 @@
     "i18next-browser-languagedetector": "^8.0.4",
     "i18next-resources-to-backend": "^1.2.1",
     "next": "15.5.0",
-    "next-video": "^2.1.0",
+    "next-video": "^2.2.3",
     "next-ws": "^2.0.10",
     "react": "19.1.0",
     "react-audio-spectrum": "^0.1.5",
