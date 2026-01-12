@@ -1,10 +1,12 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Cabal"
+		]
 	},
 	"title": "CampWiz NXT",
 	"home": {
-		"welcome": "Welcome {{name}}",
+		"welcome": "ਜੀ ਆਇਆਂ ਨੂੰ {{name}}",
 		"subtitle": "Taking jury experience to another level",
 		"publicRunningCampaigns": "Public Running Campaigns",
 		"yourCampaigns": "Your Campaigns",
