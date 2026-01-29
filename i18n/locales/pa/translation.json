@@ -23,7 +23,7 @@
 		"save": "Save",
 		"cancel": "Cancel",
 		"theme": "Theme",
-		"helpTranslation": "Please Help us translate to your language at <0>TranslateWiki</0>"
+		"helpTranslation": "ਕਿਰਪਾ ਕਰਕੇ <0>TranslateWiki</0> 'ਤੇ ਆਪਣੀ ਬੋਲੀ ਵਿੱਚ ਉਲਥਾ ਕਰਨ ਵਿੱਚ ਸਾਡੀ ਮਦਦ ਕਰੋ।"
 	},
 	"login": {
 		"title": "Let's get started",
@@ -33,18 +33,45 @@
 	"campaign": {
 		"createCampaign": "Create Campaign",
 		"goToCampaign": "Go to Campaign",
-		"showAllCampaigns": "Show All Campaigns"
+		"showAllCampaigns": "Show All Campaigns",
+		"name": "ਨਾਂ",
+		"startDate": "ਸ਼ੁਰੂ ਕਰਨ ਦੀ ਮਿਤੀ",
+		"description": "ਵੇਰਵਾ",
+		"rules": "ਅਸੂਲ",
+		"duration": "ਮਿਆਦ",
+		"edit": "ਸੋਧੋ"
+	},
+	"project": {
+		"title": "ਪ੍ਰੋਜੈਕਟ",
+		"editProject": "ਸੋਧੋ"
 	},
 	"round": {
+		"deleteRoundButton": "ਮਿਟਾਓ",
 		"status": {
-			"ACTIVE": "Active",
+			"ACTIVE": "ਸਰਗਰਮ",
 			"PAUSED": "Paused",
 			"COMPLETED": "Completed",
-			"ARCHIVED": "Archived"
+			"ARCHIVED": "Archived",
+			"IMPORTING": "ਦਰਾਮਦ ਜਾਰੀ ਏ"
 		},
 		"submissions": "Submissions",
 		"assignments": "Assignments",
-		"evaluatedOutOf": "{{evaluated}} evaluated out of {{total}}"
+		"evaluatedOutOf": "{{evaluated}} evaluated out of {{total}}",
+		"type": {
+			"label": "ਕਿਸਮ",
+			"binary": "ਹਾਂ/ਨਹੀਂ"
+		},
+		"description": "ਵੇਰਵਾ",
+		"deadLineInMonths_one": "ਇੱਕ ਮਹੀਨੇ ਵਿੱਚ",
+		"deadLineInMonths_two": "ਦੋ ਮਹੀਨਿਆਂ ਵਿੱਚ",
+		"deadLineInWeeks_one": "ਇੱਕ ਹਫ਼ਤੇ ਵਿੱਚ",
+		"deadLineInWeeks_two": "ਦੋ ਹਫ਼ਤਿਆਂ ਵਿੱਚ",
+		"deadLineInDays_one": "ਇੱਕ ਦਿਨ ਵਿੱਚ",
+		"deadLineInDays_two": "ਦੋ ਦਿਨਾਂ ਵਿੱਚ",
+		"deadLineInHours_one": "ਇੱਕ ਘੰਟੇ ਵਿੱਚ",
+		"deadLineInHours_two": "ਦੋ ਘੰਟਿਆਂ ਵਿੱਚ",
+		"deadLineInMinutes_one": "ਇੱਕ ਮਿੰਟ ਵਿੱਚ",
+		"deadLineInMinutes_two": "ਦੋ ਮਿੰਟਾਂ ਵਿੱਚ"
 	},
 	"footer": {
 		"campwizNxtTeam": "Campwiz NXT Team",
@@ -66,7 +93,19 @@
 			"score": "Score",
 			"preview": "Preview",
 			"action": "Action"
-		}
+		},
+		"yes": "ਹਾਂ",
+		"no": "ਨਹੀਂ"
+	},
+	"submission": {
+		"title": "ਸਿਰਲੇਖ",
+		"description": "ਵੇਰਵਾ",
+		"author": "ਲਿਖਾਰੀ",
+		"save": "ਸਾਂਭੋ",
+		"cancel": "ਰੱਦ ਕਰੋ",
+		"skip": "ਛੱਡੋ",
+		"next": "ਅਗਲਾ",
+		"previous": "ਪਿਛਲਾ"
 	},
 	"languages": {
 		"en": "English",
@@ -88,6 +127,18 @@
 		"ml": "Malayalam (മലയാളം)",
 		"ur": "Urdu (اردو)",
 		"gu": "Gujarati (ગુજરાતી)",
-		"pa": "Punjabi (ਪੰਜਾਬੀ)"
+		"pa": "Punjabi (ਪੰਜਾਬੀ)",
+		"te": "ਤੇਲਗੂ (తెలుగు)",
+		"ps": "ਪਸ਼ਤੋ (پښتو)",
+		"skr-arab": "ਸਰਾਇਕੀ (سرائیکی)",
+		"skr-latn": "ਸਰਾਇਕੀ (Latin)",
+		"mk": "ਮੈਸੀਡੋਨੀ (Македонски)",
+		"xmf": "ਮਿੰਗਰੀਲੀ (მარგალური)",
+		"lb": "ਲੱਕਜ਼ਮਬਰਗੀ (Lëtzebuergesch)",
+		"zh-hans": "ਸੌਖੀ ਚੀਨੀ (简体中文)",
+		"zh-hant": "ਰਵਾਇਤੀ ਚੀਨੀ (繁體中文)",
+		"ha": "ਹਾਉਸਾ",
+		"lt": "ਲਿਥੁਆਨੀ (Lietuvių)",
+		"tr": "ਤੁਰਕੀ (Türkçe)"
 	}
 }

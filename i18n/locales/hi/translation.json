@@ -2,25 +2,26 @@
 	"@metadata": {
 		"authors": [
 			"Abijeet Patro",
-			"Nokib Sarkar"
+			"Nokib Sarkar",
+			"Saurmandal"
 		]
 	},
 	"title": "CampWiz NXT",
 	"home": {
 		"welcome": "स्वागत है {{name}}",
 		"subtitle": "जूरी अनुभव को एक नए स्तर पर ले जाना",
-		"publicRunningCampaigns": "सार्वजनिक चल रही प्रतियोगिताएँ",
+		"publicRunningCampaigns": "चल रही सार्वजनिक प्रतियोगिताएँ",
 		"yourCampaigns": "आपकी प्रतियोगिताएँ",
-		"logout": "लॉगआउट",
+		"logout": "लॉग-आउट करें",
 		"dashboard": "डैशबोर्ड",
-		"doc": "दस्तावेज़",
-		"login": "लॉगिन"
+		"doc": "प्रलेख",
+		"login": "लॉग-इन करें"
 	},
 	"settings": {
 		"title": "सेटिंग्स",
 		"language": "भाषा",
-		"darkMode": "डार्क मोड",
-		"lightMode": "लाइट मोड",
+		"darkMode": "गहरा मोड",
+		"lightMode": "हल्का मोड",
 		"save": "सहेजें",
 		"cancel": "रद्द करें",
 		"theme": "थीम",
@@ -28,39 +29,126 @@
 	},
 	"login": {
 		"title": "आइए शुरू करें",
-		"loginWithWikimedia": "विकिमीडिया से लॉगिन करें",
-		"afterLoginRedirect": " इस प्रक्रिया के बाद, आपको निम्न पृष्ठ पर पुनः निर्देशित किया जाएगा:"
+		"loginWithWikimedia": "विकिमीडिया से लॉग-इन करें",
+		"afterLoginRedirect": " इस प्रक्रिया के बाद आपको निम्न पृष्ठ पर अनुप्रेषित किया जाएगा:",
+		"loginDisclaimer": "लॉग-इन करके आप <0>Terms of Service</0> और <1>Privacy Policy</1> से सहमत होते हैं।"
 	},
 	"campaign": {
 		"createCampaign": "प्रतियोगिता बनाएँ",
 		"goToCampaign": "प्रतियोगिता पर जाएँ",
-		"showAllCampaigns": "सभी प्रतियोगिताएँ दिखाएँ"
+		"showAllCampaigns": "सभी प्रतियोगिताएँ दिखाएँ",
+		"activeCampaigns": "सक्रिय प्रतियोगिताएँ",
+		"archivedCampaigns": "संग्रहीत प्रतियोगिताएँ",
+		"name": "नाम",
+		"startDate": "प्रारंभ तिथि",
+		"endDate": "समाप्ति तिथि",
+		"coordinators": "समन्वयक",
+		"description": "विवरण",
+		"rules": "नियम",
+		"publicVisibilityDisclaimer": "यह प्रतियोगिता जनता (समन्वयकों, जूरी, और परियोजना प्रमुखों के अलावा दूसरे लोगों) को दिखाई जाएगी कि नहीं",
+		"privateCampaign": "गोपनीय प्रतियोगिता",
+		"wikiProject": "विकि परियोजना",
+		"duration": "अवधि",
+		"edit": "सम्पादित करें"
+	},
+	"project": {
+		"title": "परियोजनाएँ",
+		"createProject": "नई परियोजना",
+		"goToProject": "परियोजना पर जाएँ",
+		"showAllProjects": "सभी परियोजनाएँ दिखाएँ",
+		"projectLoading": "परियोजना का विस्तार लोड हो रहा है...",
+		"leads": "परियोजना के प्रमुख",
+		"dashboard": "परियोजना डैशबोर्ड",
+		"otherProjects": "अन्य परियोजनाएँ",
+		"myProject": "मेरी परियोजना",
+		"welcomeToProject": "{{project}} पर आपका स्वागत है",
+		"editProject": "सम्पादित करें"
 	},
 	"round": {
+		"addMyselfAsJury": "खुदको जूरी के रूप में जोड़ें",
+		"deleteRoundButton": "हटाएँ",
+		"confirmChangeStatus": "क्या आप वाकई में इस दौर को {{status}} चिह्नित करना चाहते हैं?",
+		"markAsComplete": "समाप्त चिह्नित करें",
 		"status": {
 			"ACTIVE": "सक्रिय",
-			"PAUSED": "रुकी हुई",
-			"COMPLETED": "पूर्ण",
-			"ARCHIVED": "संग्रहीत"
+			"PAUSED": "रुका हुआ",
+			"COMPLETED": "समाप्त",
+			"ARCHIVED": "संग्रहीत",
+			"IMPORTING": "आयात किए जा रहे हैं",
+			"DISTRIBUTING": "वितरित किए जा रहे हैं",
+			"pausedThenCompleted": "रुककर समाप्त"
 		},
 		"submissions": "प्रस्तुतियाँ",
 		"assignments": "नियुक्तियाँ",
-		"evaluatedOutOf": "{{evaluated}} में से {{total}} मूल्यांकित"
+		"evaluatedOutOf": "{{total}} में से {{evaluated}} मूल्यांकित",
+		"evaluationArea": "मूल्यांकन क्षेत्र",
+		"categorizer": "श्रेणीकारक",
+		"type": {
+			"label": "प्रकार",
+			"binary": "हाँ/नहीं",
+			"ranking": "रैंकिंग",
+			"score": "स्कोर",
+			"unknown": "अज्ञात, हमसे संपर्क करें"
+		},
+		"deadline": "अंतिम सीमा",
+		"description": "विवरण",
+		"deadLineInMonths_one": "एक महीने में",
+		"deadLineInMonths_two": "दो महीने में",
+		"deadLineInMonths_other": "{{count}} महीने में",
+		"deadLineInWeeks_one": "एक हफ्ते में",
+		"deadLineInWeeks_two": "दो हफ्ते में",
+		"deadLineInWeeks_other": "{{count}} हफ्ते में",
+		"deadLineInDays_one": "एक दिन में",
+		"deadLineInDays_two": "दो दिन में",
+		"deadLineInDays_other": "{{count}} दिन में",
+		"deadLineInHours_one": "एक घंटे में",
+		"deadLineInHours_two": "दो घंटे में",
+		"deadLineInHours_other": "{{count}} घंटे में",
+		"deadLineInMinutes_one": "एक मिनट में",
+		"deadLineInMinutes_two": "दो मिनट में",
+		"deadLineInMinutes_other": "{{count}} मिनट में",
+		"deadLinePassed": "समय सीमा बीत गई है",
+		"quorum": "गणपूर्ति",
+		"quorumRequired_one": "प्रत्येक प्रस्तुति के लिए एक जूरी आवश्यक है",
+		"quorumRequired_two": "प्रत्येक प्रस्तुति के लिए दो जूरी आवश्यक हैं",
+		"quorumRequired_other": "प्रत्येक प्रस्तुति के लिए {{count}} जूरी आवश्यक है",
+		"jury": {
+			"title": "जूरी",
+			"totalAssigned": "{{count}} नियुक्त",
+			"evaluated": "{{count}} मूल्यांकित"
+		}
 	},
 	"footer": {
 		"campwizNxtTeam": "CampWiz NXT टीम",
 		"manual": "मार्गदर्शिका",
-		"terms": "नियम व शर्तें",
+		"terms": "शर्तें",
 		"privacy": "गोपनीयता नीति",
 		"reportBug": "बग की रिपोर्ट करें",
-		"translate": "अनुवाद करें"
+		"translate": "अनुवाद करें",
+		"copyright": "© 2025 <0>CampWiz NXT Team</0> द्वारा"
 	},
 	"error": {
-		"noAssignedCampaigns": "कोई निर्धारित प्रतियोगिताएँ नहीं हैं"
+		"noAssignedCampaigns": "कोई निर्धारित प्रतियोगिताएँ नहीं हैं",
+		"loadingSubmissionDetails": "प्रस्तुति की जानकारी लोड नहीं की जा सकी: {{error}}",
+		"categoriesNotLoaded": "श्रेणियाँ अभी तक लोड नहीं हुई हैं",
+		"campaignNotFound": "प्रतियोगिता नहीं मिली",
+		"campaignCategoriesNotSupported": "प्रतियोगिता श्रेणियाँ समर्थित नहीं हैं",
+		"noSubmissionAvailableForCategorization": "श्रेणीबद्ध करने के लिए कोई प्रस्तुति उपलब्ध नहीं",
+		"noCategoriesSelected": "कोई श्रेणी चयनित नहीं",
+		"noCategoriesAvailable": "कोई श्रेणी उपलब्ध नहीं",
+		"noSubmissions": "कोई प्रस्तुति उपलब्ध नहीं",
+		"noRunningCampaigns": "चल रही कोई भी प्रतियोगिता नहीं",
+		"loadingMyProject": "आपकी परियोजना लोड नहीं की जा सकी",
+		"loadingProjects": "परियोजनाएँ लोड नहीं की जा सकीं",
+		"accessDeniedToProject": "आपके पास इस परियोजना तक पहुँच नहीं है",
+		"failedToFetchProject": "आपकी परियोजना प्राप्त नहीं की जा सकी",
+		"failedToFetchCampaign": "प्रतियोगिता का विस्तार प्राप्त नहीं किया जा सका",
+		"failedToFetchRound": "दौर का विस्तार प्राप्त नहीं किया जा सका"
 	},
 	"close": "बंद करें",
 	"previous": "पिछला",
 	"next": "अगला",
+	"return": "वापस",
 	"evaluation": {
 		"modifytable": {
 			"name": "नाम",
@@ -69,6 +157,7 @@
 			"action": "कार्य"
 		},
 		"skip": "छोड़ें",
+		"edit": "मतदान संशोधित करें",
 		"yes": "हाँ",
 		"no": "नहीं"
 	},
@@ -76,21 +165,24 @@
 		"title": "शीर्षक",
 		"description": "विवरण",
 		"author": "लेखक",
+		"viewOnCommons": "कॉमन्स पर देखें",
 		"categories": "श्रेणियाँ",
+		"selectCategories": "श्रेणियाँ चुनें",
 		"save": "सहेजें",
 		"cancel": "रद्द करें",
 		"skip": "छोड़ें",
-		"next": "अगला"
+		"next": "अगला",
+		"previous": "पिछला"
 	},
 	"languages": {
 		"en": "अंग्रेज़ी (English)",
-		"bn": "बांग्ला (বাংলা)",
+		"bn": "बंगाली (বাংলা)",
 		"ar": "अरबी (العربية)",
-		"hi": "हिन्दी (हिन्दी)",
-		"es": "स्पेनिश (Español)",
-		"fr": "फ्रेंच (Français)",
+		"hi": "हिन्दी",
+		"es": "स्पेनी (Español)",
+		"fr": "फ़्रांसीसी (Français)",
 		"de": "जर्मन (Deutsch)",
-		"it": "इटालियन (Italiano)",
+		"it": "इतालवी (Italiano)",
 		"ja": "जापानी (日本語)",
 		"ko": "कोरियाई (한국어)",
 		"pt": "पुर्तगाली (Português)",
@@ -102,6 +194,21 @@
 		"ml": "मलयालम (മലയാളം)",
 		"ur": "उर्दू (اردو)",
 		"gu": "गुजराती (ગુજરાતી)",
-		"pa": "पंजाबी (ਪੰਜਾਬੀ)"
+		"pa": "पंजाबी (ਪੰਜਾਬੀ)",
+		"te": "तेलुगू (తెలుగు)",
+		"ps": "पश्तो (پښتو)",
+		"skr-arab": "सराइकी (سرائیکی)",
+		"skr-latn": "सराइकी (लातिन) (Saraiki)",
+		"pms": "पीडमंटीज़ (Piemontèis)",
+		"mk": "मैसिडोनियाई (Македонски)",
+		"krc": "काराचाय-बाल्कार (Къарачай-Малкъар)",
+		"xmf": "मिंगरेलियाई (მარგალური)",
+		"lb": "लक्समबर्गी (Lëtzebuergesch)",
+		"zh-hans": "सरलीकृत चीनी (简体中文)",
+		"zh-hant": "पारंपरिक चीनी (繁體中文)",
+		"ha": "हौसा (Hausa)",
+		"kcg": "त्याप (Tiv)",
+		"lt": "लिथुआनियाई (Lietuvių)",
+		"tr": "तुर्की (Türkçe)"
 	}
 }
