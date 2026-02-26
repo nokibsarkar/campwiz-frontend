@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"GrogeXaKaba",
 			"Letra.berdi",
 			"Waldyrious"
 		]
@@ -27,7 +28,7 @@
 	},
 	"login": {
 		"loginWithWikimedia": "Inísia seson trabés di Uikipédia",
-		"afterLoginRedirect": "Dipos di es prusésu, bu ta bolta pa es pájina li:"
+		"afterLoginRedirect": "Dipos di es pursésu, bu ta bolta pa es pájina li:"
 	},
 	"campaign": {
 		"createCampaign": "Kiria Kanpanha",
