@@ -21,7 +21,7 @@
 		"language": "Língua",
 		"darkMode": "Fundu di Téla Sukuru",
 		"lightMode": "Fundu di Téla Klaru",
-		"save": "Guarda",
+		"save": "Garda",
 		"cancel": "Kansela",
 		"theme": "Téma",
 		"translatewiki": "TranslateWiki"
@@ -33,7 +33,7 @@
 	"campaign": {
 		"createCampaign": "Kiria Kanpanha",
 		"goToCampaign": "Bai pa Kanpanha",
-		"showAllCampaigns": "Mustra Tudu Kanpanhas",
+		"showAllCampaigns": "Mustra Tudu Kanpanha",
 		"activeCampaigns": "Kanpanhas Ativu",
 		"archivedCampaigns": "Kanpanhas Arkivadu",
 		"name": "Nómi",
@@ -51,7 +51,7 @@
 		"title": "Prujétus",
 		"createProject": "Prujétu Nobu",
 		"goToProject": "Bai pa Prujétu",
-		"showAllProjects": "Mustra Tudu Prujétus",
+		"showAllProjects": "Mustra Tudu Prujétu",
 		"dashboard": "Painel di Prujétu",
 		"otherProjects": "Otus Prujétu",
 		"myProject": "Nha Prujétu",
@@ -93,7 +93,7 @@
 	"submission": {
 		"categories": "Katigurias",
 		"selectCategories": "Selesiona Katigurias",
-		"save": "Guarda",
+		"save": "Garda",
 		"cancel": "Kansela",
 		"next": "Prósimu"
 	},

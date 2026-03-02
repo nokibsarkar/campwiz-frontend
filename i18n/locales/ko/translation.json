@@ -22,7 +22,8 @@
 		"lightMode": "라이트 모드",
 		"save": "저장",
 		"cancel": "취소",
-		"theme": "테마"
+		"theme": "테마",
+		"translatewiki": "TranslateWiki"
 	},
 	"login": {
 		"title": "시작하기",
