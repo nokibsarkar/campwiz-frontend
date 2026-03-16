@@ -90,21 +90,30 @@
 		"noRunningCampaigns": "Nin un kanpanha ka sa-ta izekutadu",
 		"loadingMyProject": "Okóre un fadja na karagamentu di bu prujétu"
 	},
+	"evaluation": {
+		"yes": "Aian",
+		"no": "Non"
+	},
 	"submission": {
+		"title": "Titlu",
+		"description": "Diskrison",
+		"author": "Otor",
 		"categories": "Katigurias",
 		"selectCategories": "Selesiona Katigurias",
 		"save": "Garda",
 		"cancel": "Kansela",
-		"next": "Prósimu"
+		"skip": "Igunora",
+		"next": "Prósimu",
+		"previous": "Antirior"
 	},
 	"languages": {
-		"en": "<Inglês> (English)\"",
+		"en": "<Ngles> (English)\"",
 		"bn": "<Bengali> (বাংলা)\"",
 		"ar": "<Árabi> (العربية)",
 		"hi": "<Hindi> (हिन्दी)",
 		"es": "<Spanhol> (Español)",
 		"fr": "<Fransês> (Français)",
-		"de": "<Alimon> (Deutsch)",
+		"de": "<Limon> (Deutsch)",
 		"it": "<Italianu> (Italiano)",
 		"ja": "<Djapunês> (日本語)",
 		"pt": "<Purtugês> (Português)",
