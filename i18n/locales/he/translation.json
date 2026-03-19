@@ -1,0 +1,174 @@
+{
+	"@metadata": {
+		"authors": [
+			"YaronSh"
+		]
+	},
+	"home": {
+		"welcome": "ברוך בואך {{name}}",
+		"subtitle": "לוקחים את חוויית השיפוט לרמה הבאה",
+		"logout": "יציאה",
+		"dashboard": "לוח בקרה",
+		"doc": "תיעוד",
+		"login": "כניסה"
+	},
+	"settings": {
+		"title": "הגדרות",
+		"language": "שפה",
+		"darkMode": "מצב כהה",
+		"lightMode": "מצב בהיר",
+		"save": "שמירה",
+		"cancel": "ביטול",
+		"theme": "ערכת עיצוב",
+		"helpTranslation": "נא לסיים לנו לתרגם לשפה שלך דרך <0>TranslateWiki</0>"
+	},
+	"login": {
+		"title": "איך להתחיל",
+		"loginWithWikimedia": "כניסה עם ויקימדיה",
+		"afterLoginRedirect": "לאחד התהליך הזה, תתבצע הפניה בחזרה לדף הבא:"
+	},
+	"campaign": {
+		"name": "שם",
+		"startDate": "תאריך התחלה",
+		"endDate": "תאריך סיום",
+		"coordinators": "מתאמים",
+		"description": "תיאור",
+		"rules": "כללים",
+		"wikiProject": "מיזם ויקי",
+		"duration": "משך זמן",
+		"edit": "עריכה"
+	},
+	"project": {
+		"title": "מיזמים",
+		"createProject": "מיזם חדש",
+		"goToProject": "מעבר למיזם",
+		"showAllProjects": "הצגת כל המיזמים",
+		"projectLoading": "פרטי המיזם נטענים...",
+		"leads": "מובילי המיזם",
+		"dashboard": "לוח הבקרה של המיזם",
+		"otherProjects": "מיזמים אחרים",
+		"myProject": "המיזם שלי",
+		"welcomeToProject": "ברוך בואך אל {{project}}",
+		"editProject": "עריכה"
+	},
+	"round": {
+		"deleteRoundButton": "מחיקה",
+		"confirmChangeStatus": "לסמן את הסיבוב הזה בתור {{status}}?",
+		"submissions": "הגשות",
+		"assignments": "הקצאות",
+		"evaluatedOutOf": "{{evaluated}} נבדקו מתוך {{total}}",
+		"evaluationArea": "אזור הבדיקה",
+		"categorizer": "מסווג",
+		"type": {
+			"label": "סוג",
+			"binary": "כן/לא",
+			"ranking": "דירוג",
+			"score": "ניקוד",
+			"unknown": "לא ידוע, נא ליצור קשר"
+		},
+		"deadline": "מועד סיום",
+		"description": "תיאור",
+		"deadLineInMonths_one": "תוך חודש",
+		"deadLineInMonths_two": "תוך חודשיים",
+		"deadLineInMonths_other": "תוך {{count}} חודשים",
+		"deadLineInWeeks_one": "תוך שבוע",
+		"deadLineInWeeks_two": "תוך שבועיים",
+		"deadLineInWeeks_other": "תוך {{count}} שבועות",
+		"deadLineInDays_one": "תוך יום",
+		"deadLineInDays_two": "תוך יומיים",
+		"deadLineInDays_other": "תוך {{count}} ימים",
+		"deadLineInHours_one": "תוך שעה",
+		"deadLineInHours_two": "תוך שעתיים",
+		"deadLineInHours_other": "תוך {{count}} שעות",
+		"deadLineInMinutes_one": "תוך דקה",
+		"deadLineInMinutes_two": "תוך שתי דקות",
+		"deadLineInMinutes_other": "תוך {{count}} דקות",
+		"deadLinePassed": "מועד הסיום חלף",
+		"jury": {
+			"title": "חבר מושבעים",
+			"totalAssigned": "{{count}} מוקצות",
+			"evaluated": "{{count}} נבדקו"
+		}
+	},
+	"footer": {
+		"campwizNxtTeam": "צוות Campwiz NXT",
+		"manual": "מדריך",
+		"terms": "תנאים",
+		"privacy": "פרטיות",
+		"reportBug": "דיווח על תקלה",
+		"translate": "תרגום"
+	},
+	"error": {
+		"categoriesNotLoaded": "הקטגוריות לא נטענו עדיין",
+		"noSubmissionAvailableForCategorization": "אין הגשות שזמינות לסיווג",
+		"noCategoriesSelected": "לא נבחרו קטגוריות",
+		"noCategoriesAvailable": "אין קטגוריות זמינות",
+		"noSubmissions": "אין הגשות זמינות",
+		"loadingMyProject": "טעינת המיזם שלך נכשלה",
+		"loadingProjects": "טעינת המיזמים נכשלה",
+		"accessDeniedToProject": "אין לך גישה למיזם הזה",
+		"failedToFetchProject": "משיכת המיזם שלך נכשלה",
+		"failedToFetchRound": "משיכת פרטי הסיבוב נכשלה"
+	},
+	"close": "סגירה",
+	"previous": "הקודם",
+	"next": "הבא",
+	"return": "חזרה",
+	"evaluation": {
+		"modifytable": {
+			"name": "שם",
+			"score": "ניקוד",
+			"preview": "תצוגה מקדימה",
+			"action": "פעולה"
+		},
+		"skip": "דילוג",
+		"edit": "שינוי הצבעות",
+		"yes": "כן",
+		"no": "לא"
+	},
+	"submission": {
+		"title": "כותרת",
+		"description": "תיאור",
+		"viewOnCommons": "הצגה בוויקישיתוף",
+		"categories": "קטגוריות",
+		"selectCategories": "בחירת קטגוריות",
+		"save": "שמירה",
+		"cancel": "ביטול",
+		"skip": "דילוג",
+		"next": "הבא",
+		"previous": "הקודם"
+	},
+	"languages": {
+		"en": "אנגלית (English)",
+		"bn": "בנגלית (বাংলা)",
+		"ar": "ערבית (العربية)",
+		"hi": "הינדי (हिन्दी)",
+		"es": "ספרדית (Español)",
+		"fr": "צרפתית (Français)",
+		"de": "גרמנית (Deutsch)",
+		"it": "איטלקית (Italiano)",
+		"ja": "יפנית (日本語)",
+		"ko": "קוריאנית (한국어)",
+		"pt": "פורטוגלית (Português)",
+		"ru": "רוסית (Русский)",
+		"zh": "סינית (中文)",
+		"kn": "קאנדה (ಕನ್ನಡ)",
+		"mr": "מראטהי (मराठी)",
+		"ta": "טמילית (தமிழ்)",
+		"ml": "מלאיאלאם (മലയാളം)",
+		"ur": "אורדו (اردو)",
+		"gu": "גוג׳ראטית (ગુજરાતી)",
+		"pa": "פנג׳אבי (ਪੰਜਾਬੀ)",
+		"te": "טלוגו (తెలుగు)",
+		"ps": "פשטו (پښتو)",
+		"pms": "פיימונטית (Piemontèis)",
+		"mk": "מקדונית (Македонски)",
+		"xmf": "מגרלית (მარგალური)",
+		"lb": "לוקסמבורגית (Lëtzebuergesch)",
+		"zh-hans": "סינית מפושטת (简体中文)",
+		"zh-hant": "סינית מסורתית (繁體中文)",
+		"ha": "האוסה (Hausa)",
+		"lt": "ליטאית (Lietuvių)",
+		"tr": "טורקית (Türkçe)"
+	}
+}

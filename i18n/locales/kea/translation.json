@@ -19,8 +19,8 @@
 	"settings": {
 		"title": "Konfigurason",
 		"language": "Língua",
-		"darkMode": "Fundu di Téla Sukuru",
-		"lightMode": "Fundu di Téla Klaru",
+		"darkMode": "Módi Sukuru",
+		"lightMode": "Módi Klaru",
 		"save": "Garda",
 		"cancel": "Kansela",
 		"theme": "Téma",
@@ -52,7 +52,7 @@
 		"createProject": "Prujétu Nobu",
 		"goToProject": "Bai pa Prujétu",
 		"showAllProjects": "Mustra Tudu Prujétu",
-		"dashboard": "Painel di Prujétu",
+		"dashboard": "Painél di Prujétu",
 		"otherProjects": "Otus Prujétu",
 		"myProject": "Nha Prujétu",
 		"editProject": "Idita"
@@ -62,7 +62,7 @@
 		"status": {
 			"ACTIVE": "Ativu",
 			"PAUSED": "Pozadu",
-			"COMPLETED": "Konplétu",
+			"COMPLETED": "Kunplétu",
 			"ARCHIVED": "Arkivadu"
 		},
 		"type": {
@@ -80,9 +80,9 @@
 	},
 	"error": {
 		"noAssignedCampaigns": "Nin un kanpanha atribuídu",
-		"categoriesNotLoaded": "Es katigurias inda ka foi karagadu",
-		"campaignNotFound": "Es kanpanha ka foi nkontradu",
-		"campaignCategoriesNotSupported": "Es katigurias di kanpanha ka é saportadu",
+		"categoriesNotLoaded": "Katigurias inda ka foi karagadu",
+		"campaignNotFound": "Kanpanha ka foi atxadu",
+		"campaignCategoriesNotSupported": "Katigurias di kanpanha ka é saportadu",
 		"noSubmissionAvailableForCategorization": "Niun subimison dispunívi pa katigurizason",
 		"noCategoriesSelected": "Nin un katiguria selesionadu",
 		"noCategoriesAvailable": "Niun katiguria dispunívi",
