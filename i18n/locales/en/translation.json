@@ -61,6 +61,7 @@
     "round": {
         "createRoundButton": "Create Round",
         "deleteRoundButton": "Delete",
+        "goToRound": "Go to Round",
         "deleteTitle": "Delete Round",
         "deleteConfirmation": "Are you sure you want to delete this round?",
         "deleteDescription": "Deleting this round will remove all the data associated with it. \nThis includes all the submissions, evaluations, jury members and other data.\nThis action is irreversible. So, please make sure you want to delete this round.",
@@ -152,6 +153,8 @@
     "next": "Next",
     "return": "Return",
     "evaluation": {
+        "allSet": "All Set",
+        "noPendingEvaluations": "Seems like, You have no pending submissions to evaluate in this round.",
         "modifytable": {
             "name": "Name",
             "score": "Score",
