@@ -205,6 +205,16 @@
         "lt": "Lithuanian (Lietuvių)",
         "tr": "Turkish (Türkçe)",
         "ga": "Irish (Gaeilge)",
-        "he": "Hebrew (עברית)"
+        "he": "Hebrew (עברית)",
+        "cs": "Czech (Čeština)",
+        "fa": "Persian (فارسی)",
+        "yi": "Yiddish (ייִדיש)",
+        "kea": "Kabuverdianu (Kabuverdianu)",
+        "id": "Indonesian (Bahasa Indonesia)",
+        "mni": "Manipuri (মণিপুরী)",
+        "ori": "Oriya (ଓଡ଼ିଆ)",
+        "nl": "Dutch (Nederlands)",
+        "pt-br": "Portuguese (Brazil) (Português do Brasil)",
+        "qqq": ""
     }
 }
