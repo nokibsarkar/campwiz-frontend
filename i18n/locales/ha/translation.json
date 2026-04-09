@@ -41,8 +41,8 @@
 		"editProject": "Gyara"
 	},
 	"round": {
-		"addMyselfAsJury": "Ƙara kaina a matsayin juri",
 		"deleteRoundButton": "Goge",
+		"addMyselfAsJury": "Ƙara kaina a matsayin juri",
 		"confirmChangeStatus": "Shin kun tabbata kuna son yiwa wannan zagaye alama a matsayin {{status}}?",
 		"markAsComplete": "Alama a a matsayin kammalalle",
 		"status": {

@@ -64,8 +64,8 @@
 		"editProject": "Sunting"
 	},
 	"round": {
-		"addMyselfAsJury": "Tambahkan diri saya sebagai juri",
 		"deleteRoundButton": "Hapus",
+		"addMyselfAsJury": "Tambahkan diri saya sebagai juri",
 		"confirmChangeStatus": "Yakin ingin menandai babak ini sebagai {{status}}?",
 		"markAsComplete": "Tandai sebagai Selesai",
 		"status": {

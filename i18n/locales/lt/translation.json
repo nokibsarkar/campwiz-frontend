@@ -65,8 +65,8 @@
 		"editProject": "Redaguoti"
 	},
 	"round": {
-		"addMyselfAsJury": "Pridėti mane prie vertinimo komisijos",
 		"deleteRoundButton": "Ištrinti",
+		"addMyselfAsJury": "Pridėti mane prie vertinimo komisijos",
 		"confirmChangeStatus": "Ar tikrai norite pažymėti šį raundą kaip {{status}}?",
 		"markAsComplete": "Pažymėti kaip užbaigtą",
 		"status": {

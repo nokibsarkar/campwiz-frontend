@@ -64,8 +64,8 @@
 		"editProject": "Upravit"
 	},
 	"round": {
-		"addMyselfAsJury": "Přidat se jako porotce",
 		"deleteRoundButton": "Odstranit",
+		"addMyselfAsJury": "Přidat se jako porotce",
 		"confirmChangeStatus": "Jste si jisti, že chcete označit toto kolo jako {{status}}?",
 		"markAsComplete": "Označit jako hotové",
 		"status": {

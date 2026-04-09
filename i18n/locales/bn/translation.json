@@ -65,8 +65,8 @@
 		"editProject": "সম্পাদনা করুন"
 	},
 	"round": {
-		"addMyselfAsJury": "নিজেকে বিচারক হিসেবে যুক্ত করুন",
 		"deleteRoundButton": "মুছুন",
+		"addMyselfAsJury": "নিজেকে বিচারক হিসেবে যুক্ত করুন",
 		"confirmChangeStatus": "আপনি কি নিশ্চিত যে আপনি এই রাউন্ডটিকে {{status}} হিসেবে চিহ্নিত করতে চান?",
 		"markAsComplete": "সম্পূর্ণ হিসেবে চিহ্নিত করুন",
 		"status": {

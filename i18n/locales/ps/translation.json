@@ -61,8 +61,8 @@
 		"editProject": "سمول"
 	},
 	"round": {
-		"addMyselfAsJury": "ځان د پرېکړه‌وال په توگه ورگډول",
 		"deleteRoundButton": "ړنگول",
+		"addMyselfAsJury": "ځان د پرېکړه‌وال په توگه ورگډول",
 		"status": {
 			"ACTIVE": "کارنده",
 			"PAUSED": "درول‌شوی",

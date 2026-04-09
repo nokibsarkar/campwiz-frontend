@@ -66,8 +66,8 @@
 		"editProject": "تعديل"
 	},
 	"round": {
-		"addMyselfAsJury": "أضف نفسي كعضو في هيئة المحلفين",
 		"deleteRoundButton": "حذف",
+		"addMyselfAsJury": "أضف نفسي كعضو في هيئة المحلفين",
 		"confirmChangeStatus": "هل أنت متأكد أنك تريد وضع علامة على هذه الجولة كـ {{status}}؟",
 		"markAsComplete": "وضع علامة على أنه مكتمل",
 		"status": {

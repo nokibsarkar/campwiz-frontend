@@ -65,8 +65,8 @@
 		"editProject": "सम्पादित करें"
 	},
 	"round": {
-		"addMyselfAsJury": "खुदको जूरी के रूप में जोड़ें",
 		"deleteRoundButton": "हटाएँ",
+		"addMyselfAsJury": "खुदको जूरी के रूप में जोड़ें",
 		"confirmChangeStatus": "क्या आप वाकई में इस दौर को {{status}} चिह्नित करना चाहते हैं?",
 		"markAsComplete": "समाप्त चिह्नित करें",
 		"status": {
@@ -209,6 +209,17 @@
 		"ha": "हौसा (Hausa)",
 		"kcg": "त्याप (Tiv)",
 		"lt": "लिथुआनियाई (Lietuvių)",
-		"tr": "तुर्की (Türkçe)"
+		"tr": "तुर्की (Türkçe)",
+		"ga": "आयरिश (Gaeilge)",
+		"he": "हिब्रू (עברית)",
+		"cs": "चेक (Čeština)",
+		"fa": "फ़ारसी (فارسی)",
+		"yi": "यहूदी (ייִדיש)",
+		"kea": "काबुवेर्दियानु (Kabuverdianu)",
+		"id": "इंडोनेशियाई (Bahasa Indonesia)",
+		"mni": "मणिपुरी (মণিপুরী)",
+		"ori": "उड़िया (ଓଡ଼ିଆ)",
+		"nl": "डच (Nederlands)",
+		"pt-br": "पुर्तगाली (ब्राज़ील) (Português do Brasil)"
 	}
 }

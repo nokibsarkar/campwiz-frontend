@@ -66,8 +66,8 @@
 		"editProject": "编辑"
 	},
 	"round": {
-		"addMyselfAsJury": "添加我自己为评审",
 		"deleteRoundButton": "删除",
+		"addMyselfAsJury": "添加我自己为评审",
 		"confirmChangeStatus": "您确定要将此回合标记为{{status}}吗？",
 		"markAsComplete": "标记为完成",
 		"status": {

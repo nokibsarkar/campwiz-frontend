@@ -65,8 +65,8 @@
 		"editProject": "Уреди"
 	},
 	"round": {
-		"addMyselfAsJury": "Додај ме во жирито",
 		"deleteRoundButton": "Избриши",
+		"addMyselfAsJury": "Додај ме во жирито",
 		"confirmChangeStatus": "Дали сигурно сакате да го означите овој круг како {{status}}?",
 		"markAsComplete": "Означи како завршено",
 		"status": {

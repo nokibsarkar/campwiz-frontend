@@ -65,8 +65,8 @@
 		"editProject": "Тюзет"
 	},
 	"round": {
-		"addMyselfAsJury": "Кесинги проектге къош",
 		"deleteRoundButton": "Кетер",
+		"addMyselfAsJury": "Кесинги проектге къош",
 		"confirmChangeStatus": "Бу раундну {{status}} кибик белгилерге излегенигизден ишексизмисиз?",
 		"markAsComplete": "Тындырылгъанча белгиле",
 		"status": {

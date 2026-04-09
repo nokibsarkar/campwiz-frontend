@@ -65,8 +65,8 @@
 		"editProject": "Düzenle"
 	},
 	"round": {
-		"addMyselfAsJury": "Kendimi jüri olarak ekle",
 		"deleteRoundButton": "Sil",
+		"addMyselfAsJury": "Kendimi jüri olarak ekle",
 		"confirmChangeStatus": "Bu turu {{status}} olarak işaretlemek istediğinizden emin misiniz?",
 		"markAsComplete": "Tamamlandı olarak işaretle",
 		"status": {

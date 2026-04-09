@@ -64,8 +64,8 @@
 		"editProject": "Label of a button to edit the corresponding project."
 	},
 	"round": {
-		"addMyselfAsJury": "In case of public campaigns, any user can join the jury panel by clicking on this button.",
 		"deleteRoundButton": "Label for Deleting a round which would cause all the submissions and evaluations of the corresponding rounds to be deleted as well.",
+		"addMyselfAsJury": "In case of public campaigns, any user can join the jury panel by clicking on this button.",
 		"confirmChangeStatus": "A confirmation message when user clicks any button to change the status of the round. Here  <code><nowiki>{{status}}</nowiki></code> would be replaced with the target status (the status this round would get after this action is executed).",
 		"markAsComplete": "A Label for the button to Mark the round as Completed. After this, coordinators can download the results and juries can no longer submit votes or modify votes.",
 		"status": {

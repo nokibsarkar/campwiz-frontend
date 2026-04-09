@@ -64,8 +64,8 @@
 		"editProject": "Editar"
 	},
 	"round": {
-		"addMyselfAsJury": "Adicionar-me como jurado",
 		"deleteRoundButton": "Excluir",
+		"addMyselfAsJury": "Adicionar-me como jurado",
 		"confirmChangeStatus": "Tem certeza de que deseja marcar esta rodada como {{status}}?",
 		"markAsComplete": "Marcar como concluído",
 		"status": {

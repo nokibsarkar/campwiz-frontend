@@ -64,10 +64,19 @@
 		"editProject": "Eagar"
 	},
 	"round": {
-		"addMyselfAsJury": "Cuir mé féin leis an ngiúiré",
+		"createRoundButton": "Cruthaigh Babhta",
 		"deleteRoundButton": "Scrios",
+		"goToRound": "Téigh go dtí an Babhta",
+		"deleteTitle": "Scrios Babhta",
+		"deleteConfirmation": "An bhfuil tú cinnte gur mian leat an babhta seo a scriosadh?",
+		"deleteDescription": "Má scriostar an babhta seo, bainfear na sonraí go léir a bhaineann leis. Áirítear leis seo na haighneachtaí, na meastóireachtaí, baill an ghiúiré agus sonraí eile go léir. Ní féidir an gníomh seo a aisiompú. Mar sin, déan cinnte gur mian leat an babhta seo a scriosadh.",
+		"addMyselfAsJury": "Cuir mé féin leis an ngiúiré",
 		"confirmChangeStatus": "An bhfuil tú cinnte gur mian leat an babhta seo a mharcáil mar {{status}}?",
 		"markAsComplete": "Marcáil mar Chríochnaithe",
+		"pauseButton": "Sos",
+		"startButton": "Tosaigh",
+		"importButton": "Iompórtáil",
+		"editButton": "Cuir in eagar",
 		"status": {
 			"ACTIVE": "Gníomhach",
 			"PAUSED": "Sosaithe",
@@ -149,6 +158,8 @@
 	"next": "Ar Aghaidh",
 	"return": "Filleadh",
 	"evaluation": {
+		"allSet": "Uile Socraithe",
+		"noPendingEvaluations": "Is cosúil nach bhfuil aon aighneachtaí ar feitheamh agat le measúnú a dhéanamh orthu sa bhabhta seo.",
 		"modifytable": {
 			"name": "Ainm",
 			"score": "Scór",
@@ -208,6 +219,18 @@
 		"ha": "Hausa",
 		"kcg": "Tyap (Tiv)",
 		"lt": "Liotuáinis (Lietuvių)",
-		"tr": "Tuircis (Türkçe)"
+		"tr": "Tuircis (Türkçe)",
+		"ga": "Gaeilge (Gaeilge)",
+		"he": "Eabhrais (עברית)",
+		"cs": "Seiceach (Čeština)",
+		"fa": "Peirsis (فارسی)",
+		"yi": "Giúdais (ייִדיש)",
+		"kea": "Cabuverdianu (Kabuverdianu)",
+		"id": "Indinéisis (Bahasa Indonesia)",
+		"mni": "Manipuri (মণিপুরী)",
+		"ori": "Oriya (ଓଡ଼ିଆ)",
+		"nl": "Ollainnis (Nederlands)",
+		"pt-br": "Portaingéilis (An Bhrasaíl) (Português do Brasil)",
+		"qqq": "&#32;"
 	}
 }

@@ -64,8 +64,12 @@
 		"editProject": "Modifiché"
 	},
 	"round": {
-		"addMyselfAsJury": "Gionteme tanme giurà",
+		"createRoundButton": "Creé na gira",
 		"deleteRoundButton": "Dëscancelé",
+		"goToRound": "Andé a la gira",
+		"deleteTitle": "Eliminé la gira",
+		"deleteConfirmation": "É-lo sigur ëd vorèj eliminé costa gira?",
+		"addMyselfAsJury": "Gionteme tanme giurà",
 		"confirmChangeStatus": "É-lo sigur ëd vorèj marché ës tor coma {{status}}?",
 		"markAsComplete": "Marché coma completà",
 		"status": {
@@ -208,6 +212,8 @@
 		"ha": "Hausa",
 		"kcg": "Tyap (Tiv)",
 		"lt": "Lituan (Lietuvių)",
-		"tr": "Turch (Türkçe)"
+		"tr": "Turch (Türkçe)",
+		"ga": "Irlandèis (gaélich)",
+		"he": "Ebreo (עברית)"
 	}
 }

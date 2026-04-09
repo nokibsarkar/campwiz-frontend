@@ -67,10 +67,19 @@
 		"editProject": "Bewerken"
 	},
 	"round": {
-		"addMyselfAsJury": "Voeg mezelf toe als jury",
+		"createRoundButton": "Ronde maken",
 		"deleteRoundButton": "Verwijderen",
+		"goToRound": "Ga naar ronde",
+		"deleteTitle": "Ronde verwijderen",
+		"deleteConfirmation": "Weet u zeker dat u deze ronde wilt verwijderen?",
+		"deleteDescription": "Als u deze ronde verwijdert, worden alle bijbehorende gegevens verwijderd. Dit omvat alle inzendingen, beoordelingen, juryleden en andere gegevens. Deze handeling is onomkeerbaar. Zorg er dus voor dat u deze ronde echt wilt verwijderen.",
+		"addMyselfAsJury": "Voeg mezelf toe als jury",
 		"confirmChangeStatus": "Weet u zeker dat u deze ronde wilt markeren als {{status}}?",
 		"markAsComplete": "Markeer als voltooid",
+		"pauseButton": "Pauzeren",
+		"startButton": "Beginnen",
+		"importButton": "Importeren",
+		"editButton": "Bewerken",
 		"status": {
 			"ACTIVE": "Actief",
 			"PAUSED": "Gepauzeerd",
@@ -152,6 +161,8 @@
 	"next": "Volgende",
 	"return": "Terug",
 	"evaluation": {
+		"allSet": "Alles klaar",
+		"noPendingEvaluations": "Het lijkt erop dat er in deze ronde geen inzendingen meer te beoordelen zijn.",
 		"modifytable": {
 			"name": "Naam",
 			"score": "Score",
@@ -211,6 +222,18 @@
 		"ha": "Hausa",
 		"kcg": "Tyap (Tiv)",
 		"lt": "Litouws (Lietuvių kalba)",
-		"tr": "Turks (Türkçe)"
+		"tr": "Turks (Türkçe)",
+		"ga": "Iers (Gaeilge)",
+		"he": "Hebreeuws (עברית)",
+		"cs": "Tsjechisch (Čeština)",
+		"fa": "Perzisch (فارسی)",
+		"yi": "Jiddisch (ייִדיש)",
+		"kea": "Kaapverdisch-Creools (Kabuverdianu)",
+		"id": "Indonesisch (Bahasa Indonesia)",
+		"mni": "Manipuri (মণিপুরী)",
+		"ori": "Odia (ଓଡ଼ିଆ)",
+		"nl": "Nederlands",
+		"pt-br": "Portugees (Brazilië) (Português do Brasil)",
+		"qqq": "Documentatie"
 	}
 }

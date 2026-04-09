@@ -64,8 +64,8 @@
 		"editProject": "ترمیم"
 	},
 	"round": {
-		"addMyselfAsJury": "اپنے آپ کو بطور جیوری شامل کریں",
 		"deleteRoundButton": "حذف",
+		"addMyselfAsJury": "اپنے آپ کو بطور جیوری شامل کریں",
 		"confirmChangeStatus": "کیا آپ واقعی اس راؤنڈ کو {{status}} کے بطور نشان زد کرنا چاہتے ہیں؟",
 		"markAsComplete": "مکمل کے بطور نشان زد کریں۔",
 		"status": {
