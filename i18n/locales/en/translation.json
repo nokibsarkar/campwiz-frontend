@@ -1,5 +1,6 @@
 {
     "title": "CampWiz NXT",
+    "Wikimedia Username": "Wikimedia Username!",
     "home": {
         "welcome": "Welcome {{name}}",
         "subtitle": "Taking jury experience to another level",
@@ -44,7 +45,12 @@
         "wikiProject": "Wiki Project",
         "duration": "Duration",
         "edit": "Edit",
-        "updateCampaign": "Update Campaign"
+        "updateCampaign": "Update Campaign",
+        "createdSuccessfully": "Campaign created successfully",
+        "updatedSuccessfully": "Campaign updated successfully",
+        "deleteCampaign": "Delete Campaign",
+        "campaignCreatedWithId": "Campaign created success by with id {{id}}.",
+        "campaign.createRoundPrompt": "Co-ordinators can create rounds within a campaign. Rounds are the core of the jury process where submissions are evaluated. You can create a round immediately after creating a campaign or you can do it later from the campaign details page."
     },
     "project": {
         "title": "Projects",
@@ -148,7 +154,8 @@
         "accessDeniedToProject": "You don't have access to this project",
         "failedToFetchProject": "Failed to fetch your project",
         "failedToFetchCampaign": "Failed to fetch campaign details",
-        "failedToFetchRound": "Failed to fetch round details"
+        "failedToFetchRound": "Failed to fetch round details",
+        "noRounds": "No rounds available for this campaign"
     },
     "close": "Close",
     "previous": "Previous",
@@ -166,7 +173,9 @@
         "skip": "Skip",
         "edit": "Modify Votes",
         "yes": "Yes",
-        "no": "No"
+        "no": "No",
+        "playAudio": "Click here to play the audio",
+        "viewOnCommons": "View on Commons"
     },
     "submission": {
         "title": "Title",
@@ -227,7 +236,6 @@
         "mni": "Manipuri (মণিপুরী)",
         "ori": "Oriya (ଓଡ଼ିଆ)",
         "nl": "Dutch (Nederlands)",
-        "pt-br": "Portuguese (Brazil) (Português do Brasil)",
-        "qqq": ""
+        "pt-br": "Portuguese (Brazil) (Português do Brasil)"
     }
 }
