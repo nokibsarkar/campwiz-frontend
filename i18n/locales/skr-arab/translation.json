@@ -27,6 +27,10 @@
 		"showAllCampaigns": "ساریاں مہماں ݙکھاؤ"
 	},
 	"round": {
+		"pauseButton": "اجھکو",
+		"startButton": "شروع",
+		"importButton": "اندر گھن آؤ",
+		"editButton": "لکھو",
 		"status": {
 			"ACTIVE": "فعال",
 			"PAUSED": "جمب ڳیا",
@@ -88,6 +92,9 @@
 		"skr-latn": "سرائیکی (Saraiki)",
 		"mk": "مقدونی (Македонски)",
 		"ha": "ہوسا",
-		"fa": "فارسی"
+		"he": "عبرانی (עברית)",
+		"fa": "فارسی",
+		"id": "انڈونیشی (Bahasa Indonesia)",
+		"ori": "اوڑیہ (ଓଡ଼ିଆ)"
 	}
 }

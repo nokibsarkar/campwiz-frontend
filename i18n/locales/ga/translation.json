@@ -5,6 +5,7 @@
 		]
 	},
 	"title": "CampWiz NXT",
+	"Wikimedia Username": "Ainm úsáideora Wikimedia!",
 	"home": {
 		"welcome": "Fáilte roimh {{name}}",
 		"subtitle": "Ag tabhairt taithí giúiré go leibhéal eile",
@@ -48,7 +49,15 @@
 		"privateCampaign": "Feachtas Príobháideach",
 		"wikiProject": "Tionscadal Vicí",
 		"duration": "Fad",
-		"edit": "Cuir in Eagar"
+		"edit": "Cuir in Eagar",
+		"updateCampaign": "Nuashonraigh an Feachtas",
+		"createdSuccessfully": "Cruthaíodh an feachtas go rathúil",
+		"updatedSuccessfully": "Nuashonraíodh an feachtas go rathúil",
+		"deleteCampaign": "Scrios Feachtas",
+		"campaignCreatedWithId": "Chruthaigh an feachtas rath leis an id {{id}}.",
+		"campaign": {
+			"createRoundPrompt": "Is féidir le comhordaitheoirí babhtaí a chruthú laistigh de fheachtas. Is iad na babhtaí croílár phróiseas an ghiúiré ina ndéantar measúnú ar aighneachtaí. Is féidir leat babhta a chruthú díreach tar éis feachtas a chruthú nó is féidir leat é a dhéanamh níos déanaí ó leathanach sonraí an fheachtais."
+		}
 	},
 	"project": {
 		"title": "Tionscadail",
@@ -66,6 +75,7 @@
 	"round": {
 		"createRoundButton": "Cruthaigh Babhta",
 		"deleteRoundButton": "Scrios",
+		"redistributeButton": "Athdháileadh",
 		"goToRound": "Téigh go dtí an Babhta",
 		"deleteTitle": "Scrios Babhta",
 		"deleteConfirmation": "An bhfuil tú cinnte gur mian leat an babhta seo a scriosadh?",
@@ -151,7 +161,8 @@
 		"accessDeniedToProject": "Níl rochtain agat ar an tionscadal seo",
 		"failedToFetchProject": "Theip ar do thionscadal a fháil",
 		"failedToFetchCampaign": "Theip ar shonraí an fheachtais a fháil",
-		"failedToFetchRound": "Theip ar shonraí an bhabhta a fháil"
+		"failedToFetchRound": "Theip ar shonraí an bhabhta a fháil",
+		"noRounds": "Níl aon bhabhtaí ar fáil don fheachtas seo"
 	},
 	"close": "Close",
 	"previous": "Roimhe Seo",
@@ -169,7 +180,9 @@
 		"skip": "Léim",
 		"edit": "Vótaí a Mhodhnú",
 		"yes": "Tá",
-		"no": "Níl"
+		"no": "Níl",
+		"playAudio": "Cliceáil anseo chun an fhuaim a sheinm",
+		"viewOnCommons": "Féach ar Commons"
 	},
 	"submission": {
 		"title": "Teideal",
@@ -230,7 +243,6 @@
 		"mni": "Manipuri (মণিপুরী)",
 		"ori": "Oriya (ଓଡ଼ିଆ)",
 		"nl": "Ollainnis (Nederlands)",
-		"pt-br": "Portaingéilis (An Bhrasaíl) (Português do Brasil)",
-		"qqq": "&#32;"
+		"pt-br": "Portaingéilis (An Bhrasaíl) (Português do Brasil)"
 	}
 }

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Budhiastawa",
 			"Penyuwangi"
 		]
 	},
@@ -64,10 +65,19 @@
 		"editProject": "Sunting"
 	},
 	"round": {
+		"createRoundButton": "Buat Babak",
 		"deleteRoundButton": "Hapus",
+		"goToRound": "Lanjutkan ke Babak",
+		"deleteTitle": "Hapus babak",
+		"deleteConfirmation": "Yakin ingin menghapus babak ini?",
+		"deleteDescription": "Menghapus babak ini akan menghapus semua data yang terkait dengannya. Ini termasuk semua pengajuan, evaluasi, anggota juri, dan data lainnya. Tindakan ini tidak dapat dibatalkan. Jadi, pastikan Anda benar-benar ingin menghapus babak ini.",
 		"addMyselfAsJury": "Tambahkan diri saya sebagai juri",
 		"confirmChangeStatus": "Yakin ingin menandai babak ini sebagai {{status}}?",
 		"markAsComplete": "Tandai sebagai Selesai",
+		"pauseButton": "Jeda",
+		"startButton": "Mulai",
+		"importButton": "Impor",
+		"editButton": "Sunting",
 		"status": {
 			"ACTIVE": "Aktif",
 			"PAUSED": "Dijeda",
@@ -149,6 +159,8 @@
 	"next": "Selanjutnya",
 	"return": "Kembali",
 	"evaluation": {
+		"allSet": "Semua sudah siap",
+		"noPendingEvaluations": "Sepertinya Anda tidak memiliki pengajuan yang tertunda untuk dievaluasi pada putaran ini.",
 		"modifytable": {
 			"name": "Nama",
 			"score": "Skor",
@@ -208,6 +220,17 @@
 		"ha": "Bahasa Hausa",
 		"kcg": "Bahasa Tyap (Tiv)",
 		"lt": "Bahasa Lituania (Lietuvių)",
-		"tr": "Bahasa Turki (Türkçe)"
+		"tr": "Bahasa Turki (Türkçe)",
+		"ga": "Irlandia (Gaeilge)",
+		"he": "Hebrew (עברית)",
+		"cs": "Ceko (Čeština)",
+		"fa": "Persia (فارسی)",
+		"yi": "Yiddish (ייִדיש)",
+		"kea": "Kabuverdianu (Kabuverdianu)",
+		"id": "Indonesian (Bahasa Indonesia)",
+		"mni": "Manipuri (মণিপুরী)",
+		"ori": "Oriya (ଓଡ଼ିଆ)",
+		"nl": "Belanda (Nederland)",
+		"pt-br": "Portugis (Brasil) (Português do Brasil)"
 	}
 }

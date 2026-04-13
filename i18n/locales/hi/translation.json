@@ -69,6 +69,9 @@
 		"addMyselfAsJury": "खुदको जूरी के रूप में जोड़ें",
 		"confirmChangeStatus": "क्या आप वाकई में इस दौर को {{status}} चिह्नित करना चाहते हैं?",
 		"markAsComplete": "समाप्त चिह्नित करें",
+		"pauseButton": "थामें",
+		"startButton": "शुरू करें",
+		"editButton": "सम्पादन",
 		"status": {
 			"ACTIVE": "सक्रिय",
 			"PAUSED": "रुका हुआ",

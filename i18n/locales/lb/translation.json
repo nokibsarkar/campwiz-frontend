@@ -6,6 +6,7 @@
 		]
 	},
 	"title": "CampWiz NXT",
+	"Wikimedia Username": "Wikimedia-Benotzernumm!",
 	"home": {
 		"welcome": "Wëllkomm {{name}}",
 		"yourCampaigns": "Är Campagnen",
@@ -37,7 +38,9 @@
 		"privateCampaign": "Privat Campagne",
 		"wikiProject": "Wiki-Projet",
 		"duration": "Dauer",
-		"edit": "Änneren"
+		"edit": "Änneren",
+		"updatedSuccessfully": "Campagne erfollegräich aktualiséiert",
+		"deleteCampaign": "Campagne läschen"
 	},
 	"project": {
 		"title": "Projeten",
@@ -106,7 +109,8 @@
 		},
 		"skip": "Iwwersprangen",
 		"yes": "Jo",
-		"no": "Nee"
+		"no": "Nee",
+		"viewOnCommons": "Op Commons weisen"
 	},
 	"submission": {
 		"title": "Titel",

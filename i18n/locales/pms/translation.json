@@ -5,6 +5,7 @@
 		]
 	},
 	"title": "CampWiz NXT",
+	"Wikimedia Username": "Stranòm ëd Wikimedia!",
 	"home": {
 		"welcome": "Bin-ëvnù {{name}}",
 		"subtitle": "Porté l'esperiensa ëd na giurìa a n'àutr livel",
@@ -48,7 +49,15 @@
 		"privateCampaign": "Campagna privà",
 		"wikiProject": "Proget Wiki",
 		"duration": "Durà",
-		"edit": "Modifiché"
+		"edit": "Modifiché",
+		"updateCampaign": "Agiorné la campagna",
+		"createdSuccessfully": "Campagna creà për da bin",
+		"updatedSuccessfully": "Campagna agiornà për da bin",
+		"deleteCampaign": "Eliminé la campagna",
+		"campaignCreatedWithId": "Sucess ëd campagna creà con identificativ {{id}}.",
+		"campaign": {
+			"createRoundPrompt": "Ij coordinator a peulo creé dle gire andrinta a na campagna. Le gire a son ël cheur dël process ëd decision cand le spedission a son valutà. A peul creé na gira dlongh apress avèj creà na campagna opura a peul felo pi tard da la pàgina dij detaj ëd la campagna."
+		}
 	},
 	"project": {
 		"title": "Proget",
@@ -66,12 +75,15 @@
 	"round": {
 		"createRoundButton": "Creé na gira",
 		"deleteRoundButton": "Dëscancelé",
+		"redistributeButton": "Ridistribuì",
 		"goToRound": "Andé a la gira",
 		"deleteTitle": "Eliminé la gira",
 		"deleteConfirmation": "É-lo sigur ëd vorèj eliminé costa gira?",
+		"deleteDescription": "An eliminand costa gira as gavran tuti ij dàit ch'a-j son associà.\nSòn a comprend tute le spedission, le valutassion, ij mèmber ëd giurìa e d'àutri dàit.\nCosta assion a l'é ireversìbil. Antlora, ch'a sia sigur ëd vorèj eliminé costa gira.",
 		"addMyselfAsJury": "Gionteme tanme giurà",
 		"confirmChangeStatus": "É-lo sigur ëd vorèj marché ës tor coma {{status}}?",
 		"markAsComplete": "Marché coma completà",
+		"startButton": "Partensa",
 		"status": {
 			"ACTIVE": "Ativa",
 			"PAUSED": "An pòsa",

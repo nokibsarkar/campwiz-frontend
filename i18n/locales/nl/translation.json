@@ -51,7 +51,8 @@
 		"privateCampaign": "Privécampagne",
 		"wikiProject": "Wiki-project",
 		"duration": "Duur",
-		"edit": "Bewerken"
+		"edit": "Bewerken",
+		"updateCampaign": "Campagne updaten"
 	},
 	"project": {
 		"title": "Projecten",
@@ -69,6 +70,7 @@
 	"round": {
 		"createRoundButton": "Ronde maken",
 		"deleteRoundButton": "Verwijderen",
+		"redistributeButton": "Herverdelen",
 		"goToRound": "Ga naar ronde",
 		"deleteTitle": "Ronde verwijderen",
 		"deleteConfirmation": "Weet u zeker dat u deze ronde wilt verwijderen?",
@@ -233,7 +235,6 @@
 		"mni": "Manipuri (মণিপুরী)",
 		"ori": "Odia (ଓଡ଼ିଆ)",
 		"nl": "Nederlands",
-		"pt-br": "Portugees (Brazilië) (Português do Brasil)",
-		"qqq": "Documentatie"
+		"pt-br": "Portugees (Brazilië) (Português do Brasil)"
 	}
 }

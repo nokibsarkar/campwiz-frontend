@@ -6,6 +6,7 @@
 		]
 	},
 	"title": "CampWiz NXT",
+	"Wikimedia Username": "Nome utente Wikimedia!",
 	"home": {
 		"welcome": "Benvenuto {{name}}",
 		"yourCampaigns": "Le tue campagne",
@@ -43,7 +44,12 @@
 		"privateCampaign": "Campagna privata",
 		"wikiProject": "Progetto wiki",
 		"duration": "Durata",
-		"edit": "Modifica"
+		"edit": "Modifica",
+		"updateCampaign": "Aggiorna campagna",
+		"createdSuccessfully": "Campagna creata con successo",
+		"updatedSuccessfully": "Campagna aggiornata con successo",
+		"deleteCampaign": "Cancella campagna",
+		"campaignCreatedWithId": "Campagna creata con successo con ID {{id}}."
 	},
 	"project": {
 		"title": "Progetti",
@@ -113,7 +119,9 @@
 		"skip": "Salta",
 		"edit": "Modifica voti",
 		"yes": "Sì",
-		"no": "No"
+		"no": "No",
+		"playAudio": "Clicca qui per riprodurre l'audio",
+		"viewOnCommons": "Vedi su Commons"
 	},
 	"submission": {
 		"title": "Titolo",
