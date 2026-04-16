@@ -3,6 +3,7 @@
 		"authors": [
 			"Nokib Sarkar",
 			"Omotecho",
+			"RhAnish",
 			"YeBoy371"
 		]
 	},
@@ -51,6 +52,7 @@
 		"editProject": "編集"
 	},
 	"round": {
+		"editButton": "編集",
 		"status": {
 			"ACTIVE": "アクティブ",
 			"PAUSED": "一時停止",

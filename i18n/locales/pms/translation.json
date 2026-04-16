@@ -84,6 +84,8 @@
 		"confirmChangeStatus": "É-lo sigur ëd vorèj marché ës tor coma {{status}}?",
 		"markAsComplete": "Marché coma completà",
 		"startButton": "Partensa",
+		"importButton": "Amporté",
+		"editButton": "Modifiché",
 		"status": {
 			"ACTIVE": "Ativa",
 			"PAUSED": "An pòsa",
@@ -158,7 +160,8 @@
 		"accessDeniedToProject": "A l'ha pa acess a cost proget",
 		"failedToFetchProject": "Falì a arcuperé sò proget",
 		"failedToFetchCampaign": "Falì a arcuperé ij detaj dla campagna",
-		"failedToFetchRound": "Falì a arcuperé ij detaj an sël tor"
+		"failedToFetchRound": "Falì a arcuperé ij detaj an sël tor",
+		"noRounds": "Gnun-e gire disponìbij për costa campagna"
 	},
 	"close": "Saré",
 	"previous": "Prima",

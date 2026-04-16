@@ -7,6 +7,7 @@
 		]
 	},
 	"title": "CampWiz NXT",
+	"Wikimedia Username": "اسم المستخدم في ويكيميديا!",
 	"home": {
 		"welcome": "السلام عليكم {{name}}؜",
 		"subtitle": "نأخذ تجربة التحكيم إلى مستوى آخر",
@@ -50,7 +51,15 @@
 		"privateCampaign": "حملة خاصة",
 		"wikiProject": "مشروع ويكي",
 		"duration": "المدة",
-		"edit": "تعديل"
+		"edit": "تعديل",
+		"updateCampaign": "تحديث الحملة",
+		"createdSuccessfully": "تم إنشاء الحملة بنجاح",
+		"updatedSuccessfully": "تم تحديث الحملة بنجاح",
+		"deleteCampaign": "حذف الحملة",
+		"campaignCreatedWithId": "حققت الحملة نجاحًا بفضل المعرف {{id}}.",
+		"campaign": {
+			"createRoundPrompt": "بإمكان المنسقين إنشاء جولات ضمن الحملة. تُعدّ الجولات جوهر عملية التحكيم حيث يتم تقييم المشاركات. يمكنك إنشاء جولة فور إنشاء الحملة أو لاحقًا من صفحة تفاصيل الحملة."
+		}
 	},
 	"project": {
 		"title": "مشاريع",
@@ -66,10 +75,20 @@
 		"editProject": "تعديل"
 	},
 	"round": {
+		"createRoundButton": "اصنع دائرة",
 		"deleteRoundButton": "حذف",
+		"redistributeButton": "إعادة التوزيع",
+		"goToRound": "انتقل إلى الجولة",
+		"deleteTitle": "مستدير",
+		"deleteConfirmation": "هل أنت متأكد من رغبتك في حذف هذه الجولة؟",
+		"deleteDescription": "سيؤدي حذف هذه الجولة إلى إزالة جميع البيانات المرتبطة بها. يشمل ذلك جميع المشاركات والتقييمات وأعضاء لجنة التحكيم وغيرها من البيانات. هذا الإجراء غير قابل للتراجع، لذا يُرجى التأكد من رغبتك في حذف هذه الجولة.",
 		"addMyselfAsJury": "أضف نفسي كعضو في هيئة المحلفين",
 		"confirmChangeStatus": "هل أنت متأكد أنك تريد وضع علامة على هذه الجولة كـ {{status}}؟",
 		"markAsComplete": "وضع علامة على أنه مكتمل",
+		"pauseButton": "يوقف",
+		"startButton": "يبدأ",
+		"importButton": "يستورد",
+		"editButton": "يحرر",
 		"status": {
 			"ACTIVE": "نشطة",
 			"PAUSED": "متوقفة مؤقتًا",
@@ -144,13 +163,16 @@
 		"accessDeniedToProject": "ليس لديك حق الوصول إلى هذا المشروع",
 		"failedToFetchProject": "فشل في جلب مشروعك",
 		"failedToFetchCampaign": "فشل في جلب تفاصيل الحملة",
-		"failedToFetchRound": "فشل في جلب تفاصيل الجولة"
+		"failedToFetchRound": "فشل في جلب تفاصيل الجولة",
+		"noRounds": "لا توجد جولات متاحة لهذه الحملة"
 	},
 	"close": "إغلاق",
 	"previous": "السابق",
 	"next": "التالي",
 	"return": "تراجع",
 	"evaluation": {
+		"allSet": "جاهز تمامًا",
+		"noPendingEvaluations": "يبدو أنه ليس لديك أي طلبات معلقة لتقييمها في هذه الجولة.",
 		"modifytable": {
 			"name": "الاسم",
 			"score": "النتيجة",
@@ -160,7 +182,9 @@
 		"skip": "تجاوز",
 		"edit": "تعديل الملاحظات.",
 		"yes": "نعم",
-		"no": "لا"
+		"no": "لا",
+		"playAudio": "انقر هنا لتشغيل الصوت",
+		"viewOnCommons": "عرض على كومنز"
 	},
 	"submission": {
 		"title": "العنوان",
@@ -210,6 +234,17 @@
 		"ha": "الهاوسا",
 		"kcg": "تياب (تيف)",
 		"lt": "الليتوانية (Lietuvių)",
-		"tr": "التركية (Türkçe)"
+		"tr": "التركية (Türkçe)",
+		"ga": "الأيرلندية (Gaeilge)",
+		"he": "العبرية (עברית)",
+		"cs": "التشيكية (Čeština)",
+		"fa": "الفارسية (فارسي)",
+		"yi": "اليديشية (ייִדיש)",
+		"kea": "كابوفيرديانو (كابوفيرديانو)",
+		"id": "الإندونيسية (Bahasa Indonesia)",
+		"mni": "مانيبوري (মণিপুरী)",
+		"ori": "أوريا (ଓଡ଼ିଆ)",
+		"nl": "الهولندية (Nederlands)",
+		"pt-br": "البرتغالية (البرازيل) (Português do Brasil)"
 	}
 }

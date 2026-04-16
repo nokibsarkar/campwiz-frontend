@@ -8,6 +8,7 @@
 		]
 	},
 	"title": "CampWiz NXT",
+	"Wikimedia Username": "Wikimedia-gebruikersnaam!",
 	"home": {
 		"welcome": "Welkom {{name}}",
 		"subtitle": "Jury-ervaring naar een hoger niveau tillen",
@@ -52,7 +53,14 @@
 		"wikiProject": "Wiki-project",
 		"duration": "Duur",
 		"edit": "Bewerken",
-		"updateCampaign": "Campagne updaten"
+		"updateCampaign": "Campagne updaten",
+		"createdSuccessfully": "Campagne succesvol toegevoegd",
+		"updatedSuccessfully": "Campagne succesvol bijgewerkt",
+		"deleteCampaign": "Campagne Verwijderen",
+		"campaignCreatedWithId": "Campagne met id {{id}} is aangemaakt.",
+		"campaign": {
+			"createRoundPrompt": "Coördinatoren kunnen rondes aanmaken binnen een campagne. Rondes vormen de kern van het juryproces, waarin inzendingen worden beoordeeld. U kunt direct na het aanmaken van een campagne een ronde aanmaken, of later via de pagina met campagnedetails."
+		}
 	},
 	"project": {
 		"title": "Projecten",
@@ -156,7 +164,8 @@
 		"accessDeniedToProject": "U hebt geen toegang tot dit project",
 		"failedToFetchProject": "Het ophalen van uw project is mislukt",
 		"failedToFetchCampaign": "Het ophalen van campagnegegevens is mislukt",
-		"failedToFetchRound": "Het ophalen van rondegegevens is mislukt."
+		"failedToFetchRound": "Het ophalen van rondegegevens is mislukt.",
+		"noRounds": "Er zijn geen rondes beschikbaar voor deze campagne."
 	},
 	"close": "Sluiten",
 	"previous": "Vorige",
@@ -174,7 +183,9 @@
 		"skip": "Overslaan",
 		"edit": "Stemmen wijzigen",
 		"yes": "Ja",
-		"no": "Nee"
+		"no": "Nee",
+		"playAudio": "Klik hier om de audio af te spelen",
+		"viewOnCommons": "Op Commons bekijken"
 	},
 	"submission": {
 		"title": "Titel",
