@@ -8,6 +8,7 @@
 		]
 	},
 	"title": "캠프위즈 NXT",
+	"Wikimedia Username": "위키미디어 사용자 이름!",
 	"home": {
 		"welcome": "{{name}}님, 환영합니다",
 		"yourCampaigns": "내 캠페인",
@@ -43,7 +44,10 @@
 		"rules": "규칙",
 		"wikiProject": "위키 프로젝트",
 		"duration": "기간",
-		"edit": "편집"
+		"edit": "편집",
+		"createdSuccessfully": "캠페인이 성공적으로 생성되었습니다",
+		"updatedSuccessfully": "캠페인이 성공적으로 업데이트되었습니다",
+		"deleteCampaign": "캠페인을 삭제"
 	},
 	"project": {
 		"title": "프로젝트",
@@ -61,6 +65,10 @@
 	"round": {
 		"deleteRoundButton": "삭제",
 		"markAsComplete": "완료한 것으로 표시",
+		"pauseButton": "일시 정지",
+		"startButton": "시작",
+		"importButton": "가져오기",
+		"editButton": "편집",
 		"status": {
 			"ACTIVE": "활성",
 			"PAUSED": "일시 중단됨",
@@ -126,7 +134,8 @@
 		},
 		"skip": "건너뛰기",
 		"yes": "예",
-		"no": "아니요"
+		"no": "아니요",
+		"viewOnCommons": "공용에서 보기"
 	},
 	"submission": {
 		"title": "제목",

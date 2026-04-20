@@ -83,6 +83,7 @@
 		"addMyselfAsJury": "Gionteme tanme giurà",
 		"confirmChangeStatus": "É-lo sigur ëd vorèj marché ës tor coma {{status}}?",
 		"markAsComplete": "Marché coma completà",
+		"pauseButton": "Pòsa",
 		"startButton": "Partensa",
 		"importButton": "Amporté",
 		"editButton": "Modifiché",
@@ -168,6 +169,8 @@
 	"next": "Apress",
 	"return": "André",
 	"evaluation": {
+		"allSet": "Tut sistemà",
+		"noPendingEvaluations": "A smijërìa che chiel a l'abia gnun-e spedission ative da valuté për costa gira.",
 		"modifytable": {
 			"name": "Nòm",
 			"score": "Pontegg",
@@ -177,7 +180,9 @@
 		"skip": "Sauté",
 		"edit": "Modifiché ij vot",
 		"yes": "É",
-		"no": "Nò"
+		"no": "Nò",
+		"playAudio": "Sgnaché ambelessì për fé andé ël sonor",
+		"viewOnCommons": "Smon-e su Commons"
 	},
 	"submission": {
 		"title": "Tìtol",
@@ -229,6 +234,15 @@
 		"lt": "Lituan (Lietuvių)",
 		"tr": "Turch (Türkçe)",
 		"ga": "Irlandèis (gaélich)",
-		"he": "Ebreo (עברית)"
+		"he": "Ebreo (עברית)",
+		"cs": "Lenga ceca (Čeština)",
+		"fa": "Persian (فارسی)",
+		"yi": "Yiddish (ייִדיש)",
+		"kea": "Capverdian (Kabuverdianu)",
+		"id": "Indonesian (Bahasa Indonesia)",
+		"mni": "Manipuri (মণিপুরী)",
+		"ori": "Oriya (ଓଡ଼ିଆ)",
+		"nl": "Olandèis (Olanda)",
+		"pt-br": "Portughèis (Brasil) (Português do Brasil)"
 	}
 }
