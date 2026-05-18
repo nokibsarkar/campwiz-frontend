@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Lvova",
 			"Mitte27",
 			"Nokib Sarkar",
 			"Okras",
@@ -8,12 +9,15 @@
 		]
 	},
 	"title": "CampWiz NXT",
+	"Wikimedia Username": "Имя участника/участницы в Викимедиа!",
 	"home": {
 		"welcome": "Добро пожаловать на {{name}}",
-		"subtitle": "Вывод опыта работы присяжных на новый уровень",
+		"subtitle": "Вывод опыта жюри на новый уровень",
+		"publicRunningCampaigns": "Публичные идущие кампании",
 		"yourCampaigns": "Ваши кампании",
 		"logout": "Выйти",
 		"dashboard": "Панель инструментов",
+		"doc": "Документация",
 		"login": "Войти"
 	},
 	"settings": {
@@ -23,61 +27,179 @@
 		"lightMode": "Светлая тема",
 		"save": "Сохранить",
 		"cancel": "Отмена",
-		"theme": "Тема"
+		"theme": "Тема",
+		"helpTranslation": "Пожалуйста, помогите нам перевести на свой язык на <0>TranslateWiki</0>",
+		"translatewiki": "TranslateWiki"
 	},
 	"login": {
-		"title": "Давайте начнём!",
-		"loginWithWikimedia": "Войти через Викимедиа"
+		"title": "Давайте начнём",
+		"loginWithWikimedia": "Войти через Викимедиа",
+		"afterLoginRedirect": "После завершения этой процедуры вы будете перенаправлены обратно на следующую страницу:",
+		"loginDisclaimer": "Входя в систему, вы соглашаетесь с нашими <0>Terms of Service</0> и <1>Privacy Policy</1>."
 	},
 	"campaign": {
 		"createCampaign": "Создать кампанию",
 		"goToCampaign": "Перейти к кампании",
+		"showAllCampaigns": "Показать все кампании",
+		"activeCampaigns": "Активные кампании",
+		"archivedCampaigns": "Архивные кампании",
 		"name": "Имя",
 		"startDate": "Дата начала",
 		"endDate": "Дата окончания",
+		"coordinators": "Координаторы",
 		"description": "Описание",
 		"rules": "Правила",
-		"duration": "Длительность"
+		"publicVisibilityDisclaimer": "Данная кампания будет видна публике (людям, не являющимся координаторами, членами жюри или руководителями проекта)",
+		"privateCampaign": "Частная кампания",
+		"wikiProject": "Вики-проект",
+		"duration": "Длительность",
+		"edit": "Править",
+		"updateCampaign": "Обновить кампанию",
+		"createdSuccessfully": "Кампания успешно создана",
+		"updatedSuccessfully": "Кампания успешно обновлена",
+		"deleteCampaign": "Удалить кампанию",
+		"campaignCreatedWithId": "Кампания успешно создана с id {{id}}.",
+		"campaign": {
+			"createRoundPrompt": "Координаторы могут создавать этапы в рамках кампании. Раунды являются основой процесса отбора, на котором оцениваются записи. Вы можете создать раунд сразу после создания кампании или сделать это позже на странице с подробными сведениями о кампании."
+		}
 	},
 	"project": {
 		"title": "Проекты",
 		"createProject": "Новый проект",
 		"goToProject": "Перейти к проекту",
 		"showAllProjects": "Показать все проекты",
+		"projectLoading": "Загружаются подробности проекта...",
+		"leads": "Руководители проекта",
+		"dashboard": "Панель управления проектом",
 		"otherProjects": "Другие проекты",
 		"myProject": "Мой проект",
+		"welcomeToProject": "Добро пожаловать в {{project}}",
 		"editProject": "Править"
 	},
 	"round": {
+		"createRoundButton": "Создать раунд",
 		"deleteRoundButton": "Удалить",
-		"pauseButton": "Пауза"
+		"redistributeButton": "Перераспределить",
+		"goToRound": "Перейти к раунду",
+		"deleteTitle": "Удалить раунд",
+		"deleteConfirmation": "Вы уверены, что хотите удалить этот раунд?",
+		"deleteDescription": "Удаление этого раунда приведёт к удалению всех связанных с ним данных. \nЭто включает в себя все записи, оценки, членов жюри и другие данные.\nЭто действие необратимо. Поэтому, пожалуйста, убедитесь, что вы действительно хотите удалить этот раунд.",
+		"addMyselfAsJury": "Добавить себя в качестве жюри",
+		"confirmChangeStatus": "Вы уверены, что хотите пометить этот раунд как {{status}}?",
+		"markAsComplete": "Отметить как выполненное",
+		"pauseButton": "Пауза",
+		"startButton": "Старт",
+		"importButton": "Импорт",
+		"editButton": "Править",
+		"status": {
+			"ACTIVE": "Активно",
+			"PAUSED": "На паузе",
+			"COMPLETED": "Завершено",
+			"ARCHIVED": "Архивировано",
+			"IMPORTING": "Импортируется…",
+			"DISTRIBUTING": "Распределение",
+			"pausedThenCompleted": "Пауза, затем завершение"
+		},
+		"submissions": "Заявки",
+		"assignments": "Задания",
+		"evaluatedOutOf": "Оценено {{evaluated}} из {{total}}",
+		"evaluationArea": "Зона оценки",
+		"categorizer": "Категоризатор",
+		"type": {
+			"label": "Тип",
+			"binary": "Да/Нет",
+			"ranking": "Ранжирование",
+			"score": "Баллы",
+			"unknown": "Неизвестно, свяжитесь с нами"
+		},
+		"deadline": "Крайний срок",
+		"description": "Описание",
+		"deadLineInMonths_one": "Через месяц",
+		"deadLineInMonths_two": "Через два месяца",
+		"deadLineInMonths_other": "Через {{count}} мес.",
+		"deadLineInWeeks_one": "Через неделю",
+		"deadLineInWeeks_two": "Через две недели",
+		"deadLineInWeeks_other": "Через {{count}} нед.",
+		"deadLineInDays_one": "Через день",
+		"deadLineInDays_two": "Через два дня",
+		"deadLineInDays_other": "Через {{count}} д.",
+		"deadLineInHours_one": "Через час",
+		"deadLineInHours_two": "Через два часа",
+		"deadLineInHours_other": "Через {{count}} ч.",
+		"deadLineInMinutes_one": "Через минуту",
+		"deadLineInMinutes_two": "Через две минуты",
+		"deadLineInMinutes_other": "Через {{count}} мин.",
+		"deadLinePassed": "Срок вышел",
+		"quorum": "Кворум",
+		"quorumRequired_one": "Нужен один член жюри на заявку",
+		"quorumRequired_two": "Нужно два члена жюри на заявку",
+		"quorumRequired_other": "Нужно {{count}} члена/членов жюри на заявку",
+		"jury": {
+			"title": "Жюри",
+			"totalAssigned": "{{count}} назначено",
+			"evaluated": "{{count}} оценено"
+		}
 	},
 	"footer": {
+		"campwizNxtTeam": "Команда Campwiz NXT",
 		"manual": "Руководство",
+		"terms": "Условия",
 		"privacy": "Конфиденциальность",
 		"reportBug": "Сообщить об ошибке",
 		"translate": "Перевести",
 		"copyright": " 2025 <0>CampWiz NXT Team</0>"
 	},
+	"error": {
+		"noAssignedCampaigns": "Нет назначенных кампаний",
+		"loadingSubmissionDetails": "Не удалось загрузить данные по записи: {{error}}",
+		"categoriesNotLoaded": "Категории пока не загружены",
+		"campaignNotFound": "Кампания не найдена",
+		"campaignCategoriesNotSupported": "Категории кампании не поддерживаются",
+		"noSubmissionAvailableForCategorization": "Для этой категоризации нет записей",
+		"noCategoriesSelected": "Не выбраны категории",
+		"noCategoriesAvailable": "Нет доступных категорий",
+		"noSubmissions": "Нет доступных записей",
+		"noRunningCampaigns": "Нет запущенных кампаний",
+		"loadingMyProject": "Не удалось загрузить ваш проект",
+		"loadingProjects": "Не удалось загрузить проекты",
+		"accessDeniedToProject": "У вас нет доступа к этому проекту",
+		"failedToFetchProject": "Не удалось загрузить ваш проект",
+		"failedToFetchCampaign": "Не удалось получить детали кампании",
+		"failedToFetchRound": "Не удалось получить детали раунда",
+		"noRounds": "В этой кампании нет доступных раундов"
+	},
 	"close": "Закрыть",
+	"previous": "Пред.",
 	"next": "Далее",
+	"return": "Назад",
 	"evaluation": {
+		"allSet": "Всё готово",
+		"noPendingEvaluations": "Похоже, у вас нет записей, ожидающих оценки в этом раунде.",
 		"modifytable": {
 			"name": "Имя",
+			"score": "Баллы",
 			"preview": "Предпросмотр",
 			"action": "Действие"
 		},
 		"skip": "Пропустить",
+		"edit": "Изменить голоса",
 		"yes": "Да",
-		"no": "Нет"
+		"no": "Нет",
+		"playAudio": "Нажмите здесь, чтобы прослушать аудиозапись.",
+		"viewOnCommons": "Посмотреть на Викискладе"
 	},
 	"submission": {
+		"title": "Заголовок",
 		"description": "Описание",
 		"author": "Автор",
+		"viewOnCommons": "Посмотреть на Викискладе",
 		"categories": "Категории",
+		"selectCategories": "Выберите категории",
 		"save": "Сохранить",
 		"cancel": "Отмена",
-		"skip": "Пропустить"
+		"skip": "Пропустить",
+		"next": "Далее",
+		"previous": "Назад"
 	},
 	"languages": {
 		"en": "Английский (English)",
@@ -99,6 +221,32 @@
 		"ml": "Малаялам (മലയാളം)",
 		"ur": "Урду (اردو)",
 		"gu": "Гуджарати (ગુજરાતી)",
-		"pa": "Панджаби (ਪੰਜਾਬੀ)"
+		"pa": "Панджаби (ਪੰਜਾਬੀ)",
+		"te": "Телугу (తెలుగు)",
+		"ps": "Пушту (پښتو)",
+		"skr-arab": "Сараики (سرائیکی)",
+		"skr-latn": "Сараики (лат.)",
+		"pms": "Пьемонтский (Piemontèis)",
+		"mk": "Македонский (Македонски)",
+		"krc": "Карачаево-Балкарский (Къарачай-Малкъар)",
+		"xmf": "Мегрельский (მარგალური)",
+		"lb": "Люксембургский (Lëtzebuergesch)",
+		"zh-hans": "Упрощённый китайский (简体中文)",
+		"zh-hant": "Традиционный китайский (繁體中文)",
+		"ha": "Хауса",
+		"kcg": "Тьяп (Tiv)",
+		"lt": "Литовский (Lietuvių)",
+		"tr": "Турецкий (Türkçe)",
+		"ga": "Ирландский (Gaeilge)",
+		"he": "Иврит (עברית)",
+		"cs": "Чешский (Čeština)",
+		"fa": "Персидский (فارسی)",
+		"yi": "Идиш (ייִדיש)",
+		"kea": "Кабувердиану (Kabuverdianu)",
+		"id": "Индонезийский (Bahasa Indonesia)",
+		"mni": "Манипури (মণিপুরী)",
+		"ori": "Ория (ଓଡ଼ିଆ)",
+		"nl": "Нидерландский (Nederlands)",
+		"pt-br": "Португальский (Бразилия) (Português do Brasil)"
 	}
 }
