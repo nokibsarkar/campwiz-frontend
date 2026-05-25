@@ -13,9 +13,12 @@
 	"Wikimedia Username": "위키미디어 사용자 이름!",
 	"home": {
 		"welcome": "{{name}}님, 환영합니다",
+		"subtitle": "심사 경험을 한 단계 끌어올리기",
+		"publicRunningCampaigns": "공개 진행 중인 캠페인",
 		"yourCampaigns": "내 캠페인",
 		"logout": "로그아웃",
 		"dashboard": "대시보드",
+		"doc": "문서",
 		"login": "로그인"
 	},
 	"settings": {
@@ -26,11 +29,14 @@
 		"save": "저장",
 		"cancel": "취소",
 		"theme": "테마",
+		"helpTranslation": "<0>TranslateWiki</0>에서 당신의 언어로 번역하는 데 도움을 주세요.",
 		"translatewiki": "TranslateWiki"
 	},
 	"login": {
 		"title": "시작하기",
-		"loginWithWikimedia": "위키미디어로 로그인"
+		"loginWithWikimedia": "위키미디어로 로그인",
+		"afterLoginRedirect": " 이 과정 후 다음 페이지로 다시 이동합니다:",
+		"loginDisclaimer": "로그인하면 <0>Terms of Service</0> 및 <1>Privacy Policy</1>에 동의하게 됩니다."
 	},
 	"campaign": {
 		"createCampaign": "캠페인 만들기",
@@ -44,12 +50,19 @@
 		"coordinators": "관리자",
 		"description": "설명",
 		"rules": "규칙",
+		"publicVisibilityDisclaimer": "이 캠페인은 공개(조정자, 심사위원, 프로젝트 리더가 아닌 사람들)에게 표시됩니다.",
+		"privateCampaign": "비공개 캠페인",
 		"wikiProject": "위키 프로젝트",
 		"duration": "기간",
 		"edit": "편집",
+		"updateCampaign": "캠페인 업데이트",
 		"createdSuccessfully": "캠페인이 성공적으로 생성되었습니다",
 		"updatedSuccessfully": "캠페인이 성공적으로 업데이트되었습니다",
-		"deleteCampaign": "캠페인을 삭제"
+		"deleteCampaign": "캠페인을 삭제",
+		"campaignCreatedWithId": "캠페인이 id {{id}}(으)로 성공적으로 생성되었습니다.",
+		"campaign": {
+			"createRoundPrompt": "관리자는 캠페인 내에서 라운드를 만들 수 있습니다. 라운드는 제출물이 평가되는 심사 과정의 핵심입니다. 캠페인을 만든 직후 라운드를 만들 수도 있고, 나중에 캠페인 세부 정보 문서에서 만들 수도 있습니다."
+		}
 	},
 	"project": {
 		"title": "프로젝트",
@@ -65,7 +78,15 @@
 		"editProject": "편집"
 	},
 	"round": {
+		"createRoundButton": "라운드 만들기",
 		"deleteRoundButton": "삭제",
+		"redistributeButton": "재배포",
+		"goToRound": "라운드로 이동",
+		"deleteTitle": "라운드 삭제",
+		"deleteConfirmation": "이 라운드를 삭제하겠습니까?",
+		"deleteDescription": "이 라운드를 삭제하면 모든 데이터들이 삭제됩니다.\n여기에는 모든 제출, 평가, 심사위원 및 기타 데이터가 포함됩니다.\n이 작업은 돌이킬 수 없습니다. 정말로 라운드를 삭제하고 싶은지 확인해 주세요.",
+		"addMyselfAsJury": "나 자신을 심사위원단에 추가",
+		"confirmChangeStatus": "이 라운드를 {{status}}(으)로 표시하겠습니까?",
 		"markAsComplete": "완료한 것으로 표시",
 		"pauseButton": "일시 정지",
 		"startButton": "시작",
@@ -75,9 +96,16 @@
 			"ACTIVE": "활성",
 			"PAUSED": "일시 중단됨",
 			"COMPLETED": "완료",
-			"ARCHIVED": "보존"
+			"ARCHIVED": "보존",
+			"IMPORTING": "가져오는 중",
+			"DISTRIBUTING": "배포 중",
+			"pausedThenCompleted": "일시 중지 후 완료됨"
 		},
 		"submissions": "제출",
+		"assignments": "할당",
+		"evaluatedOutOf": "{{total}} 중 {{evaluated}} 평가됨",
+		"evaluationArea": "평가 영역",
+		"categorizer": "분류자",
 		"type": {
 			"label": "유형",
 			"binary": "예/아니요",
@@ -103,11 +131,18 @@
 		"deadLineInMinutes_two": "2분 이내",
 		"deadLineInMinutes_other": "{{count}}분 이내",
 		"deadLinePassed": "마감일이 지남",
+		"quorum": "정족수",
+		"quorumRequired_one": "제출당 심사위원 한 명이 필요합니다",
+		"quorumRequired_two": "제출당 심사위원 두 명이 필요합니다",
+		"quorumRequired_other": "제출당 심사위원 {{count}}명이 필요합니다",
 		"jury": {
-			"title": "배심원"
+			"title": "배심원",
+			"totalAssigned": "{{count}}명 할당됨",
+			"evaluated": "{{count}}명 평가함"
 		}
 	},
 	"footer": {
+		"campwizNxtTeam": "Campwiz NXT 팀",
 		"manual": "매뉴얼",
 		"terms": "약관",
 		"privacy": "개인정보",
@@ -116,18 +151,31 @@
 		"copyright": "© 2025 <0>CampWiz NXT Team</0> 제작"
 	},
 	"error": {
+		"noAssignedCampaigns": "할당된 캠페인 없음",
+		"loadingSubmissionDetails": "제출 세부 사항을 로드하지 못함: {{error}}",
+		"categoriesNotLoaded": "분류가 아직 로드되지 않음",
+		"campaignNotFound": "캠페인을 찾을 수 없음",
+		"campaignCategoriesNotSupported": "캠페인 분류가 지원되지 않음",
+		"noSubmissionAvailableForCategorization": "분류하기 위해 사용 가능한 제출이 없음",
 		"noCategoriesSelected": "선택된 분류 없음",
 		"noCategoriesAvailable": "사용할 수 있는 분류 없음",
+		"noSubmissions": "사용 가능한 제출이 없음",
 		"noRunningCampaigns": "실행 중인 캠페인 없음",
 		"loadingMyProject": "프로젝트 불러오기 실패",
 		"loadingProjects": "프로젝트 불러오기 실패",
-		"accessDeniedToProject": "이 프로젝트에 접근할 권한이 없습니다"
+		"accessDeniedToProject": "이 프로젝트에 접근할 권한이 없습니다",
+		"failedToFetchProject": "프로젝트 가져오기 실패",
+		"failedToFetchCampaign": "캠페인 세부 사항 가져오기 실패",
+		"failedToFetchRound": "라운드 세부 사항 가져오기 실패",
+		"noRounds": "캠페인에 사용 가능한 라운드가 없음"
 	},
 	"close": "닫기",
 	"previous": "이전",
 	"next": "다음",
 	"return": "돌아가기",
 	"evaluation": {
+		"allSet": "모두 설정됨",
+		"noPendingEvaluations": "이번 라운드에 평가가 남아있는 제출이 없어 보입니다.",
 		"modifytable": {
 			"name": "이름",
 			"score": "점수",
@@ -135,8 +183,10 @@
 			"action": "작업"
 		},
 		"skip": "건너뛰기",
+		"edit": "투표 수정",
 		"yes": "예",
 		"no": "아니요",
+		"playAudio": "여기를 클릭해 오디오를 재생",
 		"viewOnCommons": "공용에서 보기"
 	},
 	"submission": {
@@ -184,6 +234,20 @@
 		"lb": "룩셈부르크어 (Lëtzebuergesch)",
 		"zh-hans": "중국어 간체 (简体中文)",
 		"zh-hant": "중국어 번체 (繁體中文)",
-		"tr": "튀르키예어 (Türkçe)"
+		"ha": "하우사어",
+		"kcg": "티압어 (Tiv)",
+		"lt": "리투아니아어 (Lietuvių)",
+		"tr": "튀르키예어 (Türkçe)",
+		"ga": "아일랜드어 (Gaeilge)",
+		"he": "히브리어 (עברית)",
+		"cs": "체코어 (Čeština)",
+		"fa": "페르시아어 (فارسی)",
+		"yi": "이디시어 (ייִדיש)",
+		"kea": "카부베르디아누 (Kabuverdianu)",
+		"id": "인도네시아어 (Bahasa Indonesia)",
+		"mni": "마니푸르어 (মণিপুরী)",
+		"ori": "오리야어 (ଓଡ଼ିଆ)",
+		"nl": "네덜란드어 (Nederlands)",
+		"pt-br": "포르투갈어 (브라질) (Português do Brasil)"
 	}
 }
