@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"HakanIST",
 			"Hedda",
 			"Nokib Sarkar"
 		]
 	},
 	"title": "CampWiz NXT",
+	"Wikimedia Username": "Wikimedia Kullanıcı Adı!",
 	"home": {
 		"welcome": "Hoş geldin {{name}}",
 		"subtitle": "Jüri deneyimini bir üst seviyeye taşıyor",
@@ -49,7 +51,15 @@
 		"privateCampaign": "Özel Kampanya",
 		"wikiProject": "Viki Projesi",
 		"duration": "Süre",
-		"edit": "Düzenle"
+		"edit": "Düzenle",
+		"updateCampaign": "Kampanyayı Güncelle",
+		"createdSuccessfully": "Kampanya başarıyla oluşturuldu",
+		"updatedSuccessfully": "Kampanya başarıyla güncellendi",
+		"deleteCampaign": "Kampanyayı Sil",
+		"campaignCreatedWithId": "Kampanya {{id}} kimliğiyle başarıyla oluşturuldu.",
+		"campaign": {
+			"createRoundPrompt": "Koordinatörler bir kampanya içinde turlar oluşturabilir. Turlar, başvuruların değerlendirildiği jüri sürecinin temelini oluşturur. Birden fazla tur oluşturabilirsiniz."
+		}
 	},
 	"project": {
 		"title": "Projeler",
@@ -65,10 +75,20 @@
 		"editProject": "Düzenle"
 	},
 	"round": {
+		"createRoundButton": "Tur Oluştur",
 		"deleteRoundButton": "Sil",
+		"redistributeButton": "Yeniden Dağıt",
+		"goToRound": "Tura Git",
+		"deleteTitle": "Turu Sil",
+		"deleteConfirmation": "Bu turu silmek istediğinizden emin misiniz?",
+		"deleteDescription": "Bu turun silinmesi, onunla ilişkili tüm verileri kaldıracaktır. Bu, tüm başvuruları, değerlendirmeleri, jüri üyelerini ve diğer verileri içerir.",
 		"addMyselfAsJury": "Kendimi jüri olarak ekle",
 		"confirmChangeStatus": "Bu turu {{status}} olarak işaretlemek istediğinizden emin misiniz?",
 		"markAsComplete": "Tamamlandı olarak işaretle",
+		"pauseButton": "Duraklat",
+		"startButton": "Başlat",
+		"importButton": "İçe Aktar",
+		"editButton": "Düzenle",
 		"status": {
 			"ACTIVE": "Aktif",
 			"PAUSED": "Durduruldu",
@@ -143,13 +163,16 @@
 		"accessDeniedToProject": "Bu projeye erişiminiz yok",
 		"failedToFetchProject": "Projeniz alınamadı",
 		"failedToFetchCampaign": "Kampanya ayrıntıları alınamadı",
-		"failedToFetchRound": "Tur detayları alınamadı"
+		"failedToFetchRound": "Tur detayları alınamadı",
+		"noRounds": "Bu kampanya için kullanılabilir tur yok"
 	},
 	"close": "Kapat",
 	"previous": "Önceki",
 	"next": "Sonraki",
 	"return": "Geri dön",
 	"evaluation": {
+		"allSet": "Hazırsınız",
+		"noPendingEvaluations": "Görünüşe göre bu turda değerlendirilecek bekleyen başvurunuz yok.",
 		"modifytable": {
 			"name": "Ad",
 			"score": "Puan",
@@ -159,7 +182,9 @@
 		"skip": "Atla",
 		"edit": "Oyları Değiştir",
 		"yes": "Evet",
-		"no": "Hayır"
+		"no": "Hayır",
+		"playAudio": "Sesi oynatmak için buraya tıklayın",
+		"viewOnCommons": "Commons'ta görüntüle"
 	},
 	"submission": {
 		"title": "Başlık",
@@ -209,6 +234,17 @@
 		"ha": "Hausaca",
 		"kcg": "Tyap (Tiv)",
 		"lt": "Litvanyaca (Lietuvių)",
-		"tr": "Türkçe"
+		"tr": "Türkçe",
+		"ga": "İrlandaca (Gaeilge)",
+		"he": "İbranice (עברית)",
+		"cs": "Çekçe (Čeština)",
+		"fa": "Farsça (فارسی)",
+		"yi": "Yidiş (ייִדיש)",
+		"kea": "Kabuverdianu (Kabuverdianu)",
+		"id": "Endonezce (Bahasa Indonesia)",
+		"mni": "Manipuri (মণিপুরী)",
+		"ori": "Oriya (ଓଡ଼ିଆ)",
+		"nl": "Felemenkçe (Nederlands)",
+		"pt-br": "Portekizce (Brezilya) (Português do Brasil)"
 	}
 }
