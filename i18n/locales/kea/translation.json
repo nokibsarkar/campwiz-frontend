@@ -105,27 +105,5 @@
 		"skip": "Igunora",
 		"next": "Prósimu",
 		"previous": "Antirior"
-	},
-	"languages": {
-		"en": "<Ngles> (English)\"",
-		"bn": "<Bengali> (বাংলা)\"",
-		"ar": "<Árabi> (العربية)",
-		"hi": "<Hindi> (हिन्दी)",
-		"es": "<Spanhol> (Español)",
-		"fr": "<Fransês> (Français)",
-		"de": "<Limon> (Deutsch)",
-		"it": "<Italianu> (Italiano)",
-		"ja": "<Djapunês> (日本語)",
-		"pt": "<Purtugês> (Português)",
-		"ru": "<Rusu> (Русский)",
-		"zh": "<Xinês> (中文)",
-		"kn": "<Kanará> (ಕನ್ನಡ)",
-		"pa": "<Pundjabi> (ਪੰਜਾਬੀ)",
-		"mk": "<Masedóni> (Македонски)",
-		"lb": "<Luxenburgês> (Lëtzebuergesch)",
-		"zh-hans": "<Xinês Sinplifikadu> (简体中文)",
-		"zh-hant": "<Xinês Tradisional> (繁體中文)",
-		"lt": "<Lituanu> (Lietuvių)",
-		"tr": "<Turku> (Türkçe)"
 	}
 }

@@ -59,31 +59,5 @@
 		"save": "Sak",
 		"cancel": "Lyang",
 		"skip": "Fi̱p"
-	},
-	"languages": {
-		"en": "Shong",
-		"bn": "Benggali (বাংলা)",
-		"ar": "La̱ra̱ba (العربية)",
-		"hi": "Hindi (हिन्दी)",
-		"es": "Si̱pen (Español)",
-		"fr": "Fi̱ransa (Français)",
-		"de": "Jaman (Deutsch)",
-		"it": "Italya (Italiano)",
-		"ja": "Ja̱pan (日本語)",
-		"ko": "Kworiya (한국어)",
-		"pt": "Potugyit (Português)",
-		"ru": "Roshya (Русский)",
-		"zh": "Caina (中文)",
-		"kn": "Kannada (ಕನ್ನಡ)",
-		"mr": "Ma̱rati (मराठी)",
-		"ta": "Tamit (தமிழ்)",
-		"ml": "Ma̱layalam (മലയാളം)",
-		"ur": "Uri̱du (اردو)",
-		"gu": "Gujarati (ગુજરાતી)",
-		"pa": "Punjabi (ਪੰਜਾਬੀ)",
-		"te": "Telugu (తెలుగు)",
-		"ps": "Pashi̱to (پښتو)",
-		"skr-arab": "Sa̱raiki (سرائیکی)",
-		"skr-latn": "Sa̱raiki (Latin)"
 	}
 }
