@@ -1,6 +1,7 @@
 "use client"
 import { translationLink, useTranslation } from "@/i18n/client";
 import { cookieName, languages } from "@/i18n/settings";
+import { getLanguageAutonym } from "@/lib/languageAutonym";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField, Typography } from "@mui/material";
 import { setCookie } from "cookies-next/client";
 import { useState } from "react";
@@ -52,7 +53,7 @@ const SettingsPage = ({ onClose }: { onClose: () => void }) => {
                 >
                     {languages.map((lang) => (
                         <MenuItem key={lang} value={lang}>
-                            {t(`languages.${lang}`)}
+                            {getLanguageAutonym(lang)}
                         </MenuItem>
                     ))}
                 </TextField>
