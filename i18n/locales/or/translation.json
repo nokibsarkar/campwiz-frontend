@@ -65,27 +65,5 @@
 			"preview": "Preview",
 			"action": "Action"
 		}
-	},
-	"languages": {
-		"en": "English",
-		"bn": "Bengali (বাংলা)",
-		"ar": "Arabic (العربية)",
-		"hi": "Hindi (हिन्दी)",
-		"es": "Spanish (Español)",
-		"fr": "French (Français)",
-		"de": "German (Deutsch)",
-		"it": "Italian (Italiano)",
-		"ja": "Japanese (日本語)",
-		"ko": "Korean (한국어)",
-		"pt": "Portuguese (Português)",
-		"ru": "Russian (Русский)",
-		"zh": "Chinese (中文)",
-		"kn": "Kannada (ಕನ್ನಡ)",
-		"mr": "Marathi (मराठी)",
-		"ta": "Tamil (தமிழ்)",
-		"ml": "Malayalam (മലയാളം)",
-		"ur": "Urdu (اردو)",
-		"gu": "Gujarati (ગુજરાતી)",
-		"pa": "Punjabi (ਪੰਜਾਬੀ)"
 	}
 }

@@ -23,6 +23,10 @@
 # misc
 .DS_Store
 *.pem
+package-lock.json
+
+# IDE
+.idea/
 
 # debug
 npm-debug.log*

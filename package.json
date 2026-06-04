@@ -11,7 +11,10 @@
     "start": "node server.js",
     "lint": "next lint",
     "translate": "node translate.mjs",
-    "test": "echo \"No tests specified\" && exit 0"
+    "test": "echo \"No tests specified\" && exit 0",
+    "generate-languages": "node scripts/generate-languages.js",
+    "prebuild": "node scripts/generate-languages.js",
+    "predev": "node scripts/generate-languages.js"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -27,6 +30,7 @@
     "@noxfed/lottie-webpack-loader": "^1.0.1",
     "@sentry/nextjs": "^10.5.0",
     "@svgr/webpack": "^8.1.0",
+    "@wikimedia/language-data": "^2.0.3",
     "accept-language": "^3.0.20",
     "array-move": "^4.0.0",
     "cookies-next": "^6.0.0",
