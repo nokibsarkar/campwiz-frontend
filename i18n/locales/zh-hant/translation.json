@@ -7,6 +7,7 @@
 		]
 	},
 	"title": "CampWiz NXT",
+	"Wikimedia Username": "維基媒體使用者名稱！",
 	"home": {
 		"welcome": "歡迎 {{name}}",
 		"subtitle": "提升評審經驗到新的層次",
@@ -50,7 +51,15 @@
 		"privateCampaign": "非公開活動",
 		"wikiProject": "維基專案",
 		"duration": "期間",
-		"edit": "編輯"
+		"edit": "編輯",
+		"updateCampaign": "更新活動",
+		"createdSuccessfully": "活動建立成功",
+		"updatedSuccessfully": "活動更新成功",
+		"deleteCampaign": "刪除活動",
+		"campaignCreatedWithId": "ID 為 {{id}} 的活動建立成功。",
+		"campaign": {
+			"createRoundPrompt": "協調人可以在活動中建立回合。回合是評審流程的核心，提交的內容會在此進行評估。您可以在建立活動後立刻建立回合，也可以事後在活動詳情頁面裡建立。"
+		}
 	},
 	"project": {
 		"title": "專案",
@@ -66,10 +75,20 @@
 		"editProject": "編輯"
 	},
 	"round": {
+		"createRoundButton": "建立回合",
 		"deleteRoundButton": "刪除",
+		"redistributeButton": "重新分配",
+		"goToRound": "前往回合",
+		"deleteTitle": "刪除回合",
+		"deleteConfirmation": "您確定要刪除此回合？",
+		"deleteDescription": "刪除此回合將會一同移除所有關聯資料。\n這包括所有提交內容、評估、評審成員及其他資料。\n此操作為不可還原。因此，請務必確認您是否真的要刪除此回合。",
 		"addMyselfAsJury": "把我自己加成評審",
 		"confirmChangeStatus": "您確定要將此回合標記為{{status}}嗎？",
 		"markAsComplete": "標記為完成",
+		"pauseButton": "暫停",
+		"startButton": "開始",
+		"importButton": "匯入",
+		"editButton": "編輯",
 		"status": {
 			"ACTIVE": "有效",
 			"PAUSED": "暫停",
@@ -144,13 +163,16 @@
 		"accessDeniedToProject": "您無權存取此專案",
 		"failedToFetchProject": "無法取得您的專案",
 		"failedToFetchCampaign": "無法取得活動詳情",
-		"failedToFetchRound": "無法取得回合詳情"
+		"failedToFetchRound": "無法取得回合詳情",
+		"noRounds": "此活動沒有可用的回合"
 	},
 	"close": "關閉",
 	"previous": "上一個",
 	"next": "下一頁",
 	"return": "返回",
 	"evaluation": {
+		"allSet": "全部就緒",
+		"noPendingEvaluations": "您在此回合看起來沒有待評估的提交內容。",
 		"modifytable": {
 			"name": "名稱",
 			"score": "分數",
@@ -160,7 +182,9 @@
 		"skip": "略過",
 		"edit": "修改註記",
 		"yes": "是",
-		"no": "否"
+		"no": "否",
+		"playAudio": "點擊來播放音訊",
+		"viewOnCommons": "在維基共享資源檢視"
 	},
 	"submission": {
 		"title": "標題",
@@ -210,6 +234,17 @@
 		"ha": "豪薩文",
 		"kcg": "蒂亞普文（Tiv）",
 		"lt": "立陶宛文（Lietuvių）",
-		"tr": "土耳其文（Türkçe）"
+		"tr": "土耳其文（Türkçe）",
+		"ga": "愛爾蘭文（Gaeilge）",
+		"he": "希伯来文（עברית）",
+		"cs": "捷克文（Čeština）",
+		"fa": "波斯文（فارسی）",
+		"yi": "意第緒文（ייִדיש）",
+		"kea": "卡布威爾第文（Kabuverdianu）",
+		"id": "印尼文（Bahasa Indonesia）",
+		"mni": "曼尼普爾文（মণিপুরী）",
+		"ori": "奧里亞文（ଓଡ଼ିଆ）",
+		"nl": "荷蘭文（Nederlands）",
+		"pt-br": "巴西葡萄牙文（Português do Brasil）"
 	}
 }

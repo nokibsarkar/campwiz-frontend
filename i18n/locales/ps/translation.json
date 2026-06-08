@@ -6,6 +6,7 @@
 		]
 	},
 	"title": "CampWiz NXT",
+	"Wikimedia Username": "ويکي‌رسنۍ کارن‌نوم!",
 	"home": {
 		"welcome": "{{name}} ښه راغلاست",
 		"yourCampaigns": "ستاسو ټاکنيزې‌سيالۍ",
@@ -22,6 +23,7 @@
 		"save": "خوندي‌کول",
 		"cancel": "ناگارل",
 		"theme": "شاليد",
+		"helpTranslation": "مهرباني وکړئ په <0>TranslateWiki</0> کې له موږ سره د خپلې ژبې ژباړلو کې مرسته وکړئ",
 		"translatewiki": "ويکي‌ژباړه"
 	},
 	"login": {
@@ -45,7 +47,12 @@
 		"privateCampaign": "ځانواله ټاکنيزه‌سيالۍ",
 		"wikiProject": "ويکي پروژه",
 		"duration": "موده",
-		"edit": "سمول"
+		"edit": "سمول",
+		"updateCampaign": "ټاکنيزه‌سيالۍ هم‌مهالول",
+		"createdSuccessfully": "ټاکنيزه سيالۍ په برياليتوب سره جوړه شوه",
+		"updatedSuccessfully": "ټاکنيزه سيالۍ په برياليتوب سره هم‌مهاله شوه",
+		"deleteCampaign": "ټاکنيزه‌سيالۍ ړنگول",
+		"campaignCreatedWithId": "ټاکنيزه‌سيالۍ {{id}} پېژند سره په برياليتوب جوړه شوه"
 	},
 	"project": {
 		"title": "پروژې",
@@ -61,30 +68,95 @@
 		"editProject": "سمول"
 	},
 	"round": {
+		"createRoundButton": "پړاو جوړول",
 		"deleteRoundButton": "ړنگول",
+		"redistributeButton": "بياوېشل",
+		"goToRound": "پړاو ته ورتلل",
+		"deleteTitle": "پړاو ړنگول",
+		"deleteConfirmation": "ايا تاسو ډاډه ياست چې دا پړاو ړنگول غواړئ؟",
+		"deleteDescription": "د دې پړاو ړنگولو سره به د دې اړوند ټول اومتوکو لري شي. \nپه دې کې ټولې سپارښتنې، ارزونې، پرېکړه کوونکي غړي او نوراومتوکي شامل دي.\nدا چاره بېرته نه راگرځېدونکې ده؛ نو مهرباني وکړئ ځان ډاډه کړئ چې تاسو دا پړاو ړنگول غواړئ.",
 		"addMyselfAsJury": "ځان د پرېکړه‌وال په توگه ورگډول",
+		"confirmChangeStatus": "ايا تاسو ډاډه ياست چې دا پړاو د {{status}} په توگه نښه کوئ؟",
+		"markAsComplete": "د بشپړ په توگه نښه‌کول",
+		"pauseButton": "درول‌",
+		"startButton": "پيلول",
+		"importButton": "رالېږدول",
+		"editButton": "سمول",
 		"status": {
 			"ACTIVE": "کارنده",
 			"PAUSED": "درول‌شوی",
 			"COMPLETED": "بشپړ‌شوی",
-			"ARCHIVED": "خونديځ‌شوی"
+			"ARCHIVED": "خونديځ‌شوی",
+			"IMPORTING": "رالېږدول",
+			"DISTRIBUTING": "وېشل",
+			"pausedThenCompleted": "درول‌شوی بيا بشپړ شوی"
 		},
-		"assignments": "دندې"
+		"submissions": "سپارنې",
+		"assignments": "دندې",
+		"evaluatedOutOf": "د {{total}} څخه {{evaluated}} ارزول شوي",
+		"evaluationArea": "ارزونې سيمه",
+		"categorizer": "وېشنيزه کوونکی",
+		"type": {
+			"label": "ډول",
+			"binary": "هو/نه",
+			"ranking": "ډلبندي",
+			"score": "نومره",
+			"unknown": "نامالوم، موږ سره اړيکه"
+		},
+		"deadline": "وروستۍ نېټه",
+		"description": "څرگنداوی",
+		"deadLineInMonths_one": "په مياشت کې",
+		"deadLineInMonths_two": "په دوه مياشتو کې",
+		"deadLineInMonths_other": "په {{count}} مياشتو کې",
+		"deadLineInWeeks_one": "په اوونۍ کې",
+		"deadLineInWeeks_two": "په دوه اوونيو کې",
+		"deadLineInWeeks_other": "په {{count}} اوونيو کې",
+		"deadLineInDays_one": "په ورځ کې",
+		"deadLineInDays_two": "په دوه ورځو کې",
+		"deadLineInDays_other": "په {{count}} ورځو کې",
+		"deadLineInHours_one": "يوه گړۍ کې",
+		"deadLineInHours_two": "دوه گړيو کې",
+		"deadLineInHours_other": "{{count}} گړيو کې",
+		"deadLineInMinutes_one": "دقيقه کې",
+		"deadLineInMinutes_two": "دوه مياشتو کې",
+		"deadLineInMinutes_other": "{{count}} دقيقو کې",
+		"deadLinePassed": "وروستۍ نېټه تېره شوه",
+		"jury": {
+			"evaluated": "{{count}} ارزول‌شوی"
+		}
 	},
 	"footer": {
 		"manual": "لارښوونيز",
 		"terms": "منښتونه",
 		"privacy": "پټنتيا",
-		"reportBug": "تېروتنې خبر ورکول"
+		"reportBug": "تېروتنې خبر ورکول",
+		"translate": "ژباړل"
 	},
 	"error": {
-		"loadingMyProject": "ستاسو د پروژې بارولو کې پاتې راغی"
+		"loadingSubmissionDetails": "د سپارلو سپيناوی نشي بارېدی: {{error}}",
+		"categoriesNotLoaded": "وېشنيزې لا نه دي بار شوي",
+		"campaignNotFound": "ټاکنيزه‌سيالۍ ونه موندل شوه",
+		"campaignCategoriesNotSupported": "د ټاکنيزې‌سيالۍ وېشنيزې نه ملاتړ کېږي",
+		"noSubmissionAvailableForCategorization": "د ډلبندي کولو لپاره هېڅ سپارښتنې شتون نه لري",
+		"noCategoriesSelected": "هېڅ وېشنيزې غوره‌شوې نه دي",
+		"noCategoriesAvailable": "هېڅ وېشنيزې شتون نه لري",
+		"noSubmissions": "هېڅ سپارښتنې شتون نه‌لري",
+		"noRunningCampaigns": "هېڅ ټاکنيزه سيالي نشته",
+		"loadingMyProject": "ستاسو د پروژې بارولو کې پاتې راغی",
+		"loadingProjects": "د پروژې بارولو کې پاتې راغی",
+		"accessDeniedToProject": "تاندې پروژې ته لاسرسی نه لرئ",
+		"failedToFetchProject": "ستاسو د پروژې ترلاسه کولو کې پاتې راغی",
+		"failedToFetchCampaign": "د ټاکنيزې‌سيالۍ سپيناوي ترلاسه کولو کې پاتې راغی",
+		"failedToFetchRound": "د پړاو سپيناوي ترلاسه کولو کې پاتې راغی",
+		"noRounds": "د دې ټاکنيزې‌سيالۍ لپاره هېڅ پړاوونه شتون نه‌لري"
 	},
 	"close": "تړل",
 	"previous": "پخوانی",
 	"next": "راتلونکی",
 	"return": "بېرته ستنېدل",
 	"evaluation": {
+		"allSet": "ټول اوڼل شوي",
+		"noPendingEvaluations": "داسې ښکاري چې تاسو په دې پړاو کې د ارزونې لپاره هېڅ په تمه سپارښتنې نه‌لرئ.",
 		"modifytable": {
 			"name": "نوم",
 			"score": "نومره",
@@ -94,7 +166,9 @@
 		"skip": "تېرېدل",
 		"edit": "رایې بدلول",
 		"yes": "هو",
-		"no": "نه"
+		"no": "نه",
+		"playAudio": "د غږ غږولو لپاره دلته کېکاږئ",
+		"viewOnCommons": "ويکي‌خونديځ کې کتل"
 	},
 	"submission": {
 		"title": "سرليک",
@@ -139,7 +213,22 @@
 		"krc": "کراچای-بالکار (Къарачай-Малкъар)",
 		"xmf": "مينگرېلي(მარგალური)",
 		"lb": "لوگزامبورگي (Lëtzebuergesch)",
+		"zh-hans": "ساده چينايي  (简体中文)",
 		"zh-hant": "دوديزه چينايي (繁體中文)",
-		"ha": "هاوسا"
+		"ha": "هاوسا",
+		"kcg": "تياپ (Tiv)",
+		"lt": "ليتوانيايي (Lietuvių)",
+		"tr": "تورکي (Türkçe)",
+		"ga": "ايرلينډي (Gaeilge)",
+		"he": "عېبراني (עברית)",
+		"cs": "چېکي (Čeština)",
+		"fa": "پارسي (فارسی)",
+		"yi": "ييديشي (ייִדיש)",
+		"kea": "کابووېرديانو (Kabuverdianu)",
+		"id": "اندونېزیايي (Bahasa Indonesia)",
+		"mni": "مانيپوري (মণিপুরী)",
+		"ori": "اوريا (ଓଡ଼ିଆ)",
+		"nl": "هالینډي (Nederlands)",
+		"pt-br": "پورتگالي (برازيل) (Português do Brasil)"
 	}
 }
