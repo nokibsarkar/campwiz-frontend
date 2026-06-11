@@ -9,6 +9,8 @@
 	"Wikimedia Username": "ويکي‌رسنۍ کارن‌نوم!",
 	"home": {
 		"welcome": "{{name}} ښه راغلاست",
+		"subtitle": "د منصفه پلاوي تجربه بلې کچې ته لوړول",
+		"publicRunningCampaigns": "ټولواله روانې ټاکنيزې‌سيالۍ",
 		"yourCampaigns": "ستاسو ټاکنيزې‌سيالۍ",
 		"logout": "وتل",
 		"dashboard": "ټينگدړه",
@@ -44,6 +46,7 @@
 		"coordinators": "همغږي کوونکي",
 		"description": "څرگنداوی",
 		"rules": "قوانين",
+		"publicVisibilityDisclaimer": "دا ټاکنيزه‌سيالۍ به ټولو ته ښکاره شي ( له همغږي کوونکو، منصفه پلاوي او د پروژې له مشرانو پرته نور خلک)",
 		"privateCampaign": "ځانواله ټاکنيزه‌سيالۍ",
 		"wikiProject": "ويکي پروژه",
 		"duration": "موده",
@@ -121,7 +124,13 @@
 		"deadLineInMinutes_two": "دوه مياشتو کې",
 		"deadLineInMinutes_other": "{{count}} دقيقو کې",
 		"deadLinePassed": "وروستۍ نېټه تېره شوه",
+		"quorum": "نصاب",
+		"quorumRequired_one": "هرې سپارنې ته يو منصفه پلاوی اړين دی",
+		"quorumRequired_two": "هرې سپارنې ته دوه منصفه پلاوي اړين دي",
+		"quorumRequired_other": "هرې سپارنې لپاره {{count}} منصفه پلاوي اړين دي",
 		"jury": {
+			"title": "منصفه پلاوی",
+			"totalAssigned": "{{count}} ټاکل شوی",
 			"evaluated": "{{count}} ارزول‌شوی"
 		}
 	},
@@ -133,6 +142,7 @@
 		"translate": "ژباړل"
 	},
 	"error": {
+		"noAssignedCampaigns": "هېڅ ټاکل شوې ټاکنيزې‌سيالۍ نشته",
 		"loadingSubmissionDetails": "د سپارلو سپيناوی نشي بارېدی: {{error}}",
 		"categoriesNotLoaded": "وېشنيزې لا نه دي بار شوي",
 		"campaignNotFound": "ټاکنيزه‌سيالۍ ونه موندل شوه",
