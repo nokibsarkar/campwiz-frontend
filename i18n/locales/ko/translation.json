@@ -3,6 +3,7 @@
 		"authors": [
 			"Bisang",
 			"Nokib Sarkar",
+			"Suleiman the Magnificent Television",
 			"Tensama0415",
 			"YeBoy371",
 			"Ykhwong",
@@ -14,7 +15,7 @@
 	"home": {
 		"welcome": "{{name}}님, 환영합니다",
 		"subtitle": "심사 경험을 한 단계 끌어올리기",
-		"publicRunningCampaigns": "공개 진행 중인 캠페인",
+		"publicRunningCampaigns": "진행 중인 공개 캠페인",
 		"yourCampaigns": "내 캠페인",
 		"logout": "로그아웃",
 		"dashboard": "대시보드",
