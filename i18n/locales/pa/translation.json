@@ -5,6 +5,7 @@
 		]
 	},
 	"title": "CampWiz NXT",
+	"Wikimedia Username": "ਵਿਕੀਮੀਡੀਆ ਵਰਤੋਂਕਾਰ-ਨਾਂ !",
 	"home": {
 		"welcome": "ਜੀ ਆਇਆਂ ਨੂੰ {{name}}",
 		"subtitle": "Taking jury experience to another level",
@@ -26,7 +27,7 @@
 		"helpTranslation": "ਕਿਰਪਾ ਕਰਕੇ <0>TranslateWiki</0> 'ਤੇ ਆਪਣੀ ਬੋਲੀ ਵਿੱਚ ਉਲਥਾ ਕਰਨ ਵਿੱਚ ਸਾਡੀ ਮਦਦ ਕਰੋ।"
 	},
 	"login": {
-		"title": "Let's get started",
+		"title": "ਆਓ ਸ਼ੁਰੂ ਕਰੀਏ",
 		"loginWithWikimedia": "Login with Wikimedia",
 		"afterLoginRedirect": " After this process, you will be redirected back to the following page:"
 	},
@@ -38,15 +39,27 @@
 		"startDate": "ਸ਼ੁਰੂ ਕਰਨ ਦੀ ਮਿਤੀ",
 		"description": "ਵੇਰਵਾ",
 		"rules": "ਅਸੂਲ",
+		"wikiProject": "ਵਿਕੀ ਪ੍ਰੋਜੈਕਟ",
 		"duration": "ਮਿਆਦ",
 		"edit": "ਸੋਧੋ"
 	},
 	"project": {
 		"title": "ਪ੍ਰੋਜੈਕਟ",
+		"createProject": "ਨਵਾਂ ਪ੍ਰੋਜੈਕਟ",
+		"goToProject": "ਪ੍ਰੋਜੈਕਟ ਉੱਤੇ ਜਾਓ",
+		"showAllProjects": "ਸਾਰੇ ਪ੍ਰੋਜੈਕਟ ਵਿਖਾਓ",
+		"projectLoading": "ਪ੍ਰੋਜੈਕਟ ਵੇਰਵੇ ਲੱਦੋ ਜਾ ਰਹੇ ਹਨ...",
+		"otherProjects": "ਹੋਰ ਪ੍ਰੋਜੈਕਟ",
+		"myProject": "ਮੇਰਾ ਪ੍ਰੋਜੈਕਟ",
 		"editProject": "ਸੋਧੋ"
 	},
 	"round": {
 		"deleteRoundButton": "ਮਿਟਾਓ",
+		"redistributeButton": "ਮੁੜ ਵੰਡੋ",
+		"pauseButton": "ਰੋਕੋ",
+		"startButton": "ਸ਼ੁਰੂ ਕਰੋ",
+		"importButton": "ਦਰਾਮਦ",
+		"editButton": "ਸੋਧੋ",
 		"status": {
 			"ACTIVE": "ਸਰਗਰਮ",
 			"PAUSED": "Paused",
@@ -138,7 +151,17 @@
 		"zh-hans": "ਸੌਖੀ ਚੀਨੀ (简体中文)",
 		"zh-hant": "ਰਵਾਇਤੀ ਚੀਨੀ (繁體中文)",
 		"ha": "ਹਾਉਸਾ",
+		"kcg": "ਤਿਆਪ (Tiv)",
 		"lt": "ਲਿਥੁਆਨੀ (Lietuvių)",
-		"tr": "ਤੁਰਕੀ (Türkçe)"
+		"tr": "ਤੁਰਕੀ (Türkçe)",
+		"ga": "ਆਇਰਿਸ਼ (Gaeilge)",
+		"he": "ਹਿਬਰੂ (עברית)",
+		"cs": "ਚੈੱਕ (Čeestina)",
+		"fa": "ਫ਼ਾਰਸੀ (فارسی)",
+		"yi": "ਯਿੱਦੀ (ייִדיש)",
+		"kea": "ਕਬੂਵਰਦੀਆਨੂ (Kabuverdianu)",
+		"mni": "ਮਣੀਪੁਰੀ (মণিপুরী)",
+		"ori": "ਉੜੀਆ (ଓଡ଼ିଆ)",
+		"nl": "ਡੱਚ (Nederlands)"
 	}
 }
