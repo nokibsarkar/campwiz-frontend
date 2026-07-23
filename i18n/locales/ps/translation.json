@@ -135,11 +135,13 @@
 		}
 	},
 	"footer": {
+		"campwizNxtTeam": "Campwiz NXT ډله",
 		"manual": "لارښوونيز",
 		"terms": "منښتونه",
 		"privacy": "پټنتيا",
 		"reportBug": "تېروتنې خبر ورکول",
-		"translate": "ژباړل"
+		"translate": "ژباړل",
+		"copyright": "© ۲۰۲۵ د <0>CampWiz NXT Team</0> له‌خوا"
 	},
 	"error": {
 		"noAssignedCampaigns": "هېڅ ټاکل شوې ټاکنيزې‌سيالۍ نشته",

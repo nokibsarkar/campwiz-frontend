@@ -54,6 +54,7 @@
 	},
 	"round": {
 		"deleteRoundButton": "Läschen",
+		"importButton": "Importéieren",
 		"status": {
 			"ACTIVE": "Aktiv",
 			"PAUSED": "Pauséiert",
