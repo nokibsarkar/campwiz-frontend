@@ -54,6 +54,7 @@
 	},
 	"round": {
 		"deleteRoundButton": "Läschen",
+		"deleteConfirmation": "Sidd Dir sécher, datt Dir dës Ronn läsche wëllt?",
 		"importButton": "Importéieren",
 		"status": {
 			"ACTIVE": "Aktiv",
