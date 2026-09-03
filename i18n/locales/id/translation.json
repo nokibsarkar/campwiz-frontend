@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bennylin",
 			"Budhiastawa",
 			"Penyuwangi"
 		]
@@ -81,7 +82,7 @@
 		"status": {
 			"ACTIVE": "Aktif",
 			"PAUSED": "Dijeda",
-			"COMPLETED": "Diselesaikan",
+			"COMPLETED": "Selesai",
 			"ARCHIVED": "Diarsipkan",
 			"IMPORTING": "Mengimpor",
 			"DISTRIBUTING": "Mengedarkan",
