@@ -1,0 +1,123 @@
+{
+	"@metadata": {
+		"authors": [
+			"Girmitya"
+		]
+	},
+	"home": {
+		"logout": "Logout ho",
+		"dashboard": "Dashboard",
+		"login": "Login karo"
+	},
+	"settings": {
+		"title": "Settings",
+		"language": "Bhasa",
+		"save": "Save karo",
+		"cancel": "Cancel karo"
+	},
+	"campaign": {
+		"name": "Naam",
+		"startDate": "Suruu waala taarik",
+		"endDate": "Khalaas waala taarik",
+		"rules": "Niyam",
+		"duration": "Ketna deri talak",
+		"edit": "Badlo"
+	},
+	"project": {
+		"createProject": "Nawaa Project",
+		"goToProject": "Project pe jaao",
+		"showAllProjects": "Sab project ke dekhao",
+		"myProject": "Hamaar Project",
+		"editProject": "Badlo"
+	},
+	"round": {
+		"deleteRoundButton": "Mitao",
+		"deleteTitle": "Round ke mitao",
+		"type": {
+			"binary": "Haan/Nai"
+		},
+		"deadLineInMonths_one": "ek mahina me",
+		"deadLineInMonths_two": "Dui mahina me",
+		"deadLineInMonths_other": "{{count}} mahina me",
+		"deadLineInWeeks_one": "Ek haftaa me",
+		"deadLineInWeeks_two": "Dui haftaa me",
+		"deadLineInWeeks_other": "{{count}} haftaa me",
+		"deadLineInDays_one": "Ek din me",
+		"deadLineInDays_two": "Dui din me",
+		"deadLineInDays_other": "{{count}} din me",
+		"deadLineInHours_one": "Ek ghantaa me",
+		"deadLineInHours_two": "Dui ghantaa me",
+		"deadLineInHours_other": "{{count}} ghantaa me",
+		"deadLineInMinutes_one": "Ek minute me",
+		"deadLineInMinutes_two": "Dui minute me",
+		"deadLineInMinutes_other": "{{count}} minute me"
+	},
+	"close": "Band karo",
+	"previous": "Pahile waala",
+	"evaluation": {
+		"modifytable": {
+			"name": "Naam"
+		},
+		"yes": "Haan",
+		"no": "Nai",
+		"viewOnCommons": "Commons pe dekho"
+	},
+	"submission": {
+		"title": "Title",
+		"description": "Baare me",
+		"author": "Likhe waala",
+		"viewOnCommons": "Commons pe dekho",
+		"categories": "Vibhag",
+		"save": "Save karo",
+		"cancel": "Cancel karo",
+		"skip": "Skip karo"
+	},
+	"languages": {
+		"en": "English",
+		"bn": "Bengali (বাংলা)",
+		"ar": "Arabic (العربية)",
+		"hi": "Hindi (हिन्दी)",
+		"es": "Spanish (Español)",
+		"fr": "French (Français)",
+		"de": "German (Deutsch)",
+		"it": "Italian (Italiano)",
+		"ja": "Japanese (日本語)",
+		"ko": "Korean (한국어)",
+		"pt": "Portuguese (Português)",
+		"ru": "Russian (Русский)",
+		"zh": "Chinese (中文)",
+		"kn": "Kannada (ಕನ್ನಡ)",
+		"mr": "Marathi (मराठी)",
+		"ta": "Tamil (தமிழ்)",
+		"ml": "Malayalam (മലയാളം)",
+		"ur": "Urdu (اردو)",
+		"gu": "Gujarati (ગુજરાતી)",
+		"pa": "Punjabi (ਪੰਜਾਬੀ)",
+		"te": "Telugu (తెలుగు)",
+		"ps": "Pashto (پښتو)",
+		"skr-arab": "Saraiki (سرائیکی)",
+		"skr-latn": "Saraiki (Latin)",
+		"pms": "Piedmontese (Piemontèis)",
+		"mk": "Macedonian (Македонски)",
+		"krc": "Karachay-Balkar (Къарачай-Малкъар)",
+		"xmf": "Mingrelian (მარგალური)",
+		"lb": "Luxembourgish (Lëtzebuergesch)",
+		"zh-hans": "Simplified Chinese (简体中文)",
+		"zh-hant": "Traditional Chinese (繁體中文)",
+		"ha": "Hausa",
+		"kcg": "Tyap (Tiv)",
+		"lt": "Lithuanian (Lietuvių)",
+		"tr": "Turkish (Türkçe)",
+		"ga": "Irish (Gaeilge)",
+		"he": "Hebrew (עברית)",
+		"cs": "Czech (Čeština)",
+		"fa": "Persian (فارسی)",
+		"yi": "Yiddish (ייִדיש)",
+		"kea": "Kabuverdianu (Kabuverdianu)",
+		"id": "Indonesian (Bahasa Indonesia)",
+		"mni": "Manipuri (মণিপুরী)",
+		"ori": "Oriya (ଓଡ଼ିଆ)",
+		"nl": "Dutch (Nederlands)",
+		"pt-br": "Portuguese (Brazil) (Português do Brasil)"
+	}
+}
